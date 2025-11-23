@@ -1,0 +1,70 @@
+# =====================================================
+# GateWey Requisition Management System
+# Uploads Directory Security Configuration
+# File Location: /requisition-app/uploads/.htaccess
+# =====================================================
+
+# ===== DENY ALL DIRECT ACCESS =====
+# Files in this directory should ONLY be accessed through PHP scripts
+Order Deny,Allow
+Deny from all
+
+# ===== ALLOW PHP SCRIPTS TO ACCESS =====
+# PHP scripts within the application can still access these files
+<FilesMatch "\.(php)$">
+    Allow from all
+</FilesMatch>
+
+# ===== PREVENT DIRECTORY LISTING =====
+# Users should never see a list of uploaded files
+Options -Indexes
+
+# ===== DISABLE SCRIPT EXECUTION =====
+# Prevent uploaded files from being executed as scripts
+php_flag engine off
+
+# If PHP engine directive doesn't work, use this alternative:
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|aspx|cgi|sh)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ===== DISABLE CGI EXECUTION =====
+Options -ExecCGI
+AddHandler cgi-script .php .php3 .php4 .php5 .phtml .pl .py .jsp .asp .aspx .htm .shtml .sh .cgi
+
+# ===== ADDITIONAL SECURITY HEADERS =====
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Prevent files from being displayed in frames
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Force download instead of display for certain file types
+    <FilesMatch "\.(pdf|doc|docx|xls|xlsx)$">
+        Header set Content-Disposition "attachment"
+    </FilesMatch>
+</IfModule>
+
+# ===== PREVENT ACCESS TO HIDDEN FILES =====
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ===== ALLOW ONLY SPECIFIC FILE TYPES =====
+# Only PDF and image files should be uploadable
+<FilesMatch "\.(pdf|jpg|jpeg|png|gif)$">
+    # These file types are allowed but still can't be executed
+</FilesMatch>
+
+# ===== PREVENT HOT LINKING =====
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?yourdomain\.com [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|pdf)$ - [F,NC,L]
+</IfModule>
+
+# ===== END OF .HTACCESS =====

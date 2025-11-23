@@ -1,0 +1,54 @@
+{
+    "name": "gatewey/requisition-management",
+    "description": "GateWey Requisition Management System - A comprehensive web application for managing purchase requisitions with multi-level approval workflows",
+    "type": "project",
+    "license": "proprietary",
+    "keywords": [
+        "requisition",
+        "approval-workflow",
+        "purchase-management",
+        "finance"
+    ],
+    "authors": [
+        {
+            "name": "GateWey Technologies",
+            "email": "dev@gatewey.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "phpmailer/phpmailer": "^6.8",
+        "phpoffice/phpspreadsheet": "^1.29"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "GateWey\\Requisition\\": "classes/"
+        },
+        "files": [
+            "config/config.php",
+            "config/constants.php",
+            "config/email.php"
+        ]
+    },
+    "config": {
+        "vendor-dir": "vendor",
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"echo 'Dependencies installed successfully!\\n';\""
+        ],
+        "post-update-cmd": [
+            "@php -r \"echo 'Dependencies updated successfully!\\n';\""
+        ],
+        "test": "phpunit --colors=always",
+        "check-security": "composer audit"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
