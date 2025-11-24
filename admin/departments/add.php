@@ -12,11 +12,6 @@ define('ADMIN_ACCESS', true);
 require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../config/constants.php';
-require_once __DIR__ . '/../../classes/Database.php';
-require_once __DIR__ . '/../../classes/Session.php';
-require_once __DIR__ . '/../../classes/Department.php';
-require_once __DIR__ . '/../../classes/Validator.php';
-require_once __DIR__ . '/../../classes/Sanitizer.php';
 require_once __DIR__ . '/../../helpers/permissions.php';
 
 Session::start();
