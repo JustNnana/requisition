@@ -39,7 +39,7 @@ if (!$departmentData) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!Session::validateCSRF($_POST['csrf_token'] ?? '')) {
+    if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
         Session::setFlash('error', 'Invalid security token.');
         header('Location: list.php');
         exit;
@@ -123,7 +123,7 @@ $pageTitle = 'Delete Department';
                     </div>
                     
                     <form method="POST">
-                        <input type="hidden" name="csrf_token" value="<?php echo Session::generateCSRF(); ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo Session::getCsrfToken(); ?>">
                         <div class="d-flex justify-content-end gap-2">
                             <a href="list.php" class="btn btn-ghost">Cancel</a>
                             <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Yes, Delete Department</button>

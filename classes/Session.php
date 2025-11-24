@@ -4,10 +4,19 @@
  * Session Management Class
  * 
  * File: classes/Session.php
- * Purpose: Handle user sessions, authentication, and CSRF protection
+ * Purpose: Handle user sessions, authentication, CSRF protection, and flash messages
  */
 
 class Session {
+    
+    /**
+     * Session configuration constants
+     */
+    private const SESSION_USER_KEY = 'user_data';
+    private const SESSION_CSRF_TOKEN_KEY = 'csrf_token';
+    private const SESSION_FLASH_KEY = 'flash_messages';
+    private const SESSION_LAST_ACTIVITY = 'last_activity';
+    private const SESSION_LAST_REGENERATION = 'last_regeneration';
     
     /**
      * Initialize session with secure settings
@@ -43,16 +52,32 @@ class Session {
             self::regenerateIfNeeded();
         }
     }
+    /**
+ * Start session (alias for init() - backward compatibility)
+ */
+public static function start() {
+    self::init();
+}
+    /**
+     * Regenerate session ID (prevents session fixation)
+     * Call this after successful login
+     */
+    public static function regenerate() {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_regenerate_id(true);
+            $_SESSION[self::SESSION_LAST_REGENERATION] = time();
+        }
+    }
     
     /**
-     * Regenerate session ID periodically
+     * Regenerate session ID periodically (every 30 minutes)
      */
     private static function regenerateIfNeeded() {
-        if (!isset($_SESSION['last_regeneration'])) {
-            $_SESSION['last_regeneration'] = time();
-        } elseif (time() - $_SESSION['last_regeneration'] > 1800) { // 30 minutes
+        if (!isset($_SESSION[self::SESSION_LAST_REGENERATION])) {
+            $_SESSION[self::SESSION_LAST_REGENERATION] = time();
+        } elseif (time() - $_SESSION[self::SESSION_LAST_REGENERATION] > 1800) { // 30 minutes
             session_regenerate_id(true);
-            $_SESSION['last_regeneration'] = time();
+            $_SESSION[self::SESSION_LAST_REGENERATION] = time();
         }
     }
     
@@ -113,7 +138,16 @@ class Session {
         
         // Delete session cookie
         if (isset($_COOKIE[session_name()])) {
-            setcookie(session_name(), '', time() - 3600, SESSION_PATH);
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
         }
         
         // Destroy session
@@ -121,7 +155,29 @@ class Session {
     }
     
     /**
-     * Set user login session
+     * Set user data in session (NEW METHOD)
+     * This stores complete user data as an array
+     * 
+     * @param array $userData User data to store
+     */
+    public static function setUser($userData) {
+        self::init();
+        $_SESSION[self::SESSION_USER_KEY] = $userData;
+        $_SESSION[self::SESSION_LAST_ACTIVITY] = time();
+    }
+    
+    /**
+     * Get complete user data from session (NEW METHOD)
+     * 
+     * @return array|null User data or null if not logged in
+     */
+    public static function getUser() {
+        self::init();
+        return $_SESSION[self::SESSION_USER_KEY] ?? null;
+    }
+    
+    /**
+     * Set user login session (EXISTING METHOD - maintains backward compatibility)
      * 
      * @param array $user User data
      */
@@ -129,9 +185,10 @@ class Session {
         self::init();
         
         // Regenerate session ID for security
-        session_regenerate_id(true);
+        self::regenerate();
         
-        // Store user data in session
+        // Store user data in both formats for compatibility
+        // Format 1: Individual session keys (backward compatibility)
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_email'] = $user['email'];
         $_SESSION['user_first_name'] = $user['first_name'];
@@ -140,9 +197,12 @@ class Session {
         $_SESSION['user_department_id'] = $user['department_id'] ?? null;
         $_SESSION['logged_in'] = true;
         $_SESSION['login_time'] = time();
-        $_SESSION['last_activity'] = time();
+        $_SESSION[self::SESSION_LAST_ACTIVITY] = time();
         $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'] ?? '';
         $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        
+        // Format 2: Complete user data array (new method)
+        $_SESSION[self::SESSION_USER_KEY] = $user;
     }
     
     /**
@@ -160,18 +220,23 @@ class Session {
     public static function isLoggedIn() {
         self::init();
         
-        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+        // Check both old and new format
+        $isLoggedInOld = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
+        $isLoggedInNew = isset($_SESSION[self::SESSION_USER_KEY]) && 
+                         isset($_SESSION[self::SESSION_USER_KEY]['id']);
+        
+        if (!$isLoggedInOld && !$isLoggedInNew) {
             return false;
         }
         
         // Check session timeout
-        if (isset($_SESSION['last_activity'])) {
-            $inactive = time() - $_SESSION['last_activity'];
+        if (isset($_SESSION[self::SESSION_LAST_ACTIVITY])) {
+            $inactive = time() - $_SESSION[self::SESSION_LAST_ACTIVITY];
             if ($inactive > SESSION_LIFETIME) {
                 self::logout();
                 return false;
             }
-            $_SESSION['last_activity'] = time(); // Update last activity
+            $_SESSION[self::SESSION_LAST_ACTIVITY] = time(); // Update last activity
         }
         
         // Verify IP address (optional, can be disabled for dynamic IPs)
@@ -191,7 +256,17 @@ class Session {
      * @return int|null User ID or null if not logged in
      */
     public static function getUserId() {
-        return self::isLoggedIn() ? self::get('user_id') : null;
+        if (!self::isLoggedIn()) {
+            return null;
+        }
+        
+        // Try new format first
+        if (isset($_SESSION[self::SESSION_USER_KEY]['id'])) {
+            return $_SESSION[self::SESSION_USER_KEY]['id'];
+        }
+        
+        // Fall back to old format
+        return self::get('user_id');
     }
     
     /**
@@ -200,7 +275,17 @@ class Session {
      * @return int|null Role ID or null if not logged in
      */
     public static function getUserRoleId() {
-        return self::isLoggedIn() ? self::get('user_role_id') : null;
+        if (!self::isLoggedIn()) {
+            return null;
+        }
+        
+        // Try new format first
+        if (isset($_SESSION[self::SESSION_USER_KEY]['role_id'])) {
+            return $_SESSION[self::SESSION_USER_KEY]['role_id'];
+        }
+        
+        // Fall back to old format
+        return self::get('user_role_id');
     }
     
     /**
@@ -209,7 +294,17 @@ class Session {
      * @return int|null Department ID or null if not logged in or no department
      */
     public static function getUserDepartmentId() {
-        return self::isLoggedIn() ? self::get('user_department_id') : null;
+        if (!self::isLoggedIn()) {
+            return null;
+        }
+        
+        // Try new format first
+        if (isset($_SESSION[self::SESSION_USER_KEY]['department_id'])) {
+            return $_SESSION[self::SESSION_USER_KEY]['department_id'];
+        }
+        
+        // Fall back to old format
+        return self::get('user_department_id');
     }
     
     /**
@@ -221,7 +316,18 @@ class Session {
         if (!self::isLoggedIn()) {
             return null;
         }
-        return self::get('user_first_name') . ' ' . self::get('user_last_name');
+        
+        // Try new format first
+        if (isset($_SESSION[self::SESSION_USER_KEY]['first_name'])) {
+            $firstName = $_SESSION[self::SESSION_USER_KEY]['first_name'];
+            $lastName = $_SESSION[self::SESSION_USER_KEY]['last_name'] ?? '';
+            return trim($firstName . ' ' . $lastName);
+        }
+        
+        // Fall back to old format
+        $firstName = self::get('user_first_name', '');
+        $lastName = self::get('user_last_name', '');
+        return trim($firstName . ' ' . $lastName);
     }
     
     /**
@@ -230,7 +336,17 @@ class Session {
      * @return string|null Email or null if not logged in
      */
     public static function getUserEmail() {
-        return self::isLoggedIn() ? self::get('user_email') : null;
+        if (!self::isLoggedIn()) {
+            return null;
+        }
+        
+        // Try new format first
+        if (isset($_SESSION[self::SESSION_USER_KEY]['email'])) {
+            return $_SESSION[self::SESSION_USER_KEY]['email'];
+        }
+        
+        // Fall back to old format
+        return self::get('user_email');
     }
     
     /**
@@ -250,6 +366,42 @@ class Session {
     }
     
     /**
+     * Set intended URL (for redirecting after login)
+     * 
+     * @param string $url URL to redirect to after login
+     */
+    public static function setIntendedUrl($url) {
+        self::init();
+        $_SESSION['intended_url'] = $url;
+    }
+    
+    /**
+     * Get and clear intended URL
+     * 
+     * @return string|null Intended URL or null
+     */
+    public static function getIntendedUrl() {
+        self::init();
+        
+        if (isset($_SESSION['intended_url'])) {
+            $url = $_SESSION['intended_url'];
+            unset($_SESSION['intended_url']);
+            return $url;
+        }
+        return null;
+    }
+    
+    /**
+     * Check if intended URL exists
+     * 
+     * @return bool
+     */
+    public static function hasIntendedUrl() {
+        self::init();
+        return isset($_SESSION['intended_url']);
+    }
+    
+    /**
      * Generate CSRF token
      * 
      * @return string CSRF token
@@ -257,15 +409,24 @@ class Session {
     public static function generateCsrfToken() {
         self::init();
         
-        if (!isset($_SESSION[CSRF_TOKEN_NAME]) || 
-            !isset($_SESSION[CSRF_TOKEN_NAME . '_time']) ||
-            (time() - $_SESSION[CSRF_TOKEN_NAME . '_time']) > CSRF_TOKEN_LIFETIME) {
+        if (!isset($_SESSION[self::SESSION_CSRF_TOKEN_KEY]) || 
+            !isset($_SESSION[self::SESSION_CSRF_TOKEN_KEY . '_time']) ||
+            (time() - $_SESSION[self::SESSION_CSRF_TOKEN_KEY . '_time']) > CSRF_TOKEN_LIFETIME) {
             
-            $_SESSION[CSRF_TOKEN_NAME] = bin2hex(random_bytes(32));
-            $_SESSION[CSRF_TOKEN_NAME . '_time'] = time();
+            $_SESSION[self::SESSION_CSRF_TOKEN_KEY] = bin2hex(random_bytes(32));
+            $_SESSION[self::SESSION_CSRF_TOKEN_KEY . '_time'] = time();
         }
         
-        return $_SESSION[CSRF_TOKEN_NAME];
+        return $_SESSION[self::SESSION_CSRF_TOKEN_KEY];
+    }
+    
+    /**
+     * Get CSRF token (generates if not exists)
+     * 
+     * @return string CSRF token
+     */
+    public static function getCsrfToken() {
+        return self::generateCsrfToken();
     }
     
     /**
@@ -277,17 +438,17 @@ class Session {
     public static function validateCsrfToken($token) {
         self::init();
         
-        if (!isset($_SESSION[CSRF_TOKEN_NAME])) {
+        if (!isset($_SESSION[self::SESSION_CSRF_TOKEN_KEY])) {
             return false;
         }
         
         // Check if token has expired
-        if (isset($_SESSION[CSRF_TOKEN_NAME . '_time']) &&
-            (time() - $_SESSION[CSRF_TOKEN_NAME . '_time']) > CSRF_TOKEN_LIFETIME) {
+        if (isset($_SESSION[self::SESSION_CSRF_TOKEN_KEY . '_time']) &&
+            (time() - $_SESSION[self::SESSION_CSRF_TOKEN_KEY . '_time']) > CSRF_TOKEN_LIFETIME) {
             return false;
         }
         
-        return hash_equals($_SESSION[CSRF_TOKEN_NAME], $token);
+        return hash_equals($_SESSION[self::SESSION_CSRF_TOKEN_KEY], $token);
     }
     
     /**
@@ -296,8 +457,8 @@ class Session {
      * @return string HTML input field
      */
     public static function csrfField() {
-        $token = self::generateCsrfToken();
-        return '<input type="hidden" name="' . CSRF_TOKEN_NAME . '" value="' . htmlspecialchars($token) . '">';
+        $token = self::getCsrfToken();
+        return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($token) . '">';
     }
     
     /**
@@ -308,7 +469,12 @@ class Session {
      */
     public static function setFlash($type, $message) {
         self::init();
-        $_SESSION['flash'][$type] = $message;
+        
+        if (!isset($_SESSION[self::SESSION_FLASH_KEY])) {
+            $_SESSION[self::SESSION_FLASH_KEY] = [];
+        }
+        
+        $_SESSION[self::SESSION_FLASH_KEY][$type] = $message;
     }
     
     /**
@@ -320,9 +486,9 @@ class Session {
     public static function getFlash($type) {
         self::init();
         
-        if (isset($_SESSION['flash'][$type])) {
-            $message = $_SESSION['flash'][$type];
-            unset($_SESSION['flash'][$type]);
+        if (isset($_SESSION[self::SESSION_FLASH_KEY][$type])) {
+            $message = $_SESSION[self::SESSION_FLASH_KEY][$type];
+            unset($_SESSION[self::SESSION_FLASH_KEY][$type]);
             return $message;
         }
         
@@ -337,21 +503,40 @@ class Session {
      */
     public static function hasFlash($type) {
         self::init();
-        return isset($_SESSION['flash'][$type]);
+        return isset($_SESSION[self::SESSION_FLASH_KEY][$type]);
     }
     
     /**
-     * Get all flash messages
+     * Get all flash messages and clear them
+     * 
+     * @return array Flash messages
+     */
+    public static function getFlashMessages() {
+        self::init();
+        
+        $messages = $_SESSION[self::SESSION_FLASH_KEY] ?? [];
+        unset($_SESSION[self::SESSION_FLASH_KEY]);
+        
+        return $messages;
+    }
+    
+    /**
+     * Get all flash messages (alias for backward compatibility)
      * 
      * @return array Array of flash messages
      */
     public static function getAllFlashes() {
+        return self::getFlashMessages();
+    }
+    
+    /**
+     * Check if there are flash messages
+     * 
+     * @return bool
+     */
+    public static function hasFlashMessages() {
         self::init();
-        
-        $flashes = $_SESSION['flash'] ?? [];
-        unset($_SESSION['flash']);
-        
-        return $flashes;
+        return !empty($_SESSION[self::SESSION_FLASH_KEY]);
     }
     
     /**

@@ -59,7 +59,7 @@ if (!$userData) {
 // Handle deletion
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verify CSRF token
-    if (!Session::validateCSRF($_POST['csrf_token'] ?? '')) {
+    if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
         Session::setFlash('error', 'Invalid security token. Please try again.');
         header('Location: list.php');
         exit;
@@ -146,7 +146,7 @@ $pageTitle = 'Delete User';
                 <!-- Delete Form -->
                 <form method="POST" action="">
                     <!-- CSRF Token -->
-                    <input type="hidden" name="csrf_token" value="<?php echo Session::generateCSRF(); ?>">
+                    <input type="hidden" name="csrf_token" value="<?php echo Session::getCsrfToken(); ?>">
                     
                     <div class="d-flex justify-content-end gap-2">
                         <a href="list.php" class="btn btn-ghost">Cancel</a>

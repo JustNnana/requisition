@@ -65,7 +65,7 @@ $formData = $userData;
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verify CSRF token
-    if (!Session::validateCSRF($_POST['csrf_token'] ?? '')) {
+    if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
         $errors[] = 'Invalid security token. Please try again.';
     } else {
         // Sanitize input
@@ -172,7 +172,7 @@ $customCSS = "
             <div class="card-body">
                 <form method="POST" action="" data-loading>
                     <!-- CSRF Token -->
-                    <input type="hidden" name="csrf_token" value="<?php echo Session::generateCSRF(); ?>">
+                    <input type="hidden" name="csrf_token" value="<?php echo Session::getCsrfToken(); ?>">
                     
                     <div class="row">
                         <!-- First Name -->

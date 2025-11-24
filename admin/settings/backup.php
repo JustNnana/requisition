@@ -16,7 +16,7 @@ require_once __DIR__ . '/../../classes/Database.php';
 require_once __DIR__ . '/../../classes/Session.php';
 require_once __DIR__ . '/../../helpers/permissions.php';
 
-Session::start();
+Session::init();
 require_once __DIR__ . '/../../middleware/auth-check.php';
 require_once __DIR__ . '/../../middleware/role-check.php';
 checkRole(ROLE_SUPER_ADMIN);
@@ -25,7 +25,7 @@ $message = '';
 $messageType = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    if (!Session::validateCSRF($_POST['csrf_token'] ?? '')) {
+    if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
         $message = 'Invalid security token.';
         $messageType = 'error';
     } else {
@@ -33,9 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         
         if ($action === 'backup') {
             // Perform database backup
-            $backupDir = __DIR__ . '/../../backups';
+            $backupDir = DB_BACKUP_DIR;
             if (!is_dir($backupDir)) {
                 mkdir($backupDir, 0755, true);
+                // Create .htaccess to prevent direct access
+                file_put_contents($backupDir . '/.htaccess', "Deny from all");
             }
             
             $filename = 'backup_' . date('Y-m-d_H-i-s') . '.sql';
@@ -43,29 +45,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             
             // MySQL dump command
             $command = sprintf(
-                'mysqldump --user=%s --password=%s --host=%s %s > %s',
-                DB_USER,
-                DB_PASS,
-                DB_HOST,
-                DB_NAME,
+                'mysqldump --user=%s --password=%s --host=%s %s > %s 2>&1',
+                escapeshellarg(DB_USER),
+                escapeshellarg(DB_PASS),
+                escapeshellarg(DB_HOST),
+                escapeshellarg(DB_NAME),
                 escapeshellarg($filepath)
             );
             
             exec($command, $output, $returnCode);
             
-            if ($returnCode === 0) {
+            if ($returnCode === 0 && file_exists($filepath) && filesize($filepath) > 0) {
                 $message = "Database backup created successfully: {$filename}";
                 $messageType = 'success';
+                
+                // Log the backup
+                $db = Database::getInstance();
+                $auditData = [
+                    'user_id' => Session::getUserId(),
+                    'action_type' => AUDIT_BACKUP_CREATED,
+                    'details' => "Database backup created: {$filename}",
+                    'ip_address' => $_SERVER['REMOTE_ADDR'] ?? '',
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+                $db->insert('audit_log', $auditData);
             } else {
-                $message = "Failed to create database backup. Error code: {$returnCode}";
+                $message = "Failed to create database backup.";
+                if (!empty($output)) {
+                    $message .= " Error: " . implode("\n", $output);
+                }
                 $messageType = 'error';
+                
+                // Clean up failed backup file
+                if (file_exists($filepath)) {
+                    unlink($filepath);
+                }
             }
         }
     }
 }
 
 // Get existing backups
-$backupDir = __DIR__ . '/../../backups';
+$backupDir = DB_BACKUP_DIR;
 $backups = [];
 
 if (is_dir($backupDir)) {
@@ -73,6 +94,7 @@ if (is_dir($backupDir)) {
     foreach ($files as $file) {
         $backups[] = [
             'filename' => basename($file),
+            'filepath' => $file,
             'size' => filesize($file),
             'date' => filemtime($file)
         ];
@@ -115,7 +137,7 @@ $pageTitle = 'Database Backup';
                 <p class="text-muted">Create a complete backup of the database.</p>
                 
                 <form method="POST">
-                    <input type="hidden" name="csrf_token" value="<?php echo Session::generateCSRF(); ?>">
+                    <?php echo Session::csrfField(); ?>
                     <input type="hidden" name="action" value="backup">
                     
                     <button type="submit" class="btn btn-success btn-block">
@@ -125,7 +147,8 @@ $pageTitle = 'Database Backup';
                 
                 <div class="alert alert-info mt-4">
                     <i class="fas fa-info-circle"></i>
-                    <strong>Note:</strong> Backups are stored in the <code>/backups</code> directory.
+                    <strong>Database:</strong> <?php echo htmlspecialchars(DB_NAME); ?><br>
+                    <strong>Host:</strong> <?php echo htmlspecialchars(DB_HOST); ?>
                 </div>
             </div>
         </div>
@@ -164,22 +187,10 @@ $pageTitle = 'Database Backup';
                                             <?php echo date('M d, Y', $backup['date']); ?><br>
                                             <small class="text-muted"><?php echo date('H:i:s', $backup['date']); ?></small>
                                         </td>
-                                        <td>
-                                            <?php 
-                                            $size = $backup['size'];
-                                            if ($size > 1048576) {
-                                                echo number_format($size / 1048576, 2) . ' MB';
-                                            } elseif ($size > 1024) {
-                                                echo number_format($size / 1024, 2) . ' KB';
-                                            } else {
-                                                echo $size . ' B';
-                                            }
-                                            ?>
-                                        </td>
+                                        <td><?php echo format_file_size($backup['size']); ?></td>
                                         <td class="text-end">
-                                            <a href="../../backups/<?php echo htmlspecialchars($backup['filename']); ?>" 
+                                            <a href="download-backup.php?file=<?php echo urlencode($backup['filename']); ?>" 
                                                class="btn btn-sm btn-ghost" 
-                                               download
                                                title="Download Backup">
                                                 <i class="fas fa-download"></i>
                                             </a>

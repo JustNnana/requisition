@@ -381,6 +381,121 @@ function get_user_dashboard_url() {
 }
 
 /**
+ * ========================================
+ * ADD THESE FUNCTIONS TO YOUR EXISTING permissions.php
+ * Add them after your existing functions
+ * ========================================
+ */
+
+/**
+ * Check if user has specific role
+ * Redirects to unauthorized page if user doesn't have required role
+ * 
+ * @param int $requiredRole Required role ID
+ * @param string $redirectUrl URL to redirect to if unauthorized (optional)
+ */
+function checkRole($requiredRole, $redirectUrl = null) {
+    // Check if user is logged in
+    if (!Session::isLoggedIn()) {
+        Session::setFlash('error', 'Please login to access this page.');
+        header('Location: ' . BASE_URL . '/auth/login.php');
+        exit;
+    }
+    
+    $user = Session::getUser();
+    $userRole = $user['role_id'] ?? null;
+    
+    // Check if user has required role
+    if ($userRole !== $requiredRole) {
+        Session::setFlash('error', 'You do not have permission to access this page.');
+        
+        if ($redirectUrl) {
+            header('Location: ' . $redirectUrl);
+        } else {
+            // Redirect to user's dashboard
+            header('Location: ' . get_user_dashboard_url());
+        }
+        exit;
+    }
+}
+
+/**
+ * Check if user has any of the specified roles
+ * Redirects to unauthorized page if user doesn't have any required role
+ * 
+ * @param array $requiredRoles Array of required role IDs
+ * @param string $redirectUrl URL to redirect to if unauthorized (optional)
+ */
+function checkAnyRole($requiredRoles, $redirectUrl = null) {
+    // Check if user is logged in
+    if (!Session::isLoggedIn()) {
+        Session::setFlash('error', 'Please login to access this page.');
+        header('Location: ' . BASE_URL . '/auth/login.php');
+        exit;
+    }
+    
+    $user = Session::getUser();
+    $userRole = $user['role_id'] ?? null;
+    
+    // Check if user has any of the required roles
+    if (!in_array($userRole, $requiredRoles)) {
+        Session::setFlash('error', 'You do not have permission to access this page.');
+        
+        if ($redirectUrl) {
+            header('Location: ' . $redirectUrl);
+        } else {
+            // Redirect to user's dashboard
+            header('Location: ' . get_user_dashboard_url());
+        }
+        exit;
+    }
+}
+
+/**
+ * Require authentication (user must be logged in)
+ * Redirects to login if not authenticated
+ */
+function requireAuth() {
+    if (!Session::isLoggedIn()) {
+        Session::setFlash('error', 'Please login to access this page.');
+        Session::setIntendedUrl($_SERVER['REQUEST_URI']);
+        header('Location: ' . BASE_URL . '/auth/login.php');
+        exit;
+    }
+}
+
+/**
+ * Check if user has specific role (returns boolean, doesn't redirect)
+ * 
+ * @param int $roleId Role ID to check
+ * @return bool
+ */
+function hasRole($roleId) {
+    if (!Session::isLoggedIn()) {
+        return false;
+    }
+    
+    $user = Session::getUser();
+    return ($user['role_id'] ?? null) === $roleId;
+}
+
+/**
+ * Check if user has any of the specified roles (returns boolean, doesn't redirect)
+ * 
+ * @param array $roleIds Array of role IDs
+ * @return bool
+ */
+function hasAnyRole($roleIds) {
+    if (!Session::isLoggedIn()) {
+        return false;
+    }
+    
+    $user = Session::getUser();
+    $userRole = $user['role_id'] ?? null;
+    
+    return in_array($userRole, $roleIds);
+}
+/**
  * Get navigation menu items based on user role
  * 
  * @return array Navigation items

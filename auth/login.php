@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $auth->login($email, $password, $rememberMe);
             
             if ($result['success']) {
-                // Redirect to intended URL
+                // Redirect to intended URL (Auth class handles this)
                 header('Location: ' . $auth->getIntendedUrl());
                 exit;
             } else {

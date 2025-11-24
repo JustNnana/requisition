@@ -44,7 +44,7 @@ $errors = [];
 $formData = $departmentData;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!Session::validateCSRF($_POST['csrf_token'] ?? '')) {
+    if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
         $errors[] = 'Invalid security token.';
     } else {
         $formData = [
@@ -107,7 +107,7 @@ $customCSS = ".required-field::after { content: ' *'; color: var(--danger); }";
             <div class="card-header"><h5 class="card-title mb-0">Department Information</h5></div>
             <div class="card-body">
                 <form method="POST" data-loading>
-                    <input type="hidden" name="csrf_token" value="<?php echo Session::generateCSRF(); ?>">
+                    <input type="hidden" name="csrf_token" value="<?php echo Session::getCsrfToken(); ?>">
                     
                     <div class="row">
                         <div class="col-md-6 mb-4">
