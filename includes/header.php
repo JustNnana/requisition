@@ -5,6 +5,9 @@
  * 
  * File: includes/header.php
  * Purpose: Common header with logo, navigation, and theme system for all authenticated pages
+ * 
+ * IMPORTANT: This file assumes authentication has already been verified by middleware.
+ * Do NOT add authentication redirects here as it will cause redirect loops.
  */
 
 // Ensure this file is included from a valid entry point
@@ -12,11 +15,18 @@ if (!defined('APP_ACCESS')) {
     die('Direct access not permitted');
 }
 
-// Get current user information
+// Get current user information with null safety
+// Note: Authentication should already be verified by middleware before this file is included
 $currentUser = Session::get('user');
-$userRole = $currentUser['role_name'] ?? 'Guest';
-$userName = $currentUser['first_name'] . ' ' . $currentUser['last_name'];
+
+// Set default values if session data is incomplete (should not happen after auth-check.php)
+$userRole = $currentUser['role_name'] ?? 'User';
+$userName = trim(($currentUser['first_name'] ?? '') . ' ' . ($currentUser['last_name'] ?? '')) ?: 'User';
 $userEmail = $currentUser['email'] ?? '';
+$userInitials = strtoupper(
+    substr($currentUser['first_name'] ?? 'U', 0, 1) . 
+    substr($currentUser['last_name'] ?? 'U', 0, 1)
+);
 
 // Determine active page for navigation highlighting
 $currentPage = basename($_SERVER['PHP_SELF']);
@@ -49,8 +59,10 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
     <nav class="navbar">
         <div style="display: flex; align-items: center; gap: var(--spacing-4);">
             <!-- Logo and Brand -->
-            <a href="<?php echo BASE_URL; ?>/dashboard/index.php" class="navbar-brand" style="display: flex; align-items: center; gap: var(--spacing-3);">
-                <img src="<?php echo BASE_URL; ?>/assets/images/logo.png" alt="GateWey Logo" style="height: 40px; width: auto;">
+            <a href="<?php echo BASE_URL; ?>/index.php" class="navbar-brand" style="display: flex; align-items: center; gap: var(--spacing-3);">
+                <div style="width: 40px; height: 40px; background: var(--primary); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: var(--font-weight-bold); font-size: 1.2rem;">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
                 <span style="font-weight: var(--font-weight-bold); color: var(--text-primary);">GateWey</span>
             </a>
         </div>
@@ -74,7 +86,7 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
             <div class="dropdown">
                 <button class="btn btn-ghost" id="userDropdown" style="display: flex; align-items: center; gap: var(--spacing-2);">
                     <div class="avatar" style="width: 32px; height: 32px; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius-full); font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm);">
-                        <?php echo strtoupper(substr($currentUser['first_name'], 0, 1) . substr($currentUser['last_name'], 0, 1)); ?>
+                        <?php echo $userInitials; ?>
                     </div>
                     <span style="font-size: var(--font-size-sm);"><?php echo htmlspecialchars($userName); ?></span>
                     <i class="fas fa-chevron-down" style="font-size: var(--font-size-xs);"></i>
@@ -107,9 +119,9 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
     </nav>
     
     <!-- Main Wrapper -->
-    <div class="main-wrapper">
+    <div class="">
         <!-- Include Sidebar Navigation -->
         <?php include __DIR__ . '/navbar.php'; ?>
         
         <!-- Main Content Area -->
-        <main class="content"></main>
+        <main class="content">
