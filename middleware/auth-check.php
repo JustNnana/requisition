@@ -13,15 +13,6 @@
 // Prevent direct access
 defined('APP_ACCESS') or die('Direct access not permitted');
 
-// Ensure config is loaded
-if (!defined('APP_NAME')) {
-    require_once __DIR__ . '/../config/config.php';
-    require_once __DIR__ . '/../config/constant.php';
-}
-
-// Initialize session if not already done
-Session::init();
-
 // Initialize Auth class
 if (!isset($auth)) {
     $auth = new Auth();

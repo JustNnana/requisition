@@ -17,7 +17,11 @@
  *    require_once '../middleware/role-check.php';
  * 
  * 3. Require permission check:
- *    define('REQUIRED_PERMISSION', 'can_user_approve');
+ *    define('REQUIRED_PERMISSION', 'can_approve');
+ *    require_once '../middleware/role-check.php';
+ * 
+ * 4. Custom unauthorized redirect:
+ *    define('UNAUTHORIZED_REDIRECT', APP_URL . '/custom-page.php');
  *    require_once '../middleware/role-check.php';
  */
 
@@ -35,25 +39,29 @@ $errorMessage = 'You do not have permission to access this page.';
 
 // Check single role
 if (defined('REQUIRED_ROLE')) {
-    if (!Session::hasRole(REQUIRED_ROLE)) {
+    $requiredRole = constant('REQUIRED_ROLE');
+    
+    if (!Session::hasRole($requiredRole)) {
         $accessDenied = true;
-        $errorMessage = 'This page requires ' . get_role_name(REQUIRED_ROLE) . ' role.';
+        $errorMessage = 'This page requires ' . get_role_name($requiredRole) . ' role.';
     }
 }
 
 // Check multiple roles (user must have at least one)
 if (defined('REQUIRED_ROLES')) {
-    if (!Session::hasRole(REQUIRED_ROLES)) {
+    $requiredRoles = constant('REQUIRED_ROLES');
+    
+    if (!Session::hasRole($requiredRoles)) {
         $accessDenied = true;
         
-        $roleNames = array_map('get_role_name', REQUIRED_ROLES);
+        $roleNames = array_map('get_role_name', $requiredRoles);
         $errorMessage = 'This page requires one of the following roles: ' . implode(', ', $roleNames) . '.';
     }
 }
 
 // Check custom permission function
 if (defined('REQUIRED_PERMISSION')) {
-    $permissionFunction = REQUIRED_PERMISSION;
+    $permissionFunction = constant('REQUIRED_PERMISSION');
     
     if (function_exists($permissionFunction)) {
         if (!call_user_func($permissionFunction)) {
@@ -74,7 +82,7 @@ if ($accessDenied) {
     
     // Determine redirect URL
     if (defined('UNAUTHORIZED_REDIRECT')) {
-        $redirectUrl = UNAUTHORIZED_REDIRECT;
+        $redirectUrl = constant('UNAUTHORIZED_REDIRECT');
     } else {
         // Redirect to user's dashboard
         $redirectUrl = get_user_dashboard_url();
