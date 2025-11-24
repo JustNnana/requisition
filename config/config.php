@@ -17,8 +17,8 @@ define('APP_DEBUG', true); // Set to false in production
 // Application Details
 define('APP_NAME', 'GateWey Requisition Management');
 define('APP_VERSION', '1.0.0');
-define('APP_URL', 'http://localhost/requisitionnew');
-define('BASE_URL', 'http://localhost/requisitionnew');
+define('APP_URL', 'http://localhost/requisition');
+define('BASE_URL', 'http://localhost/requisition');
 
 // Directory Paths
 define('ROOT_PATH', dirname(__DIR__));
