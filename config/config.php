@@ -17,8 +17,8 @@ define('APP_DEBUG', true); // Set to false in production
 // Application Details
 define('APP_NAME', 'GateWey Requisition Management');
 define('APP_VERSION', '1.0.0');
-define('APP_URL', 'http://localhost/requisition'); // Update for 
-define('BASE_URL', 'http://localhost/requisition');  // ← ADD THIS LINEproduction
+define('APP_URL', 'http://localhost/requisitionnew');
+define('BASE_URL', 'http://localhost/requisitionnew');
 
 // Directory Paths
 define('ROOT_PATH', dirname(__DIR__));
@@ -63,13 +63,7 @@ define('LOGIN_LOCKOUT_TIME', 900); // 15 minutes
 // File Upload Settings
 define('MAX_FILE_SIZE', 5242880); // 5MB in bytes
 define('ALLOWED_FILE_TYPES', ['pdf', 'jpg', 'jpeg', 'png', 'gif']);
-define('ALLOWED_MIME_TYPES', [
-    'application/pdf',
-    'image/jpeg',
-    'image/jpg',
-    'image/png',
-    'image/gif'
-]);
+// Note: ALLOWED_MIME_TYPES is defined in constants.php with complete list
 
 // Pagination Settings
 define('RECORDS_PER_PAGE', 20);
