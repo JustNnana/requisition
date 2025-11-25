@@ -400,27 +400,38 @@ class User {
         $this->db->execute($sql, [$userId]);
     }
     
-    /**
-     * Change user password
-     * 
-     * @param int $userId User ID
-     * @param string $newPassword New password
-     * @return array Result with success status
-     */
-    public function changePassword($userId, $newPassword) {
-        try {
-            $passwordHash = password_hash($newPassword, PASSWORD_BCRYPT);
-            
-            $sql = "UPDATE users SET password_hash = ? WHERE id = ?";
-            $this->db->execute($sql, [$passwordHash, $userId]);
-            
-            return ['success' => true, 'message' => 'Password changed successfully.'];
-            
-        } catch (Exception $e) {
-            error_log("Change password error: " . $e->getMessage());
-            return ['success' => false, 'message' => 'An error occurred while changing password.'];
+/**
+ * Change user password
+ * 
+ * @param int $userId User ID
+ * @param string $newPassword New password
+ * @return array Result with success status
+ */
+public function changePassword($userId, $newPassword) {
+    try {
+        // Verify user exists
+        $user = $this->getById($userId);
+        if (!$user) {
+            return ['success' => false, 'message' => 'User not found.'];
         }
+        
+        $passwordHash = password_hash($newPassword, PASSWORD_BCRYPT);
+        
+        $sql = "UPDATE users SET password_hash = ?, updated_at = NOW() WHERE id = ?";
+        $this->db->execute($sql, [$passwordHash, $userId]);
+        
+        // Log password change
+        if (ENABLE_AUDIT_LOG) {
+            $this->logAction($userId, AUDIT_USER_PASSWORD_CHANGED, "Password changed for user: {$user['email']}");
+        }
+        
+        return ['success' => true, 'message' => 'Password changed successfully.'];
+        
+    } catch (Exception $e) {
+        error_log("Change password error: " . $e->getMessage());
+        return ['success' => false, 'message' => 'An error occurred while changing password.'];
     }
+}
     
     /**
      * Verify user password

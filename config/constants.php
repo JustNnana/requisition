@@ -182,6 +182,25 @@ define('UPLOAD_MAX_SIZE', 5242880); // 5 MB in bytes
 define('INVOICE_MAX_SIZE', 10485760); // 10 MB in bytes
 define('RECEIPT_MAX_SIZE', 10485760); // 10 MB in bytes
 
+// Allowed file extensions
+define('ALLOWED_IMAGE_EXTENSIONS', ['jpg', 'jpeg', 'png', 'gif']);
+define('ALLOWED_DOCUMENT_EXTENSIONS', ['pdf', 'doc', 'docx', 'xls', 'xlsx']);
+define('ALLOWED_FILE_EXTENSIONS', array_merge(
+    ALLOWED_IMAGE_EXTENSIONS, 
+    ALLOWED_DOCUMENT_EXTENSIONS
+));
+
+// MIME types
+define('ALLOWED_MIME_TYPES', [
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+]);
 
 
 /**

@@ -106,10 +106,12 @@ $pageTitle = 'Department Management';
                             <tr>
                                 <td><?php echo $dept['id']; ?></td>
                                 <td>
-                                    <div style="font-weight: var(--font-weight-medium);">
-                                        <?php echo htmlspecialchars($dept['department_name']); ?>
-                                    </div>
-                                </td>
+    <?php if (!empty($userData['department_name'])): ?>
+        <?php echo htmlspecialchars($userData['department_name']); ?>
+    <?php else: ?>
+        <span class="text-muted">N/A</span>
+    <?php endif; ?>
+</td>
                                 <td>
                                     <span class="badge badge-info">
                                         <?php echo htmlspecialchars($dept['department_code']); ?>

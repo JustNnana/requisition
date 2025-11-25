@@ -4,10 +4,14 @@
  * User Management - Delete User
  * 
  * File: admin/users/delete.php
- * Purpose: Delete user with confirmation
+ * Purpose: Delete user directly with confirmation
  */
 
 // Define access level
+// Add this temporarily for debugging
+error_log("Delete.php accessed - User ID: " . ($_GET['id'] ?? 'none') . ", Confirm: " . ($_GET['confirm'] ?? 'none'));
+
+// Then continue with the rest of your code...
 define('APP_ACCESS', true);
 define('ADMIN_ACCESS', true);
 
@@ -38,7 +42,8 @@ if (!$userId) {
 }
 
 // Prevent self-deletion
-if ($userId == Session::get('user')['id']) {
+$currentUser = Session::get('user');
+if ($userId == ($currentUser['id'] ?? 0)) {
     Session::setFlash('error', 'You cannot delete your own account.');
     header('Location: list.php');
     exit;
@@ -53,15 +58,8 @@ if (!$userData) {
     exit;
 }
 
-// Handle deletion
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Verify CSRF token
-    if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
-        Session::setFlash('error', 'Invalid security token. Please try again.');
-        header('Location: list.php');
-        exit;
-    }
-    
+// Check if confirmation is provided (via GET parameter)
+if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
     // Delete user
     $result = $user->delete($userId);
     
@@ -124,34 +122,15 @@ $pageTitle = 'Delete User';
                             <th>Email:</th>
                             <td><?php echo htmlspecialchars($userData['email']); ?></td>
                         </tr>
-                        <tr>
-                            <th>Role:</th>
-                            <td><?php echo htmlspecialchars($userData['role_name']); ?></td>
-                        </tr>
-                        <tr>
-                            <th>Department:</th>
-                            <td><?php echo $userData['department_name'] ? htmlspecialchars($userData['department_name']) : '<span class="text-muted">N/A</span>'; ?></td>
-                        </tr>
                     </table>
                 </div>
                 
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle"></i>
-                    <strong>Note:</strong> All requisitions, approvals, and audit logs associated with this user will be CASCADE deleted from the system.
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="list.php" class="btn btn-ghost">Cancel</a>
+                    <a href="delete.php?id=<?php echo $userId; ?>&confirm=yes" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Yes, Delete User
+                    </a>
                 </div>
-                
-                <!-- Delete Form -->
-                <form method="POST" action="">
-                    <!-- CSRF Token -->
-                    <input type="hidden" name="csrf_token" value="<?php echo Session::getCsrfToken(); ?>">
-                    
-                    <div class="d-flex justify-content-end gap-2">
-                        <a href="list.php" class="btn btn-ghost">Cancel</a>
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fas fa-trash"></i> Yes, Delete User
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

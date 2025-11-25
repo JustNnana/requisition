@@ -60,11 +60,6 @@ define('PASSWORD_REQUIRE_UPPERCASE', true);
 define('MAX_LOGIN_ATTEMPTS', 5);
 define('LOGIN_LOCKOUT_TIME', 900); // 15 minutes
 
-// File Upload Settings
-define('MAX_FILE_SIZE', 5242880); // 5MB in bytes
-define('ALLOWED_FILE_TYPES', ['pdf', 'jpg', 'jpeg', 'png', 'gif']);
-// Note: ALLOWED_MIME_TYPES is defined in constants.php with complete list
-
 // Pagination Settings
 define('RECORDS_PER_PAGE', 20);
 define('PAGINATION_RANGE', 5);

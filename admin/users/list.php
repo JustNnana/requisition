@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GateWey Requisition Management System
  * User Management - List Users
@@ -45,7 +46,7 @@ $sql = "SELECT u.*, r.role_name, d.department_name
         FROM users u
         JOIN roles r ON u.role_id = r.id
         LEFT JOIN departments d ON u.department_id = d.id
-        WHERE 1=1";
+        WHERE u.is_active = 1";
 
 $params = [];
 
@@ -139,39 +140,39 @@ $pageTitle = 'User Management';
         <form method="GET" action="" class="row g-3">
             <div class="col-md-3">
                 <label class="form-label">Search</label>
-                <input type="text" 
-                       name="search" 
-                       class="form-control" 
-                       placeholder="Name or email..." 
-                       value="<?php echo htmlspecialchars($searchTerm); ?>">
+                <input type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Name or email..."
+                    value="<?php echo htmlspecialchars($searchTerm); ?>">
             </div>
-            
+
             <div class="col-md-2">
                 <label class="form-label">Role</label>
                 <select name="role" class="form-control">
                     <option value="">All Roles</option>
                     <?php foreach ($roles as $role): ?>
-                        <option value="<?php echo $role['id']; ?>" 
-                                <?php echo ($roleFilter == $role['id']) ? 'selected' : ''; ?>>
+                        <option value="<?php echo $role['id']; ?>"
+                            <?php echo ($roleFilter == $role['id']) ? 'selected' : ''; ?>>
                             <?php echo htmlspecialchars($role['role_name']); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            
+
             <div class="col-md-3">
                 <label class="form-label">Department</label>
                 <select name="department" class="form-control">
                     <option value="">All Departments</option>
                     <?php foreach ($departments as $dept): ?>
-                        <option value="<?php echo $dept['id']; ?>" 
-                                <?php echo ($departmentFilter == $dept['id']) ? 'selected' : ''; ?>>
+                        <option value="<?php echo $dept['id']; ?>"
+                            <?php echo ($departmentFilter == $dept['id']) ? 'selected' : ''; ?>>
                             <?php echo htmlspecialchars($dept['department_name']); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            
+
             <div class="col-md-2">
                 <label class="form-label">Status</label>
                 <select name="status" class="form-control">
@@ -180,7 +181,7 @@ $pageTitle = 'User Management';
                     <option value="0" <?php echo ($statusFilter === '0') ? 'selected' : ''; ?>>Inactive</option>
                 </select>
             </div>
-            
+
             <div class="col-md-2 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary me-2">
                     <i class="fas fa-search"></i> Filter
@@ -260,18 +261,21 @@ $pageTitle = 'User Management';
                                 </td>
                                 <td class="text-end">
                                     <div class="table-actions">
-                                        <a href="edit.php?id=<?php echo $userData['id']; ?>" 
-                                           class="btn btn-sm btn-ghost" 
-                                           title="Edit User">
+                                        <a href="edit.php?id=<?php echo $userData['id']; ?>"
+                                            class="btn btn-sm btn-ghost"
+                                            title="Edit User">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <?php if ($userData['id'] != Session::get('user')['id']): ?>
-                                            <a href="delete.php?id=<?php echo $userData['id']; ?>" 
-                                               class="btn btn-sm btn-ghost text-danger" 
-                                               title="Delete User"
-                                               data-confirm-delete="Are you sure you want to delete this user? This action cannot be undone.">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                        <?php
+                                        $currentUser = Session::get('user');
+                                        if ($userData['id'] != ($currentUser['id'] ?? 0)):
+                                        ?>
+                                            <a href="delete.php?id=<?php echo $userData['id']; ?>"
+    class="btn btn-sm btn-ghost text-danger"
+    title="Delete User"
+    onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
+    <i class="fas fa-trash"></i>
+</a>
                                         <?php endif; ?>
                                     </div>
                                 </td>
@@ -281,7 +285,7 @@ $pageTitle = 'User Management';
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
             <div class="d-flex justify-content-between align-items-center mt-4">
@@ -297,7 +301,7 @@ $pageTitle = 'User Management';
                                 </a>
                             </li>
                         <?php endif; ?>
-                        
+
                         <?php for ($i = max(1, $page - 2); $i <= min($totalPages, $page + 2); $i++): ?>
                             <li class="page-item <?php echo ($i == $page) ? 'active' : ''; ?>">
                                 <a class="page-link" href="?page=<?php echo $i . '&search=' . urlencode($searchTerm) . '&role=' . urlencode($roleFilter) . '&department=' . urlencode($departmentFilter) . '&status=' . urlencode($statusFilter); ?>">
@@ -305,7 +309,7 @@ $pageTitle = 'User Management';
                                 </a>
                             </li>
                         <?php endfor; ?>
-                        
+
                         <?php if ($page < $totalPages): ?>
                             <li class="page-item">
                                 <a class="page-link" href="?page=<?php echo ($page + 1) . '&search=' . urlencode($searchTerm) . '&role=' . urlencode($roleFilter) . '&department=' . urlencode($departmentFilter) . '&status=' . urlencode($statusFilter); ?>">
