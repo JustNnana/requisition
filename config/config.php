@@ -119,6 +119,7 @@ mb_http_output('UTF-8');
 // Auto-load configuration
 require_once CONFIG_PATH . '/database.php';
 require_once CONFIG_PATH . '/constants.php';
+require_once __DIR__ . '/../helpers/utilities.php';
 
 /**
  * Autoload classes

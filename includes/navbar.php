@@ -33,19 +33,20 @@ if (APP_DEBUG) {
 }
 
 // Helper function to check if current page is active
-function isActive($page, $dir = null) {
+function isActive($page, $dir = null)
+{
     global $currentPage, $currentDir;
-    
+
     // If both page and directory are specified, check both
     if ($page && $dir) {
         return ($currentPage === $page && $currentDir === $dir) ? 'active' : '';
     }
-    
+
     // If only directory is specified, check directory only
     if ($dir && !$page) {
         return ($currentDir === $dir) ? 'active' : '';
     }
-    
+
     // If only page is specified, check page only
     return ($currentPage === $page) ? 'active' : '';
 }
@@ -654,7 +655,14 @@ $pendingReceiptsCount = 0;
             <span class="sidebar-text">Help & Support</span>
         </a>
     </div>
-
+    <?php if (can_user_raise_requisition()): ?>
+        <li class="nav-item <?php echo isActive('requisitions', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="nav-link">
+                <i class="fas fa-file-alt"></i>
+                <span>My Requisitions</span>
+            </a>
+        </li>
+    <?php endif; ?>
     <!-- Sidebar Footer -->
     <div class="sidebar-footer">
         <div class="sidebar-footer-content">

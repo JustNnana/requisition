@@ -12,37 +12,6 @@ if (!defined('APP_ACCESS')) {
 }
 
 /**
- * Format file size in human-readable format
- * 
- * @param int $bytes File size in bytes
- * @param int $precision Decimal precision
- * @return string Formatted file size
- */
-function format_file_size($bytes, $precision = 2) {
-    if ($bytes <= 0) {
-        return '0 Bytes';
-    }
-    
-    $units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-    $pow = min($pow, count($units) - 1);
-    
-    $bytes /= (1 << (10 * $pow));
-    
-    return round($bytes, $precision) . ' ' . $units[$pow];
-}
-
-/**
- * Get file extension from filename
- * 
- * @param string $filename Filename
- * @return string File extension
- */
-function get_file_extension($filename) {
-    return strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-}
-
-/**
  * Check if file extension is allowed
  * 
  * @param string $filename Filename
@@ -51,36 +20,6 @@ function get_file_extension($filename) {
 function is_allowed_file_extension($filename) {
     $extension = get_file_extension($filename);
     return in_array($extension, ALLOWED_FILE_EXTENSIONS);
-}
-
-/**
- * Generate unique filename
- * 
- * @param string $originalFilename Original filename
- * @return string Unique filename
- */
-function generate_unique_filename($originalFilename) {
-    $extension = get_file_extension($originalFilename);
-    return uniqid() . '_' . time() . '.' . $extension;
-}
-
-/**
- * Sanitize filename
- * 
- * @param string $filename Filename
- * @return string Sanitized filename
- */
-function sanitize_filename($filename) {
-    // Remove any path information
-    $filename = basename($filename);
-    
-    // Replace spaces with underscores
-    $filename = str_replace(' ', '_', $filename);
-    
-    // Remove special characters except dots, underscores, and hyphens
-    $filename = preg_replace('/[^a-zA-Z0-9._-]/', '', $filename);
-    
-    return $filename;
 }
 
 /**
@@ -208,17 +147,6 @@ function json_response($data, $statusCode = 200) {
     http_response_code($statusCode);
     header('Content-Type: application/json');
     echo json_encode($data);
-    exit;
-}
-
-/**
- * Redirect helper
- * 
- * @param string $url URL to redirect to
- * @param int $statusCode HTTP status code
- */
-function redirect($url, $statusCode = 302) {
-    header('Location: ' . $url, true, $statusCode);
     exit;
 }
 
