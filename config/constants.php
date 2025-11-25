@@ -331,6 +331,7 @@ define('MAX_USERNAME_LENGTH', 50);
 define('SESSION_TIMEOUT', 3600); // 1 hour in seconds
 define('REMEMBER_ME_DURATION', 2592000); // 30 days in seconds
 
+
 /**
  * ========================================
  * HELPER FUNCTIONS
