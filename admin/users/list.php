@@ -46,7 +46,7 @@ $sql = "SELECT u.*, r.role_name, d.department_name
         FROM users u
         JOIN roles r ON u.role_id = r.id
         LEFT JOIN departments d ON u.department_id = d.id
-        WHERE u.is_active = 1";
+        WHERE 1=1";
 
 $params = [];
 

@@ -443,11 +443,15 @@ $pageTitle = 'Admin Dashboard';
             font-size: var(--font-size-2xl) !important;
         }
 
-        .content-actions {
-            display: flex !important;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+        .content-header {
+      flex-direction: column !important;
+    }
+
+    .content-actions {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+    }
 
         .content-actions .btn {
             flex: 0 1 auto !important;

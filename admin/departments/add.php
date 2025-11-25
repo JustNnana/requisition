@@ -521,18 +521,25 @@ $pageTitle = 'Add Department';
             position: static;
         }
 
-        .content-actions {
-            flex-wrap: wrap;
-            gap: var(--spacing-2);
-        }
+        .content-header {
+      flex-direction: column !important;
+    }
+
+    .content-actions {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+      white-space: nowrap !important;
+    }
+
     }
 </style>
 
 <!-- Content Header -->
 <div class="content-header">
-    <div class="d-flex justify-content-between align-items-start">
+    <div class="d-flex justify-content-between align-items-start flex-wrap">
         <div>
-            <h1 class="content-title">Create New Department</h1>
+            <h1 class="content-title">Department</h1>
             <nav class="content-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
