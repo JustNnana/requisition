@@ -12,10 +12,24 @@ if (!defined('APP_ACCESS')) {
     die('Direct access not permitted');
 }
 
-// Get current user role
-$userRoleId = $currentUser['role_id'] ?? 0;
-$userFullName = ($currentUser['first_name'] ?? '') . ' ' . ($currentUser['last_name'] ?? '');
-$userInitials = strtoupper(substr($currentUser['first_name'] ?? '', 0, 1) . substr($currentUser['last_name'] ?? '', 0, 1));
+// Get current user data from Session class (FIXED)
+$userRoleId = Session::getUserRoleId() ?? 0;
+$userFullName = Session::getUserFullName() ?? 'User';
+$userEmail = Session::getUserEmail() ?? '';
+
+// Generate initials from full name
+$nameParts = explode(' ', $userFullName);
+$userInitials = '';
+if (count($nameParts) >= 2) {
+    $userInitials = strtoupper(substr($nameParts[0], 0, 1) . substr($nameParts[1], 0, 1));
+} else if (count($nameParts) == 1) {
+    $userInitials = strtoupper(substr($nameParts[0], 0, 2));
+}
+
+// Debug logging (remove in production)
+if (APP_DEBUG) {
+    error_log("Navbar Debug - Role ID: " . $userRoleId . " | Role Name: " . get_role_name($userRoleId));
+}
 
 // Helper function to check if current page is active
 function isActive($page, $dir = null) {
@@ -33,7 +47,7 @@ $pendingReceiptsCount = 0;
 
 // You can add actual database queries here to get real counts
 // Example:
-// $pendingApprovalsCount = $requisition->getPendingApprovalsCount($currentUser['user_id'], $userRoleId);
+// $pendingApprovalsCount = $requisition->getPendingApprovalsCount(Session::getUserId(), $userRoleId);
 ?>
 
 <!-- Dasher UI Sidebar Styles -->
