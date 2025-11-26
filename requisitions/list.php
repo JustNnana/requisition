@@ -20,7 +20,7 @@ Session::start();
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../middleware/role-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
-
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Initialize objects
 $requisition = new Requisition();
 

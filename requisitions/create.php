@@ -20,7 +20,7 @@ Session::start();
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../middleware/role-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
-
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Only users who can raise requisitions can access this page
 if (!can_user_raise_requisition()) {
     Session::setFlash('error', 'You do not have permission to create requisitions.');

@@ -19,7 +19,7 @@ Session::start();
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
-
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Only POST requests allowed
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     Session::setFlash('error', 'Invalid request method.');

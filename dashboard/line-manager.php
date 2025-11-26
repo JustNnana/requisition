@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GateWey Requisition Management System
  * Line Manager Dashboard
@@ -37,10 +38,18 @@ $db = Database::getInstance();
 $userId = Session::getUserId();
 $userName = Session::getUserFullName();
 $userFirstName = Session::get('user_first_name', 'User');
+$departmentId = Session::getUserDepartmentId(); // ADD THIS LINE!
 
 // Get department info
 $department = new Department();
 $deptInfo = $department->getById($departmentId);
+
+// Check if department exists
+if (!$deptInfo) {
+    Session::setFlash('error', 'Department not found. Please contact administrator.');
+    header('Location: ' . BASE_URL . '/dashboard/index.php');
+    exit;
+}
 
 // Get dashboard statistics
 $stats = [
@@ -127,7 +136,7 @@ $pageTitle = 'Line Manager Dashboard';
                 Welcome, <?php echo htmlspecialchars($userFirstName); ?>
             </h1>
             <p class="content-subtitle">
-                <?php echo htmlspecialchars($deptInfo['department_name']); ?> - Line Manager Dashboard
+                <?php echo htmlspecialchars($deptInfo['department_name'] ?? 'Department'); ?> - Line Manager Dashboard
             </p>
         </div>
         <div class="d-flex gap-2">
@@ -187,7 +196,7 @@ $pageTitle = 'Line Manager Dashboard';
             <p class="stat-value"><?php echo number_format($stats['pending_my_approval']); ?></p>
         </div>
     </div>
-    
+
     <div class="stat-card">
         <div class="stat-icon bg-info">
             <i class="fas fa-building"></i>
@@ -197,7 +206,7 @@ $pageTitle = 'Line Manager Dashboard';
             <p class="stat-value"><?php echo number_format($stats['department_total']); ?></p>
         </div>
     </div>
-    
+
     <div class="stat-card">
         <div class="stat-icon bg-primary">
             <i class="fas fa-money-bill-wave"></i>
@@ -207,7 +216,7 @@ $pageTitle = 'Line Manager Dashboard';
             <p class="stat-value"><?php echo format_currency($stats['department_amount']); ?></p>
         </div>
     </div>
-    
+
     <div class="stat-card">
         <div class="stat-icon bg-success">
             <i class="fas fa-users"></i>
@@ -239,7 +248,7 @@ $pageTitle = 'Line Manager Dashboard';
                     </div>
                 </a>
             </div>
-            
+
             <div class="col-md-3">
                 <a href="<?php echo BASE_URL; ?>/reports/department.php" class="quick-action-card">
                     <div class="quick-action-icon bg-info">
@@ -251,7 +260,7 @@ $pageTitle = 'Line Manager Dashboard';
                     </div>
                 </a>
             </div>
-            
+
             <div class="col-md-3">
                 <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="quick-action-card">
                     <div class="quick-action-icon bg-primary">
@@ -263,7 +272,7 @@ $pageTitle = 'Line Manager Dashboard';
                     </div>
                 </a>
             </div>
-            
+
             <div class="col-md-3">
                 <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="quick-action-card">
                     <div class="quick-action-icon bg-success">
@@ -326,8 +335,8 @@ $pageTitle = 'Line Manager Dashboard';
                                     </span>
                                 </td>
                                 <td class="text-end">
-                                    <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
-                                       class="btn btn-sm btn-warning" title="Review">
+                                    <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
+                                        class="btn btn-sm btn-warning" title="Review">
                                         <i class="fas fa-check"></i> Review
                                     </a>
                                 </td>
@@ -390,8 +399,8 @@ $pageTitle = 'Line Manager Dashboard';
                                 </td>
                                 <td><?php echo get_status_indicator($req['status']); ?></td>
                                 <td class="text-end">
-                                    <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
-                                       class="btn btn-sm btn-ghost" title="View Details">
+                                    <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
+                                        class="btn btn-sm btn-ghost" title="View Details">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -417,116 +426,116 @@ $pageTitle = 'Line Manager Dashboard';
 </div>
 
 <style>
-.quick-action-card {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-3);
-    padding: var(--spacing-4);
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    color: var(--text-primary);
-    transition: var(--theme-transition);
-}
+    .quick-action-card {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+        padding: var(--spacing-4);
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        color: var(--text-primary);
+        transition: var(--theme-transition);
+    }
 
-.quick-action-card:hover {
-    border-color: var(--primary);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
+    .quick-action-card:hover {
+        border-color: var(--primary);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
 
-.quick-action-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--border-radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-xl);
-    color: white;
-    flex-shrink: 0;
-}
+    .quick-action-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--border-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-xl);
+        color: white;
+        flex-shrink: 0;
+    }
 
-.quick-action-content h6 {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semibold);
-    margin: 0 0 var(--spacing-1);
-}
+    .quick-action-content h6 {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        margin: 0 0 var(--spacing-1);
+    }
 
-.quick-action-content p {
-    font-size: var(--font-size-sm);
-    color: var(--text-secondary);
-    margin: 0;
-}
+    .quick-action-content p {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        margin: 0;
+    }
 </style>
 
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-// Department trend chart data
-<?php
-// Get last 6 months department data
-$monthlyData = [];
-for ($i = 5; $i >= 0; $i--) {
-    $date = date('Y-m', strtotime("-$i months"));
-    $sql = "SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
+    // Department trend chart data
+    <?php
+    // Get last 6 months department data
+    $monthlyData = [];
+    for ($i = 5; $i >= 0; $i--) {
+        $date = date('Y-m', strtotime("-$i months"));
+        $sql = "SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
             FROM requisitions
             WHERE department_id = ?
             AND DATE_FORMAT(created_at, '%Y-%m') = ?
             AND status != ?";
-    $result = $db->fetchOne($sql, [$departmentId, $date, STATUS_DRAFT]);
-    $monthlyData[] = [
-        'month' => date('M Y', strtotime($date . '-01')),
-        'count' => $result['count'],
-        'amount' => $result['total']
-    ];
-}
-?>
+        $result = $db->fetchOne($sql, [$departmentId, $date, STATUS_DRAFT]);
+        $monthlyData[] = [
+            'month' => date('M Y', strtotime($date . '-01')),
+            'count' => $result['count'],
+            'amount' => $result['total']
+        ];
+    }
+    ?>
 
-const monthlyData = <?php echo json_encode($monthlyData); ?>;
+    const monthlyData = <?php echo json_encode($monthlyData); ?>;
 
-const ctx = document.getElementById('departmentTrendChart');
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: monthlyData.map(d => d.month),
-        datasets: [{
-            label: 'Department Spending',
-            data: monthlyData.map(d => d.amount),
-            backgroundColor: 'rgba(99, 102, 241, 0.1)',
-            borderColor: 'rgba(99, 102, 241, 1)',
-            borderWidth: 3,
-            fill: true,
-            tension: 0.4
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return '₦ ' + context.parsed.y.toLocaleString();
+    const ctx = document.getElementById('departmentTrendChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: monthlyData.map(d => d.month),
+            datasets: [{
+                label: 'Department Spending',
+                data: monthlyData.map(d => d.amount),
+                backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                borderColor: 'rgba(99, 102, 241, 1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return '₦ ' + context.parsed.y.toLocaleString();
+                        }
                     }
                 }
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    callback: function(value) {
-                        return '₦ ' + value.toLocaleString();
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '₦ ' + value.toLocaleString();
+                        }
                     }
                 }
             }
         }
-    }
-});
+    });
 </script>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

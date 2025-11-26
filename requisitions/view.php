@@ -19,7 +19,7 @@ Session::start();
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
-
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Get requisition ID
 $requisitionId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 

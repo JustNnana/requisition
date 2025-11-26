@@ -18,7 +18,9 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+// Load helpers - MUST include permissions.php before using role functions
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Get requisition ID
 $requisitionId = Sanitizer::int($_GET['id'] ?? 0);
 
