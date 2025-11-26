@@ -18,7 +18,8 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Check if user is Finance Member
 if (!is_finance_member()) {
     Session::setFlash('error', 'Only Finance Members can access this page.');

@@ -18,7 +18,8 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Check if user is Finance Member
 if (!is_finance_member()) {
     Session::setFlash('error', 'Only Finance Members can process payments.');
@@ -89,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Get requisition items
 $items = $requisition->getItems($requisitionId);
-
+$reqData = $requisition->getById($requisitionId);
 // Check for flash messages
 $successMessage = Session::getFlash('success');
 $errorMessage = $errorMessage ?? Session::getFlash('error');
@@ -143,7 +144,7 @@ $pageTitle = 'Process Payment - ' . $req['requisition_number'];
                 <div class="info-group">
                     <label>Requester:</label>
                     <p>
-                        <strong><?php echo htmlspecialchars($req['requester_first_name'] . ' ' . $req['requester_last_name']); ?></strong><br>
+                        <strong><?php echo htmlspecialchars($reqData['first_name'] . ' ' . $reqData['last_name']); ?></strong><br>
                         <span class="text-muted"><?php echo htmlspecialchars($req['requester_email']); ?></span>
                     </p>
                 </div>

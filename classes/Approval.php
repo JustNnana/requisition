@@ -5,6 +5,10 @@
  * 
  * File: classes/Approval.php
  * Purpose: Handle requisition approval and rejection operations
+ * 
+ * FIXED: 
+ * - Column names corrected (approver_id → user_id, approver_role_id → role_at_approval)
+ * - getApprovalStatistics() query fixed with proper parameter ordering
  */
 
 class Approval {
@@ -83,7 +87,8 @@ class Approval {
             $nextStatus = $this->workflow->getNextStatus($currentStatus);
             
             // Get next approver
-            $nextApprover = $this->workflow->getNextApprover($requisitionId);
+            // Pass the NEXT status to get the correct approver
+$nextApprover = $this->workflow->getNextApprover($requisitionId, $nextStatus);
             $nextApproverId = $nextApprover ? $nextApprover['id'] : null;
             
             // Update requisition status
@@ -95,11 +100,19 @@ class Approval {
             
             $this->db->execute($sql, [$nextStatus, $nextApproverId, $requisitionId]);
             
+            // Get user's role name for role_at_approval
+            $roleResult = $this->db->fetchOne(
+                "SELECT role_name FROM roles WHERE id = ?",
+                [$approver['role_id']]
+            );
+            $roleName = $roleResult ? $roleResult['role_name'] : 'Unknown';
+            
             // Record approval in requisition_approvals table
+            // FIXED: Using correct column names - user_id and role_at_approval
             $sql = "INSERT INTO requisition_approvals (
                         requisition_id,
-                        approver_id,
-                        approver_role_id,
+                        user_id,
+                        role_at_approval,
                         action,
                         comments,
                         created_at
@@ -108,7 +121,7 @@ class Approval {
             $this->db->execute($sql, [
                 $requisitionId,
                 $approverId,
-                $approver['role_id'],
+                $roleName,
                 APPROVAL_APPROVED,
                 $comments
             ]);
@@ -236,11 +249,19 @@ class Approval {
                 $requisitionId
             ]);
             
+            // Get user's role name for role_at_approval
+            $roleResult = $this->db->fetchOne(
+                "SELECT role_name FROM roles WHERE id = ?",
+                [$rejecter['role_id']]
+            );
+            $roleName = $roleResult ? $roleResult['role_name'] : 'Unknown';
+            
             // Record rejection in requisition_approvals table
+            // FIXED: Using correct column names - user_id and role_at_approval
             $sql = "INSERT INTO requisition_approvals (
                         requisition_id,
-                        approver_id,
-                        approver_role_id,
+                        user_id,
+                        role_at_approval,
                         action,
                         comments,
                         created_at
@@ -249,7 +270,7 @@ class Approval {
             $this->db->execute($sql, [
                 $requisitionId,
                 $rejecterId,
-                $rejecter['role_id'],
+                $roleName,
                 APPROVAL_REJECTED,
                 $reason
             ]);
@@ -301,14 +322,14 @@ class Approval {
      */
     public function getApprovalHistory($requisitionId) {
         try {
+            // FIXED: Using correct column names
             $sql = "SELECT a.*, 
                            u.first_name, 
                            u.last_name, 
                            u.email,
-                           r.role_name
+                           a.role_at_approval as role_name
                     FROM requisition_approvals a
-                    JOIN users u ON a.approver_id = u.id
-                    JOIN roles r ON a.approver_role_id = r.id
+                    JOIN users u ON a.user_id = u.id
                     WHERE a.requisition_id = ?
                     ORDER BY a.created_at ASC";
             
@@ -400,7 +421,8 @@ class Approval {
      */
     public function getApprovalStatistics($userId, $filters = []) {
         try {
-            $where = ["approver_id = ?"];
+            // Build WHERE clause
+            $where = ["user_id = ?"];
             $params = [$userId];
             
             if (!empty($filters['date_from'])) {
@@ -413,21 +435,38 @@ class Approval {
                 $params[] = $filters['date_to'];
             }
             
+            // FIXED: Use constants directly in SQL instead of as parameters
+            // This avoids parameter ordering issues
+            $approvedConst = APPROVAL_APPROVED;
+            $rejectedConst = APPROVAL_REJECTED;
+            
             $sql = "SELECT 
                         COUNT(*) as total_actions,
-                        COUNT(CASE WHEN action = ? THEN 1 END) as approved_count,
-                        COUNT(CASE WHEN action = ? THEN 1 END) as rejected_count
+                        COUNT(CASE WHEN action = '{$approvedConst}' THEN 1 END) as approved_count,
+                        COUNT(CASE WHEN action = '{$rejectedConst}' THEN 1 END) as rejected_count
                     FROM requisition_approvals
                     WHERE " . implode(' AND ', $where);
             
-            $params[] = APPROVAL_APPROVED;
-            $params[] = APPROVAL_REJECTED;
+            $result = $this->db->fetchOne($sql, $params);
             
-            return $this->db->fetchOne($sql, $params);
+            // Ensure we return an array with default values if no results
+            if (!$result) {
+                return [
+                    'total_actions' => 0,
+                    'approved_count' => 0,
+                    'rejected_count' => 0
+                ];
+            }
+            
+            return $result;
             
         } catch (Exception $e) {
             error_log("Error getting approval statistics: " . $e->getMessage());
-            return [];
+            return [
+                'total_actions' => 0,
+                'approved_count' => 0,
+                'rejected_count' => 0
+            ];
         }
     }
     
@@ -461,11 +500,19 @@ class Approval {
                 ];
             }
             
-            // Insert comment as a special approval record with 'pending' action
+            // Get user's role name
+            $roleResult = $this->db->fetchOne(
+                "SELECT role_name FROM roles WHERE id = ?",
+                [$user['role_id']]
+            );
+            $roleName = $roleResult ? $roleResult['role_name'] : 'Unknown';
+            
+            // Insert comment as a special approval record with 'comment' action
+            // FIXED: Using correct column names - user_id and role_at_approval
             $sql = "INSERT INTO requisition_approvals (
                         requisition_id,
-                        approver_id,
-                        approver_role_id,
+                        user_id,
+                        role_at_approval,
                         action,
                         comments,
                         created_at
@@ -474,7 +521,7 @@ class Approval {
             $this->db->execute($sql, [
                 $requisitionId,
                 $userId,
-                $user['role_id'],
+                $roleName,
                 'comment', // Special action type for comments
                 $comment
             ]);

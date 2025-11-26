@@ -5,6 +5,8 @@
  * 
  * File: requisitions/view.php
  * Purpose: Display detailed view of a single requisition
+ * 
+ * UPDATED: Added preview feature for images and PDFs
  */
 
 // Define access level
@@ -20,6 +22,7 @@ Session::start();
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
+
 // Get requisition ID
 $requisitionId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
@@ -48,12 +51,38 @@ if (!can_user_view_requisition($reqData)) {
     exit;
 }
 
-// Check if user can edit
+// Check if user can perform actions
 $canEdit = can_user_edit_requisition($reqData);
 $canCancel = can_user_cancel_requisition($reqData);
+$canApprove = can_user_approve_requisition($reqData);
+
+// Check for flash messages
+$successMessage = Session::getFlash('success');
+$errorMessage = Session::getFlash('error');
 
 // Page title
 $pageTitle = 'Requisition ' . $reqData['requisition_number'];
+
+/**
+ * Helper function to check if file is previewable
+ */
+function isPreviewable($filename) {
+    $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+    return in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'pdf']);
+}
+
+/**
+ * Get preview type
+ */
+function getPreviewType($filename) {
+    $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+    if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+        return 'image';
+    } elseif ($ext === 'pdf') {
+        return 'pdf';
+    }
+    return 'none';
+}
 ?>
 
 <?php include __DIR__ . '/../includes/header.php'; ?>
@@ -84,6 +113,49 @@ $pageTitle = 'Requisition ' . $reqData['requisition_number'];
         </div>
     </div>
 </div>
+
+<!-- Success/Error Messages -->
+<?php if ($successMessage): ?>
+    <div class="alert alert-success alert-dismissible">
+        <i class="fas fa-check-circle"></i>
+        <?php echo htmlspecialchars($successMessage); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<?php endif; ?>
+
+<?php if ($errorMessage): ?>
+    <div class="alert alert-error alert-dismissible">
+        <i class="fas fa-exclamation-circle"></i>
+        <?php echo htmlspecialchars($errorMessage); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<?php endif; ?>
+
+<!-- Approval Actions (Show if user can approve) -->
+<?php if ($canApprove): ?>
+    <div class="card mb-4" style="border-left: 4px solid var(--warning);">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 style="margin: 0; color: var(--warning);">
+                        <i class="fas fa-exclamation-triangle"></i> Action Required
+                    </h5>
+                    <p style="margin: var(--spacing-2) 0 0 0; color: var(--text-secondary);">
+                        This requisition is awaiting your approval. Please review and take action.
+                    </p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-danger" onclick="showRejectModal()">
+                        <i class="fas fa-times-circle"></i> Reject
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="showApproveModal()">
+                        <i class="fas fa-check-circle"></i> Approve
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <!-- Status Banner -->
 <div class="card" style="border-left: 4px solid var(--<?php echo get_status_color($reqData['status']); ?>);">
@@ -209,7 +281,7 @@ $pageTitle = 'Requisition ' . $reqData['requisition_number'];
             </div>
         </div>
         
-        <!-- Documents -->
+        <!-- Documents with Preview -->
         <?php if (!empty($reqData['documents'])): ?>
             <div class="card mt-4">
                 <div class="card-header">
@@ -225,6 +297,11 @@ $pageTitle = 'Requisition ' . $reqData['requisition_number'];
                                 <div>
                                     <div style="font-weight: var(--font-weight-semibold);">
                                         <?php echo htmlspecialchars($doc['file_name']); ?>
+                                        <?php if (isPreviewable($doc['file_name'])): ?>
+                                            <span class="badge badge-info" style="font-size: var(--font-size-xs); margin-left: var(--spacing-2);">
+                                                <i class="fas fa-eye"></i> Previewable
+                                            </span>
+                                        <?php endif; ?>
                                     </div>
                                     <div style="font-size: var(--font-size-sm); color: var(--text-muted);">
                                         <?php echo format_file_size($doc['file_size']); ?> • 
@@ -233,7 +310,13 @@ $pageTitle = 'Requisition ' . $reqData['requisition_number'];
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="d-flex gap-2">
+                                <?php if (isPreviewable($doc['file_name'])): ?>
+                                    <button type="button" class="btn btn-sm btn-secondary" 
+                                            onclick="previewFile('<?php echo $doc['id']; ?>', '<?php echo htmlspecialchars($doc['file_name'], ENT_QUOTES); ?>', '<?php echo getPreviewType($doc['file_name']); ?>')">
+                                        <i class="fas fa-eye"></i> Preview
+                                    </button>
+                                <?php endif; ?>
                                 <a href="../api/download-file.php?id=<?php echo $doc['id']; ?>" class="btn btn-sm btn-primary" target="_blank">
                                     <i class="fas fa-download"></i> Download
                                 </a>
@@ -297,33 +380,203 @@ $pageTitle = 'Requisition ' . $reqData['requisition_number'];
     </div>
 </div>
 
-<!-- Cancel Confirmation Modal (Hidden by default) -->
-<div id="cancelModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center;">
-    <div class="card" style="width: 100%; max-width: 500px; margin: var(--spacing-4);">
-        <div class="card-header bg-danger text-white">
-            <h5 class="card-title mb-0">
-                <i class="fas fa-exclamation-triangle"></i> Cancel Requisition
-            </h5>
-        </div>
-        <div class="card-body">
-            <p>Are you sure you want to cancel this requisition? This action cannot be undone.</p>
-            <form method="POST" action="cancel.php">
-                <?php echo Session::csrfField(); ?>
-                <input type="hidden" name="requisition_id" value="<?php echo $reqData['id']; ?>">
-                <div class="d-flex gap-2 justify-content-end mt-4">
-                    <button type="button" class="btn btn-secondary" onclick="closeCancelModal()">
-                        No, Keep It
-                    </button>
-                    <button type="submit" class="btn btn-danger">
-                        Yes, Cancel Requisition
+<!-- File Preview Modal -->
+<div id="previewModal" class="modal-overlay" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-eye"></i> <span id="previewFileName">File Preview</span>
+                    </h5>
+                    <button type="button" class="btn btn-ghost btn-sm" onclick="closePreviewModal()">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
-            </form>
+            </div>
+            <div class="card-body" style="padding: 0; min-height: 400px;">
+                <div id="previewContent" style="width: 100%; height: 70vh; display: flex; align-items: center; justify-content: center;">
+                    <div class="spinner">
+                        <i class="fas fa-spinner fa-spin fa-3x"></i>
+                        <p style="margin-top: var(--spacing-3);">Loading preview...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-secondary" onclick="closePreviewModal()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                    <a id="previewDownloadBtn" href="#" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Approve Modal -->
+<div id="approveModal" class="modal-overlay" style="display: none;">
+    <div class="modal-dialog">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-check-circle"></i> Approve Requisition
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Are you sure you want to approve this requisition?</p>
+                <p><strong>Requisition:</strong> <?php echo htmlspecialchars($reqData['requisition_number']); ?><br>
+                <strong>Amount:</strong> <?php echo format_currency($reqData['total_amount']); ?></p>
+                
+                <form method="POST" action="approve.php" id="approveForm">
+                    <?php echo Session::csrfField(); ?>
+                    <input type="hidden" name="requisition_id" value="<?php echo $reqData['id']; ?>">
+                    
+                    <div class="form-group">
+                        <label for="approve_comments">Comments (Optional)</label>
+                        <textarea name="comments" id="approve_comments" class="form-control" rows="3" 
+                                  placeholder="Add any comments about this approval..."></textarea>
+                    </div>
+                    
+                    <div class="d-flex gap-2 justify-content-end mt-4">
+                        <button type="button" class="btn btn-secondary" onclick="closeApproveModal()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check-circle"></i> Approve
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reject Modal -->
+<div id="rejectModal" class="modal-overlay" style="display: none;">
+    <div class="modal-dialog">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-times-circle"></i> Reject Requisition
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Are you sure you want to reject this requisition?</p>
+                <p><strong>Requisition:</strong> <?php echo htmlspecialchars($reqData['requisition_number']); ?></p>
+                
+                <form method="POST" action="reject.php" id="rejectForm">
+                    <?php echo Session::csrfField(); ?>
+                    <input type="hidden" name="requisition_id" value="<?php echo $reqData['id']; ?>">
+                    
+                    <div class="form-group">
+                        <label for="reject_reason">Rejection Reason <span class="text-danger">*</span></label>
+                        <textarea name="reason" id="reject_reason" class="form-control" rows="4" 
+                                  placeholder="Please provide a clear reason for rejection..." required></textarea>
+                        <small class="form-text text-muted">This will be visible to the requester.</small>
+                    </div>
+                    
+                    <div class="d-flex gap-2 justify-content-end mt-4">
+                        <button type="button" class="btn btn-secondary" onclick="closeRejectModal()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-times-circle"></i> Reject
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Confirmation Modal -->
+<?php if ($canCancel): ?>
+<div id="cancelModal" class="modal-overlay" style="display: none;">
+    <div class="modal-dialog">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-exclamation-triangle"></i> Cancel Requisition
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Are you sure you want to cancel this requisition? This action cannot be undone.</p>
+                <form method="POST" action="cancel.php">
+                    <?php echo Session::csrfField(); ?>
+                    <input type="hidden" name="requisition_id" value="<?php echo $reqData['id']; ?>">
+                    <div class="d-flex gap-2 justify-content-end mt-4">
+                        <button type="button" class="btn btn-secondary" onclick="closeCancelModal()">
+                            No, Keep It
+                        </button>
+                        <button type="submit" class="btn btn-danger">
+                            Yes, Cancel Requisition
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
 <script>
+// File Preview Functions
+function previewFile(fileId, fileName, type) {
+    const modal = document.getElementById('previewModal');
+    const content = document.getElementById('previewContent');
+    const fileNameEl = document.getElementById('previewFileName');
+    const downloadBtn = document.getElementById('previewDownloadBtn');
+    
+    // Set file name
+    fileNameEl.textContent = fileName;
+    
+    // Set download link
+    downloadBtn.href = '../api/download-file.php?id=' + fileId;
+    
+    // Show modal
+    modal.style.display = 'flex';
+    
+    // Show loading
+    content.innerHTML = '<div class="spinner"><i class="fas fa-spinner fa-spin fa-3x"></i><p style="margin-top: var(--spacing-3);">Loading preview...</p></div>';
+    
+    // Build preview URL
+    const previewUrl = '../api/download-file.php?id=' + fileId;
+    
+    // Load content based on type
+    if (type === 'image') {
+        content.innerHTML = '<img src="' + previewUrl + '" alt="' + fileName + '" style="max-width: 100%; max-height: 70vh; object-fit: contain;">';
+    } else if (type === 'pdf') {
+        content.innerHTML = '<iframe src="' + previewUrl + '" style="width: 100%; height: 70vh; border: none;"></iframe>';
+    }
+}
+
+function closePreviewModal() {
+    document.getElementById('previewModal').style.display = 'none';
+    document.getElementById('previewContent').innerHTML = '';
+}
+
+// Approve Modal
+function showApproveModal() {
+    document.getElementById('approveModal').style.display = 'flex';
+}
+
+function closeApproveModal() {
+    document.getElementById('approveModal').style.display = 'none';
+}
+
+// Reject Modal
+function showRejectModal() {
+    document.getElementById('rejectModal').style.display = 'flex';
+}
+
+function closeRejectModal() {
+    document.getElementById('rejectModal').style.display = 'none';
+}
+
+// Cancel Modal
 function confirmCancel() {
     document.getElementById('cancelModal').style.display = 'flex';
 }
@@ -331,9 +584,75 @@ function confirmCancel() {
 function closeCancelModal() {
     document.getElementById('cancelModal').style.display = 'none';
 }
+
+// Close modals on outside click
+document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // ESC key closes all modals
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.style.display = 'none';
+        });
+    }
+});
+
+// Form validation for reject
+document.getElementById('rejectForm').addEventListener('submit', function(e) {
+    const reason = document.getElementById('reject_reason').value.trim();
+    if (reason.length < 10) {
+        e.preventDefault();
+        alert('Please provide a detailed reason for rejection (at least 10 characters).');
+        return false;
+    }
+});
 </script>
 
 <style>
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-4);
+}
+
+.modal-dialog {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-dialog.modal-lg {
+    max-width: 900px;
+}
+
+/* Preview Modal Specific Styles */
+#previewModal .card-body {
+    background: #f8f9fa;
+}
+
+.spinner {
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Detail Grid */
 .detail-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -354,6 +673,7 @@ function closeCancelModal() {
     color: var(--text-primary);
 }
 
+/* Timeline */
 .timeline {
     position: relative;
     padding-left: var(--spacing-6);
@@ -442,6 +762,7 @@ function closeCancelModal() {
     margin-right: var(--spacing-1);
 }
 
+/* File Upload Styles */
 .uploaded-file {
     display: flex;
     align-items: center;
@@ -460,11 +781,22 @@ function closeCancelModal() {
 
 .file-icon {
     font-size: var(--font-size-2xl);
+    color: var(--primary);
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     .detail-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .modal-dialog,
+    .modal-dialog.modal-lg {
+        max-width: 100%;
+    }
+    
+    #previewContent {
+        height: 50vh !important;
     }
 }
 </style>

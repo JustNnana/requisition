@@ -18,9 +18,11 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-// Load helpers - MUST include permissions.php before using role functions
+
+// Load helpers
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
+
 // Check if user can approve/reject
 if (!can_user_approve()) {
     Session::setFlash('error', 'You do not have permission to reject requisitions.');
@@ -44,13 +46,12 @@ if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
 
 // Get and sanitize input
 $requisitionId = Sanitizer::int($_POST['requisition_id'] ?? 0);
-$reason = Sanitizer::string($_POST['rejection_reason'] ?? '');
-$returnUrl = Sanitizer::url($_POST['return_url'] ?? '') ?: 'pending.php';
+$reason = Sanitizer::string($_POST['reason'] ?? '');
 
 // Validate requisition ID
 if (!$requisitionId) {
     Session::setFlash('error', 'Invalid requisition ID.');
-    header('Location: ' . $returnUrl);
+    header('Location: pending.php');
     exit;
 }
 
@@ -62,7 +63,7 @@ $validator->setRules(['reason' => 'required|min:10']);
 if (!$validator->validate()) {
     $errors = $validator->getErrors();
     Session::setFlash('error', $errors['reason'][0] ?? 'Rejection reason is required (minimum 10 characters).');
-    header('Location: ' . $returnUrl);
+    header('Location: view.php?id=' . $requisitionId);
     exit;
 }
 
@@ -83,6 +84,6 @@ if ($result['success']) {
     Session::setFlash('error', $result['message']);
 }
 
-// Redirect
-header('Location: ' . $returnUrl);
+// Redirect back to pending approvals
+header('Location: pending.php');
 exit;

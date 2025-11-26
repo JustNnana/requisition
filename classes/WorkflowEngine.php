@@ -87,49 +87,45 @@ class WorkflowEngine {
         }
     }
     
-    /**
-     * Get next approver for a requisition
-     * 
-     * @param int $requisitionId Requisition ID
-     * @return array|null Next approver info or null if no more approvers
-     */
-    public function getNextApprover($requisitionId) {
-        try {
-            // Get requisition details
-            $sql = "SELECT r.*, u.role_id as requester_role_id, u.department_id
-                    FROM requisitions r
-                    JOIN users u ON r.user_id = u.id
-                    WHERE r.id = ?";
-            
-            $requisition = $this->db->fetchOne($sql, [$requisitionId]);
-            
-            if (!$requisition) {
-                return null;
-            }
-            
-            // Get approval chain
-            $chain = $this->getApprovalChain($requisition['requester_role_id']);
-            
-            if (empty($chain)) {
-                return null;
-            }
-            
-            // Get current status position in chain
-            $currentStatus = $requisition['status'];
-            $nextRoleId = $this->getNextRoleFromStatus($currentStatus, $chain);
-            
-            if (!$nextRoleId) {
-                return null;
-            }
-            
-            // Find the appropriate approver
-            return $this->findApprover($nextRoleId, $requisition['department_id']);
-            
-        } catch (Exception $e) {
-            error_log("Error getting next approver: " . $e->getMessage());
+/**
+ * Get next approver for a requisition
+ * 
+ * @param int $requisitionId Requisition ID
+ * @param string|null $forStatus Optional status to get approver for (defaults to current status)
+ * @return array|null Next approver info or null if no more approvers
+ */
+public function getNextApprover($requisitionId, $forStatus = null) {
+    try {
+        // Get requisition details
+        $sql = "SELECT r.*, u.role_id as requester_role_id, u.department_id
+                FROM requisitions r
+                JOIN users u ON r.user_id = u.id
+                WHERE r.id = ?";
+        
+        $requisition = $this->db->fetchOne($sql, [$requisitionId]);
+        
+        if (!$requisition) {
             return null;
         }
+        
+        // Use provided status or current status
+        $statusToCheck = $forStatus ?? $requisition['status'];
+        
+        // Get the role needed for this status
+        $nextRoleId = $this->getNextRoleFromStatus($statusToCheck);
+        
+        if (!$nextRoleId) {
+            return null;
+        }
+        
+        // Find the appropriate approver
+        return $this->findApprover($nextRoleId, $requisition['department_id']);
+        
+    } catch (Exception $e) {
+        error_log("Error getting next approver: " . $e->getMessage());
+        return null;
     }
+}
     
     /**
      * Get next role ID from current status
@@ -138,7 +134,7 @@ class WorkflowEngine {
      * @param array $chain Approval chain
      * @return int|null Next role ID or null
      */
-    private function getNextRoleFromStatus($currentStatus, $chain) {
+    private function getNextRoleFromStatus($currentStatus) {
         // Map status to next role in chain
         $statusToRoleMap = [
             STATUS_PENDING_LINE_MANAGER => ROLE_LINE_MANAGER,

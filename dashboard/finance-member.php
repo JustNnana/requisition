@@ -65,8 +65,8 @@ $stats['total_processed_amount'] = $result['total'];
 // This month processed
 $sql = "SELECT COUNT(*) as count 
         FROM requisitions 
-        WHERE MONTH(paid_at) = MONTH(CURRENT_DATE())
-        AND YEAR(paid_at) = YEAR(CURRENT_DATE())
+        WHERE MONTH(payment_date) = MONTH(CURRENT_DATE())
+        AND YEAR(payment_date) = YEAR(CURRENT_DATE())
         AND status IN (?, ?)";
 $result = $db->fetchOne($sql, [STATUS_PAID, STATUS_COMPLETED]);
 $stats['this_month_processed'] = $result['count'];
@@ -95,7 +95,7 @@ $sql = "SELECT r.*, u.first_name, u.last_name, d.department_name
         LEFT JOIN departments d ON r.department_id = d.id
         WHERE r.status IN (?, ?)
         AND r.paid_by = ?
-        ORDER BY r.paid_at DESC
+        ORDER BY r.payment_date DESC
         LIMIT 5";
 $recentPayments = $db->fetchAll($sql, [STATUS_PAID, STATUS_COMPLETED, $userId]);
 
@@ -105,7 +105,7 @@ $sql = "SELECT r.*, u.first_name, u.last_name, d.department_name
         JOIN users u ON r.user_id = u.id
         LEFT JOIN departments d ON r.department_id = d.id
         WHERE r.status = ?
-        ORDER BY r.paid_at ASC
+        ORDER BY r.payment_date ASC
         LIMIT 5";
 $pendingReceipts = $db->fetchAll($sql, [STATUS_PAID]);
 
@@ -373,7 +373,7 @@ $pageTitle = 'Finance Member Dashboard';
                                         <?php echo htmlspecialchars($req['requisition_number']); ?>
                                     </span>
                                 </td>
-                                <td><?php echo format_date($req['paid_at']); ?></td>
+                                <td><?php echo format_date($req['payment_date']); ?></td>
                                 <td><?php echo htmlspecialchars($req['first_name'] . ' ' . $req['last_name']); ?></td>
                                 <td>
                                     <span class="text-muted"><?php echo htmlspecialchars($req['department_name'] ?? 'N/A'); ?></span>
@@ -438,7 +438,7 @@ $pageTitle = 'Finance Member Dashboard';
                                         <?php echo htmlspecialchars($req['requisition_number']); ?>
                                     </span>
                                 </td>
-                                <td><?php echo format_date($req['paid_at']); ?></td>
+                                <td><?php echo format_date($req['payment_date']); ?></td>
                                 <td><?php echo htmlspecialchars($req['first_name'] . ' ' . $req['last_name']); ?></td>
                                 <td class="text-end">
                                     <span style="font-weight: var(--font-weight-semibold);">
@@ -540,7 +540,7 @@ for ($i = 5; $i >= 0; $i--) {
     $date = date('Y-m', strtotime("-$i months"));
     $sql = "SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
             FROM requisitions
-            WHERE DATE_FORMAT(paid_at, '%Y-%m') = ?
+            WHERE DATE_FORMAT(payment_date, '%Y-%m') = ?
             AND paid_by = ?
             AND status IN (?, ?)";
     $result = $db->fetchOne($sql, [$date, $userId, STATUS_PAID, STATUS_COMPLETED]);

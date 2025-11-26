@@ -18,9 +18,11 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-// Load helpers - MUST include permissions.php before using role functions
+
+// Load helpers
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
+
 // Check if user can approve
 if (!can_user_approve()) {
     Session::setFlash('error', 'You do not have permission to approve requisitions.');
@@ -45,12 +47,11 @@ if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
 // Get and sanitize input
 $requisitionId = Sanitizer::int($_POST['requisition_id'] ?? 0);
 $comments = Sanitizer::string($_POST['comments'] ?? '');
-$returnUrl = Sanitizer::url($_POST['return_url'] ?? '') ?: 'pending.php';
 
 // Validate requisition ID
 if (!$requisitionId) {
     Session::setFlash('error', 'Invalid requisition ID.');
-    header('Location: ' . $returnUrl);
+    header('Location: pending.php');
     exit;
 }
 
@@ -67,17 +68,15 @@ $result = $approval->approve($requisitionId, $userId, $comments);
 if ($result['success']) {
     Session::setFlash('success', $result['message']);
     
-    // Redirect based on whether there's a next approver
+    // Add info about next step
     if (isset($result['next_approver'])) {
         $nextApproverName = $result['next_approver']['first_name'] . ' ' . $result['next_approver']['last_name'];
         Session::setFlash('info', 'Requisition has been forwarded to ' . $nextApproverName . ' for approval.');
-    } else {
-        Session::setFlash('info', 'Requisition has been fully approved and is ready for payment processing.');
     }
 } else {
     Session::setFlash('error', $result['message']);
 }
 
-// Redirect
-header('Location: ' . $returnUrl);
+// Redirect back to pending approvals
+header('Location: pending.php');
 exit;

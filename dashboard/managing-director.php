@@ -75,7 +75,7 @@ $stats['this_month'] = $result['count'];
 // Approved by me
 $sql = "SELECT COUNT(*) as count 
         FROM requisition_approvals 
-        WHERE approver_id = ? 
+        WHERE user_id = ? 
         AND action = ?";
 $result = $db->fetchOne($sql, [$userId, APPROVAL_APPROVED]);
 $stats['approved'] = $result['count'];
@@ -83,7 +83,7 @@ $stats['approved'] = $result['count'];
 // Rejected by me
 $sql = "SELECT COUNT(*) as count 
         FROM requisition_approvals 
-        WHERE approver_id = ? 
+        WHERE user_id = ? 
         AND action = ?";
 $result = $db->fetchOne($sql, [$userId, APPROVAL_REJECTED]);
 $stats['rejected'] = $result['count'];

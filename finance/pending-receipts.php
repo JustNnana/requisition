@@ -18,7 +18,8 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Check if user can view (Finance Manager or Finance Member)
 if (!is_finance_manager() && !is_finance_member()) {
     Session::setFlash('error', 'You do not have permission to view this page.');
@@ -157,7 +158,7 @@ $pageTitle = 'Pending Receipts';
                         <?php foreach ($pendingReceipts as $req): ?>
                             <?php
                             // Calculate days since payment
-                            $paidDate = new DateTime($req['paid_at']);
+                            $paidDate = new DateTime($req['payment_date']);
                             $now = new DateTime();
                             $daysSince = $now->diff($paidDate)->days;
                             
@@ -214,9 +215,9 @@ $pageTitle = 'Pending Receipts';
                                     </strong>
                                 </td>
                                 <td>
-                                    <div><?php echo format_date($req['paid_at']); ?></div>
+                                    <div><?php echo format_date($req['payment_date']); ?></div>
                                     <div class="text-muted small">
-                                        <?php echo get_relative_time($req['paid_at']); ?>
+                                        <?php echo get_relative_time($req['payment_date']); ?>
                                     </div>
                                 </td>
                                 <td>

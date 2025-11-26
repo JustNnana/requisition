@@ -18,7 +18,8 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Check if user can view payments (Finance Manager or Finance Member)
 if (!is_finance_manager() && !is_finance_member()) {
     Session::setFlash('error', 'You do not have permission to view payment history.');
@@ -267,8 +268,8 @@ $pageTitle = 'Payment History';
                                     </strong>
                                 </td>
                                 <td>
-                                    <div><?php echo format_date($record['paid_at']); ?></div>
-                                    <div class="text-muted small"><?php echo get_relative_time($record['paid_at']); ?></div>
+                                    <div><?php echo format_date($record['payment_date']); ?></div>
+                                    <div class="text-muted small"><?php echo get_relative_time($record['payment_date']); ?></div>
                                 </td>
                                 <td>
                                     <div><?php echo htmlspecialchars($record['paid_by_first_name'] . ' ' . $record['paid_by_last_name']); ?></div>

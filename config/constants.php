@@ -304,8 +304,8 @@ define('EMAIL_ACCOUNT_CREATED', NOTIF_ACCOUNT_CREATED);
 /**
  * CURRENCY
  */
-define('CURRENCY_SYMBOL', '$');
-define('CURRENCY_CODE', 'USD');
+define('CURRENCY_SYMBOL', '₦');
+define('CURRENCY_CODE', 'NGN');
 define('CURRENCY_POSITION', 'before'); // 'before' or 'after'
 
 /**
