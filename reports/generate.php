@@ -18,7 +18,9 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+// Load helpers - IMPORTANT: Include permissions.php for navbar functions
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Get user role info
 $roleId = Session::getUserRoleId();
 $canViewDepartment = is_line_manager();

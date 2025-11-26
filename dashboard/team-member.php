@@ -18,7 +18,8 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+// Load helpers - IMPORTANT: Include permissions.php to use role-checking functions
+require_once __DIR__ . '/../helpers/permissions.php';
 // Check if user is Team Member
 if (!is_team_member() && !is_line_manager() && !is_managing_director()) {
     header('Location: ' . BASE_URL . '/dashboard/index.php');
@@ -34,6 +35,7 @@ $db = Database::getInstance();
 // Get user info
 $userId = Session::getUserId();
 $userName = Session::getUserFullName();
+$userFirstName = Session::get('user_first_name', 'User');
 
 // Get dashboard statistics
 $stats = [
@@ -137,7 +139,7 @@ $pageTitle = 'Dashboard';
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="content-title">
-                <i class="fas fa-home me-2"></i>Welcome, <?php echo htmlspecialchars($userName); ?>
+                Welcome, <?php echo htmlspecialchars($userFirstName); ?>
             </h1>
             <p class="content-subtitle">Your requisition dashboard</p>
         </div>

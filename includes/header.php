@@ -16,18 +16,20 @@ if (!defined('APP_ACCESS')) {
     die('Direct access not permitted');
 }
 
-// Get current user information with null safety
-// Note: Authentication should already be verified by middleware before this file is included
-$currentUser = Session::get('user');
+// Get current user information using Session helper methods
+$userName = Session::getUserFullName() ?? 'User';
+$userEmail = Session::getUserEmail() ?? '';
+$userRoleId = Session::getUserRoleId();
+$userRole = get_role_name($userRoleId);
 
-// Set default values if session data is incomplete (should not happen after auth-check.php)
-$userRole = $currentUser['role_name'] ?? 'User';
-$userName = trim(($currentUser['first_name'] ?? '') . ' ' . ($currentUser['last_name'] ?? '')) ?: 'User';
-$userEmail = $currentUser['email'] ?? '';
-$userInitials = strtoupper(
-    substr($currentUser['first_name'] ?? 'U', 0, 1) .
-        substr($currentUser['last_name'] ?? 'U', 0, 1)
-);
+// Generate initials from full name
+$nameParts = explode(' ', $userName);
+$userInitials = '';
+if (count($nameParts) >= 2) {
+    $userInitials = strtoupper(substr($nameParts[0], 0, 1) . substr($nameParts[1], 0, 1));
+} else if (count($nameParts) == 1) {
+    $userInitials = strtoupper(substr($nameParts[0], 0, 2));
+}
 
 // Determine active page for navigation highlighting
 $currentPage = basename($_SERVER['PHP_SELF']);

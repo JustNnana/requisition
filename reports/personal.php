@@ -21,7 +21,9 @@ require_once __DIR__ . '/../middleware/auth-check.php';
 
 // Load helpers
 require_once __DIR__ . '/../helpers/status-indicator.php';
-
+// Load helpers - IMPORTANT: Include permissions.php for navbar functions
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Initialize classes
 $report = new Report();
 

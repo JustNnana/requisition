@@ -18,7 +18,9 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+// Load helpers - IMPORTANT: Include permissions.php to use role-checking functions
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Check if user is Finance Member
 if (!is_finance_member()) {
     header('Location: ' . BASE_URL . '/dashboard/index.php');
@@ -34,6 +36,7 @@ $db = Database::getInstance();
 // Get user info
 $userId = Session::getUserId();
 $userName = Session::getUserFullName();
+$userFirstName = Session::get('user_first_name', 'User');
 
 // Get dashboard statistics
 $stats = [
@@ -124,7 +127,7 @@ $pageTitle = 'Finance Member Dashboard';
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="content-title">
-                <i class="fas fa-wallet me-2"></i>Welcome, <?php echo htmlspecialchars($userName); ?>
+                Welcome, <?php echo htmlspecialchars($userFirstName); ?>
             </h1>
             <p class="content-subtitle">Finance Member - Payment Processing Dashboard</p>
         </div>

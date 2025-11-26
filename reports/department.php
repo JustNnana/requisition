@@ -18,7 +18,9 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+// Load helpers - IMPORTANT: Include permissions.php for navbar functions
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Check if user is Line Manager
 if (!is_line_manager()) {
     Session::setFlash('error', 'Only Line Managers can access department reports.');

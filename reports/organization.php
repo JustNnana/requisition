@@ -18,7 +18,9 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-
+// Load helpers - IMPORTANT: Include permissions.php for navbar functions
+require_once __DIR__ . '/../helpers/permissions.php';
+require_once __DIR__ . '/../helpers/status-indicator.php';
 // Check if user is MD or Finance Manager
 if (!is_managing_director() && !is_finance_manager()) {
     Session::setFlash('error', 'Only Managing Director and Finance Manager can access organization reports.');
