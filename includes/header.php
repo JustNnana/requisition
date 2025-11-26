@@ -109,6 +109,8 @@ $messageCount = 0;
     <link rel="stylesheet" href="<?php echo CSS_URL; ?>/dasher-variables.css">
     <link rel="stylesheet" href="<?php echo CSS_URL; ?>/dasher-core-styles.css">
     <link rel="stylesheet" href="<?php echo CSS_URL; ?>/dasher-table-chart-styles.css">
+    <link rel="stylesheet" href="<?php echo CSS_URL; ?>/status-indicators.css">
+    <link rel="stylesheet" href="<?php echo CSS_URL; ?>/requisitions.css">
 
     <!-- Page-specific CSS -->
     <?php if (isset($pageCSS) && is_array($pageCSS)): ?>

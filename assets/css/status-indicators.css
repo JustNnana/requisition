@@ -1,0 +1,198 @@
+/**
+ * GateWey Requisition Management System
+ * Status Indicator Styles (Dot Styling)
+ * 
+ * File: assets/css/status-indicators.css
+ * Purpose: Modern dot-based status indicators instead of badges
+ */
+
+/* ===== STATUS INDICATOR WITH DOT ===== */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-text {
+    white-space: nowrap;
+}
+
+/* ===== STATUS COLORS ===== */
+
+/* Draft Status */
+.status-draft .status-dot {
+    background-color: var(--gray-400);
+}
+
+.status-draft .status-text {
+    color: var(--gray-600);
+}
+
+/* Pending Status */
+.status-pending .status-dot {
+    background-color: var(--warning);
+}
+
+.status-pending .status-text {
+    color: var(--warning);
+}
+
+/* Approved Status */
+.status-approved .status-dot {
+    background-color: var(--success);
+}
+
+.status-approved .status-text {
+    color: var(--success);
+}
+
+/* Paid Status */
+.status-paid .status-dot {
+    background-color: var(--success);
+}
+
+.status-paid .status-text {
+    color: var(--success);
+}
+
+/* Completed Status */
+.status-completed .status-dot {
+    background-color: var(--primary);
+}
+
+.status-completed .status-text {
+    color: var(--primary);
+}
+
+/* Rejected Status */
+.status-rejected .status-dot {
+    background-color: var(--danger);
+}
+
+.status-rejected .status-text {
+    color: var(--danger);
+}
+
+/* Cancelled Status */
+.status-cancelled .status-dot {
+    background-color: var(--danger);
+}
+
+.status-cancelled .status-text {
+    color: var(--danger);
+}
+
+/* ===== PULSING ANIMATION FOR PENDING STATUSES ===== */
+.status-pending .status-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0);
+    }
+}
+
+/* ===== DOT ONLY (FOR COMPACT DISPLAYS) ===== */
+.status-dot-only {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: help;
+}
+
+.status-dot-only.status-draft {
+    background-color: var(--gray-400);
+}
+
+.status-dot-only.status-pending {
+    background-color: var(--warning);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.status-dot-only.status-approved {
+    background-color: var(--success);
+}
+
+.status-dot-only.status-paid {
+    background-color: var(--success);
+}
+
+.status-dot-only.status-completed {
+    background-color: var(--primary);
+}
+
+.status-dot-only.status-rejected {
+    background-color: var(--danger);
+}
+
+.status-dot-only.status-cancelled {
+    background-color: var(--danger);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .status-indicator {
+        font-size: var(--font-size-xs);
+    }
+    
+    .status-dot {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* ===== DARK MODE ADJUSTMENTS ===== */
+[data-theme="dark"] .status-draft .status-dot {
+    background-color: var(--gray-500);
+}
+
+[data-theme="dark"] .status-draft .status-text {
+    color: var(--gray-400);
+}
+
+/* ===== STATUS LEGEND (FOR REPORTS) ===== */
+.status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    padding: var(--spacing-3);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+}
+
+.status-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.status-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-legend-label {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+}
