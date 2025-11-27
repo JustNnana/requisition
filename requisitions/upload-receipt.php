@@ -164,8 +164,8 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                 <div class="info-group">
                     <label>Paid Date:</label>
                     <p>
-                        <?php echo format_datetime($req['paid_at']); ?><br>
-                        <span class="text-muted"><?php echo get_relative_time($req['paid_at']); ?></span>
+                        <?php echo format_datetime($req['payment_date']); ?><br>
+                        <span class="text-muted"><?php echo get_relative_time($req['payment_date']); ?></span>
                     </p>
                 </div>
                 

@@ -5,6 +5,7 @@
  * 
  * File: requisitions/create.php
  * Purpose: Form to create a new requisition with dynamic item table
+ * UPDATED: Purpose field changed to dropdown with predefined categories
  */
 
 // Define access level
@@ -21,6 +22,7 @@ require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../middleware/role-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
+
 // Only users who can raise requisitions can access this page
 if (!can_user_raise_requisition()) {
     Session::setFlash('error', 'You do not have permission to create requisitions.');
@@ -36,6 +38,7 @@ $errors = [];
 $success = '';
 $formData = [
     'purpose' => '',
+    'description' => '',
     'items' => []
 ];
 
@@ -247,18 +250,63 @@ $customCSS = '
             </h5>
         </div>
         <div class="card-body">
-            <!-- Purpose -->
+            <!-- Purpose/Category Dropdown -->
             <div class="form-group">
-                <label for="purpose" class="form-label required">Purpose/Description</label>
-                <textarea 
+                <label for="purpose" class="form-label required">Purpose/Category</label>
+                <select 
                     id="purpose" 
                     name="purpose" 
                     class="form-control" 
-                    rows="4"
-                    placeholder="Enter the purpose or description of this requisition..."
                     required
-                ><?php echo htmlspecialchars($formData['purpose']); ?></textarea>
-                <div class="form-text">Provide a clear and detailed description of what you need and why.</div>
+                >
+                    <option value="">-- Select Purpose --</option>
+                    <option value="Drink water" <?php echo ($formData['purpose'] == 'Drink water') ? 'selected' : ''; ?>>Drink water</option>
+                    <option value="Entertainment" <?php echo ($formData['purpose'] == 'Entertainment') ? 'selected' : ''; ?>>Entertainment</option>
+                    <option value="Business Travel" <?php echo ($formData['purpose'] == 'Business Travel') ? 'selected' : ''; ?>>Business Travel</option>
+                    <option value="Transportation" <?php echo ($formData['purpose'] == 'Transportation') ? 'selected' : ''; ?>>Transportation</option>
+                    <option value="Internet facility" <?php echo ($formData['purpose'] == 'Internet facility') ? 'selected' : ''; ?>>Internet facility</option>
+                    <option value="Cleaning" <?php echo ($formData['purpose'] == 'Cleaning') ? 'selected' : ''; ?>>Cleaning</option>
+                    <option value="Waste management" <?php echo ($formData['purpose'] == 'Waste management') ? 'selected' : ''; ?>>Waste management</option>
+                    <option value="Electricity" <?php echo ($formData['purpose'] == 'Electricity') ? 'selected' : ''; ?>>Electricity</option>
+                    <option value="Beverage" <?php echo ($formData['purpose'] == 'Beverage') ? 'selected' : ''; ?>>Beverage</option>
+                    <option value="Mobile Telephone" <?php echo ($formData['purpose'] == 'Mobile Telephone') ? 'selected' : ''; ?>>Mobile Telephone</option>
+                    <option value="Assets" <?php echo ($formData['purpose'] == 'Assets') ? 'selected' : ''; ?>>Assets</option>
+                    <option value="Diesel purchase" <?php echo ($formData['purpose'] == 'Diesel purchase') ? 'selected' : ''; ?>>Diesel purchase</option>
+                    <option value="Fuel purchase" <?php echo ($formData['purpose'] == 'Fuel purchase') ? 'selected' : ''; ?>>Fuel purchase</option>
+                    <option value="Miscellaneous" <?php echo ($formData['purpose'] == 'Miscellaneous') ? 'selected' : ''; ?>>Miscellaneous</option>
+                    <option value="Subscriptions" <?php echo ($formData['purpose'] == 'Subscriptions') ? 'selected' : ''; ?>>Subscriptions</option>
+                    <option value="Tax" <?php echo ($formData['purpose'] == 'Tax') ? 'selected' : ''; ?>>Tax</option>
+                    <option value="Paye" <?php echo ($formData['purpose'] == 'Paye') ? 'selected' : ''; ?>>Paye</option>
+                    <option value="R.M. Generator" <?php echo ($formData['purpose'] == 'R.M. Generator') ? 'selected' : ''; ?>>R.M. Generator</option>
+                    <option value="R.M. Vehicle" <?php echo ($formData['purpose'] == 'R.M. Vehicle') ? 'selected' : ''; ?>>R.M. Vehicle</option>
+                    <option value="R.M. Computer" <?php echo ($formData['purpose'] == 'R.M. Computer') ? 'selected' : ''; ?>>R.M. Computer</option>
+                    <option value="R.M. Building" <?php echo ($formData['purpose'] == 'R.M. Building') ? 'selected' : ''; ?>>R.M. Building</option>
+                    <option value="R.M. Office Equipment" <?php echo ($formData['purpose'] == 'R.M. Office Equipment') ? 'selected' : ''; ?>>R.M. Office Equipment</option>
+                    <option value="Salary and Wages" <?php echo ($formData['purpose'] == 'Salary and Wages') ? 'selected' : ''; ?>>Salary and Wages</option>
+                    <option value="Security Cost" <?php echo ($formData['purpose'] == 'Security Cost') ? 'selected' : ''; ?>>Security Cost</option>
+                    <option value="Bank Charge" <?php echo ($formData['purpose'] == 'Bank Charge') ? 'selected' : ''; ?>>Bank Charge</option>
+                    <option value="Medical Expenses" <?php echo ($formData['purpose'] == 'Medical Expenses') ? 'selected' : ''; ?>>Medical Expenses</option>
+                    <option value="Loans" <?php echo ($formData['purpose'] == 'Loans') ? 'selected' : ''; ?>>Loans</option>
+                    <option value="Refund" <?php echo ($formData['purpose'] == 'Refund') ? 'selected' : ''; ?>>Refund</option>
+                    <option value="Furniture and Fittings" <?php echo ($formData['purpose'] == 'Furniture and Fittings') ? 'selected' : ''; ?>>Furniture and Fittings</option>
+                    <option value="Management Expense" <?php echo ($formData['purpose'] == 'Management Expense') ? 'selected' : ''; ?>>Management Expense</option>
+                    <option value="Training" <?php echo ($formData['purpose'] == 'Training') ? 'selected' : ''; ?>>Training</option>
+                    <option value="Postage and Delivery" <?php echo ($formData['purpose'] == 'Postage and Delivery') ? 'selected' : ''; ?>>Postage and Delivery</option>
+                </select>
+                <div class="form-text">Select the category that best describes this requisition.</div>
+            </div>
+            
+            <!-- Additional Description (Optional) -->
+            <div class="form-group">
+                <label for="description" class="form-label">Additional Details (Optional)</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    class="form-control" 
+                    rows="3"
+                    placeholder="Add any additional details or notes about this requisition..."
+                ><?php echo htmlspecialchars($formData['description']); ?></textarea>
+                <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
             </div>
         </div>
     </div>

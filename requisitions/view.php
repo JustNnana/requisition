@@ -156,7 +156,79 @@ function getPreviewType($filename) {
         </div>
     </div>
 <?php endif; ?>
-
+<!-- Receipt Upload Prompt (Show if paid but no receipt) -->
+<?php if ($reqData['status'] == 'paid' && empty($reqData['receipt_file_path']) && $reqData['user_id'] == $_SESSION['user_id']): ?>
+    <div class="card mb-4" style="border-left: 4px solid var(--success); background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div style="flex: 1;">
+                    <h5 style="margin: 0; color: var(--success);">
+                        <i class="fas fa-check-circle"></i> Payment Completed - Receipt Required
+                    </h5>
+                    <p style="margin: var(--spacing-2) 0 0 0; color: var(--text-secondary);">
+                        Your requisition has been paid! Please upload your receipt as proof of purchase to complete this requisition.
+                    </p>
+                    <?php if ($reqData['payment_date']): ?>
+                        <p style="margin: var(--spacing-1) 0 0 0; color: var(--text-muted); font-size: var(--font-size-sm);">
+                            <i class="fas fa-calendar-check"></i> Paid on <?php echo format_date($reqData['payment_date'], 'M d, Y \a\t h:i A'); ?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <a href="upload-receipt.php?id=<?php echo $reqData['id']; ?>" class="btn btn-success btn-lg">
+    <i class="fas fa-cloud-upload-alt"></i> Upload Receipt
+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<!-- Receipt Upload Modal -->
+<div id="receiptUploadModal" class="modal-overlay" style="display: none;">
+    <div class="modal-dialog">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload Receipt
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Please upload your receipt as proof of purchase for this requisition.</p>
+                <p><strong>Requisition:</strong> <?php echo htmlspecialchars($reqData['requisition_number']); ?><br>
+                <strong>Amount Paid:</strong> <?php echo format_currency($reqData['total_amount']); ?></p>
+                
+                <form method="POST" action="upload-receipt.php" id="receiptUploadForm" enctype="multipart/form-data">
+                    <?php echo Session::csrfField(); ?>
+                    <input type="hidden" name="requisition_id" value="<?php echo $reqData['id']; ?>">
+                    
+                    <div class="form-group">
+                        <label for="receipt_file">Receipt File <span class="text-danger">*</span></label>
+                        <input type="file" name="receipt_file" id="receipt_file" class="form-control" 
+                               accept=".pdf,.jpg,.jpeg,.png,.gif" required>
+                        <small class="form-text text-muted">
+                            Accepted formats: PDF, JPG, PNG, GIF (Max size: 5MB)
+                        </small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="receipt_comments">Comments (Optional)</label>
+                        <textarea name="comments" id="receipt_comments" class="form-control" rows="3" 
+                                  placeholder="Add any comments about this receipt..."></textarea>
+                    </div>
+                    
+                    <div class="d-flex gap-2 justify-content-end mt-4">
+                        <button type="button" class="btn btn-secondary" onclick="closeReceiptUploadModal()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload Receipt
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Status Banner -->
 <div class="card" style="border-left: 4px solid var(--<?php echo get_status_color($reqData['status']); ?>);">
     <div class="card-body">
@@ -575,7 +647,32 @@ function showRejectModal() {
 function closeRejectModal() {
     document.getElementById('rejectModal').style.display = 'none';
 }
+// Receipt Upload Modal
+function showReceiptUploadModal() {
+    document.getElementById('receiptUploadModal').style.display = 'flex';
+}
 
+function closeReceiptUploadModal() {
+    document.getElementById('receiptUploadModal').style.display = 'none';
+}
+
+// Form validation for receipt upload
+document.getElementById('receiptUploadForm').addEventListener('submit', function(e) {
+    const fileInput = document.getElementById('receipt_file');
+    if (!fileInput.files || fileInput.files.length === 0) {
+        e.preventDefault();
+        alert('Please select a receipt file to upload.');
+        return false;
+    }
+    
+    // Check file size (5MB max)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (fileInput.files[0].size > maxSize) {
+        e.preventDefault();
+        alert('File size must not exceed 5MB.');
+        return false;
+    }
+});
 // Cancel Modal
 function confirmCancel() {
     document.getElementById('cancelModal').style.display = 'flex';
