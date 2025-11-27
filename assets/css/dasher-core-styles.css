@@ -377,6 +377,7 @@ a:hover {
 
 .btn-danger:hover {
   background-color: var(--danger-600);
+    color: white;
 }
 
 .btn-warning {

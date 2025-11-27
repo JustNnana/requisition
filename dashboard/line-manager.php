@@ -561,6 +561,14 @@ $pageTitle = 'Line Manager Dashboard';
             white-space: nowrap;
         }
     }
+    .status-warning .status-dot {
+        background-color: var(--warning);
+    }
+
+    .status-warning .status-text {
+        color: var(--warning);
+        font-weight: 600;
+    }
 </style>
 
 <!-- Content Header -->
@@ -611,15 +619,33 @@ $pageTitle = 'Line Manager Dashboard';
 
 <!-- Pending Approvals Alert -->
 <?php if ($stats['pending_my_approval'] > 0): ?>
-    <div style="border: solid 1px var(--warning); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6); color: white;">
-        <div class="d-flex align-items-start gap-3">
-            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-top: 0.25rem; margin-right: 0.55rem;"></i> 
-            <div style="flex: 1;">
-                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold);">Action Required</h5>
-                <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9;">You have <strong><?php echo $stats['pending_my_approval']; ?></strong> requisition(s) awaiting your approval.</p>
-                <a href="<?php echo BASE_URL; ?>/requisitions/pending.php" class="btn btn-warning">
-                    <i class="fas fa-clock me-2"></i>Review Now <span><?php echo $stats['pending_my_approval']; ?></span>
-                </a>
+    <div style="border: 1px solid var(--warning); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6);">
+        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+            <!-- Warning Icon -->
+            <i class="fas fa-exclamation-triangle" style="font-size: 2.2rem; color: var(--warning); flex-shrink: 0; margin-top: 0.2rem;"></i>
+
+            <!-- Text + Button Container -->
+            <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-end; min-width: 0;">
+                <!-- Text -->
+                <div style="flex: 1; min-width: 0;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: 600; color: white;">
+                        Action Required
+                    </h5>
+                    <p style="margin: 0; opacity: 0.9; color: white;">
+                        You have <strong><?php echo $stats['pending_my_approval']; ?></strong> 
+                        requisition<?php echo $stats['pending_my_approval'] > 1 ? 's' : ''; ?> awaiting your approval.
+                    </p>
+                </div>
+
+                <!-- Button - pushed all the way to the right -->
+                <div style="margin-left: 2rem; flex-shrink: 0;">
+                    <a href="<?php echo BASE_URL; ?>/requisitions/pending.php" 
+                       class="btn btn-warning" 
+                       style="white-space: nowrap;">
+                        <i class="fas fa-clock me-2"></i>
+                        Review Now <strong><?php echo $stats['pending_my_approval']; ?></strong>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -886,7 +912,18 @@ $pageTitle = 'Line Manager Dashboard';
                                     <?php echo format_currency($req['total_amount']); ?>
                                 </span>
                             </td>
-                            <td><?php echo get_status_indicator($req['status']); ?></td>
+                            <td>
+                                <?php
+                                if ($req['status'] === 'paid' && empty($req['receipt_uploaded'])) {
+                                    echo '<span class="status-indicator status-warning">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Required Reciept</span>
+                                    </span>';
+                                } else {
+                                    echo get_status_indicator($req['status']);
+                                }
+                                ?>
+                            </td>
                             <td class="text-end">
                                 <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
                                     class="btn btn-sm btn-ghost" title="View Details">

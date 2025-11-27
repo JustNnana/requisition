@@ -33,6 +33,10 @@ if (!$requisitionId) {
 
 // Initialize objects
 $requisition = new Requisition();
+$categoryModel = new RequisitionCategory();
+
+// Load active categories from database
+$categories = $categoryModel->getAllActive();
 
 // Get requisition data
 $reqData = $requisition->getById($requisitionId);
@@ -524,7 +528,6 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         }
     }
 </style>
-
     <!-- Content Header -->
     <div class="content-header">
         <div class="d-flex justify-content-between align-items-start">
@@ -598,17 +601,37 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
                 </div>
             </div>
             <div class="form-section-body">
+                <!-- Purpose/Category Dropdown -->
                 <div class="form-group">
-                    <label for="purpose" class="form-label required">Purpose/Description</label>
-                    <textarea 
+                    <label for="purpose" class="form-label required">Purpose/Category</label>
+                    <select 
                         id="purpose" 
                         name="purpose" 
                         class="form-control" 
-                        rows="4"
-                        placeholder="Enter the purpose or description of this requisition..."
                         required
-                    ><?php echo htmlspecialchars($reqData['purpose']); ?></textarea>
-                    <div class="form-text">Provide a clear and detailed description of what you need and why.</div>
+                    >
+                        <option value="">-- Select Purpose --</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo htmlspecialchars($category['category_name']); ?>" 
+                                <?php echo ($reqData['purpose'] == $category['category_name']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($category['category_name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="form-text">Select the category that best describes this requisition.</div>
+                </div>
+                
+                <!-- Additional Description (Optional) -->
+                <div class="form-group">
+                    <label for="description" class="form-label">Additional Details (Optional)</label>
+                    <textarea 
+                        id="description" 
+                        name="description" 
+                        class="form-control" 
+                        rows="3"
+                        placeholder="Add any additional details or notes about this requisition..."
+                    ></textarea>
+                    <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
                 </div>
             </div>
         </div>

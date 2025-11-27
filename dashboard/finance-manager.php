@@ -562,6 +562,14 @@ $pageTitle = 'Finance Manager Dashboard';
             white-space: nowrap;
         }
     }
+    .status-warning .status-dot {
+        background-color: var(--warning);
+    }
+
+    .status-warning .status-text {
+        color: var(--warning);
+        font-weight: 600;
+    }
 </style>
 
 <!-- Content Header -->
@@ -608,19 +616,41 @@ $pageTitle = 'Finance Manager Dashboard';
     </div>
 <?php endif; ?>
 
-<!-- Action Required Alert -->
+<!-- Action Required Alert - Finance Review Queue -->
 <?php if ($stats['pending_review'] > 0): ?>
-    <div style="border: solid 1px var(--warning); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6); color: white;">
+    <div style="border: 1px solid var(--warning); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6);">
+        
         <div class="d-flex align-items-start gap-3">
-            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-top: 0.25rem; margin-right: 0.55rem;"></i>
-            <div style="flex: 1;">
-                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold);">Action Required</h5>
-                <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9;">You have <strong><?php echo $stats['pending_review']; ?></strong> requisition(s) awaiting your review.</p>
-                <a href="<?php echo BASE_URL; ?>/finance/review-queue.php" class="btn btn-warning">
-                    <i class="fas fa-tasks me-2"></i>Review Now <span><?php echo $stats['pending_review']; ?></span>
-                </a>
+            <!-- Warning Icon -->
+            <i class="fas fa-exclamation-triangle" 
+               style="font-size: 2rem; color: var(--warning); flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
+
+            <!-- Content: Text + Button (button pushed to far right) -->
+            <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; min-width: 0;">
+                
+                <!-- Left: Text -->
+                <div style="flex: 1;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">
+                        Action Required
+                    </h5>
+                    <p style="margin: 0; opacity: 0.9; color: white;">
+                        You have <strong><?php echo $stats['pending_review']; ?></strong> 
+                        requisition<?php echo $stats['pending_review'] > 1 ? 's' : ''; ?> awaiting your review.
+                    </p>
+                </div>
+
+                <!-- Right: Button - always at the far end -->
+                <div style="flex-shrink: 0;">
+                    <a href="<?php echo BASE_URL; ?>/finance/review-queue.php" 
+                       class="btn btn-warning" 
+                       style="white-space: nowrap; font-weight: 600;">
+                        <i class="fas fa-tasks me-2"></i>
+                        Review Now <strong><?php echo $stats['pending_review']; ?></strong>
+                    </a>
+                </div>
             </div>
         </div>
+        
     </div>
 <?php endif; ?>
 

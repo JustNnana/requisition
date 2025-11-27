@@ -556,6 +556,14 @@ $pageTitle = 'Finance Member Dashboard';
             white-space: nowrap;
         }
     }
+    .status-warning .status-dot {
+        background-color: var(--warning);
+    }
+
+    .status-warning .status-text {
+        color: var(--warning);
+        font-weight: 600;
+    }
 </style>
 
 <!-- Content Header -->
@@ -599,19 +607,41 @@ $pageTitle = 'Finance Member Dashboard';
     </div>
 <?php endif; ?>
 
-<!-- Action Required Alert -->
+<!-- Action Required Alert - Pending Payment -->
 <?php if ($stats['pending_payment'] > 0): ?>
-    <div style="border: solid 1px var(--success); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6); color: white;">
+    <div style="border: 1px solid var(--success); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6);">
+        
         <div class="d-flex align-items-start gap-3">
-            <i class="fas fa-info-circle" style="font-size: 2rem; margin-top: 0.25rem; margin-right: 0.55rem;"></i>
-            <div style="flex: 1;">
-                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold);">Action Required</h5>
-                <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9;">You have <strong><?php echo $stats['pending_payment']; ?></strong> requisition(s) ready for payment processing.</p>
-                <a href="<?php echo BASE_URL; ?>/finance/pending-payment.php" class="btn btn-success">
-                    <i class="fas fa-money-check-alt me-2"></i>Process Now <span><?php echo $stats['pending_payment']; ?></span>
-                </a>
+            <!-- Success Info Icon -->
+            <i class="fas fa-info-circle" 
+               style="font-size: 2rem; color: var(--success); flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
+
+            <!-- Content: Text + Button (button at far right) -->
+            <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; min-width: 0;">
+                
+                <!-- Left: Text -->
+                <div style="flex: 1;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">
+                        Action Required
+                    </h5>
+                    <p style="margin: 0; opacity: 0.9; color: white;">
+                        You have <strong><?php echo $stats['pending_payment']; ?></strong> 
+                        requisition<?php echo $stats['pending_payment'] > 1 ? 's' : ''; ?> ready for payment processing.
+                    </p>
+                </div>
+
+                <!-- Right: Button - pushed to the far end -->
+                <div style="flex-shrink: 0;">
+                    <a href="<?php echo BASE_URL; ?>/finance/pending-payment.php" 
+                       class="btn btn-success" 
+                       style="white-space: nowrap; font-weight: 600;">
+                        <i class="fas fa-money-check-alt me-2"></i>
+                        Process Now <strong><?php echo $stats['pending_payment']; ?></strong>
+                    </a>
+                </div>
             </div>
         </div>
+        
     </div>
 <?php endif; ?>
 

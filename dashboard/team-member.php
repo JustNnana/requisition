@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GateWey Requisition Management System
  * Team Member Dashboard - Dasher UI Enhanced
@@ -62,9 +63,9 @@ $sql = "SELECT COUNT(*) as count
         WHERE user_id = ? 
         AND status IN (?, ?, ?)";
 $result = $db->fetchOne($sql, [
-    $userId, 
-    STATUS_PENDING_LINE_MANAGER, 
-    STATUS_PENDING_MD, 
+    $userId,
+    STATUS_PENDING_LINE_MANAGER,
+    STATUS_PENDING_MD,
     STATUS_PENDING_FINANCE_MANAGER
 ]);
 $stats['pending'] = $result['count'];
@@ -567,164 +568,173 @@ $pageTitle = 'Dashboard';
             white-space: nowrap;
         }
     }
+
+    .status-warning .status-dot {
+        background-color: var(--warning);
+    }
+
+    .status-warning .status-text {
+        color: var(--warning);
+        font-weight: 600;
+    }
 </style>
 
 
-    <!-- Content Header -->
-    <div class="content-header">
-        <div class="d-flex justify-content-between align-items-start">
-            <div>
-                <h1 class="content-title">
-                    <i class="fas fa-tachometer-alt me-2"></i>
-                    Welcome, <?php echo htmlspecialchars($userFirstName); ?>
-                </h1>
-                <p class="content-subtitle">Your requisition dashboard</p>
-            </div>
-            <div class="content-actions">
-                <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>New Requisition
-                </a>
-                <a href="<?php echo BASE_URL; ?>/reports/personal.php" class="btn btn-outline-primary">
-                    <i class="fas fa-chart-bar me-2"></i>View Reports
-                </a>
-            </div>
+<!-- Content Header -->
+<div class="content-header">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h1 class="content-title">
+                <i class="fas fa-tachometer-alt me-2"></i>
+                Welcome, <?php echo htmlspecialchars($userFirstName); ?>
+            </h1>
+            <p class="content-subtitle">Your requisition dashboard</p>
+        </div>
+        <div class="content-actions">
+            <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>New Requisition
+            </a>
+            <a href="<?php echo BASE_URL; ?>/reports/personal.php" class="btn btn-outline-primary">
+                <i class="fas fa-chart-bar me-2"></i>View Reports
+            </a>
         </div>
     </div>
+</div>
 
-    <!-- Success/Error Messages -->
-    <?php if ($successMessage): ?>
-        <div class="alert alert-success alert-dismissible">
-            <i class="fas fa-check-circle"></i>
-            <?php echo htmlspecialchars($successMessage); ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>
+<!-- Success/Error Messages -->
+<?php if ($successMessage): ?>
+    <div class="alert alert-success alert-dismissible">
+        <i class="fas fa-check-circle"></i>
+        <?php echo htmlspecialchars($successMessage); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<?php endif; ?>
 
-    <?php if ($errorMessage): ?>
-        <div class="alert alert-error alert-dismissible">
-            <i class="fas fa-exclamation-circle"></i>
-            <?php echo htmlspecialchars($errorMessage); ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>
+<?php if ($errorMessage): ?>
+    <div class="alert alert-error alert-dismissible">
+        <i class="fas fa-exclamation-circle"></i>
+        <?php echo htmlspecialchars($errorMessage); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<?php endif; ?>
 
-    <!-- Pending Actions Alert -->
-    <?php if (!empty($pendingActions)): ?>
-        <div style="background: linear-gradient(135deg, #ff5630, #ff8f00); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6); color: white;">
-            <div class="d-flex align-items-start gap-3">
-                <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-top: 0.25rem;"></i>
-                <div style="flex: 1;">
-                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold);">Action Required</h5>
-                    <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9;">You have <?php echo count($pendingActions); ?> rejected requisition(s) that need your attention:</p>
-                    <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
-                        <?php foreach ($pendingActions as $action): ?>
-                            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.1); padding: var(--spacing-3); border-radius: var(--border-radius);">
-                                <div>
-                                    <strong><?php echo htmlspecialchars($action['requisition_number']); ?></strong> - 
-                                    <?php echo htmlspecialchars(substr($action['purpose'], 0, 50)) . (strlen($action['purpose']) > 50 ? '...' : ''); ?>
-                                </div>
-                                <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $action['id']; ?>" class="btn btn-light btn-sm">
-                                    <i class="fas fa-eye me-2"></i>View & Edit
-                                </a>
+<!-- Pending Actions Alert -->
+<?php if (!empty($pendingActions)): ?>
+    <div style="border: solid 1px var(--danger); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6); color: white;">
+        <div class="d-flex align-items-start gap-3">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-top: 0.25rem; margin-right: 0.55rem;"></i>
+            <div style="flex: 1;">
+                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold);">Action Required</h5>
+                <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9;">You have <?php echo count($pendingActions); ?> rejected requisition(s) that need your attention:</p>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
+                    <?php foreach ($pendingActions as $action): ?>
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.1); padding: var(--spacing-3); border-radius: var(--border-radius);">
+                            <div>
+                                <strong><?php echo htmlspecialchars($action['requisition_number']); ?></strong> -
+                                <?php echo htmlspecialchars(substr($action['purpose'], 0, 50)) . (strlen($action['purpose']) > 50 ? '...' : ''); ?>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
-
-    <!-- Key Metrics - Revenue Card Style -->
-    <div class="revenue-cards-grid">
-        <div class="revenue-card">
-            <div class="revenue-card-header">
-                <div class="revenue-card-icon" style="background-color: var(--primary);">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <div class="revenue-card-content">
-                    <h3 class="revenue-card-title">Total Spent</h3>
-                    <p class="revenue-card-value"><?php echo format_currency($stats['total_amount']); ?></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="revenue-card">
-            <div class="revenue-card-header">
-                <div class="revenue-card-icon" style="background-color: var(--info);">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="revenue-card-content">
-                    <h3 class="revenue-card-title">This Month</h3>
-                    <p class="revenue-card-value"><?php echo number_format($stats['this_month']); ?></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="revenue-card">
-            <div class="revenue-card-header">
-                <div class="revenue-card-icon" style="background-color: var(--success);">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="revenue-card-content">
-                    <h3 class="revenue-card-title">Completed</h3>
-                    <p class="revenue-card-value"><?php echo number_format($stats['paid']); ?></p>
+                            <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $action['id']; ?>" class="btn btn-danger">
+                                <i class="fas fa-eye me-2"></i>View & Edit
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
+<?php endif; ?>
 
-    <!-- Statistics Cards - Dasher UI Style -->
-    <div class="chart-grid">
-        <!-- Total Requisitions -->
-        <div class="improved-stats-card">
-            <div class="improved-stats-header">
-                <div class="improved-stats-icon info">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="improved-stats-content">
-                    <h3 class="improved-stats-title">Total Requisitions</h3>
-                    <p class="improved-stats-value"><?php echo number_format($stats['total']); ?></p>
-                </div>
+<!-- Key Metrics - Revenue Card Style -->
+<div class="revenue-cards-grid">
+    <div class="revenue-card">
+        <div class="revenue-card-header">
+            <div class="revenue-card-icon" style="background-color: var(--primary);">
+                <i class="fas fa-money-bill-wave"></i>
             </div>
-            <div style="margin-top: var(--spacing-3);">
-                <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="btn btn-sm btn-outline-primary">View All</a>
+            <div class="revenue-card-content">
+                <h3 class="revenue-card-title">Total Spent</h3>
+                <p class="revenue-card-value"><?php echo format_currency($stats['total_amount']); ?></p>
             </div>
         </div>
+    </div>
 
-        <!-- Pending Approval -->
-        <div class="improved-stats-card">
-            <div class="improved-stats-header">
-                <div class="improved-stats-icon warning">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="improved-stats-content">
-                    <h3 class="improved-stats-title">Pending Approval</h3>
-                    <p class="improved-stats-value"><?php echo number_format($stats['pending']); ?></p>
-                </div>
+    <div class="revenue-card">
+        <div class="revenue-card-header">
+            <div class="revenue-card-icon" style="background-color: var(--info);">
+                <i class="fas fa-file-alt"></i>
             </div>
-            <div style="margin-top: var(--spacing-3);">
-                <a href="<?php echo BASE_URL; ?>/requisitions/list.php?status=pending" class="btn btn-sm btn-outline-warning">View</a>
+            <div class="revenue-card-content">
+                <h3 class="revenue-card-title">This Month</h3>
+                <p class="revenue-card-value"><?php echo number_format($stats['this_month']); ?></p>
             </div>
         </div>
+    </div>
 
-        <!-- Approved -->
-        <div class="improved-stats-card">
-            <div class="improved-stats-header">
-                <div class="improved-stats-icon primary">
-                    <i class="fas fa-check-double"></i>
-                </div>
-                <div class="improved-stats-content">
-                    <h3 class="improved-stats-title">Approved</h3>
-                    <p class="improved-stats-value"><?php echo number_format($stats['approved']); ?></p>
-                </div>
+    <div class="revenue-card">
+        <div class="revenue-card-header">
+            <div class="revenue-card-icon" style="background-color: var(--success);">
+                <i class="fas fa-check-circle"></i>
             </div>
-            <div style="margin-top: var(--spacing-3);">
-                <a href="<?php echo BASE_URL; ?>/requisitions/list.php?status=approved" class="btn btn-sm btn-outline-primary">View</a>
+            <div class="revenue-card-content">
+                <h3 class="revenue-card-title">Completed</h3>
+                <p class="revenue-card-value"><?php echo number_format($stats['paid']); ?></p>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- Rejected -->
-        <?php if ($stats['rejected'] > 0): ?>
+<!-- Statistics Cards - Dasher UI Style -->
+<div class="chart-grid">
+    <!-- Total Requisitions -->
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon info">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Total Requisitions</h3>
+                <p class="improved-stats-value"><?php echo number_format($stats['total']); ?></p>
+            </div>
+        </div>
+        <div style="margin-top: var(--spacing-3);">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="btn btn-sm btn-outline-primary">View All</a>
+        </div>
+    </div>
+
+    <!-- Pending Approval -->
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon warning">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Pending Approval</h3>
+                <p class="improved-stats-value"><?php echo number_format($stats['pending']); ?></p>
+            </div>
+        </div>
+        <div style="margin-top: var(--spacing-3);">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list.php?status=pending" class="btn btn-sm btn-outline-warning">View</a>
+        </div>
+    </div>
+
+    <!-- Approved -->
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon primary">
+                <i class="fas fa-check-double"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Approved</h3>
+                <p class="improved-stats-value"><?php echo number_format($stats['approved']); ?></p>
+            </div>
+        </div>
+        <div style="margin-top: var(--spacing-3);">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list.php?status=approved" class="btn btn-sm btn-outline-primary">View</a>
+        </div>
+    </div>
+
+    <!-- Rejected -->
+    <?php if ($stats['rejected'] > 0): ?>
         <div class="improved-stats-card">
             <div class="improved-stats-header">
                 <div class="improved-stats-icon danger">
@@ -739,77 +749,77 @@ $pageTitle = 'Dashboard';
                 <a href="<?php echo BASE_URL; ?>/requisitions/list.php?status=rejected" class="btn btn-sm btn-outline-danger">Review</a>
             </div>
         </div>
-        <?php endif; ?>
-    </div>
+    <?php endif; ?>
+</div>
 
-    <!-- Charts and Quick Actions Row -->
-    <div class="charts-column-layout">
-        <!-- Monthly Trend Chart -->
-        <div class="chart-container">
-            <div class="chart-header">
-                <div>
-                    <h2 class="chart-title">Monthly Trend</h2>
-                    <p class="chart-subtitle">Requisitions over the last 6 months</p>
-                </div>
-            </div>
-            <div class="chart-body">
-                <?php if (empty(array_filter(array_column($monthlyData, 'count')))): ?>
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--spacing-8); color: var(--text-muted);">
-                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: var(--spacing-3); opacity: 0.5;"></i>
-                        <p style="margin: 0;">No data available yet. Create your first requisition to see trends.</p>
-                    </div>
-                <?php else: ?>
-                    <canvas id="monthlySummaryChart" class="chart-canvas"></canvas>
-                <?php endif; ?>
+<!-- Charts and Quick Actions Row -->
+<div class="charts-column-layout">
+    <!-- Monthly Trend Chart -->
+    <div class="chart-container">
+        <div class="chart-header">
+            <div>
+                <h2 class="chart-title">Monthly Trend</h2>
+                <p class="chart-subtitle">Requisitions over the last 6 months</p>
             </div>
         </div>
+        <div class="chart-body">
+            <?php if (empty(array_filter(array_column($monthlyData, 'count')))): ?>
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--spacing-8); color: var(--text-muted);">
+                    <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: var(--spacing-3); opacity: 0.5;"></i>
+                    <p style="margin: 0;">No data available yet. Create your first requisition to see trends.</p>
+                </div>
+            <?php else: ?>
+                <canvas id="monthlySummaryChart" class="chart-canvas"></canvas>
+            <?php endif; ?>
+        </div>
+    </div>
 
-        <!-- Quick Actions -->
-        <div class="chart-container">
-            <div class="chart-header">
-                <h2 class="chart-title">Quick Actions</h2>
-            </div>
-            <div class="chart-body" style="display: flex; flex-direction: column; gap: var(--spacing-3); min-height: auto;">
-                <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="quick-action-card primary">
-                    <div class="quick-action-icon">
-                        <i class="fas fa-plus-circle"></i>
-                    </div>
-                    <div class="quick-action-content">
-                        <h3 class="quick-action-title">Create Requisition</h3>
-                        <p class="quick-action-description">Submit a new request</p>
-                    </div>
-                    <div class="quick-action-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
+    <!-- Quick Actions -->
+    <div class="chart-container">
+        <div class="chart-header">
+            <h2 class="chart-title">Quick Actions</h2>
+        </div>
+        <div class="chart-body" style="display: flex; flex-direction: column; gap: var(--spacing-3); min-height: auto;">
+            <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="quick-action-card primary">
+                <div class="quick-action-icon">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <div class="quick-action-content">
+                    <h3 class="quick-action-title">Create Requisition</h3>
+                    <p class="quick-action-description">Submit a new request</p>
+                </div>
+                <div class="quick-action-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-                <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="quick-action-card info">
-                    <div class="quick-action-icon">
-                        <i class="fas fa-list"></i>
-                    </div>
-                    <div class="quick-action-content">
-                        <h3 class="quick-action-title">My Requisitions</h3>
-                        <p class="quick-action-description">View all requests</p>
-                    </div>
-                    <div class="quick-action-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
+            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="quick-action-card info">
+                <div class="quick-action-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <div class="quick-action-content">
+                    <h3 class="quick-action-title">My Requisitions</h3>
+                    <p class="quick-action-description">View all requests</p>
+                </div>
+                <div class="quick-action-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-                <a href="<?php echo BASE_URL; ?>/reports/personal.php" class="quick-action-card success">
-                    <div class="quick-action-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="quick-action-content">
-                        <h3 class="quick-action-title">View Reports</h3>
-                        <p class="quick-action-description">Analyze your spending</p>
-                    </div>
-                    <div class="quick-action-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
+            <a href="<?php echo BASE_URL; ?>/reports/personal.php" class="quick-action-card success">
+                <div class="quick-action-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="quick-action-content">
+                    <h3 class="quick-action-title">View Reports</h3>
+                    <p class="quick-action-description">Analyze your spending</p>
+                </div>
+                <div class="quick-action-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-                <?php if ($stats['this_month'] > 0): ?>
+            <?php if ($stats['this_month'] > 0): ?>
                 <a href="<?php echo BASE_URL; ?>/reports/personal.php?period=monthly" class="quick-action-card warning">
                     <div class="quick-action-icon">
                         <i class="fas fa-calendar"></i>
@@ -822,76 +832,87 @@ $pageTitle = 'Dashboard';
                         <i class="fas fa-arrow-right"></i>
                     </div>
                 </a>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-
-    <!-- Recent Requisitions -->
-    <div class="table-container">
-        <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-                <h2 class="card-title">
-                    <i class="fas fa-history me-2"></i>Recent Requisitions
-                </h2>
-                <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="btn btn-sm btn-outline-primary">View All</a>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <?php if (empty($recentRequisitions)): ?>
-                <div style="padding: var(--spacing-8); text-align: center;">
-                    <i class="fas fa-inbox" style="font-size: 3rem; color: var(--text-muted); margin-bottom: var(--spacing-3); opacity: 0.5;"></i>
-                    <h6 style="color: var(--text-muted); margin-bottom: var(--spacing-2);">No Requisitions Yet</h6>
-                    <p style="color: var(--text-muted); margin-bottom: var(--spacing-3);">Start by creating your first requisition</p>
-                    <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="btn btn-primary">
-                        <i class="fas fa-plus me-2"></i>Create Requisition
-                    </a>
-                </div>
-            <?php else: ?>
-                <table class="table table-sortable">
-                    <thead>
-                        <tr>
-                            <th>Req. No.</th>
-                            <th>Date</th>
-                            <th>Purpose</th>
-                            <th class="text-end">Amount</th>
-                            <th>Status</th>
-                            <th class="text-end">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($recentRequisitions as $req): ?>
-                            <tr>
-                                <td>
-                                    <span style="font-weight: var(--font-weight-medium);">
-                                        <?php echo htmlspecialchars($req['requisition_number']); ?>
-                                    </span>
-                                </td>
-                                <td><?php echo format_date($req['created_at']); ?></td>
-                                <td>
-                                    <span style="max-width: 200px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <?php echo htmlspecialchars($req['purpose']); ?>
-                                    </span>
-                                </td>
-                                <td class="text-end">
-                                    <span style="font-weight: var(--font-weight-semibold);">
-                                        <?php echo format_currency($req['total_amount']); ?>
-                                    </span>
-                                </td>
-                                <td><?php echo get_status_indicator($req['status']); ?></td>
-                                <td class="text-end">
-                                    <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
-                                       class="btn btn-sm btn-ghost" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
             <?php endif; ?>
         </div>
     </div>
+</div>
+
+<!-- Recent Requisitions -->
+<div class="table-container">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="card-title">
+                <i class="fas fa-history me-2"></i> Recent Requisitions
+            </h2>
+            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="btn btn-sm btn-outline-primary">View All</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <?php if (empty($recentRequisitions)): ?>
+            <div style="padding: var(--spacing-8); text-align: center;">
+                <i class="fas fa-inbox" style="font-size: 3rem; color: var(--text-muted); margin-bottom: var(--spacing-3); opacity: 0.5;"></i>
+                <h6 style="color: var(--text-muted); margin-bottom: var(--spacing-2);">No Requisitions Yet</h6>
+                <p style="color: var(--text-muted); margin-bottom: var(--spacing-3);">Start by creating your first requisition</p>
+                <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Create Requisition
+                </a>
+            </div>
+        <?php else: ?>
+            <table class="table table-sortable">
+                <thead>
+                    <tr>
+                        <th>Req. No.</th>
+                        <th>Date</th>
+                        <th>Purpose</th>
+                        <th class="text-end">Amount</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($recentRequisitions as $req): ?>
+                        <tr>
+                            <td>
+                                <span style="font-weight: var(--font-weight-medium);">
+                                    <?php echo htmlspecialchars($req['requisition_number']); ?>
+                                </span>
+                            </td>
+                            <td><?php echo format_date($req['created_at']); ?></td>
+                            <td>
+                                <span style="max-width: 200px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <?php echo htmlspecialchars($req['purpose']); ?>
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <span style="font-weight: var(--font-weight-semibold);">
+                                    <?php echo format_currency($req['total_amount']); ?>
+                                </span>
+                            </td>
+                            <td>
+                                <?php
+                                if ($req['status'] === 'paid' && empty($req['receipt_uploaded'])) {
+                                    echo '<span class="status-indicator status-warning">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Required Reciept</span>
+                                    </span>';
+                                } else {
+                                    echo get_status_indicator($req['status']);
+                                }
+                                ?>
+                            </td>
+                            <td class="text-end">
+                                <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
+                                    class="btn btn-sm btn-ghost" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>
 </div>
 
 <!-- Chart.js -->
@@ -899,249 +920,248 @@ $pageTitle = 'Dashboard';
 
 <!-- Dasher Chart Configuration and Initialization -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎨 Initializing Team Member Dashboard...');
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎨 Initializing Team Member Dashboard...');
 
-    // Wait for Chart.js to be available
-    if (typeof Chart === 'undefined') {
-        console.error('Chart.js not loaded');
-        return;
-    }
+        // Wait for Chart.js to be available
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js not loaded');
+            return;
+        }
 
-    // Dasher theme-aware chart configuration
-    function getDasherChartConfig() {
-        return {
-            colors: {
-                primary: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim(),
-                success: getComputedStyle(document.documentElement).getPropertyValue('--success').trim(),
-                warning: getComputedStyle(document.documentElement).getPropertyValue('--warning').trim(),
-                danger: getComputedStyle(document.documentElement).getPropertyValue('--danger').trim(),
-                info: getComputedStyle(document.documentElement).getPropertyValue('--info').trim(),
-                text: getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim(),
-                textSecondary: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim(),
-                border: getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim()
-            },
-            font: {
-                family: getComputedStyle(document.documentElement).getPropertyValue('--font-family-base').trim(),
-                size: 12,
-                weight: '400'
-            }
-        };
-    }
-
-    const chartConfig = getDasherChartConfig();
-    let monthlySummaryChart = null;
-
-    // Monthly Summary Chart
-    <?php if (!empty(array_filter(array_column($monthlyData, 'count')))): ?>
-        const summaryCtx = document.getElementById('monthlySummaryChart');
-        if (summaryCtx) {
-            const monthlyData = <?php echo json_encode($monthlyData); ?>;
-
-            monthlySummaryChart = new Chart(summaryCtx.getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: monthlyData.map(d => d.month),
-                    datasets: [
-                        {
-                            label: 'Number of Requisitions',
-                            data: monthlyData.map(d => d.count),
-                            borderColor: chartConfig.colors.primary,
-                            backgroundColor: chartConfig.colors.primary + '20',
-                            borderWidth: 3,
-                            tension: 0.4,
-                            fill: true,
-                            pointBackgroundColor: chartConfig.colors.primary,
-                            pointBorderColor: '#ffffff',
-                            pointBorderWidth: 2,
-                            pointRadius: 5,
-                            pointHoverRadius: 7,
-                            yAxisID: 'y'
-                        },
-                        {
-                            label: 'Total Amount (₦)',
-                            data: monthlyData.map(d => d.amount),
-                            borderColor: chartConfig.colors.success,
-                            backgroundColor: chartConfig.colors.success + '20',
-                            borderWidth: 3,
-                            tension: 0.4,
-                            fill: true,
-                            pointBackgroundColor: chartConfig.colors.success,
-                            pointBorderColor: '#ffffff',
-                            pointBorderWidth: 2,
-                            pointRadius: 5,
-                            pointHoverRadius: 7,
-                            yAxisID: 'y1'
-                        }
-                    ]
+        // Dasher theme-aware chart configuration
+        function getDasherChartConfig() {
+            return {
+                colors: {
+                    primary: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim(),
+                    success: getComputedStyle(document.documentElement).getPropertyValue('--success').trim(),
+                    warning: getComputedStyle(document.documentElement).getPropertyValue('--warning').trim(),
+                    danger: getComputedStyle(document.documentElement).getPropertyValue('--danger').trim(),
+                    info: getComputedStyle(document.documentElement).getPropertyValue('--info').trim(),
+                    text: getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim(),
+                    textSecondary: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim(),
+                    border: getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim()
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false
+                font: {
+                    family: getComputedStyle(document.documentElement).getPropertyValue('--font-family-base').trim(),
+                    size: 12,
+                    weight: '400'
+                }
+            };
+        }
+
+        const chartConfig = getDasherChartConfig();
+        let monthlySummaryChart = null;
+
+        // Monthly Summary Chart
+        <?php if (!empty(array_filter(array_column($monthlyData, 'count')))): ?>
+            const summaryCtx = document.getElementById('monthlySummaryChart');
+            if (summaryCtx) {
+                const monthlyData = <?php echo json_encode($monthlyData); ?>;
+
+                monthlySummaryChart = new Chart(summaryCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: monthlyData.map(d => d.month),
+                        datasets: [{
+                                label: 'Number of Requisitions',
+                                data: monthlyData.map(d => d.count),
+                                borderColor: chartConfig.colors.primary,
+                                backgroundColor: chartConfig.colors.primary + '20',
+                                borderWidth: 3,
+                                tension: 0.4,
+                                fill: true,
+                                pointBackgroundColor: chartConfig.colors.primary,
+                                pointBorderColor: '#ffffff',
+                                pointBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHoverRadius: 7,
+                                yAxisID: 'y'
+                            },
+                            {
+                                label: 'Total Amount (₦)',
+                                data: monthlyData.map(d => d.amount),
+                                borderColor: chartConfig.colors.success,
+                                backgroundColor: chartConfig.colors.success + '20',
+                                borderWidth: 3,
+                                tension: 0.4,
+                                fill: true,
+                                pointBackgroundColor: chartConfig.colors.success,
+                                pointBorderColor: '#ffffff',
+                                pointBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHoverRadius: 7,
+                                yAxisID: 'y1'
+                            }
+                        ]
                     },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                color: chartConfig.colors.text,
-                                font: {
-                                    family: chartConfig.font.family,
-                                    size: 12
-                                },
-                                padding: 15,
-                                usePointStyle: true
-                            }
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false
                         },
-                        tooltip: {
-                            backgroundColor: chartConfig.colors.text + '10',
-                            titleColor: chartConfig.colors.text,
-                            bodyColor: chartConfig.colors.text,
-                            borderColor: chartConfig.colors.border,
-                            borderWidth: 1,
-                            cornerRadius: 8,
-                            padding: 12,
-                            titleFont: {
-                                family: chartConfig.font.family,
-                                size: 14,
-                                weight: '600'
-                            },
-                            bodyFont: {
-                                family: chartConfig.font.family,
-                                size: 13
-                            },
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.datasetIndex === 1) {
-                                        label += '₦' + context.parsed.y.toLocaleString();
-                                    } else {
-                                        label += context.parsed.y;
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            border: {
-                                display: false
-                            },
-                            ticks: {
-                                color: chartConfig.colors.textSecondary,
-                                font: {
-                                    family: chartConfig.font.family,
-                                    size: 12
-                                }
-                            }
-                        },
-                        y: {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
-                            beginAtZero: true,
-                            grid: {
-                                color: chartConfig.colors.border + '40',
-                                drawBorder: false
-                            },
-                            border: {
-                                display: false
-                            },
-                            ticks: {
-                                color: chartConfig.colors.textSecondary,
-                                font: {
-                                    family: chartConfig.font.family,
-                                    size: 12
-                                },
-                                callback: function(value) {
-                                    return value;
-                                }
-                            },
-                            title: {
+                        plugins: {
+                            legend: {
                                 display: true,
-                                text: 'Number of Requisitions',
-                                color: chartConfig.colors.text,
-                                font: {
+                                position: 'bottom',
+                                labels: {
+                                    color: chartConfig.colors.text,
+                                    font: {
+                                        family: chartConfig.font.family,
+                                        size: 12
+                                    },
+                                    padding: 15,
+                                    usePointStyle: true
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: chartConfig.colors.text + '10',
+                                titleColor: chartConfig.colors.text,
+                                bodyColor: chartConfig.colors.text,
+                                borderColor: chartConfig.colors.border,
+                                borderWidth: 1,
+                                cornerRadius: 8,
+                                padding: 12,
+                                titleFont: {
                                     family: chartConfig.font.family,
-                                    size: 12,
-                                    weight: '500'
+                                    size: 14,
+                                    weight: '600'
+                                },
+                                bodyFont: {
+                                    family: chartConfig.font.family,
+                                    size: 13
+                                },
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.datasetIndex === 1) {
+                                            label += '₦' + context.parsed.y.toLocaleString();
+                                        } else {
+                                            label += context.parsed.y;
+                                        }
+                                        return label;
+                                    }
                                 }
                             }
                         },
-                        y1: {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
-                            beginAtZero: true,
-                            grid: {
-                                drawOnChartArea: false
-                            },
-                            border: {
-                                display: false
-                            },
-                            ticks: {
-                                color: chartConfig.colors.textSecondary,
-                                font: {
-                                    family: chartConfig.font.family,
-                                    size: 12
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
                                 },
-                                callback: function(value) {
-                                    return '₦' + value.toLocaleString();
+                                border: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: chartConfig.colors.textSecondary,
+                                    font: {
+                                        family: chartConfig.font.family,
+                                        size: 12
+                                    }
                                 }
                             },
-                            title: {
+                            y: {
+                                type: 'linear',
                                 display: true,
-                                text: 'Amount (₦)',
-                                color: chartConfig.colors.text,
-                                font: {
-                                    family: chartConfig.font.family,
-                                    size: 12,
-                                    weight: '500'
+                                position: 'left',
+                                beginAtZero: true,
+                                grid: {
+                                    color: chartConfig.colors.border + '40',
+                                    drawBorder: false
+                                },
+                                border: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: chartConfig.colors.textSecondary,
+                                    font: {
+                                        family: chartConfig.font.family,
+                                        size: 12
+                                    },
+                                    callback: function(value) {
+                                        return value;
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Number of Requisitions',
+                                    color: chartConfig.colors.text,
+                                    font: {
+                                        family: chartConfig.font.family,
+                                        size: 12,
+                                        weight: '500'
+                                    }
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                beginAtZero: true,
+                                grid: {
+                                    drawOnChartArea: false
+                                },
+                                border: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: chartConfig.colors.textSecondary,
+                                    font: {
+                                        family: chartConfig.font.family,
+                                        size: 12
+                                    },
+                                    callback: function(value) {
+                                        return '₦' + value.toLocaleString();
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Amount (₦)',
+                                    color: chartConfig.colors.text,
+                                    font: {
+                                        family: chartConfig.font.family,
+                                        size: 12,
+                                        weight: '500'
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            });
-        }
-    <?php endif; ?>
+                });
+            }
+        <?php endif; ?>
 
-    // Update charts when theme changes
-    document.addEventListener('themeChanged', function(event) {
-        console.log('🎨 Updating team member charts for theme:', event.detail.theme);
+        // Update charts when theme changes
+        document.addEventListener('themeChanged', function(event) {
+            console.log('🎨 Updating team member charts for theme:', event.detail.theme);
 
-        const newConfig = getDasherChartConfig();
+            const newConfig = getDasherChartConfig();
 
-        // Update monthly summary chart
-        if (monthlySummaryChart) {
-            monthlySummaryChart.data.datasets[0].borderColor = newConfig.colors.primary;
-            monthlySummaryChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '20';
-            monthlySummaryChart.data.datasets[0].pointBackgroundColor = newConfig.colors.primary;
-            
-            monthlySummaryChart.data.datasets[1].borderColor = newConfig.colors.success;
-            monthlySummaryChart.data.datasets[1].backgroundColor = newConfig.colors.success + '20';
-            monthlySummaryChart.data.datasets[1].pointBackgroundColor = newConfig.colors.success;
-            
-            monthlySummaryChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
-            monthlySummaryChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
-            monthlySummaryChart.options.scales.y.grid.color = newConfig.colors.border + '40';
-            monthlySummaryChart.options.scales.y1.ticks.color = newConfig.colors.textSecondary;
-            monthlySummaryChart.update('none');
-        }
+            // Update monthly summary chart
+            if (monthlySummaryChart) {
+                monthlySummaryChart.data.datasets[0].borderColor = newConfig.colors.primary;
+                monthlySummaryChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '20';
+                monthlySummaryChart.data.datasets[0].pointBackgroundColor = newConfig.colors.primary;
+
+                monthlySummaryChart.data.datasets[1].borderColor = newConfig.colors.success;
+                monthlySummaryChart.data.datasets[1].backgroundColor = newConfig.colors.success + '20';
+                monthlySummaryChart.data.datasets[1].pointBackgroundColor = newConfig.colors.success;
+
+                monthlySummaryChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
+                monthlySummaryChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
+                monthlySummaryChart.options.scales.y.grid.color = newConfig.colors.border + '40';
+                monthlySummaryChart.options.scales.y1.ticks.color = newConfig.colors.textSecondary;
+                monthlySummaryChart.update('none');
+            }
+        });
+
+        console.log('✅ Team Member Dashboard initialized successfully');
     });
-
-    console.log('✅ Team Member Dashboard initialized successfully');
-});
 </script>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
