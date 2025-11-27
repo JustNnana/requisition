@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2025 at 02:56 PM
+-- Generation Time: Nov 27, 2025 at 11:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,99 @@ CREATE TABLE `audit_log` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `audit_log`
+--
+
+INSERT INTO `audit_log` (`id`, `requisition_id`, `user_id`, `action`, `description`, `old_value`, `new_value`, `ip_address`, `user_agent`, `created_at`) VALUES
+(1, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-24 20:00:32'),
+(2, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-24 20:11:27'),
+(3, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-24 20:14:14'),
+(4, NULL, 5, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-24 21:08:48'),
+(5, NULL, 6, 'user_updated', 'User account updated', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-24 21:09:01'),
+(6, NULL, 5, 'user_updated', 'User account updated', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-24 21:12:12'),
+(7, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 08:37:31'),
+(8, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 10:00:26'),
+(9, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 10:00:40'),
+(10, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 10:01:02'),
+(11, NULL, 8, 'user_updated', 'User account updated', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:01:40'),
+(12, NULL, 8, 'user_updated', 'User account updated', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:05:27'),
+(13, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:05:33'),
+(14, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:06:55'),
+(15, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:08:38'),
+(16, NULL, 8, 'user_updated', 'User account updated', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:09:27'),
+(17, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:09:41'),
+(18, NULL, 8, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:10:42'),
+(19, NULL, 7, 'user_deleted', 'User account deleted', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:11:50'),
+(20, NULL, 10, 'user_created', 'User account created: nnanamadumere@gmail.com', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 13:20:44'),
+(21, NULL, 10, 'user_password_changed', 'Password changed for user: nnanamadumere@gmail.com', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-25 14:02:23'),
+(22, NULL, 1, 'backup_created', 'Database backup created: backup_requisition_2025-11-25_15-27-37.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:27:37'),
+(23, NULL, 1, 'backup_created', 'Database backup created: backup_requisition_2025-11-25_15-42-43.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:42:43'),
+(24, NULL, 1, 'backup_created', 'Database backup created: backup_requisition_2025-11-25_15-44-20.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:44:20'),
+(25, NULL, 1, 'backup_deleted', 'Database backup deleted: backup_requisition_2025-11-25_15-44-20.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:44:24'),
+(26, NULL, 1, 'backup_deleted', 'Database backup deleted: backup_requisition_2025-11-25_15-42-43.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:44:26'),
+(27, NULL, 1, 'backup_deleted', 'Database backup deleted: backup_requisition_2025-11-25_15-42-30.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:44:28'),
+(28, NULL, 1, 'backup_deleted', 'Database backup deleted: backup_requisition_2025-11-25_15-42-22.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:45:07'),
+(29, NULL, 1, 'backup_deleted', 'Database backup deleted: backup_requisition_2025-11-25_15-26-02.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:45:09'),
+(30, NULL, 1, 'backup_deleted', 'Database backup deleted: backup_requisition_2025-11-25_15-25-55.sql', NULL, NULL, '::1', NULL, '2025-11-25 14:45:11'),
+(31, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:03:14'),
+(32, NULL, 10, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:04:06'),
+(33, 1, 10, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:19:00'),
+(34, 2, 10, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:21:40'),
+(35, NULL, 10, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:30:48'),
+(36, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:31:00'),
+(37, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:31:56'),
+(38, NULL, 10, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 15:32:13'),
+(39, NULL, 10, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:10:30'),
+(40, NULL, 10, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:11:17'),
+(41, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:11:24'),
+(42, NULL, 5, 'user_password_changed', 'Password changed for user: it.manager@gatewey.com', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:12:10'),
+(43, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:12:23'),
+(44, NULL, 5, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:12:33'),
+(45, NULL, 10, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:45:38'),
+(46, 2, 10, 'requisition_updated', 'Requisition resubmitted after revision', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:47:01'),
+(47, 2, 10, 'attachment_uploaded', 'File uploaded: Screenshot 2025-10-17 104333.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:47:01'),
+(48, 2, 5, 'document_viewed', 'Document viewed: Screenshot 2025-10-17 104333.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:50:38'),
+(49, 2, 10, 'document_viewed', 'Document viewed: Screenshot 2025-10-17 104333.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:51:08'),
+(50, 2, 10, 'requisition_updated', 'Requisition updated and saved as draft', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:51:32'),
+(51, 2, 10, 'document_viewed', 'Document viewed: Screenshot 2025-10-17 104333.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:51:37'),
+(52, 2, 10, 'requisition_updated', 'Requisition resubmitted after revision', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:51:57'),
+(53, 2, 10, 'attachment_uploaded', 'File uploaded: Screenshot 2025-10-13 142437.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:51:57'),
+(54, 2, 5, 'document_viewed', 'Document viewed: Screenshot 2025-10-13 142437.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:52:26'),
+(55, 2, 5, 'document_viewed', 'Document viewed: Screenshot 2025-10-13 142437.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 19:52:31'),
+(56, 2, 5, 'document_viewed', 'Document viewed: Screenshot 2025-10-13 142437.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:01:17'),
+(57, NULL, 5, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:02:16'),
+(58, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:02:25'),
+(59, NULL, 2, 'user_password_changed', 'Password changed for user: md@gatewey.com', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:02:55'),
+(60, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:03:06'),
+(61, NULL, 2, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:03:10'),
+(62, NULL, 10, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:14:58'),
+(63, NULL, 5, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:15:08'),
+(64, NULL, 5, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:16:32'),
+(65, NULL, 10, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:16:50'),
+(66, NULL, 10, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:17:02'),
+(67, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:17:07'),
+(68, NULL, 3, 'user_password_changed', 'Password changed for user: finance.manager@gatewey.com', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:17:29'),
+(69, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:17:37'),
+(70, NULL, 3, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:17:47'),
+(71, NULL, 3, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:25:32'),
+(72, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:25:45'),
+(73, NULL, 4, 'user_password_changed', 'Password changed for user: finance.member@gatewey.com', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:26:09'),
+(74, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:26:17'),
+(75, NULL, 4, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-26 20:26:22'),
+(76, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 08:43:59'),
+(77, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 08:44:27'),
+(78, NULL, 4, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 08:44:33'),
+(86, 2, 4, 'invoice_uploaded', 'File uploaded: NotebookLM Mind Map.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:26:09'),
+(87, NULL, 10, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:30:35'),
+(88, 2, 10, 'document_viewed', 'Document viewed: NotebookLM Mind Map.png', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:30:49'),
+(89, NULL, 10, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:31:36'),
+(90, NULL, 5, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:31:58'),
+(91, NULL, 5, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:32:08'),
+(92, NULL, 1, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:32:22'),
+(93, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:32:35'),
+(94, NULL, 3, 'user_login', 'User logged in successfully', NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-27 09:32:41');
+
 -- --------------------------------------------------------
 
 --
@@ -67,7 +160,8 @@ INSERT INTO `departments` (`id`, `department_name`, `department_code`, `descript
 (3, 'Finance & Accounting', 'FIN', 'Manages financial operations, accounting, budgeting, and financial reporting', 3000000.00, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
 (4, 'Marketing & Sales', 'MKT', 'Drives business growth through marketing campaigns, sales strategies, and customer acquisition', 4000000.00, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
 (5, 'Operations', 'OPS', 'Oversees day-to-day business operations, logistics, and process improvements', 3500000.00, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(6, 'Administration', 'ADM', 'Provides general administrative support and office management', 1500000.00, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52');
+(6, 'Administration', 'ADM', 'Provides general administrative support and office management', 1500000.00, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
+(7, 'Biology', 'BY', 'Very Good Department', 0.00, 1, '2025-11-24 21:10:40', '2025-11-24 21:10:40');
 
 -- --------------------------------------------------------
 
@@ -107,6 +201,14 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`id`, `user_id`, `token`, `expires_at`, `is_used`, `used_at`, `ip_address`, `created_at`) VALUES
+(1, 1, 'acd36621c44a8be7456df6bb8e7dce6ee4bc8ceaf24b6011a674c6b61914850e', '2025-11-24 15:56:58', 0, NULL, '::1', '2025-11-24 14:56:58'),
+(2, 1, 'aa90ecfd98165fe432fa100ba0219077fcf19371e738892c62d820676d1c8268', '2025-11-24 15:57:37', 0, NULL, '::1', '2025-11-24 14:57:37');
+
 -- --------------------------------------------------------
 
 --
@@ -126,13 +228,25 @@ CREATE TABLE `requisitions` (
   `rejected_by_id` int(11) DEFAULT NULL,
   `rejected_at` timestamp NULL DEFAULT NULL,
   `payment_date` timestamp NULL DEFAULT NULL,
+  `payment_method` varchar(50) DEFAULT NULL,
+  `payment_reference` varchar(100) DEFAULT NULL,
+  `payment_notes` text DEFAULT NULL,
   `receipt_uploaded` tinyint(1) DEFAULT 0,
   `receipt_uploaded_at` timestamp NULL DEFAULT NULL,
   `is_draft` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `submitted_at` timestamp NULL DEFAULT NULL
+  `submitted_at` timestamp NULL DEFAULT NULL,
+  `paid_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `requisitions`
+--
+
+INSERT INTO `requisitions` (`id`, `requisition_number`, `user_id`, `department_id`, `purpose`, `total_amount`, `status`, `current_approver_id`, `rejection_reason`, `rejected_by_id`, `rejected_at`, `payment_date`, `payment_method`, `payment_reference`, `payment_notes`, `receipt_uploaded`, `receipt_uploaded_at`, `is_draft`, `created_at`, `updated_at`, `submitted_at`, `paid_by`) VALUES
+(1, 'REQ00001', 10, 1, 'for toilet', 7000.00, 'pending_md', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-11-26 15:19:00', '2025-11-26 19:45:06', '2025-11-26 15:19:00', NULL),
+(2, 'REQ00002', 10, 1, 'REQUISITION Definition; Meaning', 22000.00, 'paid', 4, NULL, NULL, NULL, '2025-11-27 09:26:09', 'Bank Transfer', 'torkks234ksiifks', '', 0, NULL, 0, '2025-11-26 15:21:40', '2025-11-27 09:26:09', '2025-11-26 19:51:57', 4);
 
 -- --------------------------------------------------------
 
@@ -150,6 +264,18 @@ CREATE TABLE `requisition_approvals` (
   `ip_address` varchar(45) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `requisition_approvals`
+--
+
+INSERT INTO `requisition_approvals` (`id`, `requisition_id`, `user_id`, `role_at_approval`, `action`, `comments`, `ip_address`, `created_at`) VALUES
+(1, 2, 5, 'Line Manager', 'rejected', 'dddddddddddddddddddddddddddddd', NULL, '2025-11-26 19:44:58'),
+(2, 1, 5, 'Line Manager', 'approved', '', NULL, '2025-11-26 19:45:06'),
+(3, 2, 5, 'Line Manager', 'rejected', 'add another better looking recept', NULL, '2025-11-26 19:51:02'),
+(4, 2, 5, 'Line Manager', 'approved', '', NULL, '2025-11-26 20:15:22'),
+(5, 2, 2, 'Managing Director', 'approved', '', NULL, '2025-11-26 20:16:03'),
+(6, 2, 3, 'Finance Manager', 'approved', 'noted', NULL, '2025-11-26 20:23:52');
 
 -- --------------------------------------------------------
 
@@ -169,6 +295,15 @@ CREATE TABLE `requisition_documents` (
   `uploaded_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `requisition_documents`
+--
+
+INSERT INTO `requisition_documents` (`id`, `requisition_id`, `document_type`, `file_name`, `file_path`, `file_size`, `mime_type`, `uploaded_by`, `uploaded_at`) VALUES
+(1, 2, 'attachment', 'Screenshot 2025-10-17 104333.png', 'C:\\xampp\\htdocs\\requisition/uploads/attachments/692759356b842_1764186421.png', 1163, 'image/png', 10, '2025-11-26 19:47:01'),
+(2, 2, 'attachment', 'Screenshot 2025-10-13 142437.png', 'C:\\xampp\\htdocs\\requisition/uploads/attachments/69275a5dbe706_1764186717.png', 81966, 'image/png', 10, '2025-11-26 19:51:57'),
+(10, 2, 'invoice', 'NotebookLM Mind Map.png', 'C:\\xampp\\htdocs\\requisition/uploads/invoices/69281931c852f_1764235569.png', 685314, 'image/png', 4, '2025-11-27 09:26:09');
+
 -- --------------------------------------------------------
 
 --
@@ -185,6 +320,16 @@ CREATE TABLE `requisition_items` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `requisition_items`
+--
+
+INSERT INTO `requisition_items` (`id`, `requisition_id`, `item_description`, `quantity`, `unit_price`, `subtotal`, `created_at`, `updated_at`) VALUES
+(1, 1, 'mop', 1, 2000.00, 2000.00, '2025-11-26 15:19:00', '2025-11-26 15:19:00'),
+(2, 1, 'clearning agent', 5, 1000.00, 5000.00, '2025-11-26 15:19:00', '2025-11-26 15:19:00'),
+(8, 2, 'testing 2', 1, 2000.00, 2000.00, '2025-11-26 19:51:57', '2025-11-26 19:51:57'),
+(9, 2, 'item 2', 1, 20000.00, 20000.00, '2025-11-26 19:51:57', '2025-11-26 19:51:57');
 
 -- --------------------------------------------------------
 
@@ -242,15 +387,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `department_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone`, `is_active`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 'System', 'Administrator', 'admin@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 800 000 0000', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(2, 2, NULL, 'John', 'Okonkwo', 'md@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 801 234 5678', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(3, 3, 3, 'Amina', 'Yusuf', 'finance.manager@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 802 345 6789', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(4, 4, 3, 'Chidinma', 'Okafor', 'finance.member@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 803 456 7890', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(5, 5, 1, 'Emeka', 'Nwankwo', 'it.manager@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 804 567 8901', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(6, 5, 4, 'Fatima', 'Abubakar', 'marketing.manager@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 805 678 9012', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(7, 6, 1, 'Oluwaseun', 'Adebayo', 'oluwaseun.adebayo@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 806 789 0123', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(8, 6, 4, 'Blessing', 'Eze', 'blessing.eze@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 807 890 1234', 1, NULL, '2025-11-24 13:55:53', '2025-11-24 13:55:53'),
-(9, 6, 2, 'Ibrahim', 'Mohammed', 'ibrahim.mohammed@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 808 901 2345', 1, NULL, '2025-11-24 13:55:53', '2025-11-24 13:55:53');
+(1, 1, NULL, 'System', 'Administrator', 'admin@gatewey.com', '$2y$12$1IrmI9xCl22.8kgpUGU39.GfUdhjb28eCzStjykQCEswAe6LktQsW', '+234 800 000 0000', 1, '2025-11-27 09:32:22', '2025-11-24 13:55:52', '2025-11-27 09:32:22'),
+(2, 2, NULL, 'John', 'Okonkwo', 'md@gatewey.com', '$2y$10$0K90qD7ST5fvx/i/CPVwpu4vLAa5Uh55wwrA5KGJheqB.rF38yFT.', '+234 801 234 5678', 1, '2025-11-26 20:03:10', '2025-11-24 13:55:52', '2025-11-26 20:03:10'),
+(3, 3, 3, 'Amina', 'Yusuf', 'finance.manager@gatewey.com', '$2y$10$5.0MP/wSe1ifUTKnN.FMI.yHftQDlPl6isCdPb28CEuiWyt0eKoaK', '+234 802 345 6789', 1, '2025-11-27 09:32:41', '2025-11-24 13:55:52', '2025-11-27 09:32:41'),
+(4, 4, 3, 'Chidinma', 'Okafor', 'finance.member@gatewey.com', '$2y$10$Pgk6rsEvor7A.cwT5YRw0e/S0.nJSPX8yPS/46SZXrnuOOcl0Sb.u', '+234 803 456 7890', 1, '2025-11-27 08:44:33', '2025-11-24 13:55:52', '2025-11-27 08:44:33'),
+(5, 5, 1, 'Emeka', 'Nwankwo', 'it.manager@gatewey.com', '$2y$10$aSMiTWqUPZ/TVAfUUHQl..lUjofotRg.nmgZzFOze4NHwdq5U0CGa', '+234 804 567 8901', 1, '2025-11-27 09:31:58', '2025-11-24 13:55:52', '2025-11-27 09:31:58'),
+(6, 5, 4, 'Fatimaa', 'Abubakar', 'marketing.manager@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 805 678 9012', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 21:09:01'),
+(7, 6, 1, 'Oluwaseun', 'Adebayo', 'oluwaseun.adebayo@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 806 789 0123', 0, NULL, '2025-11-24 13:55:52', '2025-11-25 13:11:50'),
+(8, 6, 4, 'Blessing2', 'Eze', 'blessing.eze@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 807 890 1234', 0, NULL, '2025-11-24 13:55:53', '2025-11-25 13:05:33'),
+(9, 6, 2, 'Ibrahim', 'Mohammed', 'ibrahim.mohammed@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 808 901 2345', 1, NULL, '2025-11-24 13:55:53', '2025-11-24 13:55:53'),
+(10, 6, 1, 'Peter', 'Madumere', 'nnanamadumere@gmail.com', '$2y$10$2taMO2gOQnLm2aDRj2.S5O66lovhez672rUPdGMoheJguCkgG35Fy', 'admin@gatewey.com', 1, '2025-11-27 09:30:35', '2025-11-25 13:20:44', '2025-11-27 09:30:35');
 
 -- --------------------------------------------------------
 
@@ -405,7 +551,8 @@ ALTER TABLE `requisitions`
   ADD KEY `idx_status` (`status`),
   ADD KEY `idx_current_approver` (`current_approver_id`),
   ADD KEY `idx_created_at` (`created_at`),
-  ADD KEY `idx_submitted_at` (`submitted_at`);
+  ADD KEY `idx_submitted_at` (`submitted_at`),
+  ADD KEY `fk_requisitions_paid_by` (`paid_by`);
 
 --
 -- Indexes for table `requisition_approvals`
@@ -460,13 +607,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -478,31 +625,31 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `requisition_approvals`
 --
 ALTER TABLE `requisition_approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `requisition_documents`
 --
 ALTER TABLE `requisition_documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `requisition_items`
 --
 ALTER TABLE `requisition_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -514,7 +661,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -544,6 +691,7 @@ ALTER TABLE `password_resets`
 -- Constraints for table `requisitions`
 --
 ALTER TABLE `requisitions`
+  ADD CONSTRAINT `fk_requisitions_paid_by` FOREIGN KEY (`paid_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `requisitions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `requisitions_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`),
   ADD CONSTRAINT `requisitions_ibfk_3` FOREIGN KEY (`current_approver_id`) REFERENCES `users` (`id`) ON DELETE SET NULL,

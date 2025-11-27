@@ -1,7 +1,7 @@
 <?php
 /**
  * GateWey Requisition Management System
- * Input Validation Class
+ * Input Validation Class - SAFE VERSION WITH LOOP PROTECTION
  * 
  * File: classes/Validator.php
  * Purpose: Comprehensive input validation with 20+ validation rules
@@ -12,6 +12,8 @@ class Validator {
     private $data = [];
     private $errors = [];
     private $rules = [];
+    private $validationDepth = 0; // ADDED: Track recursion depth
+    private const MAX_DEPTH = 100; // ADDED: Maximum recursion depth
     
     /**
      * Constructor
@@ -51,12 +53,20 @@ class Validator {
      */
     public function validate() {
         $this->errors = [];
+        $this->validationDepth = 0; // ADDED: Reset depth counter
         
         foreach ($this->rules as $field => $ruleString) {
             $rules = explode('|', $ruleString);
             $value = $this->data[$field] ?? null;
             
             foreach ($rules as $rule) {
+                // ADDED: Safety check
+                if ($this->validationDepth > self::MAX_DEPTH) {
+                    error_log("VALIDATION LOOP DETECTED: Exceeded max depth for field: {$field}, rule: {$rule}");
+                    $this->errors['_system'][] = "Validation loop detected. Please contact administrator.";
+                    return false;
+                }
+                
                 $this->applyRule($field, $value, $rule);
             }
         }
@@ -72,6 +82,21 @@ class Validator {
      * @param string $rule Rule string
      */
     private function applyRule($field, $value, $rule) {
+        // ADDED: Increment depth counter
+        $this->validationDepth++;
+        
+        // ADDED: Safety check before processing
+        if ($this->validationDepth > self::MAX_DEPTH) {
+            error_log("VALIDATION LOOP: Depth exceeded at field: {$field}, rule: {$rule}");
+            return;
+        }
+        
+        // ADDED: Skip empty rules (for optional fields)
+        if (trim($rule) === '') {
+            $this->validationDepth--;
+            return;
+        }
+        
         // Parse rule and parameters
         if (strpos($rule, ':') !== false) {
             list($ruleName, $params) = explode(':', $rule, 2);
@@ -81,15 +106,26 @@ class Validator {
             $params = [];
         }
         
-        $ruleName = 'validate' . str_replace('_', '', ucwords($ruleName, '_'));
+        $methodName = 'validate' . str_replace('_', '', ucwords($ruleName, '_'));
         
-        if (method_exists($this, $ruleName)) {
-            $result = call_user_func_array([$this, $ruleName], array_merge([$field, $value], $params));
-            
-            if ($result !== true) {
-                $this->errors[$field][] = $result;
+        // ADDED: Log what we're about to call
+        error_log("Validator calling: {$methodName} for field: {$field} (depth: {$this->validationDepth})");
+        
+        if (method_exists($this, $methodName)) {
+            try {
+                $result = call_user_func_array([$this, $methodName], array_merge([$field, $value], $params));
+                
+                if ($result !== true) {
+                    $this->errors[$field][] = $result;
+                }
+            } catch (Exception $e) {
+                error_log("Validation exception for {$field}: " . $e->getMessage());
+                $this->errors[$field][] = "Validation error occurred.";
             }
         }
+        
+        // ADDED: Decrement depth counter
+        $this->validationDepth--;
     }
     
     /**
@@ -472,19 +508,24 @@ class Validator {
         if ($value) {
             $errors = [];
             
-            if (strlen($value) < PASSWORD_MIN_LENGTH) {
-                $errors[] = "at least " . PASSWORD_MIN_LENGTH . " characters";
+            $minLength = defined('PASSWORD_MIN_LENGTH') ? PASSWORD_MIN_LENGTH : 8;
+            $requireUpper = defined('PASSWORD_REQUIRE_UPPERCASE') ? PASSWORD_REQUIRE_UPPERCASE : true;
+            $requireNumber = defined('PASSWORD_REQUIRE_NUMBER') ? PASSWORD_REQUIRE_NUMBER : true;
+            $requireSpecial = defined('PASSWORD_REQUIRE_SPECIAL_CHAR') ? PASSWORD_REQUIRE_SPECIAL_CHAR : true;
+            
+            if (strlen($value) < $minLength) {
+                $errors[] = "at least " . $minLength . " characters";
             }
             
-            if (PASSWORD_REQUIRE_UPPERCASE && !preg_match('/[A-Z]/', $value)) {
+            if ($requireUpper && !preg_match('/[A-Z]/', $value)) {
                 $errors[] = "one uppercase letter";
             }
             
-            if (PASSWORD_REQUIRE_NUMBER && !preg_match('/[0-9]/', $value)) {
+            if ($requireNumber && !preg_match('/[0-9]/', $value)) {
                 $errors[] = "one number";
             }
             
-            if (PASSWORD_REQUIRE_SPECIAL_CHAR && !preg_match('/[^A-Za-z0-9]/', $value)) {
+            if ($requireSpecial && !preg_match('/[^A-Za-z0-9]/', $value)) {
                 $errors[] = "one special character";
             }
             

@@ -1,7 +1,7 @@
 <?php
 /**
  * GateWey Requisition Management System
- * Payment Class
+ * Payment Class - DEBUG VERSION
  * 
  * File: classes/Payment.php
  * Purpose: Handle payment processing, invoice uploads, and receipt management
@@ -59,21 +59,30 @@ class Payment {
      */
     public function processPayment($requisitionId, $invoiceFile, $paymentData) {
         try {
+            error_log("=== PROCESS PAYMENT START ===");
+            error_log("Requisition ID: " . $requisitionId);
+            error_log("Payment Data: " . print_r($paymentData, true));
+            error_log("Invoice File: " . print_r($invoiceFile, true));
+            
             // Verify Finance Member permission
             if (!is_finance_member()) {
+                error_log("ERROR: User is not finance member");
                 return [
                     'success' => false,
                     'message' => 'Only Finance Members can process payments.'
                 ];
             }
+            error_log("Permission check passed");
             
             // Get requisition
             $requisition = $this->db->fetchOne(
                 "SELECT * FROM requisitions WHERE id = ?",
                 [$requisitionId]
             );
+            error_log("Requisition fetched: " . ($requisition ? "YES" : "NO"));
             
             if (!$requisition) {
+                error_log("ERROR: Requisition not found");
                 return [
                     'success' => false,
                     'message' => 'Requisition not found.'
@@ -82,73 +91,91 @@ class Payment {
             
             // Verify status
             if ($requisition['status'] !== STATUS_APPROVED_FOR_PAYMENT) {
+                error_log("ERROR: Wrong status - " . $requisition['status']);
                 return [
                     'success' => false,
                     'message' => 'This requisition is not approved for payment.'
                 ];
             }
+            error_log("Status check passed");
             
             // Validate payment data
+            error_log("Starting validation...");
             $validator = new Validator();
             $validator->setData($paymentData);
             $validator->setRules([
                 'payment_method' => 'required',
-                'payment_reference' => 'required',
-                'payment_notes' => ''
+                'payment_reference' => 'required'
+                // Removed payment_notes validation - it's optional
             ]);
             
             if (!$validator->validate()) {
+                error_log("Validation failed: " . print_r($validator->getErrors(), true));
                 return [
                     'success' => false,
                     'message' => 'Invalid payment data.',
                     'errors' => $validator->getErrors()
                 ];
             }
+            error_log("Validation passed");
             
             // Validate invoice file
             if (empty($invoiceFile) || $invoiceFile['error'] !== UPLOAD_ERR_OK) {
+                error_log("ERROR: Invoice file invalid - Error code: " . ($invoiceFile['error'] ?? 'NO FILE'));
                 return [
                     'success' => false,
                     'message' => 'Invoice/proof of payment is required.'
                 ];
             }
+            error_log("Invoice file validation passed");
             
             // Begin transaction
+            error_log("Beginning transaction...");
             $this->db->beginTransaction();
             
             // Upload invoice
+            error_log("Uploading invoice...");
             $uploadResult = $this->fileUpload->uploadRequisitionDocument(
                 $requisitionId,
                 $invoiceFile,
                 DOC_TYPE_INVOICE
             );
+            error_log("Upload result: " . print_r($uploadResult, true));
             
             if (!$uploadResult['success']) {
+                error_log("Upload failed, rolling back");
                 $this->db->rollback();
                 return $uploadResult;
             }
+            error_log("Invoice uploaded successfully");
             
             // Update requisition status to paid
+            error_log("Updating requisition status...");
             $sql = "UPDATE requisitions 
                     SET status = ?,
-                        paid_by_id = ?,
-                        paid_at = NOW(),
+                        paid_by = ?,
+                        payment_date = NOW(),
                         payment_method = ?,
                         payment_reference = ?,
                         payment_notes = ?,
                         updated_at = NOW()
                     WHERE id = ?";
             
-            $this->db->execute($sql, [
+            $updateParams = [
                 STATUS_PAID,
                 Session::getUserId(),
                 Sanitizer::string($paymentData['payment_method']),
                 Sanitizer::string($paymentData['payment_reference']),
                 Sanitizer::string($paymentData['payment_notes'] ?? ''),
                 $requisitionId
-            ]);
+            ];
+            error_log("Update params: " . print_r($updateParams, true));
+            
+            $this->db->execute($sql, $updateParams);
+            error_log("Requisition updated");
             
             // Log payment processing
+            error_log("Logging payment action...");
             $description = "Payment processed - Method: {$paymentData['payment_method']}, Ref: {$paymentData['payment_reference']}";
             $this->auditLog->logRequisitionAction(
                 Session::getUserId(),
@@ -161,9 +188,12 @@ class Payment {
                     'invoice_id' => $uploadResult['document_id']
                 ]
             );
+            error_log("Audit log created");
             
             // Commit transaction
+            error_log("Committing transaction...");
             $this->db->commit();
+            error_log("=== PROCESS PAYMENT SUCCESS ===");
             
             return [
                 'success' => true,
@@ -173,13 +203,20 @@ class Payment {
             
         } catch (Exception $e) {
             if ($this->db->getConnection()->inTransaction()) {
+                error_log("Exception caught, rolling back transaction");
                 $this->db->rollback();
             }
             
-            error_log("Process payment error: " . $e->getMessage());
+            error_log("=== PROCESS PAYMENT ERROR ===");
+            error_log("Error message: " . $e->getMessage());
+            error_log("Error file: " . $e->getFile());
+            error_log("Error line: " . $e->getLine());
+            error_log("Error trace: " . $e->getTraceAsString());
+            
+            // TEMPORARY: Show actual error for debugging
             return [
                 'success' => false,
-                'message' => 'An error occurred while processing payment.'
+                'message' => 'Payment error: ' . $e->getMessage() . ' (Line: ' . $e->getLine() . ' in ' . basename($e->getFile()) . ')'
             ];
         }
     }
@@ -310,7 +347,7 @@ class Payment {
                     FROM requisitions r
                     JOIN users u ON r.user_id = u.id
                     LEFT JOIN departments d ON r.department_id = d.id
-                    LEFT JOIN users payer ON r.paid_by_id = payer.id
+                    LEFT JOIN users payer ON r.paid_by = payer.id
                     WHERE r.status = ?";
             
             $params = [STATUS_PAID];
@@ -321,7 +358,7 @@ class Payment {
                 $params[] = Session::getUserId();
             }
             
-            $sql .= " ORDER BY r.paid_at ASC";
+            $sql .= " ORDER BY r.payment_date ASC";
             
             return $this->db->fetchAll($sql, $params);
             
@@ -346,12 +383,12 @@ class Payment {
             
             // Apply filters
             if (!empty($filters['date_from'])) {
-                $where[] = "DATE(r.paid_at) >= ?";
+                $where[] = "DATE(r.payment_date) >= ?";
                 $params[] = $filters['date_from'];
             }
             
             if (!empty($filters['date_to'])) {
-                $where[] = "DATE(r.paid_at) <= ?";
+                $where[] = "DATE(r.payment_date) <= ?";
                 $params[] = $filters['date_to'];
             }
             
@@ -388,9 +425,9 @@ class Payment {
                     FROM requisitions r
                     JOIN users u ON r.user_id = u.id
                     LEFT JOIN departments d ON r.department_id = d.id
-                    LEFT JOIN users payer ON r.paid_by_id = payer.id
+                    LEFT JOIN users payer ON r.paid_by = payer.id
                     WHERE " . implode(' AND ', $where) . "
-                    ORDER BY r.paid_at DESC
+                    ORDER BY r.payment_date DESC
                     LIMIT ? OFFSET ?";
             
             $params[] = $perPage;
@@ -426,23 +463,24 @@ class Payment {
      */
     public function getPaymentStatistics($filters = []) {
         try {
+            // Build WHERE clause first
             $where = ["r.status IN (?, ?)"];
-            $params = [STATUS_PAID, STATUS_COMPLETED];
+            $whereParams = [STATUS_PAID, STATUS_COMPLETED];
             
             // Apply filters
             if (!empty($filters['date_from'])) {
-                $where[] = "DATE(r.paid_at) >= ?";
-                $params[] = $filters['date_from'];
+                $where[] = "DATE(r.payment_date) >= ?";
+                $whereParams[] = $filters['date_from'];
             }
             
             if (!empty($filters['date_to'])) {
-                $where[] = "DATE(r.paid_at) <= ?";
-                $params[] = $filters['date_to'];
+                $where[] = "DATE(r.payment_date) <= ?";
+                $whereParams[] = $filters['date_to'];
             }
             
             if (!empty($filters['department_id'])) {
                 $where[] = "r.department_id = ?";
-                $params[] = $filters['department_id'];
+                $whereParams[] = $filters['department_id'];
             }
             
             $sql = "SELECT 
@@ -456,8 +494,14 @@ class Payment {
                     FROM requisitions r
                     WHERE " . implode(' AND ', $where);
             
-            $params[] = STATUS_PAID;
-            $params[] = STATUS_COMPLETED;
+            // CRITICAL: Params must match SQL placeholder order!
+            // SELECT placeholders come BEFORE WHERE placeholders
+            $params = [
+                STATUS_PAID,      // For first CASE WHEN in SELECT
+                STATUS_COMPLETED, // For second CASE WHEN in SELECT
+            ];
+            // Then append WHERE parameters
+            $params = array_merge($params, $whereParams);
             
             return $this->db->fetchOne($sql, $params);
             

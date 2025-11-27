@@ -20,6 +20,7 @@ Session::start();
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
+
 // Check if user is Finance Member
 if (!is_finance_member()) {
     Session::setFlash('error', 'Only Finance Members can access this page.');
@@ -33,9 +34,12 @@ $payment = new Payment();
 // Get pending payments
 $pendingPayments = $payment->getPendingPayments();
 
-// Get statistics
-$stats = $payment->getPaymentStatistics([
-    'date_from' => date('Y-m-01'), // This month
+// Get ALL-TIME statistics (not just this month)
+$allTimeStats = $payment->getPaymentStatistics([]);
+
+// Get this month's statistics
+$thisMonthStats = $payment->getPaymentStatistics([
+    'date_from' => date('Y-m-01'),
     'date_to' => date('Y-m-t')
 ]);
 
@@ -101,8 +105,11 @@ $pageTitle = 'Pending Payments';
             <i class="fas fa-check-circle"></i>
         </div>
         <div class="stat-content">
-            <p class="stat-label">Paid This Month</p>
-            <p class="stat-value"><?php echo number_format($stats['paid_count'] ?? 0); ?></p>
+            <p class="stat-label">Total Paid (All Time)</p>
+            <p class="stat-value"><?php echo number_format($allTimeStats['paid_count'] ?? 0); ?></p>
+            <p class="stat-hint">
+                <?php echo number_format($thisMonthStats['paid_count'] ?? 0); ?> this month
+            </p>
         </div>
     </div>
     
@@ -111,8 +118,11 @@ $pageTitle = 'Pending Payments';
             <i class="fas fa-money-bill-wave"></i>
         </div>
         <div class="stat-content">
-            <p class="stat-label">Total Amount This Month</p>
-            <p class="stat-value"><?php echo format_currency($stats['total_amount'] ?? 0); ?></p>
+            <p class="stat-label">Total Amount (All Time)</p>
+            <p class="stat-value"><?php echo format_currency($allTimeStats['total_amount'] ?? 0); ?></p>
+            <p class="stat-hint">
+                <?php echo format_currency($thisMonthStats['total_amount'] ?? 0); ?> this month
+            </p>
         </div>
     </div>
     
@@ -122,7 +132,10 @@ $pageTitle = 'Pending Payments';
         </div>
         <div class="stat-content">
             <p class="stat-label">Average Payment</p>
-            <p class="stat-value"><?php echo format_currency($stats['average_amount'] ?? 0); ?></p>
+            <p class="stat-value"><?php echo format_currency($allTimeStats['average_amount'] ?? 0); ?></p>
+            <p class="stat-hint">
+                Based on <?php echo number_format($allTimeStats['total_payments'] ?? 0); ?> payments
+            </p>
         </div>
     </div>
 </div>
@@ -317,6 +330,36 @@ $pageTitle = 'Pending Payments';
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* Stat Hint - Small text under stat value */
+.stat-hint {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Improve stat-content spacing */
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0;
+    line-height: 1.2;
 }
 </style>
 
