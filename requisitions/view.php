@@ -1201,6 +1201,15 @@ function getPreviewType($filename)
                         </div>
                     <?php endif; ?>
 
+                    <?php if (in_array($reqData['status'], ['paid', 'completed'])): ?>
+                        <div class="detail-item">
+                            <label>Processed by</label>
+                            <div class="detail-value">
+                                <?= htmlspecialchars($reqData['paid_by_first_name'] . ' ' . $reqData['paid_by_last_name']) ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                     <?php if ($reqData['current_approver_id'] && !is_final_status($reqData['status'])): ?>
                         <div class="detail-item">
                             <label class="detail-label">Current Approver</label>
