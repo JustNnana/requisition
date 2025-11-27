@@ -417,11 +417,11 @@ $pageTitle = 'Review Queue - Finance Manager';
                                            title="Review & Approve">
                                             <i class="fas fa-clipboard-check"></i> Review
                                         </a>
-                                        <a href="reject-before-payment.php?id=<?php echo $req['id']; ?>" 
+                                        <!-- <a href="reject-before-payment.php?id=<?php echo $req['id']; ?>" 
                                            class="btn btn-sm btn-danger" 
                                            title="Reject">
                                             <i class="fas fa-times"></i>
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </td>
                             </tr>

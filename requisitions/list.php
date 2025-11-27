@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GateWey Requisition Management System
  * List Requisitions Page
@@ -95,7 +96,7 @@ $pageTitle = 'My Requisitions';
             <p class="stat-value"><?php echo number_format($stats['total'] ?? 0); ?></p>
         </div>
     </div>
-    
+
     <div class="stat-card">
         <div class="stat-icon bg-warning">
             <i class="fas fa-clock"></i>
@@ -105,7 +106,7 @@ $pageTitle = 'My Requisitions';
             <p class="stat-value"><?php echo number_format($stats['pending'] ?? 0); ?></p>
         </div>
     </div>
-    
+
     <div class="stat-card">
         <div class="stat-icon bg-success">
             <i class="fas fa-check-circle"></i>
@@ -115,7 +116,7 @@ $pageTitle = 'My Requisitions';
             <p class="stat-value"><?php echo number_format($stats['approved'] ?? 0); ?></p>
         </div>
     </div>
-    
+
     <div class="stat-card">
         <div class="stat-icon bg-danger">
             <i class="fas fa-times-circle"></i>
@@ -139,16 +140,15 @@ $pageTitle = 'My Requisitions';
             <div class="form-row">
                 <div class="form-group">
                     <label for="search" class="form-label">Search</label>
-                    <input 
-                        type="text" 
-                        id="search" 
-                        name="search" 
-                        class="form-control" 
+                    <input
+                        type="text"
+                        id="search"
+                        name="search"
+                        class="form-control"
                         placeholder="Requisition number or purpose..."
-                        value="<?php echo htmlspecialchars($filters['search']); ?>"
-                    >
+                        value="<?php echo htmlspecialchars($filters['search']); ?>">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="status" class="form-label">Status</label>
                     <select id="status" name="status" class="form-control form-select">
@@ -182,30 +182,28 @@ $pageTitle = 'My Requisitions';
                         </option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="date_from" class="form-label">From Date</label>
-                    <input 
-                        type="date" 
-                        id="date_from" 
-                        name="date_from" 
+                    <input
+                        type="date"
+                        id="date_from"
+                        name="date_from"
                         class="form-control"
-                        value="<?php echo htmlspecialchars($filters['date_from']); ?>"
-                    >
+                        value="<?php echo htmlspecialchars($filters['date_from']); ?>">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="date_to" class="form-label">To Date</label>
-                    <input 
-                        type="date" 
-                        id="date_to" 
-                        name="date_to" 
+                    <input
+                        type="date"
+                        id="date_to"
+                        name="date_to"
                         class="form-control"
-                        value="<?php echo htmlspecialchars($filters['date_to']); ?>"
-                    >
+                        value="<?php echo htmlspecialchars($filters['date_to']); ?>">
                 </div>
             </div>
-            
+
             <div class="filter-actions">
                 <a href="list.php" class="btn btn-secondary">
                     <i class="fas fa-undo"></i> Reset
@@ -257,6 +255,12 @@ $pageTitle = 'My Requisitions';
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        // Sort requisitions by newest submitted_at
+                        usort($requisitions, function ($a, $b) {
+                            return strtotime($b['submitted_at']) - strtotime($a['submitted_at']);
+                        });
+                        ?>
                         <?php foreach ($requisitions as $req): ?>
                             <tr>
                                 <td>
@@ -266,9 +270,9 @@ $pageTitle = 'My Requisitions';
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <?php 
+                                    <?php
                                     $purpose = htmlspecialchars($req['purpose']);
-                                    echo strlen($purpose) > 50 ? substr($purpose, 0, 50) . '...' : $purpose; 
+                                    echo strlen($purpose) > 50 ? substr($purpose, 0, 50) . '...' : $purpose;
                                     ?>
                                 </td>
                                 <td>
@@ -278,7 +282,7 @@ $pageTitle = 'My Requisitions';
                                     <?php echo get_status_badge($req['status']); ?>
                                 </td>
                                 <td>
-                                    <?php 
+                                    <?php
                                     if ($req['submitted_at']) {
                                         echo format_date($req['submitted_at'], 'M d, Y');
                                     } else {
@@ -291,7 +295,7 @@ $pageTitle = 'My Requisitions';
                                         <a href="view.php?id=<?php echo $req['id']; ?>" class="btn btn-sm btn-ghost" title="View">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        
+
                                         <?php if ($req['is_draft'] || $req['status'] == STATUS_REJECTED): ?>
                                             <a href="edit.php?id=<?php echo $req['id']; ?>" class="btn btn-sm btn-primary" title="Edit">
                                                 <i class="fas fa-edit"></i>
@@ -304,7 +308,7 @@ $pageTitle = 'My Requisitions';
                     </tbody>
                 </table>
             </div>
-            
+
             <!-- Pagination -->
             <?php if ($pagination['total_pages'] > 1): ?>
                 <div class="pagination-container">
@@ -318,13 +322,13 @@ $pageTitle = 'My Requisitions';
                                     </a>
                                 </li>
                             <?php endif; ?>
-                            
+
                             <!-- Page Numbers -->
-                            <?php 
+                            <?php
                             $startPage = max(1, $pagination['current_page'] - 2);
                             $endPage = min($pagination['total_pages'], $pagination['current_page'] + 2);
-                            
-                            for ($i = $startPage; $i <= $endPage; $i++): 
+
+                            for ($i = $startPage; $i <= $endPage; $i++):
                             ?>
                                 <li class="page-item <?php echo $i == $pagination['current_page'] ? 'active' : ''; ?>">
                                     <a class="page-link" href="?page=<?php echo $i; ?><?php echo !empty($filters['status']) ? '&status=' . $filters['status'] : ''; ?><?php echo !empty($filters['search']) ? '&search=' . urlencode($filters['search']) : ''; ?><?php echo !empty($filters['date_from']) ? '&date_from=' . $filters['date_from'] : ''; ?><?php echo !empty($filters['date_to']) ? '&date_to=' . $filters['date_to'] : ''; ?>">
@@ -332,7 +336,7 @@ $pageTitle = 'My Requisitions';
                                     </a>
                                 </li>
                             <?php endfor; ?>
-                            
+
                             <!-- Next Page -->
                             <?php if ($pagination['current_page'] < $pagination['total_pages']): ?>
                                 <li class="page-item">
@@ -343,10 +347,10 @@ $pageTitle = 'My Requisitions';
                             <?php endif; ?>
                         </ul>
                     </nav>
-                    
+
                     <div class="pagination-info">
-                        Showing <?php echo (($pagination['current_page'] - 1) * $pagination['per_page']) + 1; ?> 
-                        to <?php echo min($pagination['current_page'] * $pagination['per_page'], $pagination['total_records']); ?> 
+                        Showing <?php echo (($pagination['current_page'] - 1) * $pagination['per_page']) + 1; ?>
+                        to <?php echo min($pagination['current_page'] * $pagination['per_page'], $pagination['total_records']); ?>
                         of <?php echo $pagination['total_records']; ?> requisitions
                     </div>
                 </div>

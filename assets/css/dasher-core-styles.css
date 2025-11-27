@@ -333,6 +333,7 @@ a:hover {
 .btn-primary:hover {
   background-color: var(--primary-600);
   border-color: var(--primary-600);
+  color: #ffffff;
 }
 
 .btn-secondary {
@@ -343,6 +344,7 @@ a:hover {
 
 .btn-secondary:hover {
   background-color: var(--bg-hover);
+  color: #ffffff;
 }
 
 .btn-outline-primary {
@@ -364,6 +366,7 @@ a:hover {
 
 .btn-success:hover {
   background-color: var(--success-600);
+  color: #ffffff;
 }
 
 .btn-danger {
@@ -384,6 +387,7 @@ a:hover {
 
 .btn-warning:hover {
   background-color: var(--warning-600);
+  color: #000000;
 }
 
 .btn-info {
@@ -424,32 +428,26 @@ a:hover {
 
 .badge-primary {
   color: var(--primary);
-  background-color: var(--primary-light);
 }
 
 .badge-success {
   color: var(--success);
-  background-color: var(--success-light);
 }
 
 .badge-danger {
   color: var(--danger);
-  background-color: var(--danger-light);
 }
 
 .badge-warning {
   color: var(--warning-800);
-  background-color: var(--warning-light);
 }
 
 .badge-info {
   color: var(--info);
-  background-color: var(--info-light);
 }
 
 .badge-secondary {
   color: var(--text-secondary);
-  background-color: var(--bg-tertiary);
 }
 
 /* ===== ALERTS ===== */
@@ -644,7 +642,6 @@ a:hover {
 
 .status-active {
   color: var(--success-700);
-  background-color: var(--success-light);
 }
 
 .status-active::before {
@@ -657,7 +654,6 @@ a:hover {
 
 .status-inactive {
   color: var(--danger-700);
-  background-color: var(--danger-light);
 }
 
 .status-inactive::before {
@@ -670,7 +666,6 @@ a:hover {
 
 .status-pending {
   color: var(--warning-700);
-  background-color: var(--warning-light);
 }
 
 .status-pending::before {
