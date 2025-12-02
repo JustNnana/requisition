@@ -45,24 +45,25 @@ class Requisition
                 $currentApproverId = $this->determineNextApprover($requesterRoleId, Session::getUserDepartmentId());
             }
 
-            // Insert requisition
-            $sql = "INSERT INTO requisitions (
-                        requisition_number, user_id, department_id, purpose, 
-                        total_amount, status, current_approver_id, is_draft,
-                        created_at, submitted_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+           // Insert requisition
+$sql = "INSERT INTO requisitions (
+            requisition_number, user_id, department_id, purpose, description,
+            total_amount, status, current_approver_id, is_draft,
+            created_at, submitted_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 
-            $params = [
-                $requisitionNumber,
-                Session::getUserId(),
-                Session::getUserDepartmentId(),
-                $data['purpose'],
-                $data['total_amount'],
-                $status,
-                $currentApproverId,
-                $data['is_draft'] ? 1 : 0,
-                $data['is_draft'] ? null : date('Y-m-d H:i:s')
-            ];
+$params = [
+    $requisitionNumber,
+    Session::getUserId(),
+    Session::getUserDepartmentId(),
+    $data['purpose'],
+    $data['description'] ?? null,  // ADD THIS
+    $data['total_amount'],
+    $status,
+    $currentApproverId,
+    $data['is_draft'] ? 1 : 0,
+    $data['is_draft'] ? null : date('Y-m-d H:i:s')
+];
 
             $this->db->execute($sql, $params);
             $requisitionId = $this->db->lastInsertId();
@@ -133,29 +134,31 @@ class Requisition
                 );
             }
 
-            // Update requisition
-            $sql = "UPDATE requisitions 
-                    SET purpose = ?, 
-                        total_amount = ?, 
-                        status = ?,
-                        current_approver_id = ?,
-                        is_draft = ?,
-                        rejection_reason = NULL,
-                        rejected_by_id = NULL,
-                        rejected_at = NULL,
-                        submitted_at = ?,
-                        updated_at = NOW()
-                    WHERE id = ?";
+// Update requisition
+$sql = "UPDATE requisitions 
+        SET purpose = ?, 
+            description = ?,
+            total_amount = ?, 
+            status = ?,
+            current_approver_id = ?,
+            is_draft = ?,
+            rejection_reason = NULL,
+            rejected_by_id = NULL,
+            rejected_at = NULL,
+            submitted_at = ?,
+            updated_at = NOW()
+        WHERE id = ?";
 
-            $params = [
-                $data['purpose'],
-                $data['total_amount'],
-                $newStatus,
-                $currentApproverId,
-                $data['is_draft'] ? 1 : 0,
-                $data['is_draft'] ? null : date('Y-m-d H:i:s'),
-                $requisitionId
-            ];
+$params = [
+    $data['purpose'],
+    $data['description'] ?? null,  // ADD THIS
+    $data['total_amount'],
+    $newStatus,
+    $currentApproverId,
+    $data['is_draft'] ? 1 : 0,
+    $data['is_draft'] ? null : date('Y-m-d H:i:s'),
+    $requisitionId
+];
 
             $this->db->execute($sql, $params);
 

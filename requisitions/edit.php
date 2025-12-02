@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GateWey Requisition Management System
  * Edit Requisition Page - Dasher UI Enhanced (Fully Recoded)
@@ -528,15 +529,15 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         }
     }
 </style>
-    <!-- Content Header -->
-    <div class="content-header">
-        <div class="d-flex justify-content-between align-items-start">
-            <div>
-                <h1 class="content-title">
-                    <i class="fas fa-edit me-2"></i>
-                    Edit Requisition <?php echo htmlspecialchars($reqData['requisition_number']); ?>
-                </h1>
-                <!-- <nav class="content-breadcrumb">
+<!-- Content Header -->
+<div class="content-header">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h1 class="content-title">
+                <i class="fas fa-edit me-2"></i>
+                Edit Requisition <?php echo htmlspecialchars($reqData['requisition_number']); ?>
+            </h1>
+            <!-- <nav class="content-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="<?php echo BASE_URL; ?>dashboard/" class="breadcrumb-link">Dashboard</a>
@@ -552,301 +553,295 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
                         <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </nav> -->
-                <p class="content-description">Update your requisition details and resubmit for approval</p>
+            <p class="content-description">Update your requisition details and resubmit for approval</p>
+        </div>
+        <div class="content-actions">
+            <a href="view.php?id=<?php echo $requisitionId; ?>" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>
+                <span>Back to View</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Rejection Alert -->
+<?php if ($reqData['status'] == STATUS_REJECTED && $reqData['rejection_reason']): ?>
+    <div class="rejection-alert">
+        <div class="rejection-alert-content">
+            <i class="fas fa-exclamation-triangle rejection-alert-icon"></i>
+            <div class="rejection-alert-text">
+                <h5>Rejection Reason</h5>
+                <p><?php echo htmlspecialchars($reqData['rejection_reason']); ?></p>
+                <?php if ($reqData['rejected_by_first_name']): ?>
+                    <div class="rejection-metadata">
+                        Rejected by <?php echo htmlspecialchars($reqData['rejected_by_first_name'] . ' ' . $reqData['rejected_by_last_name']); ?>
+                        on <?php echo format_date($reqData['rejected_at'], 'M d, Y \a\t h:i A'); ?>
+                    </div>
+                <?php endif; ?>
             </div>
-            <div class="content-actions">
-                <a href="view.php?id=<?php echo $requisitionId; ?>" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left me-2"></i>
-                    <span>Back to View</span>
-                </a>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- Requisition Form -->
+<form id="requisitionForm" action="save.php" method="POST" enctype="multipart/form-data">
+    <?php echo Session::csrfField(); ?>
+    <input type="hidden" name="action" value="edit">
+    <input type="hidden" name="requisition_id" value="<?php echo $requisitionId; ?>">
+    <input type="hidden" name="is_draft" id="is_draft" value="0">
+
+    <!-- Requisition Details Card -->
+    <div class="form-section-card">
+        <div class="form-section-header">
+            <div class="form-section-icon primary">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="form-section-title">
+                <h5>Requisition Details</h5>
+                <p>Provide a clear description of what you need</p>
+            </div>
+        </div>
+        <div class="form-section-body">
+            <!-- Purpose/Category Dropdown -->
+            <div class="form-group">
+                <label for="purpose" class="form-label required">Purpose/Category</label>
+                <select
+                    id="purpose"
+                    name="purpose"
+                    class="form-control"
+                    required>
+                    <option value="">-- Select Purpose --</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?php echo htmlspecialchars($category['category_name']); ?>"
+                            <?php echo ($reqData['purpose'] == $category['category_name']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($category['category_name']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="form-text">Select the category that best describes this requisition.</div>
+            </div>
+
+            <!-- Additional Description (Optional) -->
+            <div class="form-group">
+                <label for="description" class="form-label">Additional Details (Optional)</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    class="form-control"
+                    rows="3"
+                    placeholder="Add any additional details or notes about this requisition..."><?php echo htmlspecialchars($reqData['description'] ?? ''); ?></textarea>
+                <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
             </div>
         </div>
     </div>
 
-    <!-- Rejection Alert -->
-    <?php if ($reqData['status'] == STATUS_REJECTED && $reqData['rejection_reason']): ?>
-        <div class="rejection-alert">
-            <div class="rejection-alert-content">
-                <i class="fas fa-exclamation-triangle rejection-alert-icon"></i>
-                <div class="rejection-alert-text">
-                    <h5>Rejection Reason</h5>
-                    <p><?php echo htmlspecialchars($reqData['rejection_reason']); ?></p>
-                    <?php if ($reqData['rejected_by_first_name']): ?>
-                        <div class="rejection-metadata">
-                            Rejected by <?php echo htmlspecialchars($reqData['rejected_by_first_name'] . ' ' . $reqData['rejected_by_last_name']); ?>
-                            on <?php echo format_date($reqData['rejected_at'], 'M d, Y \a\t h:i A'); ?>
+    <!-- Items Section -->
+    <div class="form-section-card">
+        <div class="form-section-header">
+            <div class="form-section-icon success">
+                <i class="fas fa-list"></i>
+            </div>
+            <div class="form-section-title">
+                <h5>Items</h5>
+                <p>List all items you need to requisition</p>
+            </div>
+        </div>
+        <div class="form-section-body">
+            <div id="itemsContainer" class="items-container">
+                <!-- Existing items -->
+                <?php foreach ($reqData['items'] as $index => $item): ?>
+                    <div class="item-row" data-item-index="<?php echo $index; ?>">
+                        <div class="item-field">
+                            <span class="item-number"><?php echo $index + 1; ?></span>
+                            <label class="form-label required">Item Description</label>
+                            <input
+                                type="text"
+                                name="items[<?php echo $index; ?>][description]"
+                                class="form-control item-description"
+                                placeholder="Enter item description"
+                                value="<?php echo htmlspecialchars($item['item_description']); ?>"
+                                required>
                         </div>
-                    <?php endif; ?>
+                        <div class="item-field">
+                            <label class="form-label required">Quantity</label>
+                            <input
+                                type="number"
+                                name="items[<?php echo $index; ?>][quantity]"
+                                class="form-control item-quantity"
+                                min="1"
+                                value="<?php echo $item['quantity']; ?>"
+                                required>
+                        </div>
+                        <div class="item-field">
+                            <label class="form-label required">Unit Price (<?php echo CURRENCY_SYMBOL; ?>)</label>
+                            <input
+                                type="number"
+                                name="items[<?php echo $index; ?>][unit_price]"
+                                class="form-control item-unit-price"
+                                min="0"
+                                step="0.01"
+                                value="<?php echo $item['unit_price']; ?>"
+                                required>
+                        </div>
+                        <div class="item-field">
+                            <label class="form-label">Subtotal</label>
+                            <input
+                                type="text"
+                                class="form-control item-subtotal"
+                                readonly
+                                value="<?php echo CURRENCY_SYMBOL . number_format($item['subtotal'], 2); ?>">
+                            <input type="hidden" name="items[<?php echo $index; ?>][subtotal]" class="item-subtotal-value" value="<?php echo $item['subtotal']; ?>">
+                        </div>
+                        <div class="item-field">
+                            <button type="button" class="remove-item-btn" <?php echo count($reqData['items']) <= 1 ? 'style="display:none;"' : ''; ?>>
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div style="margin-top: var(--spacing-4);">
+                <button type="button" id="addItemBtn" class="add-item-btn">
+                    <i class="fas fa-plus-circle"></i> Add Another Item
+                </button>
+            </div>
+
+            <!-- Total Section -->
+            <div class="total-section">
+                <div class="total-section-content">
+                    <div class="total-section-label">
+                        <h4>Total Amount</h4>
+                        <p>Sum of all items</p>
+                    </div>
+                    <div class="total-amount" id="grandTotal">
+                        <?php echo format_currency($reqData['total_amount']); ?>
+                    </div>
                 </div>
+                <input type="hidden" name="total_amount" id="total_amount" value="<?php echo $reqData['total_amount']; ?>">
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Attachments -->
+    <?php if (!empty($reqData['documents'])): ?>
+        <div class="form-section-card">
+            <div class="form-section-header">
+                <div class="form-section-icon info">
+                    <i class="fas fa-paperclip"></i>
+                </div>
+                <div class="form-section-title">
+                    <h5>Existing Attachments</h5>
+                    <p>Files currently attached to this requisition</p>
+                </div>
+            </div>
+            <div class="form-section-body">
+                <?php foreach ($reqData['documents'] as $doc): ?>
+                    <div class="uploaded-file">
+                        <div class="file-info">
+                            <div class="file-icon">
+                                <i class="fas <?php echo FileUpload::getFileIcon($doc['file_name']); ?>"></i>
+                            </div>
+                            <div class="file-details">
+                                <div class="file-name">
+                                    <?php echo htmlspecialchars($doc['file_name']); ?>
+                                </div>
+                                <div class="file-meta">
+                                    <?php echo format_file_size($doc['file_size']); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <a href="../api/download-file.php?id=<?php echo $doc['id']; ?>" class="btn btn-sm btn-ghost" target="_blank">
+                                <i class="fas fa-eye me-1"></i>View
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     <?php endif; ?>
 
-    <!-- Requisition Form -->
-    <form id="requisitionForm" action="save.php" method="POST" enctype="multipart/form-data">
-        <?php echo Session::csrfField(); ?>
-        <input type="hidden" name="action" value="edit">
-        <input type="hidden" name="requisition_id" value="<?php echo $requisitionId; ?>">
-        <input type="hidden" name="is_draft" id="is_draft" value="0">
-        
-        <!-- Requisition Details Card -->
-        <div class="form-section-card">
-            <div class="form-section-header">
-                <div class="form-section-icon primary">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="form-section-title">
-                    <h5>Requisition Details</h5>
-                    <p>Provide a clear description of what you need</p>
-                </div>
+    <!-- New Attachments -->
+    <div class="form-section-card">
+        <div class="form-section-header">
+            <div class="form-section-icon info">
+                <i class="fas fa-plus-circle"></i>
             </div>
-            <div class="form-section-body">
-                <!-- Purpose/Category Dropdown -->
-                <div class="form-group">
-                    <label for="purpose" class="form-label required">Purpose/Category</label>
-                    <select 
-                        id="purpose" 
-                        name="purpose" 
-                        class="form-control" 
-                        required
-                    >
-                        <option value="">-- Select Purpose --</option>
-                        <?php foreach ($categories as $category): ?>
-                            <option value="<?php echo htmlspecialchars($category['category_name']); ?>" 
-                                <?php echo ($reqData['purpose'] == $category['category_name']) ? 'selected' : ''; ?>>
-                                <?php echo htmlspecialchars($category['category_name']); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="form-text">Select the category that best describes this requisition.</div>
-                </div>
-                
-                <!-- Additional Description (Optional) -->
-                <div class="form-group">
-                    <label for="description" class="form-label">Additional Details (Optional)</label>
-                    <textarea 
-                        id="description" 
-                        name="description" 
-                        class="form-control" 
-                        rows="3"
-                        placeholder="Add any additional details or notes about this requisition..."
-                    ></textarea>
-                    <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
-                </div>
+            <div class="form-section-title">
+                <h5>Add More Attachments (Optional)</h5>
+                <p>Upload additional supporting documents</p>
             </div>
         </div>
-        
-        <!-- Items Section -->
-        <div class="form-section-card">
-            <div class="form-section-header">
-                <div class="form-section-icon success">
-                    <i class="fas fa-list"></i>
-                </div>
-                <div class="form-section-title">
-                    <h5>Items</h5>
-                    <p>List all items you need to requisition</p>
-                </div>
+        <div class="form-section-body">
+            <div class="file-upload-area" id="fileUploadArea">
+                <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+                <p class="file-upload-text">
+                    Drag & drop files here or click to browse
+                </p>
+                <p class="file-upload-hint">
+                    Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG (Max <?php echo format_file_size(UPLOAD_MAX_SIZE); ?>)
+                </p>
+                <input type="file" id="fileInput" name="attachments[]" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" style="display: none;">
             </div>
-            <div class="form-section-body">
-                <div id="itemsContainer" class="items-container">
-                    <!-- Existing items -->
-                    <?php foreach ($reqData['items'] as $index => $item): ?>
-                        <div class="item-row" data-item-index="<?php echo $index; ?>">
-                            <div class="item-field">
-                                <span class="item-number"><?php echo $index + 1; ?></span>
-                                <label class="form-label required">Item Description</label>
-                                <input 
-                                    type="text" 
-                                    name="items[<?php echo $index; ?>][description]" 
-                                    class="form-control item-description" 
-                                    placeholder="Enter item description"
-                                    value="<?php echo htmlspecialchars($item['item_description']); ?>"
-                                    required
-                                >
-                            </div>
-                            <div class="item-field">
-                                <label class="form-label required">Quantity</label>
-                                <input 
-                                    type="number" 
-                                    name="items[<?php echo $index; ?>][quantity]" 
-                                    class="form-control item-quantity" 
-                                    min="1" 
-                                    value="<?php echo $item['quantity']; ?>"
-                                    required
-                                >
-                            </div>
-                            <div class="item-field">
-                                <label class="form-label required">Unit Price (<?php echo CURRENCY_SYMBOL; ?>)</label>
-                                <input 
-                                    type="number" 
-                                    name="items[<?php echo $index; ?>][unit_price]" 
-                                    class="form-control item-unit-price" 
-                                    min="0" 
-                                    step="0.01"
-                                    value="<?php echo $item['unit_price']; ?>"
-                                    required
-                                >
-                            </div>
-                            <div class="item-field">
-                                <label class="form-label">Subtotal</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control item-subtotal" 
-                                    readonly 
-                                    value="<?php echo CURRENCY_SYMBOL . number_format($item['subtotal'], 2); ?>"
-                                >
-                                <input type="hidden" name="items[<?php echo $index; ?>][subtotal]" class="item-subtotal-value" value="<?php echo $item['subtotal']; ?>">
-                            </div>
-                            <div class="item-field">
-                                <button type="button" class="remove-item-btn" <?php echo count($reqData['items']) <= 1 ? 'style="display:none;"' : ''; ?>>
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                
-                <div style="margin-top: var(--spacing-4);">
-                    <button type="button" id="addItemBtn" class="add-item-btn">
-                        <i class="fas fa-plus-circle"></i> Add Another Item
-                    </button>
-                </div>
-                
-                <!-- Total Section -->
-                <div class="total-section">
-                    <div class="total-section-content">
-                        <div class="total-section-label">
-                            <h4>Total Amount</h4>
-                            <p>Sum of all items</p>
-                        </div>
-                        <div class="total-amount" id="grandTotal">
-                            <?php echo format_currency($reqData['total_amount']); ?>
-                        </div>
-                    </div>
-                    <input type="hidden" name="total_amount" id="total_amount" value="<?php echo $reqData['total_amount']; ?>">
-                </div>
+
+            <div id="uploadedFiles" class="uploaded-files" style="display: none;">
+                <!-- New uploaded files will appear here -->
             </div>
         </div>
-        
-        <!-- Existing Attachments -->
-        <?php if (!empty($reqData['documents'])): ?>
-            <div class="form-section-card">
-                <div class="form-section-header">
-                    <div class="form-section-icon info">
-                        <i class="fas fa-paperclip"></i>
-                    </div>
-                    <div class="form-section-title">
-                        <h5>Existing Attachments</h5>
-                        <p>Files currently attached to this requisition</p>
-                    </div>
-                </div>
-                <div class="form-section-body">
-                    <?php foreach ($reqData['documents'] as $doc): ?>
-                        <div class="uploaded-file">
-                            <div class="file-info">
-                                <div class="file-icon">
-                                    <i class="fas <?php echo FileUpload::getFileIcon($doc['file_name']); ?>"></i>
-                                </div>
-                                <div class="file-details">
-                                    <div class="file-name">
-                                        <?php echo htmlspecialchars($doc['file_name']); ?>
-                                    </div>
-                                    <div class="file-meta">
-                                        <?php echo format_file_size($doc['file_size']); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="file-actions">
-                                <a href="../api/download-file.php?id=<?php echo $doc['id']; ?>" class="btn btn-sm btn-ghost" target="_blank">
-                                    <i class="fas fa-eye me-1"></i>View
-                                </a>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endif; ?>
-        
-        <!-- New Attachments -->
-        <div class="form-section-card">
-            <div class="form-section-header">
-                <div class="form-section-icon info">
-                    <i class="fas fa-plus-circle"></i>
-                </div>
-                <div class="form-section-title">
-                    <h5>Add More Attachments (Optional)</h5>
-                    <p>Upload additional supporting documents</p>
-                </div>
-            </div>
-            <div class="form-section-body">
-                <div class="file-upload-area" id="fileUploadArea">
-                    <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
-                    <p class="file-upload-text">
-                        Drag & drop files here or click to browse
-                    </p>
-                    <p class="file-upload-hint">
-                        Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG (Max <?php echo format_file_size(UPLOAD_MAX_SIZE); ?>)
-                    </p>
-                    <input type="file" id="fileInput" name="attachments[]" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" style="display: none;">
-                </div>
-                
-                <div id="uploadedFiles" class="uploaded-files" style="display: none;">
-                    <!-- New uploaded files will appear here -->
-                </div>
-            </div>
-        </div>
-        
-        <!-- Form Actions -->
-        <div class="form-actions">
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='view.php?id=<?php echo $requisitionId; ?>'">
-                <i class="fas fa-times me-2"></i>Cancel
-            </button>
-            <button type="submit" name="save_draft" class="btn btn-outline-primary" onclick="document.getElementById('is_draft').value='1'">
-                <i class="fas fa-save me-2"></i>Save as Draft
-            </button>
-            <button type="submit" name="submit" class="btn btn-primary">
-                <i class="fas fa-paper-plane me-2"></i>Resubmit for Approval
-            </button>
-        </div>
-    </form>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='view.php?id=<?php echo $requisitionId; ?>'">
+            <i class="fas fa-times me-2"></i>Cancel
+        </button>
+        <button type="submit" name="save_draft" class="btn btn-outline-primary" onclick="document.getElementById('is_draft').value='1'">
+            <i class="fas fa-save me-2"></i>Save as Draft
+        </button>
+        <button type="submit" name="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane me-2"></i>Resubmit for Approval
+        </button>
+    </div>
+</form>
 </div>
 
 <!-- JavaScript for dynamic items -->
 <script src="<?php echo BASE_URL; ?>/assets/js/requisition.js"></script>
 <script>
-// Set the starting item index for new items
-window.itemIndex = <?php echo count($reqData['items']); ?>;
+    // Set the starting item index for new items
+    window.itemIndex = <?php echo count($reqData['items']); ?>;
 
-// Calculate initial total
-if (typeof calculateGrandTotal === 'function') {
-    calculateGrandTotal();
-}
-
-// Add confirmation for navigation
-window.addEventListener('beforeunload', function (e) {
-    const form = document.getElementById('requisitionForm');
-    if (form && form.dataset.changed === 'true') {
-        e.preventDefault();
-        e.returnValue = '';
+    // Calculate initial total
+    if (typeof calculateGrandTotal === 'function') {
+        calculateGrandTotal();
     }
-});
 
-// Track form changes
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('requisitionForm');
-    const inputs = form.querySelectorAll('input, textarea, select');
-    
-    inputs.forEach(input => {
-        input.addEventListener('change', function() {
-            form.dataset.changed = 'true';
+    // Add confirmation for navigation
+    window.addEventListener('beforeunload', function(e) {
+        const form = document.getElementById('requisitionForm');
+        if (form && form.dataset.changed === 'true') {
+            e.preventDefault();
+            e.returnValue = '';
+        }
+    });
+
+    // Track form changes
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('requisitionForm');
+        const inputs = form.querySelectorAll('input, textarea, select');
+
+        inputs.forEach(input => {
+            input.addEventListener('change', function() {
+                form.dataset.changed = 'true';
+            });
+        });
+
+        // Remove change tracking on submit
+        form.addEventListener('submit', function() {
+            form.dataset.changed = 'false';
         });
     });
-    
-    // Remove change tracking on submit
-    form.addEventListener('submit', function() {
-        form.dataset.changed = 'false';
-    });
-});
 </script>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

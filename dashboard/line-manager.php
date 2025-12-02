@@ -67,14 +67,21 @@ $sql = "SELECT COUNT(*) as count
 $result = $db->fetchOne($sql, [$departmentId, STATUS_PENDING_LINE_MANAGER]);
 $stats['pending_my_approval'] = $result['count'];
 
-// Department total requisitions
-$sql = "SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
+// Department total requisitions (count all non-draft)
+$sql = "SELECT COUNT(*) as count
         FROM requisitions 
         WHERE department_id = ? 
         AND status != ?";
 $result = $db->fetchOne($sql, [$departmentId, STATUS_DRAFT]);
 $stats['department_total'] = $result['count'];
-$stats['department_amount'] = $result['total'];
+
+// Department amount (ONLY paid or completed requisitions)
+$sql = "SELECT COALESCE(SUM(total_amount), 0) as total
+        FROM requisitions 
+        WHERE department_id = ? 
+        AND status IN (?, ?)";
+$result = $db->fetchOne($sql, [$departmentId, STATUS_PAID, STATUS_COMPLETED]);
+$stats['department_amount'] = $result['total'];  // ✅ CORRECT - only paid/completed
 
 // Department this month
 $sql = "SELECT COUNT(*) as count 
@@ -114,7 +121,7 @@ $sql = "SELECT r.*, u.first_name, u.last_name
         LIMIT 5";
 $recentActivity = $db->fetchAll($sql, [$departmentId]);
 
-// Get monthly data for chart (last 6 months)
+// Get monthly data for chart (last 6 months - PAID/COMPLETED only)
 $monthlyData = [];
 for ($i = 5; $i >= 0; $i--) {
     $date = date('Y-m', strtotime("-$i months"));
@@ -122,8 +129,8 @@ for ($i = 5; $i >= 0; $i--) {
             FROM requisitions
             WHERE department_id = ?
             AND DATE_FORMAT(created_at, '%Y-%m') = ?
-            AND status != ?";
-    $result = $db->fetchOne($sql, [$departmentId, $date, STATUS_DRAFT]);
+            AND status IN (?, ?)";  // ✅ CORRECT - only paid/completed
+    $result = $db->fetchOne($sql, [$departmentId, $date, STATUS_PAID, STATUS_COMPLETED]);
     $monthlyData[] = [
         'month' => date('M Y', strtotime($date . '-01')),
         'count' => $result['count'],

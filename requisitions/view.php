@@ -1101,15 +1101,15 @@ function getPreviewType($filename)
 <!-- Receipt Upload Alert -->
 <?php if ($reqData['status'] == 'paid' && empty($reqData['receipt_file_path']) && $reqData['user_id'] == $_SESSION['user_id']): ?>
     <div class="receipt-upload-alert" style="border: 1px solid var(--success); border-radius: var(--border-radius-lg); padding: var(--spacing-5); margin-bottom: var(--spacing-5);">
-        
+
         <div style="display: flex; align-items: flex-start; gap: 1rem;">
             <!-- Success Icon -->
-            <i class="fas fa-check-circle" 
-               style="font-size: 2.2rem; color: var(--success); flex-shrink: 0; margin-top: 0.2rem;"></i>
+            <i class="fas fa-check-circle"
+                style="font-size: 2.2rem; color: var(--success); flex-shrink: 0; margin-top: 0.2rem;"></i>
 
             <!-- Content + Button (button at far right) -->
             <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; min-width: 0;">
-                
+
                 <!-- Left: Text Content -->
                 <div style="flex: 1;">
                     <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">
@@ -1118,7 +1118,7 @@ function getPreviewType($filename)
                     <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9; color: white;">
                         Your requisition has been paid! Please upload your receipt as proof of purchase to complete this requisition.
                     </p>
-                    
+
                     <?php if ($reqData['payment_date']): ?>
                         <p style="margin: 0; opacity: 0.9; font-size: var(--font-size-sm); color: rgba(255,255,255,0.9);">
                             <i class="fas fa-calendar-check me-2"></i>
@@ -1129,16 +1129,16 @@ function getPreviewType($filename)
 
                 <!-- Right: Button - always at the far end -->
                 <div style="flex-shrink: 0;">
-                    <a href="upload-receipt.php?id=<?php echo $reqData['id']; ?>" 
-                       class="btn btn-success" 
-                       style="white-space: nowrap; font-weight: 600; padding: 0.65rem 1.25rem;">
+                    <a href="upload-receipt.php?id=<?php echo $reqData['id']; ?>"
+                        class="btn btn-success"
+                        style="white-space: nowrap; font-weight: 600; padding: 0.65rem 1.25rem;">
                         <i class="fas fa-cloud-upload-alt me-2"></i>
                         Upload Receipt
                     </a>
                 </div>
             </div>
         </div>
-        
+
     </div>
 <?php endif; ?>
 
@@ -1242,9 +1242,16 @@ function getPreviewType($filename)
                 </div>
 
                 <div class="purpose-display">
-                    <label>Purpose/Description</label>
+                    <label>Purpose/Category</label>
                     <p><?php echo htmlspecialchars($reqData['purpose']); ?></p>
                 </div>
+
+                <?php if (!empty($reqData['description'])): ?>
+                    <div class="purpose-display" style="margin-top: var(--spacing-3);">
+                        <label>Additional Details</label>
+                        <p><?php echo nl2br(htmlspecialchars($reqData['description'])); ?></p>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 

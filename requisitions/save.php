@@ -56,6 +56,7 @@ $isDraft = isset($_POST['is_draft']) && $_POST['is_draft'] == '1';
 
 $formData = [
     'purpose' => Sanitizer::string($_POST['purpose'] ?? ''),
+    'description' => Sanitizer::string($_POST['description'] ?? ''),
     'total_amount' => Sanitizer::float($_POST['total_amount'] ?? '0'),
     'is_draft' => $isDraft,
     'items' => []
@@ -64,10 +65,6 @@ $formData = [
 // Validate purpose
 if (empty($formData['purpose'])) {
     $errors[] = 'Purpose/Description is required.';
-}
-
-if (strlen($formData['purpose']) < 10) {
-    $errors[] = 'Purpose/Description must be at least 10 characters.';
 }
 
 // Validate and process items

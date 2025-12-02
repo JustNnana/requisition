@@ -393,126 +393,135 @@ class Report {
         }
     }
     
-    /**
-     * Get monthly spending patterns
-     */
-    private function getMonthlySpending($userId, $filters) {
-        try {
-            $sql = "SELECT DATE_FORMAT(r.created_at, '%b %Y') as month,
-                           SUM(r.total_amount) as total_amount,
-                           COUNT(*) as count
-                    FROM requisitions r
-                    WHERE r.user_id = ? AND r.status != 'draft'";
-            
-            $params = [$userId];
-            
-            // Only add date filters if specified
-            if (!empty($filters['date_from'])) {
-                $sql .= " AND DATE(r.created_at) >= ?";
-                $params[] = $filters['date_from'];
-            }
-            
-            if (!empty($filters['date_to'])) {
-                $sql .= " AND DATE(r.created_at) <= ?";
-                $params[] = $filters['date_to'];
-            }
-            
-            // Add period filter if specified
-            if (!empty($filters['period']) && $filters['period'] !== 'custom') {
-                $dateRange = $this->getPeriodDateRange($filters['period']);
-                if ($dateRange) {
-                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
-                    $params[] = $dateRange['start'];
-                    $params[] = $dateRange['end'];
-                }
-            }
-            
-            $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m')
-                     ORDER BY r.created_at ASC
-                     LIMIT 12";
-            
-            return $this->db->fetchAll($sql, $params);
-            
-        } catch (Exception $e) {
-            error_log("Get monthly spending error: " . $e->getMessage());
-            return [];
+/**
+ * Get monthly spending patterns
+ */
+private function getMonthlySpending($userId, $filters) {
+    try {
+        $sql = "SELECT DATE_FORMAT(r.created_at, '%b %Y') as month,
+                       SUM(r.total_amount) as total_amount,
+                       COUNT(*) as count
+                FROM requisitions r
+                WHERE r.user_id = ? 
+                AND r.status IN (?, ?)";  // ✅ FIXED - only paid/completed
+        
+        $params = [$userId, STATUS_PAID, STATUS_COMPLETED];
+        
+        // Only add date filters if specified
+        if (!empty($filters['date_from'])) {
+            $sql .= " AND DATE(r.created_at) >= ?";
+            $params[] = $filters['date_from'];
         }
+        
+        if (!empty($filters['date_to'])) {
+            $sql .= " AND DATE(r.created_at) <= ?";
+            $params[] = $filters['date_to'];
+        }
+        
+        // Add period filter if specified
+        if (!empty($filters['period']) && $filters['period'] !== 'custom') {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $params[] = $dateRange['start'];
+                $params[] = $dateRange['end'];
+            }
+        }
+        
+        $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m')
+                 ORDER BY r.created_at ASC
+                 LIMIT 12";
+        
+        return $this->db->fetchAll($sql, $params);
+        
+    } catch (Exception $e) {
+        error_log("Get monthly spending error: " . $e->getMessage());
+        return [];
     }
+}
     
-    /**
-     * Calculate comprehensive statistics
-     */
-    private function calculateComprehensiveStatistics($sql, $params, $userId) {
-        try {
-            // Basic counts and amounts
-            $countSql = "SELECT COUNT(*) as total_count,
-                               COALESCE(SUM(total_amount), 0) as total_amount,
-                               COALESCE(AVG(total_amount), 0) as average_amount,
-                               COALESCE(MIN(total_amount), 0) as min_amount,
-                               COALESCE(MAX(total_amount), 0) as max_amount
-                        FROM (" . $sql . ") as subquery";
-            
-            $result = $this->db->fetchOne($countSql, $params);
-            
-            // Status-specific counts
-            $stats = [
-                'total_count' => (int)$result['total_count'],
-                'total_amount' => (float)$result['total_amount'],
-                'average_amount' => (float)$result['average_amount'],
-                'min_amount' => (float)$result['min_amount'],
-                'max_amount' => (float)$result['max_amount']
-            ];
-            
-            // Get status breakdown
-            $statusSql = "SELECT status, COUNT(*) as count
-                         FROM (" . $sql . ") as subquery
-                         GROUP BY status";
-            
-            $statusBreakdown = $this->db->fetchAll($statusSql, $params);
-            
-            // Initialize status counts
-            $stats['pending_count'] = 0;
-            $stats['approved_count'] = 0;
-            $stats['rejected_count'] = 0;
-            $stats['completed_count'] = 0;
-            
-            foreach ($statusBreakdown as $status) {
-                switch ($status['status']) {
-                    case 'pending_line_manager':
-                    case 'pending_md':
-                    case 'pending_finance_manager':
-                        $stats['pending_count'] += $status['count'];
-                        break;
-                    case 'approved_for_payment':
-                    case 'paid':
-                        $stats['approved_count'] += $status['count'];
-                        break;
-                    case 'rejected':
-                        $stats['rejected_count'] = $status['count'];
-                        break;
-                    case 'completed':
-                        $stats['completed_count'] = $status['count'];
-                        break;
-                }
+/**
+ * Calculate comprehensive statistics
+ */
+private function calculateComprehensiveStatistics($sql, $params, $userId) {
+    try {
+        // Basic counts (all non-draft requisitions)
+        $countSql = "SELECT COUNT(*) as total_count
+                    FROM (" . $sql . ") as subquery";
+        
+        $countResult = $this->db->fetchOne($countSql, $params);
+        
+        // Amounts - ONLY for paid/completed requisitions
+        $amountSql = "SELECT COALESCE(SUM(total_amount), 0) as total_amount,
+                            COALESCE(AVG(total_amount), 0) as average_amount,
+                            COALESCE(MIN(total_amount), 0) as min_amount,
+                            COALESCE(MAX(total_amount), 0) as max_amount
+                     FROM (" . $sql . ") as subquery
+                     WHERE status IN (?, ?)";
+        
+        // Add STATUS_PAID and STATUS_COMPLETED to params for amount calculation
+        $amountParams = array_merge($params, [STATUS_PAID, STATUS_COMPLETED]);
+        $amountResult = $this->db->fetchOne($amountSql, $amountParams);
+        
+        // Status-specific counts
+        $stats = [
+            'total_count' => (int)$countResult['total_count'],
+            'total_amount' => (float)$amountResult['total_amount'],
+            'average_amount' => (float)$amountResult['average_amount'],
+            'min_amount' => (float)$amountResult['min_amount'],
+            'max_amount' => (float)$amountResult['max_amount']
+        ];
+        
+        // Get status breakdown
+        $statusSql = "SELECT status, COUNT(*) as count
+                     FROM (" . $sql . ") as subquery
+                     GROUP BY status";
+        
+        $statusBreakdown = $this->db->fetchAll($statusSql, $params);
+        
+        // Initialize status counts
+        $stats['pending_count'] = 0;
+        $stats['approved_count'] = 0;
+        $stats['rejected_count'] = 0;
+        $stats['completed_count'] = 0;
+        
+        foreach ($statusBreakdown as $status) {
+            switch ($status['status']) {
+                case 'pending_line_manager':
+                case 'pending_md':
+                case 'pending_finance_manager':
+                    $stats['pending_count'] += $status['count'];
+                    break;
+                case 'approved_for_payment':
+                case 'paid':
+                    $stats['approved_count'] += $status['count'];
+                    break;
+                case 'rejected':
+                    $stats['rejected_count'] = $status['count'];
+                    break;
+                case 'completed':
+                    $stats['completed_count'] = $status['count'];
+                    break;
             }
-            
-            return $stats;
-            
-        } catch (Exception $e) {
-            error_log("Calculate comprehensive statistics error: " . $e->getMessage());
-            return [
-                'total_count' => 0,
-                'total_amount' => 0,
-                'average_amount' => 0,
-                'min_amount' => 0,
-                'max_amount' => 0,
-                'pending_count' => 0,
-                'approved_count' => 0,
-                'rejected_count' => 0,
-                'completed_count' => 0
-            ];
         }
+        
+        return $stats;
+        
+    } catch (Exception $e) {
+        error_log("Calculate comprehensive statistics error: " . $e->getMessage());
+        return [
+            'total_count' => 0,
+            'total_amount' => 0,
+            'average_amount' => 0,
+            'min_amount' => 0,
+            'max_amount' => 0,
+            'pending_count' => 0,
+            'approved_count' => 0,
+            'rejected_count' => 0,
+            'completed_count' => 0
+        ];
     }
+}
     
     /**
      * Get advanced analytics metrics
@@ -825,87 +834,174 @@ class Report {
         }
     }
 
-    /**
-     * Calculate department statistics
-     */
-    private function calculateDepartmentStatistics($departmentId, $filters = []) {
-        try {
-            $sql = "SELECT 
-                        COUNT(*) as total_count,
+/**
+ * Calculate department statistics
+ */
+private function calculateDepartmentStatistics($departmentId, $filters = []) {
+    try {
+        // Count all non-draft requisitions
+        $countSql = "SELECT COUNT(*) as total_count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != ?";
+        
+        $countParams = [$departmentId, STATUS_DRAFT];
+        
+        if (!empty($filters['date_from'])) {
+            $countSql .= " AND DATE(r.created_at) >= ?";
+            $countParams[] = $filters['date_from'];
+        }
+        
+        if (!empty($filters['date_to'])) {
+            $countSql .= " AND DATE(r.created_at) <= ?";
+            $countParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['status'])) {
+            $countSql .= " AND r.status = ?";
+            $countParams[] = $filters['status'];
+        }
+        
+        if (!empty($filters['user_id'])) {
+            $countSql .= " AND r.user_id = ?";
+            $countParams[] = $filters['user_id'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $countSql .= " AND r.purpose = ?";
+            $countParams[] = $filters['category'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $countSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $countParams[] = $dateRange['start'];
+                $countParams[] = $dateRange['end'];
+            }
+        }
+        
+        $countResult = $this->db->fetchOne($countSql, $countParams);
+        
+        // Amounts - ONLY for paid/completed requisitions
+        $amountSql = "SELECT 
                         COALESCE(SUM(r.total_amount), 0) as total_amount,
                         COALESCE(AVG(r.total_amount), 0) as average_amount,
                         COALESCE(MIN(r.total_amount), 0) as min_amount,
-                        COALESCE(MAX(r.total_amount), 0) as max_amount,
-                        SUM(CASE WHEN r.status = 'completed' THEN 1 ELSE 0 END) as completed_count,
-                        SUM(CASE WHEN r.status IN ('pending_line_manager', 'pending_md', 'pending_finance_manager') THEN 1 ELSE 0 END) as pending_count,
-                        SUM(CASE WHEN r.status = 'rejected' THEN 1 ELSE 0 END) as rejected_count
+                        COALESCE(MAX(r.total_amount), 0) as max_amount
                     FROM requisitions r
                     INNER JOIN users u ON r.user_id = u.id
-                    WHERE u.department_id = ? AND r.status != 'draft'";
-            
-            $params = [$departmentId];
-            
-            if (!empty($filters['date_from'])) {
-                $sql .= " AND DATE(r.created_at) >= ?";
-                $params[] = $filters['date_from'];
-            }
-            
-            if (!empty($filters['date_to'])) {
-                $sql .= " AND DATE(r.created_at) <= ?";
-                $params[] = $filters['date_to'];
-            }
-            
-            if (!empty($filters['status'])) {
-                $sql .= " AND r.status = ?";
-                $params[] = $filters['status'];
-            }
-            
-            if (!empty($filters['user_id'])) {
-                $sql .= " AND r.user_id = ?";
-                $params[] = $filters['user_id'];
-            }
-            
-            if (!empty($filters['category'])) {
-                $sql .= " AND r.purpose = ?";
-                $params[] = $filters['category'];
-            }
-            
-            if (!empty($filters['period'])) {
-                $dateRange = $this->getPeriodDateRange($filters['period']);
-                if ($dateRange) {
-                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
-                    $params[] = $dateRange['start'];
-                    $params[] = $dateRange['end'];
-                }
-            }
-            
-            $result = $this->db->fetchOne($sql, $params);
-            
-            return [
-                'total_count' => (int)$result['total_count'],
-                'total_amount' => (float)$result['total_amount'],
-                'average_amount' => (float)$result['average_amount'],
-                'min_amount' => (float)$result['min_amount'],
-                'max_amount' => (float)$result['max_amount'],
-                'completed_count' => (int)$result['completed_count'],
-                'pending_count' => (int)$result['pending_count'],
-                'rejected_count' => (int)$result['rejected_count']
-            ];
-            
-        } catch (Exception $e) {
-            error_log("Calculate department statistics error: " . $e->getMessage());
-            return [
-                'total_count' => 0,
-                'total_amount' => 0,
-                'average_amount' => 0,
-                'min_amount' => 0,
-                'max_amount' => 0,
-                'completed_count' => 0,
-                'pending_count' => 0,
-                'rejected_count' => 0
-            ];
+                    WHERE u.department_id = ? 
+                    AND r.status IN (?, ?)";
+        
+        $amountParams = [$departmentId, STATUS_PAID, STATUS_COMPLETED];
+        
+        if (!empty($filters['date_from'])) {
+            $amountSql .= " AND DATE(r.created_at) >= ?";
+            $amountParams[] = $filters['date_from'];
         }
+        
+        if (!empty($filters['date_to'])) {
+            $amountSql .= " AND DATE(r.created_at) <= ?";
+            $amountParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['user_id'])) {
+            $amountSql .= " AND r.user_id = ?";
+            $amountParams[] = $filters['user_id'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $amountSql .= " AND r.purpose = ?";
+            $amountParams[] = $filters['category'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $amountSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $amountParams[] = $dateRange['start'];
+                $amountParams[] = $dateRange['end'];
+            }
+        }
+        
+        $amountResult = $this->db->fetchOne($amountSql, $amountParams);
+        
+        // Status counts
+        $statusSql = "SELECT 
+                        SUM(CASE WHEN r.status = ? THEN 1 ELSE 0 END) as completed_count,
+                        SUM(CASE WHEN r.status IN (?, ?, ?) THEN 1 ELSE 0 END) as pending_count,
+                        SUM(CASE WHEN r.status = ? THEN 1 ELSE 0 END) as rejected_count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != ?";
+        
+        $statusParams = [
+            STATUS_COMPLETED,
+            STATUS_PENDING_LINE_MANAGER, 
+            STATUS_PENDING_MD, 
+            STATUS_PENDING_FINANCE_MANAGER,
+            STATUS_REJECTED,
+            $departmentId,
+            STATUS_DRAFT
+        ];
+        
+        if (!empty($filters['date_from'])) {
+            $statusSql .= " AND DATE(r.created_at) >= ?";
+            $statusParams[] = $filters['date_from'];
+        }
+        
+        if (!empty($filters['date_to'])) {
+            $statusSql .= " AND DATE(r.created_at) <= ?";
+            $statusParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['user_id'])) {
+            $statusSql .= " AND r.user_id = ?";
+            $statusParams[] = $filters['user_id'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $statusSql .= " AND r.purpose = ?";
+            $statusParams[] = $filters['category'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $statusSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $statusParams[] = $dateRange['start'];
+                $statusParams[] = $dateRange['end'];
+            }
+        }
+        
+        $statusResult = $this->db->fetchOne($statusSql, $statusParams);
+        
+        return [
+            'total_count' => (int)$countResult['total_count'],
+            'total_amount' => (float)$amountResult['total_amount'],
+            'average_amount' => (float)$amountResult['average_amount'],
+            'min_amount' => (float)$amountResult['min_amount'],
+            'max_amount' => (float)$amountResult['max_amount'],
+            'completed_count' => (int)$statusResult['completed_count'],
+            'pending_count' => (int)$statusResult['pending_count'],
+            'rejected_count' => (int)$statusResult['rejected_count']
+        ];
+        
+    } catch (Exception $e) {
+        error_log("Calculate department statistics error: " . $e->getMessage());
+        return [
+            'total_count' => 0,
+            'total_amount' => 0,
+            'average_amount' => 0,
+            'min_amount' => 0,
+            'max_amount' => 0,
+            'completed_count' => 0,
+            'pending_count' => 0,
+            'rejected_count' => 0
+        ];
     }
+}
 
     /**
      * Get department requisition trends
@@ -1035,42 +1131,43 @@ class Report {
         }
     }
 
-    /**
-     * Get monthly spending for department
-     */
-    private function getDepartmentMonthlySpending($departmentId, $filters = []) {
-        try {
-            $sql = "SELECT 
-                        DATE_FORMAT(r.created_at, '%b %Y') as month,
-                        SUM(r.total_amount) as total_amount,
-                        COUNT(*) as count
-                    FROM requisitions r
-                    INNER JOIN users u ON r.user_id = u.id
-                    WHERE u.department_id = ? AND r.status != 'draft'
-                    AND r.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)";
-            
-            $params = [$departmentId];
-            
-            if (!empty($filters['user_id'])) {
-                $sql .= " AND r.user_id = ?";
-                $params[] = $filters['user_id'];
-            }
-            
-            if (!empty($filters['category'])) {
-                $sql .= " AND r.purpose = ?";
-                $params[] = $filters['category'];
-            }
-            
-            $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m'), month 
-                      ORDER BY DATE_FORMAT(r.created_at, '%Y-%m') ASC";
-            
-            return $this->db->fetchAll($sql, $params);
-            
-        } catch (Exception $e) {
-            error_log("Get monthly spending error: " . $e->getMessage());
-            return [];
+/**
+ * Get monthly spending for department
+ */
+private function getDepartmentMonthlySpending($departmentId, $filters = []) {
+    try {
+        $sql = "SELECT 
+                    DATE_FORMAT(r.created_at, '%b %Y') as month,
+                    SUM(r.total_amount) as total_amount,
+                    COUNT(*) as count
+                FROM requisitions r
+                INNER JOIN users u ON r.user_id = u.id
+                WHERE u.department_id = ? 
+                AND r.status IN (?, ?)  -- ✅ FIXED - only paid/completed
+                AND r.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)";
+        
+        $params = [$departmentId, STATUS_PAID, STATUS_COMPLETED];
+        
+        if (!empty($filters['user_id'])) {
+            $sql .= " AND r.user_id = ?";
+            $params[] = $filters['user_id'];
         }
+        
+        if (!empty($filters['category'])) {
+            $sql .= " AND r.purpose = ?";
+            $params[] = $filters['category'];
+        }
+        
+        $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m'), month 
+                  ORDER BY DATE_FORMAT(r.created_at, '%Y-%m') ASC";
+        
+        return $this->db->fetchAll($sql, $params);
+        
+    } catch (Exception $e) {
+        error_log("Get monthly spending error: " . $e->getMessage());
+        return [];
     }
+}
 
     /**
      * Get hourly distribution for department
@@ -1656,50 +1753,88 @@ class Report {
         }
     }
     
-    /**
-     * Get department breakdown for organization reports
-     * 
-     * @param array $filters Filter options
-     * @return array Department breakdown
-     */
-    private function getDepartmentBreakdown($filters) {
-        try {
-            $sql = "SELECT d.department_name,
-                           d.department_code,
-                           COUNT(r.id) as requisition_count,
-                           COALESCE(SUM(r.total_amount), 0) as total_amount
-                    FROM departments d
-                    LEFT JOIN requisitions r ON d.id = r.department_id";
+/**
+ * Get department breakdown for organization reports
+ * 
+ * @param array $filters Filter options
+ * @return array Department breakdown
+ */
+private function getDepartmentBreakdown($filters) {
+    try {
+        // Count all non-draft requisitions per department
+        $sql = "SELECT d.department_name,
+                       d.department_code,
+                       d.id as department_id,
+                       COUNT(r.id) as requisition_count
+                FROM departments d
+                LEFT JOIN requisitions r ON d.id = r.department_id 
+                    AND r.status != ?";
+        
+        $params = [STATUS_DRAFT];
+        $whereClauses = [];
+        
+        // Apply date filters
+        if (!empty($filters['date_from'])) {
+            $whereClauses[] = "DATE(r.created_at) >= ?";
+            $params[] = $filters['date_from'];
+        }
+        
+        if (!empty($filters['date_to'])) {
+            $whereClauses[] = "DATE(r.created_at) <= ?";
+            $params[] = $filters['date_to'];
+        }
+        
+        if (!empty($whereClauses)) {
+            $sql .= " AND " . implode(' AND ', $whereClauses);
+        }
+        
+        $sql .= " GROUP BY d.id, d.department_name, d.department_code";
+        
+        $departments = $this->db->fetchAll($sql, $params);
+        
+        // Now get amounts - ONLY for paid/completed requisitions
+        $result = [];
+        foreach ($departments as $dept) {
+            $amountSql = "SELECT COALESCE(SUM(r.total_amount), 0) as total_amount
+                         FROM requisitions r
+                         WHERE r.department_id = ?
+                         AND r.status IN (?, ?)";
             
-            $params = [];
-            $whereClauses = ["1=1"];
+            $amountParams = [$dept['department_id'], STATUS_PAID, STATUS_COMPLETED];
             
-            // Apply date filters
+            // Apply same date filters to amounts
             if (!empty($filters['date_from'])) {
-                $whereClauses[] = "DATE(r.created_at) >= ?";
-                $params[] = $filters['date_from'];
+                $amountSql .= " AND DATE(r.created_at) >= ?";
+                $amountParams[] = $filters['date_from'];
             }
             
             if (!empty($filters['date_to'])) {
-                $whereClauses[] = "DATE(r.created_at) <= ?";
-                $params[] = $filters['date_to'];
+                $amountSql .= " AND DATE(r.created_at) <= ?";
+                $amountParams[] = $filters['date_to'];
             }
             
-            // Exclude drafts
-            $whereClauses[] = "(r.status != ? OR r.status IS NULL)";
-            $params[] = STATUS_DRAFT;
+            $amountResult = $this->db->fetchOne($amountSql, $amountParams);
             
-            $sql .= " WHERE " . implode(' AND ', $whereClauses);
-            $sql .= " GROUP BY d.id, d.department_name, d.department_code";
-            $sql .= " ORDER BY total_amount DESC";
-            
-            return $this->db->fetchAll($sql, $params);
-            
-        } catch (Exception $e) {
-            error_log("Get department breakdown error: " . $e->getMessage());
-            return [];
+            $result[] = [
+                'department_name' => $dept['department_name'],
+                'department_code' => $dept['department_code'],
+                'requisition_count' => (int)$dept['requisition_count'],
+                'total_amount' => (float)$amountResult['total_amount']
+            ];
         }
+        
+        // Sort by total amount descending
+        usort($result, function($a, $b) {
+            return $b['total_amount'] <=> $a['total_amount'];
+        });
+        
+        return $result;
+        
+    } catch (Exception $e) {
+        error_log("Get department breakdown error: " . $e->getMessage());
+        return [];
     }
+}
     
     /**
      * Get period date range
@@ -1822,163 +1957,318 @@ class Report {
      * ========================================================================
      */
 
-    /**
-     * Calculate organization-wide statistics with enhanced metrics
-     */
-    private function calculateOrganizationStatistics($filters = []) {
-        try {
-            $sql = "SELECT 
-                        COUNT(*) as total_count,
+/**
+ * Calculate organization-wide statistics with enhanced metrics
+ */
+private function calculateOrganizationStatistics($filters = []) {
+    try {
+        // Count all non-draft requisitions
+        $countSql = "SELECT COUNT(*) as total_count
+                    FROM requisitions r
+                    WHERE r.status != ?";
+        
+        $countParams = [STATUS_DRAFT];
+        
+        if (!empty($filters['date_from'])) {
+            $countSql .= " AND DATE(r.created_at) >= ?";
+            $countParams[] = $filters['date_from'];
+        }
+        
+        if (!empty($filters['date_to'])) {
+            $countSql .= " AND DATE(r.created_at) <= ?";
+            $countParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $countSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $countParams[] = $dateRange['start'];
+                $countParams[] = $dateRange['end'];
+            }
+        }
+        
+        if (!empty($filters['status'])) {
+            $countSql .= " AND r.status = ?";
+            $countParams[] = $filters['status'];
+        }
+        
+        if (!empty($filters['department_id'])) {
+            $countSql .= " AND r.department_id = ?";
+            $countParams[] = $filters['department_id'];
+        }
+        
+        if (!empty($filters['user_id'])) {
+            $countSql .= " AND r.user_id = ?";
+            $countParams[] = $filters['user_id'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $countSql .= " AND r.purpose = ?";
+            $countParams[] = $filters['category'];
+        }
+        
+        $countResult = $this->db->fetchOne($countSql, $countParams);
+        
+        // Amounts - ONLY for paid/completed requisitions
+        $amountSql = "SELECT 
                         COALESCE(SUM(r.total_amount), 0) as total_amount,
                         COALESCE(AVG(r.total_amount), 0) as average_amount,
                         COALESCE(MIN(r.total_amount), 0) as min_amount,
-                        COALESCE(MAX(r.total_amount), 0) as max_amount,
-                        SUM(CASE WHEN r.status = 'completed' THEN 1 ELSE 0 END) as completed_count,
-                        SUM(CASE WHEN r.status IN ('pending_line_manager', 'pending_md', 'pending_finance_manager') THEN 1 ELSE 0 END) as pending_count,
-                        SUM(CASE WHEN r.status = 'rejected' THEN 1 ELSE 0 END) as rejected_count
+                        COALESCE(MAX(r.total_amount), 0) as max_amount
                     FROM requisitions r
-                    WHERE r.status != 'draft'";
-            
-            $params = [];
-            
-            if (!empty($filters['date_from'])) {
-                $sql .= " AND DATE(r.created_at) >= ?";
-                $params[] = $filters['date_from'];
-            }
-            
-            if (!empty($filters['date_to'])) {
-                $sql .= " AND DATE(r.created_at) <= ?";
-                $params[] = $filters['date_to'];
-            }
-            
-            if (!empty($filters['period'])) {
-                $dateRange = $this->getPeriodDateRange($filters['period']);
-                if ($dateRange) {
-                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
-                    $params[] = $dateRange['start'];
-                    $params[] = $dateRange['end'];
-                }
-            }
-            
-            if (!empty($filters['status'])) {
-                $sql .= " AND r.status = ?";
-                $params[] = $filters['status'];
-            }
-            
-            if (!empty($filters['department_id'])) {
-                $sql .= " AND r.department_id = ?";
-                $params[] = $filters['department_id'];
-            }
-            
-            if (!empty($filters['user_id'])) {
-                $sql .= " AND r.user_id = ?";
-                $params[] = $filters['user_id'];
-            }
-            
-            if (!empty($filters['category'])) {
-                $sql .= " AND r.purpose = ?";
-                $params[] = $filters['category'];
-            }
-            
-            $result = $this->db->fetchOne($sql, $params);
-            
-            return [
-                'total_count' => (int)$result['total_count'],
-                'total_amount' => (float)$result['total_amount'],
-                'average_amount' => (float)$result['average_amount'],
-                'min_amount' => (float)$result['min_amount'],
-                'max_amount' => (float)$result['max_amount'],
-                'completed_count' => (int)$result['completed_count'],
-                'pending_count' => (int)$result['pending_count'],
-                'rejected_count' => (int)$result['rejected_count']
-            ];
-            
-        } catch (Exception $e) {
-            error_log("Calculate organization statistics error: " . $e->getMessage());
-            return [
-                'total_count' => 0,
-                'total_amount' => 0,
-                'average_amount' => 0,
-                'min_amount' => 0,
-                'max_amount' => 0,
-                'completed_count' => 0,
-                'pending_count' => 0,
-                'rejected_count' => 0
-            ];
+                    WHERE r.status IN (?, ?)";
+        
+        $amountParams = [STATUS_PAID, STATUS_COMPLETED];
+        
+        if (!empty($filters['date_from'])) {
+            $amountSql .= " AND DATE(r.created_at) >= ?";
+            $amountParams[] = $filters['date_from'];
         }
-    }
-
-    /**
-     * Get organization-wide requisition trends
-     */
-    private function getOrganizationTrends($filters = []) {
-        try {
-            $interval = $filters['interval'] ?? 'daily';
-            
-            switch ($interval) {
-                case 'weekly':
-                    $dateFormat = '%Y-W%u';
-                    break;
-                case 'monthly':
-                    $dateFormat = '%Y-%m';
-                    break;
-                default:
-                    $dateFormat = '%Y-%m-%d';
-                    break;
+        
+        if (!empty($filters['date_to'])) {
+            $amountSql .= " AND DATE(r.created_at) <= ?";
+            $amountParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $amountSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $amountParams[] = $dateRange['start'];
+                $amountParams[] = $dateRange['end'];
             }
-            
-            $sql = "SELECT 
+        }
+        
+        if (!empty($filters['department_id'])) {
+            $amountSql .= " AND r.department_id = ?";
+            $amountParams[] = $filters['department_id'];
+        }
+        
+        if (!empty($filters['user_id'])) {
+            $amountSql .= " AND r.user_id = ?";
+            $amountParams[] = $filters['user_id'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $amountSql .= " AND r.purpose = ?";
+            $amountParams[] = $filters['category'];
+        }
+        
+        $amountResult = $this->db->fetchOne($amountSql, $amountParams);
+        
+        // Status counts
+        $statusSql = "SELECT 
+                        SUM(CASE WHEN r.status = ? THEN 1 ELSE 0 END) as completed_count,
+                        SUM(CASE WHEN r.status IN (?, ?, ?) THEN 1 ELSE 0 END) as pending_count,
+                        SUM(CASE WHEN r.status = ? THEN 1 ELSE 0 END) as rejected_count
+                    FROM requisitions r
+                    WHERE r.status != ?";
+        
+        $statusParams = [
+            STATUS_COMPLETED,
+            STATUS_PENDING_LINE_MANAGER,
+            STATUS_PENDING_MD,
+            STATUS_PENDING_FINANCE_MANAGER,
+            STATUS_REJECTED,
+            STATUS_DRAFT
+        ];
+        
+        if (!empty($filters['date_from'])) {
+            $statusSql .= " AND DATE(r.created_at) >= ?";
+            $statusParams[] = $filters['date_from'];
+        }
+        
+        if (!empty($filters['date_to'])) {
+            $statusSql .= " AND DATE(r.created_at) <= ?";
+            $statusParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $statusSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $statusParams[] = $dateRange['start'];
+                $statusParams[] = $dateRange['end'];
+            }
+        }
+        
+        if (!empty($filters['department_id'])) {
+            $statusSql .= " AND r.department_id = ?";
+            $statusParams[] = $filters['department_id'];
+        }
+        
+        if (!empty($filters['user_id'])) {
+            $statusSql .= " AND r.user_id = ?";
+            $statusParams[] = $filters['user_id'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $statusSql .= " AND r.purpose = ?";
+            $statusParams[] = $filters['category'];
+        }
+        
+        $statusResult = $this->db->fetchOne($statusSql, $statusParams);
+        
+        return [
+            'total_count' => (int)$countResult['total_count'],
+            'total_amount' => (float)$amountResult['total_amount'],
+            'average_amount' => (float)$amountResult['average_amount'],
+            'min_amount' => (float)$amountResult['min_amount'],
+            'max_amount' => (float)$amountResult['max_amount'],
+            'completed_count' => (int)$statusResult['completed_count'],
+            'pending_count' => (int)$statusResult['pending_count'],
+            'rejected_count' => (int)$statusResult['rejected_count']
+        ];
+        
+    } catch (Exception $e) {
+        error_log("Calculate organization statistics error: " . $e->getMessage());
+        return [
+            'total_count' => 0,
+            'total_amount' => 0,
+            'average_amount' => 0,
+            'min_amount' => 0,
+            'max_amount' => 0,
+            'completed_count' => 0,
+            'pending_count' => 0,
+            'rejected_count' => 0
+        ];
+    }
+}
+
+/**
+ * Get organization-wide requisition trends
+ */
+private function getOrganizationTrends($filters = []) {
+    try {
+        $interval = $filters['interval'] ?? 'daily';
+        
+        switch ($interval) {
+            case 'weekly':
+                $dateFormat = '%Y-W%u';
+                break;
+            case 'monthly':
+                $dateFormat = '%Y-%m';
+                break;
+            default:
+                $dateFormat = '%Y-%m-%d';
+                break;
+        }
+        
+        // Count all non-draft requisitions
+        $countSql = "SELECT 
                         DATE_FORMAT(r.created_at, '{$dateFormat}') as time_period,
-                        COUNT(*) as count,
+                        COUNT(*) as count
+                    FROM requisitions r
+                    WHERE r.status != ?";
+        
+        $countParams = [STATUS_DRAFT];
+        
+        if (!empty($filters['date_from'])) {
+            $countSql .= " AND DATE(r.created_at) >= ?";
+            $countParams[] = $filters['date_from'];
+        }
+        
+        if (!empty($filters['date_to'])) {
+            $countSql .= " AND DATE(r.created_at) <= ?";
+            $countParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $countSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $countParams[] = $dateRange['start'];
+                $countParams[] = $dateRange['end'];
+            }
+        }
+        
+        if (!empty($filters['department_id'])) {
+            $countSql .= " AND r.department_id = ?";
+            $countParams[] = $filters['department_id'];
+        }
+        
+        if (!empty($filters['status'])) {
+            $countSql .= " AND r.status = ?";
+            $countParams[] = $filters['status'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $countSql .= " AND r.purpose = ?";
+            $countParams[] = $filters['category'];
+        }
+        
+        $countSql .= " GROUP BY time_period ORDER BY r.created_at ASC";
+        
+        $countData = $this->db->fetchAll($countSql, $countParams);
+        
+        // Get amounts - ONLY for paid/completed requisitions
+        $amountSql = "SELECT 
+                        DATE_FORMAT(r.created_at, '{$dateFormat}') as time_period,
                         SUM(r.total_amount) as total_amount
                     FROM requisitions r
-                    WHERE r.status != 'draft'";
-            
-            $params = [];
-            
-            if (!empty($filters['date_from'])) {
-                $sql .= " AND DATE(r.created_at) >= ?";
-                $params[] = $filters['date_from'];
+                    WHERE r.status IN (?, ?)";
+        
+        $amountParams = [STATUS_PAID, STATUS_COMPLETED];
+        
+        if (!empty($filters['date_from'])) {
+            $amountSql .= " AND DATE(r.created_at) >= ?";
+            $amountParams[] = $filters['date_from'];
+        }
+        
+        if (!empty($filters['date_to'])) {
+            $amountSql .= " AND DATE(r.created_at) <= ?";
+            $amountParams[] = $filters['date_to'];
+        }
+        
+        if (!empty($filters['period'])) {
+            $dateRange = $this->getPeriodDateRange($filters['period']);
+            if ($dateRange) {
+                $amountSql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                $amountParams[] = $dateRange['start'];
+                $amountParams[] = $dateRange['end'];
             }
-            
-            if (!empty($filters['date_to'])) {
-                $sql .= " AND DATE(r.created_at) <= ?";
-                $params[] = $filters['date_to'];
-            }
-            
-            if (!empty($filters['period'])) {
-                $dateRange = $this->getPeriodDateRange($filters['period']);
-                if ($dateRange) {
-                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
-                    $params[] = $dateRange['start'];
-                    $params[] = $dateRange['end'];
+        }
+        
+        if (!empty($filters['department_id'])) {
+            $amountSql .= " AND r.department_id = ?";
+            $amountParams[] = $filters['department_id'];
+        }
+        
+        if (!empty($filters['category'])) {
+            $amountSql .= " AND r.purpose = ?";
+            $amountParams[] = $filters['category'];
+        }
+        
+        $amountSql .= " GROUP BY time_period ORDER BY r.created_at ASC";
+        
+        $amountData = $this->db->fetchAll($amountSql, $amountParams);
+        
+        // Merge count and amount data
+        $result = [];
+        foreach ($countData as $count) {
+            $amount = 0;
+            foreach ($amountData as $amt) {
+                if ($amt['time_period'] === $count['time_period']) {
+                    $amount = (float)$amt['total_amount'];
+                    break;
                 }
             }
             
-            if (!empty($filters['department_id'])) {
-                $sql .= " AND r.department_id = ?";
-                $params[] = $filters['department_id'];
-            }
-            
-            if (!empty($filters['status'])) {
-                $sql .= " AND r.status = ?";
-                $params[] = $filters['status'];
-            }
-            
-            if (!empty($filters['category'])) {
-                $sql .= " AND r.purpose = ?";
-                $params[] = $filters['category'];
-            }
-            
-            $sql .= " GROUP BY time_period ORDER BY r.created_at ASC";
-            
-            return $this->db->fetchAll($sql, $params);
-            
-        } catch (Exception $e) {
-            error_log("Get organization trends error: " . $e->getMessage());
-            return [];
+            $result[] = [
+                'time_period' => $count['time_period'],
+                'count' => (int)$count['count'],
+                'total_amount' => $amount
+            ];
         }
+        
+        return $result;
+        
+    } catch (Exception $e) {
+        error_log("Get organization trends error: " . $e->getMessage());
+        return [];
     }
+}
 
     /**
      * Get department comparison data
@@ -2211,46 +2501,41 @@ class Report {
         }
     }
 
-    /**
-     * Get organization-wide monthly spending
-     */
-    private function getOrganizationMonthlySpending($filters = []) {
-        try {
-            $sql = "SELECT 
-                        DATE_FORMAT(r.created_at, '%b %Y') as month,
-                        SUM(r.total_amount) as total_amount,
-                        COUNT(*) as count
-                    FROM requisitions r
-                    WHERE r.status != 'draft'
-                    AND r.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)";
-            
-            $params = [];
-            
-            if (!empty($filters['department_id'])) {
-                $sql .= " AND r.department_id = ?";
-                $params[] = $filters['department_id'];
-            }
-            
-            if (!empty($filters['status'])) {
-                $sql .= " AND r.status = ?";
-                $params[] = $filters['status'];
-            }
-            
-            if (!empty($filters['category'])) {
-                $sql .= " AND r.purpose = ?";
-                $params[] = $filters['category'];
-            }
-            
-            $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m'), month 
-                     ORDER BY DATE_FORMAT(r.created_at, '%Y-%m') ASC";
-            
-            return $this->db->fetchAll($sql, $params);
-            
-        } catch (Exception $e) {
-            error_log("Get organization monthly spending error: " . $e->getMessage());
-            return [];
+/**
+ * Get organization-wide monthly spending
+ */
+private function getOrganizationMonthlySpending($filters = []) {
+    try {
+        $sql = "SELECT 
+                    DATE_FORMAT(r.created_at, '%b %Y') as month,
+                    SUM(r.total_amount) as total_amount,
+                    COUNT(*) as count
+                FROM requisitions r
+                WHERE r.status IN (?, ?)  -- ✅ FIXED - only paid/completed
+                AND r.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)";
+        
+        $params = [STATUS_PAID, STATUS_COMPLETED];
+        
+        if (!empty($filters['department_id'])) {
+            $sql .= " AND r.department_id = ?";
+            $params[] = $filters['department_id'];
         }
+        
+        if (!empty($filters['category'])) {
+            $sql .= " AND r.purpose = ?";
+            $params[] = $filters['category'];
+        }
+        
+        $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m'), month 
+                 ORDER BY DATE_FORMAT(r.created_at, '%Y-%m') ASC";
+        
+        return $this->db->fetchAll($sql, $params);
+        
+    } catch (Exception $e) {
+        error_log("Get organization monthly spending error: " . $e->getMessage());
+        return [];
     }
+}
 
     /**
      * Get organization-wide hourly distribution

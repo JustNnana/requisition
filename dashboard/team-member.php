@@ -49,12 +49,19 @@ $stats = [
     'this_month' => 0
 ];
 
-// Total requisitions
-$sql = "SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total 
+// Total requisitions (count all non-draft requisitions)
+$sql = "SELECT COUNT(*) as count 
         FROM requisitions 
         WHERE user_id = ? AND status != ?";
 $result = $db->fetchOne($sql, [$userId, STATUS_DRAFT]);
 $stats['total'] = $result['count'];
+
+// Total amount (ONLY paid or completed requisitions)
+$sql = "SELECT COALESCE(SUM(total_amount), 0) as total 
+        FROM requisitions 
+        WHERE user_id = ? 
+        AND status IN (?, ?)";
+$result = $db->fetchOne($sql, [$userId, STATUS_PAID, STATUS_COMPLETED]);
 $stats['total_amount'] = $result['total'];
 
 // Pending requisitions
@@ -122,7 +129,7 @@ $sql = "SELECT r.*, d.department_name
         LIMIT 3";
 $pendingActions = $db->fetchAll($sql, [$userId, STATUS_REJECTED]);
 
-// Get monthly data for chart (last 6 months)
+// Get monthly data for chart (last 6 months - PAID/COMPLETED only)
 $monthlyData = [];
 for ($i = 5; $i >= 0; $i--) {
     $date = date('Y-m', strtotime("-$i months"));
@@ -130,8 +137,8 @@ for ($i = 5; $i >= 0; $i--) {
             FROM requisitions
             WHERE user_id = ?
             AND DATE_FORMAT(created_at, '%Y-%m') = ?
-            AND status != ?";
-    $result = $db->fetchOne($sql, [$userId, $date, STATUS_DRAFT]);
+            AND status IN (?, ?)";  // ✅ CORRECT - only paid/completed
+    $result = $db->fetchOne($sql, [$userId, $date, STATUS_PAID, STATUS_COMPLETED]);
     $monthlyData[] = [
         'month' => date('M Y', strtotime($date . '-01')),
         'count' => $result['count'],

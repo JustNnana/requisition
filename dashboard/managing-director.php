@@ -55,13 +55,19 @@ $sql = "SELECT COUNT(*) as count
 $result = $db->fetchOne($sql, [STATUS_PENDING_MD]);
 $stats['pending_my_approval'] = $result['count'];
 
-// Organization total
-$sql = "SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
+// Organization total (count all non-draft requisitions)
+$sql = "SELECT COUNT(*) as count
         FROM requisitions 
         WHERE status != ?";
 $result = $db->fetchOne($sql, [STATUS_DRAFT]);
 $stats['organization_total'] = $result['count'];
-$stats['organization_amount'] = $result['total'];
+
+// Organization amount (ONLY paid or completed requisitions)
+$sql = "SELECT COALESCE(SUM(total_amount), 0) as total
+        FROM requisitions 
+        WHERE status IN (?, ?)";
+$result = $db->fetchOne($sql, [STATUS_PAID, STATUS_COMPLETED]);
+$stats['organization_amount'] = $result['total'];  // ✅ CORRECT - only paid/completed
 
 // This month
 $sql = "SELECT COUNT(*) as count 

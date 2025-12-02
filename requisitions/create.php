@@ -11,6 +11,7 @@
  */
 
 // Define access level
+
 define('APP_ACCESS', true);
 
 // Include configuration
@@ -51,6 +52,7 @@ $formData = [
 // Page title
 $pageTitle = 'Create Requisition';
 ?>
+
 
 <?php include __DIR__ . '/../includes/header.php'; ?>
 
