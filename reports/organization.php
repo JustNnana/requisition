@@ -1065,7 +1065,8 @@ if (chartData.status && chartData.status.length > 0) {
                 backgroundColor: [
                     '#3b82f6', '#10b981', '#f59e0b', '#ef4444',
                     '#8b5cf6', '#06b6d4', '#ec4899'
-                ]
+                ],
+                borderWidth: 0
             }]
         },
         options: {
@@ -1123,7 +1124,8 @@ if (chartData.categories && chartData.categories.length > 0) {
                 backgroundColor: [
                     '#3b82f6', '#10b981', '#f59e0b', '#ef4444',
                     '#8b5cf6', '#06b6d4', '#ec4899', '#14b8a6'
-                ]
+                ],
+                borderWidth: 0
             }]
         },
         options: {

@@ -1128,8 +1128,7 @@ $includeCharts = true;
                                     data: statusCounts,
                                     backgroundColor: colorSet,
                                     borderColor: '#ffffff',
-                                    borderWidth: 2,
-                                    hoverBorderWidth: 3,
+                                    borderWidth: 0,
                                     cutout: '60%'
                                 }]
                             },
