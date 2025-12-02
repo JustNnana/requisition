@@ -560,7 +560,17 @@ $pendingReceiptsCount = 0;
                     <div class="sidebar-badge sidebar-badge-warning"><?php echo $pendingReceiptsCount; ?></div>
                 <?php endif; ?>
             </a>
+<!-- NEW SECTION - Organization Reports -->
+            <div class="sidebar-category">
+                <span class="sidebar-category-text">REPORTS</span>
+            </div>
 
+            <a href="<?php echo BASE_URL; ?>/reports/organization.php" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <span class="sidebar-text">Organization Reports</span>
+            </a>
         <?php elseif ($userRoleId == ROLE_LINE_MANAGER): ?>
             <!-- Line Manager Menu -->
             <div class="sidebar-category">
@@ -655,14 +665,14 @@ $pendingReceiptsCount = 0;
             <span class="sidebar-text">Help & Support</span>
         </a>
     </div>
-    <?php if (can_user_raise_requisition()): ?>
+    <!-- <?php if (can_user_raise_requisition()): ?>
         <li class="nav-item <?php echo isActive('requisitions', 'requisitions'); ?>">
             <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="nav-link">
                 <i class="fas fa-file-alt"></i>
                 <span>My Requisitions</span>
             </a>
         </li>
-    <?php endif; ?>
+    <?php endif; ?> -->
     <!-- Sidebar Footer -->
     <div class="sidebar-footer">
         <div class="sidebar-footer-content">

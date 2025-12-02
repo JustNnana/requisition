@@ -1,11 +1,16 @@
 <?php
 /**
  * GateWey Requisition Management System
- * Report Class - Enhanced with Analytics
+ * Report Class - Enhanced with Analytics & Category Filtering
  * 
  * File: classes/Report.php
  * Purpose: Handle report generation, statistics, and data filtering with chart support
  */
+
+// Include permissions helper for role checking functions
+if (!function_exists('is_managing_director')) {
+    require_once __DIR__ . '/../helpers/permissions.php';
+}
 
 class Report {
     
@@ -164,13 +169,7 @@ class Report {
             
             $sql .= " GROUP BY $groupBy ORDER BY r.created_at ASC";
             
-            error_log("Trends Query: " . $sql);
-            error_log("Trends Params: " . json_encode($params));
-            
-            $result = $this->db->fetchAll($sql, $params);
-            error_log("Trends Result Count: " . count($result));
-            
-            return $result;
+            return $this->db->fetchAll($sql, $params);
             
         } catch (Exception $e) {
             error_log("Get requisition trends error: " . $e->getMessage());
@@ -215,13 +214,7 @@ class Report {
             
             $sql .= " GROUP BY category ORDER BY count DESC LIMIT 10";
             
-            error_log("Category Query: " . $sql);
-            error_log("Category Params: " . json_encode($params));
-            
-            $result = $this->db->fetchAll($sql, $params);
-            error_log("Category Result Count: " . count($result));
-            
-            return $result;
+            return $this->db->fetchAll($sql, $params);
             
         } catch (Exception $e) {
             error_log("Get category distribution error: " . $e->getMessage());
@@ -265,13 +258,7 @@ class Report {
             
             $sql .= " GROUP BY r.status ORDER BY count DESC";
             
-            error_log("Status Query: " . $sql);
-            error_log("Status Params: " . json_encode($params));
-            
-            $result = $this->db->fetchAll($sql, $params);
-            error_log("Status Result Count: " . count($result));
-            
-            return $result;
+            return $this->db->fetchAll($sql, $params);
             
         } catch (Exception $e) {
             error_log("Get status distribution error: " . $e->getMessage());
@@ -339,19 +326,13 @@ class Report {
             
             $sql .= " GROUP BY hour ORDER BY hour ASC";
             
-            error_log("Hourly Query: " . $sql);
-            error_log("Hourly Params: " . json_encode($params));
-            
             $result = $this->db->fetchAll($sql, $params);
-            error_log("Hourly Result Count: " . count($result));
             
             // Fill in missing hours with 0
             $hourlyData = array_fill(0, 24, 0);
             foreach ($result as $item) {
                 $hourlyData[(int)$item['hour']] = (int)$item['count'];
             }
-            
-            error_log("Hourly Data Sum: " . array_sum($hourlyData));
             
             return $hourlyData;
             
@@ -396,19 +377,13 @@ class Report {
             
             $sql .= " GROUP BY weekday ORDER BY weekday ASC";
             
-            error_log("Weekday Query: " . $sql);
-            error_log("Weekday Params: " . json_encode($params));
-            
             $result = $this->db->fetchAll($sql, $params);
-            error_log("Weekday Result Count: " . count($result));
             
             // Fill in missing days with 0
             $weekdayData = array_fill(0, 7, 0);
             foreach ($result as $item) {
                 $weekdayData[(int)$item['weekday']] = (int)$item['count'];
             }
-            
-            error_log("Weekday Data Sum: " . array_sum($weekdayData));
             
             return $weekdayData;
             
@@ -456,13 +431,7 @@ class Report {
                      ORDER BY r.created_at ASC
                      LIMIT 12";
             
-            error_log("Monthly Query: " . $sql);
-            error_log("Monthly Params: " . json_encode($params));
-            
-            $result = $this->db->fetchAll($sql, $params);
-            error_log("Monthly Result Count: " . count($result));
-            
-            return $result;
+            return $this->db->fetchAll($sql, $params);
             
         } catch (Exception $e) {
             error_log("Get monthly spending error: " . $e->getMessage());
@@ -546,175 +515,927 @@ class Report {
     }
     
     /**
-     * Get advanced analytics
+     * Get advanced analytics metrics
+     * 
+     * @param int $userId User ID
+     * @param array $filters Optional filters
+     * @return array Advanced analytics
      */
-    private function getAdvancedAnalytics($userId, $filters) {
+    private function getAdvancedAnalytics($userId, $filters = []) {
         try {
-            $analytics = [];
+            // Build WHERE clause
+            $sql = "SELECT * FROM requisitions WHERE user_id = ? AND status != 'draft'";
+            $params = [$userId];
             
-            // Average approval time
-            $approvalTimeSql = "SELECT AVG(TIMESTAMPDIFF(DAY, r.created_at, r.payment_date)) as avg_approval_days
-                               FROM requisitions r
-                               WHERE r.user_id = ? AND r.payment_date IS NOT NULL";
+            // Add date filters if present
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
             
-            $approvalParams = [$userId];
-            $approvalTimeSql .= $this->buildFilterQuery($filters, $approvalParams);
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
             
-            $approvalTime = $this->db->fetchOne($approvalTimeSql, $approvalParams);
-            $analytics['avg_approval_days'] = round($approvalTime['avg_approval_days'] ?? 0, 1);
+            // Add status filter if present
+            if (!empty($filters['status'])) {
+                $sql .= " AND status = ?";
+                $params[] = $filters['status'];
+            }
             
-            // Most common category
-            $categorySql = "SELECT COALESCE(rc.category_name, r.purpose) as category, COUNT(*) as count
-                           FROM requisitions r
-                           LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
-                           WHERE r.user_id = ?";
+            $requisitions = $this->db->fetchAll($sql, $params);
             
-            $categoryParams = [$userId];
-            $categorySql .= $this->buildFilterQuery($filters, $categoryParams);
-            $categorySql .= " GROUP BY category ORDER BY count DESC LIMIT 1";
+            if (empty($requisitions)) {
+                return [
+                    'avg_approval_days' => '0',
+                    'most_common_category' => 'N/A',
+                    'busiest_day' => 'N/A',
+                    'busiest_hour' => 'N/A',
+                    'approval_rate' => '0',
+                    'avg_per_month' => '0'
+                ];
+            }
             
-            $category = $this->db->fetchOne($categorySql, $categoryParams);
-            $analytics['most_common_category'] = $category['category'] ?? 'N/A';
-            $analytics['most_common_category_count'] = $category['count'] ?? 0;
+            // Calculate average approval time (for completed requisitions)
+            $totalApprovalDays = 0;
+            $completedCount = 0;
+            $approvedCount = 0;
+            $totalCount = count($requisitions);
             
-            // Busiest submission day
-            $weekdayData = $this->getWeekdayDistribution($userId, $filters);
-            $maxDay = array_search(max($weekdayData), $weekdayData);
-            $dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            $analytics['busiest_day'] = $dayNames[$maxDay];
+            foreach ($requisitions as $req) {
+                // Count as approved if status is completed, paid, or approved_for_payment
+                if (in_array($req['status'], [STATUS_COMPLETED, STATUS_PAID, STATUS_APPROVED_FOR_PAYMENT])) {
+                    $approvedCount++;
+                    
+                    // Calculate approval time for completed requisitions
+                    if ($req['status'] == STATUS_COMPLETED && !empty($req['submitted_at'])) {
+                        $submittedDate = new DateTime($req['submitted_at']);
+                        
+                        // Use payment_date if available, otherwise updated_at
+                        $completedDate = !empty($req['payment_date']) 
+                            ? new DateTime($req['payment_date'])
+                            : new DateTime($req['updated_at']);
+                        
+                        $interval = $submittedDate->diff($completedDate);
+                        $totalApprovalDays += $interval->days;
+                        $completedCount++;
+                    }
+                }
+            }
             
-            // Busiest submission hour
-            $hourlyData = $this->getHourlyDistribution($userId, $filters);
-            $maxHour = array_search(max($hourlyData), $hourlyData);
-            $startPeriod = $maxHour >= 12 ? 'PM' : 'AM';
-            $startHour12 = $maxHour % 12;
-            $startHour12 = $startHour12 == 0 ? 12 : $startHour12;
-            $endHour = ($maxHour + 1) % 24;
-            $endPeriod = $endHour >= 12 ? 'PM' : 'AM';
-            $endHour12 = $endHour % 12;
-            $endHour12 = $endHour12 == 0 ? 12 : $endHour12;
-            $analytics['busiest_hour'] = sprintf('%02d:00 %s - %02d:00 %s', $startHour12, $startPeriod, $endHour12, $endPeriod);
+            $avgApprovalDays = $completedCount > 0 
+                ? round($totalApprovalDays / $completedCount, 1) 
+                : 0;
             
-            // Approval rate
-            $totalCount = $this->db->fetchOne(
-                "SELECT COUNT(*) as count FROM requisitions WHERE user_id = ?",
-                [$userId]
-            )['count'];
+            // Calculate approval rate (percentage of approved vs total)
+            $approvalRate = $totalCount > 0 
+                ? round(($approvedCount / $totalCount) * 100, 1) 
+                : 0;
             
-            $approvedCount = $this->db->fetchOne(
-                "SELECT COUNT(*) as count FROM requisitions 
-                 WHERE user_id = ? AND status IN ('completed', 'paid', 'approved_for_payment')",
-                [$userId]
-            )['count'];
+            // Get most common category
+            $sql = "SELECT purpose as category, COUNT(*) as count 
+                    FROM requisitions 
+                    WHERE user_id = ? AND status != 'draft'";
+            $params = [$userId];
             
-            $analytics['approval_rate'] = $totalCount > 0 ? round(($approvedCount / $totalCount) * 100, 1) : 0;
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
             
-            // Average requisition per month
-            $monthsSql = "SELECT COUNT(DISTINCT DATE_FORMAT(created_at, '%Y-%m')) as months
-                         FROM requisitions
-                         WHERE user_id = ?";
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
             
-            $monthsParams = [$userId];
-            $monthsSql .= $this->buildFilterQuery($filters, $monthsParams);
+            $sql .= " GROUP BY purpose ORDER BY count DESC LIMIT 1";
             
-            $months = $this->db->fetchOne($monthsSql, $monthsParams)['months'];
+            $topCategory = $this->db->fetchOne($sql, $params);
+            $mostCommonCategory = $topCategory ? $topCategory['category'] : 'N/A';
             
-            $countSql = "SELECT COUNT(*) as count FROM requisitions WHERE user_id = ?";
-            $countParams = [$userId];
-            $countSql .= $this->buildFilterQuery($filters, $countParams);
+            // Truncate long category names
+            if (strlen($mostCommonCategory) > 30) {
+                $mostCommonCategory = substr($mostCommonCategory, 0, 27) . '...';
+            }
             
-            $count = $this->db->fetchOne($countSql, $countParams)['count'];
+            // Get busiest day of week
+            $sql = "SELECT DAYOFWEEK(created_at) - 1 as day_index, COUNT(*) as count
+                    FROM requisitions 
+                    WHERE user_id = ? AND status != 'draft'";
+            $params = [$userId];
             
-            $analytics['avg_per_month'] = $months > 0 ? round($count / $months, 1) : 0;
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
             
-            return $analytics;
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            $sql .= " GROUP BY day_index ORDER BY count DESC LIMIT 1";
+            
+            $busiestDayData = $this->db->fetchOne($sql, $params);
+            
+            if ($busiestDayData) {
+                $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                $busiestDay = $days[$busiestDayData['day_index']];
+            } else {
+                $busiestDay = 'N/A';
+            }
+            
+            // Get busiest hour
+            $sql = "SELECT HOUR(created_at) as hour, COUNT(*) as count
+                    FROM requisitions 
+                    WHERE user_id = ? AND status != 'draft'";
+            $params = [$userId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            $sql .= " GROUP BY hour ORDER BY count DESC LIMIT 1";
+            
+            $busiestHourData = $this->db->fetchOne($sql, $params);
+            
+            if ($busiestHourData) {
+                $hour = (int)$busiestHourData['hour'];
+                // Format as 12-hour time
+                if ($hour == 0) {
+                    $busiestHour = '12:00 AM';
+                } elseif ($hour < 12) {
+                    $busiestHour = $hour . ':00 AM';
+                } elseif ($hour == 12) {
+                    $busiestHour = '12:00 PM';
+                } else {
+                    $busiestHour = ($hour - 12) . ':00 PM';
+                }
+            } else {
+                $busiestHour = 'N/A';
+            }
+            
+            // Calculate average per month
+            $sql = "SELECT MIN(DATE(created_at)) as first_date, 
+                           MAX(DATE(created_at)) as last_date,
+                           COUNT(*) as total_count
+                    FROM requisitions 
+                    WHERE user_id = ? AND status != 'draft'";
+            $params = [$userId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            $dateRange = $this->db->fetchOne($sql, $params);
+            
+            if ($dateRange && $dateRange['first_date'] && $dateRange['last_date']) {
+                $firstDate = new DateTime($dateRange['first_date']);
+                $lastDate = new DateTime($dateRange['last_date']);
+                $interval = $firstDate->diff($lastDate);
+                
+                // Calculate months (including partial months)
+                $months = ($interval->y * 12) + $interval->m;
+                if ($interval->d > 0) {
+                    $months += 1;
+                }
+                
+                // Ensure at least 1 month
+                $months = max(1, $months);
+                
+                $avgPerMonth = round($dateRange['total_count'] / $months, 1);
+            } else {
+                $avgPerMonth = $totalCount;
+            }
+            
+            return [
+                'avg_approval_days' => $avgApprovalDays,
+                'most_common_category' => $mostCommonCategory,
+                'busiest_day' => $busiestDay,
+                'busiest_hour' => $busiestHour,
+                'approval_rate' => $approvalRate,
+                'avg_per_month' => $avgPerMonth
+            ];
             
         } catch (Exception $e) {
-            error_log("Get advanced analytics error: " . $e->getMessage());
+            error_log("Error calculating advanced analytics: " . $e->getMessage());
             return [
-                'avg_approval_days' => 0,
+                'avg_approval_days' => '0',
                 'most_common_category' => 'N/A',
                 'busiest_day' => 'N/A',
                 'busiest_hour' => 'N/A',
-                'approval_rate' => 0,
-                'avg_per_month' => 0
+                'approval_rate' => '0',
+                'avg_per_month' => '0'
             ];
         }
     }
-    
+
     /**
-     * Generate department report (Line Manager)
-     * 
-     * @param array $filters Filter options
-     * @param int $page Page number
-     * @param int $perPage Records per page
-     * @return array Report data with statistics and requisitions
+     * Generate department report with enhanced analytics
      */
     public function generateDepartmentReport($filters = [], $page = 1, $perPage = 15) {
         try {
+            $userId = Session::getUserId();
             $departmentId = Session::getUserDepartmentId();
             
             if (!$departmentId) {
                 return [
                     'success' => false,
-                    'message' => 'You are not assigned to a department.'
+                    'message' => 'User department not found'
                 ];
             }
             
-            // Base query
-            $sql = "SELECT r.*,
-                           u.first_name as requester_first_name,
+            // Build base query
+            $sql = "SELECT r.*, 
+                           u.first_name as requester_first_name, 
                            u.last_name as requester_last_name,
-                           u.email as requester_email,
-                           d.department_name,
-                           d.department_code
+                           u.email as requester_email
                     FROM requisitions r
-                    JOIN users u ON r.user_id = u.id
-                    LEFT JOIN departments d ON r.department_id = d.id
-                    WHERE r.department_id = ?";
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ?";
             
             $params = [$departmentId];
             
-            // Apply filters
+            // Add filters
             $sql .= $this->buildFilterQuery($filters, $params);
             
-            // Get statistics
-            $stats = $this->calculateStatistics($sql, $params);
+            // Calculate statistics
+            $statistics = $this->calculateDepartmentStatistics($departmentId, $filters);
             
-            // Add pagination
-            $sql .= " ORDER BY r.created_at DESC LIMIT ? OFFSET ?";
+            // Get chart data
+            $chartData = [
+                'trends' => $this->getDepartmentTrends($departmentId, $filters),
+                'status' => $this->getStatusDistribution($userId, $filters),
+                'top_users' => $this->getTopRequesters($departmentId, $filters),
+                'monthly' => $this->getDepartmentMonthlySpending($departmentId, $filters),
+                'hourly' => $this->getDepartmentHourlyDistribution($departmentId, $filters),
+                'weekday' => $this->getDepartmentWeekdayDistribution($departmentId, $filters)
+            ];
+            
+            // Get advanced analytics
+            $analytics = $this->getDepartmentAnalytics($departmentId, $filters);
+            
+            // Get paginated requisitions
             $offset = ($page - 1) * $perPage;
-            $params[] = $perPage;
-            $params[] = $offset;
+            $paginatedSql = $sql . " ORDER BY r.created_at DESC LIMIT {$perPage} OFFSET {$offset}";
+            $requisitions = $this->db->fetchAll($paginatedSql, $params);
             
-            // Get requisitions
-            $requisitions = $this->db->fetchAll($sql, $params);
-            
-            // Calculate pagination
-            $totalPages = ceil($stats['total_count'] / $perPage);
-            
-            // Log report generation
-            $this->logReportGeneration('department', $filters);
+            // Get total count for pagination
+            $countSql = "SELECT COUNT(*) as total 
+                         FROM requisitions r
+                         INNER JOIN users u ON r.user_id = u.id
+                         WHERE u.department_id = ?";
+            $countParams = [$departmentId];
+            $countSql .= $this->buildFilterQuery($filters, $countParams);
+            $totalCount = $this->db->fetchOne($countSql, $countParams)['total'];
             
             return [
                 'success' => true,
-                'statistics' => $stats,
+                'statistics' => $statistics,
                 'requisitions' => $requisitions,
+                'chart_data' => $chartData,
+                'analytics' => $analytics,
                 'pagination' => [
                     'current_page' => $page,
                     'per_page' => $perPage,
-                    'total_records' => $stats['total_count'],
-                    'total_pages' => $totalPages
-                ],
-                'filters' => $filters,
-                'department_id' => $departmentId
+                    'total_records' => $totalCount,
+                    'total_pages' => ceil($totalCount / $perPage)
+                ]
             ];
             
         } catch (Exception $e) {
             error_log("Generate department report error: " . $e->getMessage());
             return [
                 'success' => false,
-                'message' => 'An error occurred while generating the report.'
+                'message' => 'Error generating report: ' . $e->getMessage()
+            ];
+        }
+    }
+
+    /**
+     * Calculate department statistics
+     */
+    private function calculateDepartmentStatistics($departmentId, $filters = []) {
+        try {
+            $sql = "SELECT 
+                        COUNT(*) as total_count,
+                        COALESCE(SUM(r.total_amount), 0) as total_amount,
+                        COALESCE(AVG(r.total_amount), 0) as average_amount,
+                        COALESCE(MIN(r.total_amount), 0) as min_amount,
+                        COALESCE(MAX(r.total_amount), 0) as max_amount,
+                        SUM(CASE WHEN r.status = 'completed' THEN 1 ELSE 0 END) as completed_count,
+                        SUM(CASE WHEN r.status IN ('pending_line_manager', 'pending_md', 'pending_finance_manager') THEN 1 ELSE 0 END) as pending_count,
+                        SUM(CASE WHEN r.status = 'rejected' THEN 1 ELSE 0 END) as rejected_count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $params = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['user_id'])) {
+                $sql .= " AND r.user_id = ?";
+                $params[] = $filters['user_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            $result = $this->db->fetchOne($sql, $params);
+            
+            return [
+                'total_count' => (int)$result['total_count'],
+                'total_amount' => (float)$result['total_amount'],
+                'average_amount' => (float)$result['average_amount'],
+                'min_amount' => (float)$result['min_amount'],
+                'max_amount' => (float)$result['max_amount'],
+                'completed_count' => (int)$result['completed_count'],
+                'pending_count' => (int)$result['pending_count'],
+                'rejected_count' => (int)$result['rejected_count']
+            ];
+            
+        } catch (Exception $e) {
+            error_log("Calculate department statistics error: " . $e->getMessage());
+            return [
+                'total_count' => 0,
+                'total_amount' => 0,
+                'average_amount' => 0,
+                'min_amount' => 0,
+                'max_amount' => 0,
+                'completed_count' => 0,
+                'pending_count' => 0,
+                'rejected_count' => 0
+            ];
+        }
+    }
+
+    /**
+     * Get department requisition trends
+     */
+    private function getDepartmentTrends($departmentId, $filters = []) {
+        try {
+            $interval = $filters['interval'] ?? 'daily';
+            
+            switch ($interval) {
+                case 'weekly':
+                    $dateFormat = '%Y-W%u';
+                    break;
+                case 'monthly':
+                    $dateFormat = '%Y-%m';
+                    break;
+                default:
+                    $dateFormat = '%Y-%m-%d';
+                    break;
+            }
+            
+            $sql = "SELECT 
+                        DATE_FORMAT(r.created_at, '{$dateFormat}') as time_period,
+                        COUNT(*) as count,
+                        SUM(r.total_amount) as total_amount
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $params = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['user_id'])) {
+                $sql .= " AND r.user_id = ?";
+                $params[] = $filters['user_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            $sql .= " GROUP BY time_period ORDER BY r.created_at ASC";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get department trends error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get top requesters in department
+     */
+    private function getTopRequesters($departmentId, $filters = []) {
+        try {
+            $sql = "SELECT 
+                        u.id,
+                        CONCAT(u.first_name, ' ', u.last_name) as user_name,
+                        COUNT(r.id) as count,
+                        SUM(r.total_amount) as total_amount
+                    FROM users u
+                    INNER JOIN requisitions r ON u.id = r.user_id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $params = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            $sql .= " GROUP BY u.id, user_name ORDER BY count DESC LIMIT 10";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get top requesters error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get monthly spending for department
+     */
+    private function getDepartmentMonthlySpending($departmentId, $filters = []) {
+        try {
+            $sql = "SELECT 
+                        DATE_FORMAT(r.created_at, '%b %Y') as month,
+                        SUM(r.total_amount) as total_amount,
+                        COUNT(*) as count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'
+                    AND r.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)";
+            
+            $params = [$departmentId];
+            
+            if (!empty($filters['user_id'])) {
+                $sql .= " AND r.user_id = ?";
+                $params[] = $filters['user_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m'), month 
+                      ORDER BY DATE_FORMAT(r.created_at, '%Y-%m') ASC";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get monthly spending error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get hourly distribution for department
+     */
+    private function getDepartmentHourlyDistribution($departmentId, $filters = []) {
+        try {
+            $sql = "SELECT 
+                        HOUR(r.created_at) as hour,
+                        COUNT(*) as count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $params = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['user_id'])) {
+                $sql .= " AND r.user_id = ?";
+                $params[] = $filters['user_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            $sql .= " GROUP BY hour ORDER BY hour ASC";
+            
+            $results = $this->db->fetchAll($sql, $params);
+            
+            // Initialize 24-hour array
+            $hourly = array_fill(0, 24, 0);
+            
+            // Fill in actual counts
+            foreach ($results as $row) {
+                $hourly[(int)$row['hour']] = (int)$row['count'];
+            }
+            
+            return $hourly;
+            
+        } catch (Exception $e) {
+            error_log("Get hourly distribution error: " . $e->getMessage());
+            return array_fill(0, 24, 0);
+        }
+    }
+
+    /**
+     * Get weekday distribution for department
+     */
+    private function getDepartmentWeekdayDistribution($departmentId, $filters = []) {
+        try {
+            $sql = "SELECT 
+                        WEEKDAY(r.created_at) as weekday,
+                        COUNT(*) as count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $params = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['user_id'])) {
+                $sql .= " AND r.user_id = ?";
+                $params[] = $filters['user_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            $sql .= " GROUP BY weekday ORDER BY weekday ASC";
+            
+            $results = $this->db->fetchAll($sql, $params);
+            
+            // Initialize 7-day array (Monday=0, ..., Sunday=6)
+            $weekdays = array_fill(0, 7, 0);
+            
+            // Fill in actual counts
+            foreach ($results as $row) {
+                $weekdays[(int)$row['weekday']] = (int)$row['count'];
+            }
+            
+            return $weekdays;
+            
+        } catch (Exception $e) {
+            error_log("Get weekday distribution error: " . $e->getMessage());
+            return array_fill(0, 7, 0);
+        }
+    }
+
+    /**
+     * Get department analytics metrics
+     */
+    private function getDepartmentAnalytics($departmentId, $filters = []) {
+        try {
+            $sql = "SELECT r.* 
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $params = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['user_id'])) {
+                $sql .= " AND r.user_id = ?";
+                $params[] = $filters['user_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            $requisitions = $this->db->fetchAll($sql, $params);
+            
+            if (empty($requisitions)) {
+                return [
+                    'avg_approval_days' => '0',
+                    'top_requester' => 'N/A',
+                    'busiest_day' => 'N/A',
+                    'busiest_hour' => 'N/A',
+                    'approval_rate' => '0'
+                ];
+            }
+            
+            // Calculate metrics (same as personal but for department)
+            $totalApprovalDays = 0;
+            $completedCount = 0;
+            $approvedCount = 0;
+            $totalCount = count($requisitions);
+            
+            foreach ($requisitions as $req) {
+                if (in_array($req['status'], ['completed', 'paid', 'approved_for_payment'])) {
+                    $approvedCount++;
+                    
+                    if ($req['status'] == 'completed' && !empty($req['submitted_at'])) {
+                        $submittedDate = new DateTime($req['submitted_at']);
+                        $completedDate = !empty($req['payment_date']) 
+                            ? new DateTime($req['payment_date'])
+                            : new DateTime($req['updated_at']);
+                        
+                        $interval = $submittedDate->diff($completedDate);
+                        $totalApprovalDays += $interval->days;
+                        $completedCount++;
+                    }
+                }
+            }
+            
+            $avgApprovalDays = $completedCount > 0 
+                ? round($totalApprovalDays / $completedCount, 1) 
+                : 0;
+            
+            $approvalRate = $totalCount > 0 
+                ? round(($approvedCount / $totalCount) * 100, 1) 
+                : 0;
+            
+            // Get top requester
+            $sql = "SELECT 
+                        CONCAT(u.first_name, ' ', u.last_name) as name,
+                        COUNT(r.id) as count
+                    FROM users u
+                    INNER JOIN requisitions r ON u.id = r.user_id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $topReqParams = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $topReqParams[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $topReqParams[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $topReqParams[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $topReqParams[] = $dateRange['start'];
+                    $topReqParams[] = $dateRange['end'];
+                }
+            }
+            
+            $sql .= " GROUP BY u.id, name ORDER BY count DESC LIMIT 1";
+            
+            $topRequester = $this->db->fetchOne($sql, $topReqParams);
+            $topRequesterName = $topRequester ? $topRequester['name'] : 'N/A';
+            
+            // Get busiest day
+            $sql = "SELECT WEEKDAY(r.created_at) as weekday, COUNT(*) as count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $dayParams = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $dayParams[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $dayParams[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $dayParams[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $dayParams[] = $dateRange['start'];
+                    $dayParams[] = $dateRange['end'];
+                }
+            }
+            
+            $sql .= " GROUP BY weekday ORDER BY count DESC LIMIT 1";
+            
+            $busiestDayData = $this->db->fetchOne($sql, $dayParams);
+            
+            if ($busiestDayData) {
+                $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                $busiestDay = $days[$busiestDayData['weekday']];
+            } else {
+                $busiestDay = 'N/A';
+            }
+            
+            // Get busiest hour
+            $sql = "SELECT HOUR(r.created_at) as hour, COUNT(*) as count
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    WHERE u.department_id = ? AND r.status != 'draft'";
+            
+            $hourParams = [$departmentId];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $hourParams[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $hourParams[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $hourParams[] = $filters['category'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $hourParams[] = $dateRange['start'];
+                    $hourParams[] = $dateRange['end'];
+                }
+            }
+            
+            $sql .= " GROUP BY hour ORDER BY count DESC LIMIT 1";
+            
+            $busiestHourData = $this->db->fetchOne($sql, $hourParams);
+            
+            if ($busiestHourData) {
+                $hour = (int)$busiestHourData['hour'];
+                if ($hour == 0) {
+                    $busiestHour = '12:00 AM';
+                } elseif ($hour < 12) {
+                    $busiestHour = $hour . ':00 AM';
+                } elseif ($hour == 12) {
+                    $busiestHour = '12:00 PM';
+                } else {
+                    $busiestHour = ($hour - 12) . ':00 PM';
+                }
+            } else {
+                $busiestHour = 'N/A';
+            }
+            
+            return [
+                'avg_approval_days' => $avgApprovalDays,
+                'top_requester' => $topRequesterName,
+                'busiest_day' => $busiestDay,
+                'busiest_hour' => $busiestHour,
+                'approval_rate' => $approvalRate
+            ];
+            
+        } catch (Exception $e) {
+            error_log("Get department analytics error: " . $e->getMessage());
+            return [
+                'avg_approval_days' => '0',
+                'top_requester' => 'N/A',
+                'busiest_day' => 'N/A',
+                'busiest_hour' => 'N/A',
+                'approval_rate' => '0'
             ];
         }
     }
@@ -729,8 +1450,8 @@ class Report {
      */
     public function generateOrganizationReport($filters = [], $page = 1, $perPage = 15) {
         try {
-            // Verify permission
-            if (!is_managing_director() && !is_finance_manager()) {
+            // Verify permission - allow MD, Finance Manager, and Finance Member
+            if (!is_managing_director() && !is_finance_manager() && !is_finance_member()) {
                 return [
                     'success' => false,
                     'message' => 'You do not have permission to view organization-wide reports.'
@@ -754,8 +1475,23 @@ class Report {
             // Apply filters
             $sql .= $this->buildFilterQuery($filters, $params);
             
-            // Get statistics
-            $stats = $this->calculateStatistics($sql, $params);
+            // Get enhanced statistics
+            $stats = $this->calculateOrganizationStatistics($filters);
+            
+            // Get chart data
+            $chartData = [
+                'trends' => $this->getOrganizationTrends($filters),
+                'departments' => $this->getDepartmentComparison($filters),
+                'status' => $this->getOrganizationStatusDistribution($filters),
+                'top_requesters' => $this->getOrganizationTopRequesters($filters),
+                'categories' => $this->getOrganizationCategories($filters),
+                'monthly' => $this->getOrganizationMonthlySpending($filters),
+                'hourly' => $this->getOrganizationHourlyDistribution($filters),
+                'weekday' => $this->getOrganizationWeekdayDistribution($filters)
+            ];
+            
+            // Get advanced analytics
+            $analytics = $this->getOrganizationAnalytics($filters);
             
             // Add pagination
             $sql .= " ORDER BY r.created_at DESC LIMIT ? OFFSET ?";
@@ -780,6 +1516,8 @@ class Report {
                 'statistics' => $stats,
                 'requisitions' => $requisitions,
                 'department_breakdown' => $departmentBreakdown,
+                'chart_data' => $chartData,
+                'analytics' => $analytics,
                 'pagination' => [
                     'current_page' => $page,
                     'per_page' => $perPage,
@@ -1075,6 +1813,852 @@ class Report {
             
         } catch (Exception $e) {
             error_log("Log report generation error: " . $e->getMessage());
+        }
+    }
+
+    /**
+     * ========================================================================
+     * ORGANIZATION-WIDE REPORTING METHODS
+     * ========================================================================
+     */
+
+    /**
+     * Calculate organization-wide statistics with enhanced metrics
+     */
+    private function calculateOrganizationStatistics($filters = []) {
+        try {
+            $sql = "SELECT 
+                        COUNT(*) as total_count,
+                        COALESCE(SUM(r.total_amount), 0) as total_amount,
+                        COALESCE(AVG(r.total_amount), 0) as average_amount,
+                        COALESCE(MIN(r.total_amount), 0) as min_amount,
+                        COALESCE(MAX(r.total_amount), 0) as max_amount,
+                        SUM(CASE WHEN r.status = 'completed' THEN 1 ELSE 0 END) as completed_count,
+                        SUM(CASE WHEN r.status IN ('pending_line_manager', 'pending_md', 'pending_finance_manager') THEN 1 ELSE 0 END) as pending_count,
+                        SUM(CASE WHEN r.status = 'rejected' THEN 1 ELSE 0 END) as rejected_count
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['user_id'])) {
+                $sql .= " AND r.user_id = ?";
+                $params[] = $filters['user_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $result = $this->db->fetchOne($sql, $params);
+            
+            return [
+                'total_count' => (int)$result['total_count'],
+                'total_amount' => (float)$result['total_amount'],
+                'average_amount' => (float)$result['average_amount'],
+                'min_amount' => (float)$result['min_amount'],
+                'max_amount' => (float)$result['max_amount'],
+                'completed_count' => (int)$result['completed_count'],
+                'pending_count' => (int)$result['pending_count'],
+                'rejected_count' => (int)$result['rejected_count']
+            ];
+            
+        } catch (Exception $e) {
+            error_log("Calculate organization statistics error: " . $e->getMessage());
+            return [
+                'total_count' => 0,
+                'total_amount' => 0,
+                'average_amount' => 0,
+                'min_amount' => 0,
+                'max_amount' => 0,
+                'completed_count' => 0,
+                'pending_count' => 0,
+                'rejected_count' => 0
+            ];
+        }
+    }
+
+    /**
+     * Get organization-wide requisition trends
+     */
+    private function getOrganizationTrends($filters = []) {
+        try {
+            $interval = $filters['interval'] ?? 'daily';
+            
+            switch ($interval) {
+                case 'weekly':
+                    $dateFormat = '%Y-W%u';
+                    break;
+                case 'monthly':
+                    $dateFormat = '%Y-%m';
+                    break;
+                default:
+                    $dateFormat = '%Y-%m-%d';
+                    break;
+            }
+            
+            $sql = "SELECT 
+                        DATE_FORMAT(r.created_at, '{$dateFormat}') as time_period,
+                        COUNT(*) as count,
+                        SUM(r.total_amount) as total_amount
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY time_period ORDER BY r.created_at ASC";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get organization trends error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get department comparison data
+     */
+    private function getDepartmentComparison($filters = []) {
+        try {
+            $sql = "SELECT 
+                        d.department_name,
+                        d.department_code,
+                        COUNT(r.id) as count,
+                        SUM(r.total_amount) as total_amount
+                    FROM departments d
+                    LEFT JOIN requisitions r ON d.id = r.department_id AND r.status != 'draft'";
+            
+            $params = [];
+            $whereClauses = [];
+            
+            if (!empty($filters['date_from'])) {
+                $whereClauses[] = "DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $whereClauses[] = "DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $whereClauses[] = "DATE(r.created_at) >= ?";
+                    $whereClauses[] = "DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['status'])) {
+                $whereClauses[] = "r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $whereClauses[] = "r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            if (!empty($whereClauses)) {
+                $sql .= " WHERE " . implode(' AND ', $whereClauses);
+            }
+            
+            $sql .= " GROUP BY d.id, d.department_name, d.department_code 
+                     ORDER BY total_amount DESC LIMIT 10";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get department comparison error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get organization-wide status distribution
+     */
+    private function getOrganizationStatusDistribution($filters = []) {
+        try {
+            $sql = "SELECT 
+                        r.status,
+                        COUNT(*) as count,
+                        SUM(r.total_amount) as total_amount
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY r.status ORDER BY count DESC";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get organization status distribution error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get top requesters across organization
+     */
+    private function getOrganizationTopRequesters($filters = []) {
+        try {
+            $sql = "SELECT 
+                        u.id,
+                        CONCAT(u.first_name, ' ', u.last_name) as user_name,
+                        d.department_name,
+                        COUNT(r.id) as count,
+                        SUM(r.total_amount) as total_amount
+                    FROM users u
+                    INNER JOIN requisitions r ON u.id = r.user_id
+                    LEFT JOIN departments d ON u.department_id = d.id
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND u.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY u.id, user_name, d.department_name 
+                     ORDER BY count DESC LIMIT 10";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get organization top requesters error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get organization-wide category distribution
+     */
+    private function getOrganizationCategories($filters = []) {
+        try {
+            $sql = "SELECT 
+                        COALESCE(rc.category_name, r.purpose) as category,
+                        COUNT(*) as count,
+                        SUM(r.total_amount) as total_amount
+                    FROM requisitions r
+                    LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            $sql .= " GROUP BY category ORDER BY count DESC LIMIT 10";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get organization categories error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get organization-wide monthly spending
+     */
+    private function getOrganizationMonthlySpending($filters = []) {
+        try {
+            $sql = "SELECT 
+                        DATE_FORMAT(r.created_at, '%b %Y') as month,
+                        SUM(r.total_amount) as total_amount,
+                        COUNT(*) as count
+                    FROM requisitions r
+                    WHERE r.status != 'draft'
+                    AND r.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)";
+            
+            $params = [];
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY DATE_FORMAT(r.created_at, '%Y-%m'), month 
+                     ORDER BY DATE_FORMAT(r.created_at, '%Y-%m') ASC";
+            
+            return $this->db->fetchAll($sql, $params);
+            
+        } catch (Exception $e) {
+            error_log("Get organization monthly spending error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Get organization-wide hourly distribution
+     */
+    private function getOrganizationHourlyDistribution($filters = []) {
+        try {
+            $sql = "SELECT 
+                        HOUR(r.created_at) as hour,
+                        COUNT(*) as count
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY hour ORDER BY hour ASC";
+            
+            $results = $this->db->fetchAll($sql, $params);
+            
+            // Initialize 24-hour array
+            $hourly = array_fill(0, 24, 0);
+            
+            // Fill in actual counts
+            foreach ($results as $row) {
+                $hourly[(int)$row['hour']] = (int)$row['count'];
+            }
+            
+            return $hourly;
+            
+        } catch (Exception $e) {
+            error_log("Get organization hourly distribution error: " . $e->getMessage());
+            return array_fill(0, 24, 0);
+        }
+    }
+
+    /**
+     * Get organization-wide weekday distribution
+     */
+    private function getOrganizationWeekdayDistribution($filters = []) {
+        try {
+            $sql = "SELECT 
+                        WEEKDAY(r.created_at) as weekday,
+                        COUNT(*) as count
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY weekday ORDER BY weekday ASC";
+            
+            $results = $this->db->fetchAll($sql, $params);
+            
+            // Initialize 7-day array (Monday=0, ..., Sunday=6)
+            $weekdays = array_fill(0, 7, 0);
+            
+            // Fill in actual counts
+            foreach ($results as $row) {
+                $weekdays[(int)$row['weekday']] = (int)$row['count'];
+            }
+            
+            return $weekdays;
+            
+        } catch (Exception $e) {
+            error_log("Get organization weekday distribution error: " . $e->getMessage());
+            return array_fill(0, 7, 0);
+        }
+    }
+
+    /**
+     * Get organization-wide analytics metrics
+     */
+    private function getOrganizationAnalytics($filters = []) {
+        try {
+            $sql = "SELECT r.* 
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $params = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $params[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $params[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $params[] = $dateRange['start'];
+                    $params[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $params[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['status'])) {
+                $sql .= " AND r.status = ?";
+                $params[] = $filters['status'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $params[] = $filters['category'];
+            }
+            
+            $requisitions = $this->db->fetchAll($sql, $params);
+            
+            if (empty($requisitions)) {
+                return [
+                    'avg_approval_days' => '0',
+                    'top_department' => 'N/A',
+                    'top_requester' => 'N/A',
+                    'busiest_day' => 'N/A',
+                    'busiest_hour' => 'N/A',
+                    'approval_rate' => '0'
+                ];
+            }
+            
+            // Calculate approval metrics
+            $totalApprovalDays = 0;
+            $completedCount = 0;
+            $approvedCount = 0;
+            $totalCount = count($requisitions);
+            
+            foreach ($requisitions as $req) {
+                if (in_array($req['status'], ['completed', 'paid', 'approved_for_payment'])) {
+                    $approvedCount++;
+                    
+                    if ($req['status'] == 'completed' && !empty($req['submitted_at'])) {
+                        $submittedDate = new DateTime($req['submitted_at']);
+                        $completedDate = !empty($req['payment_date']) 
+                            ? new DateTime($req['payment_date'])
+                            : new DateTime($req['updated_at']);
+                        
+                        $interval = $submittedDate->diff($completedDate);
+                        $totalApprovalDays += $interval->days;
+                        $completedCount++;
+                    }
+                }
+            }
+            
+            $avgApprovalDays = $completedCount > 0 
+                ? round($totalApprovalDays / $completedCount, 1) 
+                : 0;
+            
+            $approvalRate = $totalCount > 0 
+                ? round(($approvedCount / $totalCount) * 100, 1) 
+                : 0;
+            
+            // Get top department
+            $sql = "SELECT 
+                        d.department_name,
+                        COUNT(r.id) as count
+                    FROM departments d
+                    INNER JOIN requisitions r ON d.id = r.department_id
+                    WHERE r.status != 'draft'";
+            
+            $topDeptParams = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $topDeptParams[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $topDeptParams[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $topDeptParams[] = $dateRange['start'];
+                    $topDeptParams[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $topDeptParams[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY d.id, d.department_name ORDER BY count DESC LIMIT 1";
+            
+            $topDept = $this->db->fetchOne($sql, $topDeptParams);
+            $topDepartment = $topDept ? $topDept['department_name'] : 'N/A';
+            
+            // Get top requester
+            $sql = "SELECT 
+                        CONCAT(u.first_name, ' ', u.last_name) as name,
+                        COUNT(r.id) as count
+                    FROM users u
+                    INNER JOIN requisitions r ON u.id = r.user_id
+                    WHERE r.status != 'draft'";
+            
+            $topReqParams = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $topReqParams[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $topReqParams[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $topReqParams[] = $dateRange['start'];
+                    $topReqParams[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['department_id'])) {
+                $sql .= " AND r.department_id = ?";
+                $topReqParams[] = $filters['department_id'];
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $topReqParams[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY u.id, name ORDER BY count DESC LIMIT 1";
+            
+            $topReq = $this->db->fetchOne($sql, $topReqParams);
+            $topRequester = $topReq ? $topReq['name'] : 'N/A';
+            
+            // Get busiest day
+            $sql = "SELECT WEEKDAY(r.created_at) as weekday, COUNT(*) as count
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $dayParams = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $dayParams[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $dayParams[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $dayParams[] = $dateRange['start'];
+                    $dayParams[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $dayParams[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY weekday ORDER BY count DESC LIMIT 1";
+            
+            $busiestDayData = $this->db->fetchOne($sql, $dayParams);
+            
+            if ($busiestDayData) {
+                $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                $busiestDay = $days[$busiestDayData['weekday']];
+            } else {
+                $busiestDay = 'N/A';
+            }
+            
+            // Get busiest hour
+            $sql = "SELECT HOUR(r.created_at) as hour, COUNT(*) as count
+                    FROM requisitions r
+                    WHERE r.status != 'draft'";
+            
+            $hourParams = [];
+            
+            if (!empty($filters['date_from'])) {
+                $sql .= " AND DATE(r.created_at) >= ?";
+                $hourParams[] = $filters['date_from'];
+            }
+            
+            if (!empty($filters['date_to'])) {
+                $sql .= " AND DATE(r.created_at) <= ?";
+                $hourParams[] = $filters['date_to'];
+            }
+            
+            if (!empty($filters['period'])) {
+                $dateRange = $this->getPeriodDateRange($filters['period']);
+                if ($dateRange) {
+                    $sql .= " AND DATE(r.created_at) >= ? AND DATE(r.created_at) <= ?";
+                    $hourParams[] = $dateRange['start'];
+                    $hourParams[] = $dateRange['end'];
+                }
+            }
+            
+            if (!empty($filters['category'])) {
+                $sql .= " AND r.purpose = ?";
+                $hourParams[] = $filters['category'];
+            }
+            
+            $sql .= " GROUP BY hour ORDER BY count DESC LIMIT 1";
+            
+            $busiestHourData = $this->db->fetchOne($sql, $hourParams);
+            
+            if ($busiestHourData) {
+                $hour = (int)$busiestHourData['hour'];
+                if ($hour == 0) {
+                    $busiestHour = '12:00 AM';
+                } elseif ($hour < 12) {
+                    $busiestHour = $hour . ':00 AM';
+                } elseif ($hour == 12) {
+                    $busiestHour = '12:00 PM';
+                } else {
+                    $busiestHour = ($hour - 12) . ':00 PM';
+                }
+            } else {
+                $busiestHour = 'N/A';
+            }
+            
+            return [
+                'avg_approval_days' => $avgApprovalDays,
+                'top_department' => $topDepartment,
+                'top_requester' => $topRequester,
+                'busiest_day' => $busiestDay,
+                'busiest_hour' => $busiestHour,
+                'approval_rate' => $approvalRate
+            ];
+            
+        } catch (Exception $e) {
+            error_log("Get organization analytics error: " . $e->getMessage());
+            return [
+                'avg_approval_days' => '0',
+                'top_department' => 'N/A',
+                'top_requester' => 'N/A',
+                'busiest_day' => 'N/A',
+                'busiest_hour' => 'N/A',
+                'approval_rate' => '0'
+            ];
         }
     }
 }

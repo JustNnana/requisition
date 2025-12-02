@@ -1,10 +1,11 @@
 <?php
+
 /**
  * GateWey Requisition Management System
- * Department Reports Page
+ * Department Reports Page - Enhanced with Analytics
  * 
  * File: reports/department.php
- * Purpose: Generate department requisition reports (Line Manager view)
+ * Purpose: Generate comprehensive department requisition reports (Line Manager view)
  */
 
 // Define access level
@@ -18,9 +19,11 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
-// Load helpers - IMPORTANT: Include permissions.php for navbar functions
+
+// Load helpers
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
+
 // Check if user is Line Manager
 if (!is_line_manager()) {
     Session::setFlash('error', 'Only Line Managers can access department reports.');
@@ -28,11 +31,10 @@ if (!is_line_manager()) {
     exit;
 }
 
-// Load helpers
-require_once __DIR__ . '/../helpers/status-indicator.php';
-
 // Initialize classes
 $report = new Report();
+$user = new User();
+$department = new Department();
 
 // Get filters from request
 $filters = [
@@ -41,7 +43,9 @@ $filters = [
     'date_to' => Sanitizer::string($_GET['date_to'] ?? ''),
     'status' => Sanitizer::string($_GET['status'] ?? ''),
     'user_id' => Sanitizer::int($_GET['user_id'] ?? 0),
-    'search' => Sanitizer::string($_GET['search'] ?? '')
+    'category' => Sanitizer::string($_GET['category'] ?? ''),  // ← ADD THIS LINE
+    'search' => Sanitizer::string($_GET['search'] ?? ''),
+    'interval' => Sanitizer::string($_GET['interval'] ?? 'daily')
 ];
 
 // Get page
@@ -49,7 +53,7 @@ $page = Sanitizer::int($_GET['page'] ?? 1);
 $page = max(1, $page);
 
 // Generate report
-$reportData = $report->generateDepartmentReport($filters, $page, 15);
+$reportData = $report->generateDepartmentReport($filters, $page, 10);
 
 if (!$reportData['success']) {
     Session::setFlash('error', $reportData['message']);
@@ -60,13 +64,17 @@ if (!$reportData['success']) {
 $statistics = $reportData['statistics'];
 $requisitions = $reportData['requisitions'];
 $pagination = $reportData['pagination'];
+$chartData = $reportData['chart_data'] ?? [];
+$analytics = $reportData['analytics'] ?? [];
+
+// Get all categories for filter dropdown (same as personal.php)
+$db = Database::getInstance();
+$categories = $db->fetchAll("SELECT category_name FROM requisition_categories WHERE is_active = 1 ORDER BY display_order");
 
 // Get department users for filter
-$user = new User();
 $departmentUsers = $user->getByDepartment(Session::getUserDepartmentId());
 
 // Get department info
-$department = new Department();
 $departmentInfo = $department->getById(Session::getUserDepartmentId());
 
 // Check for flash messages
@@ -74,35 +82,403 @@ $successMessage = Session::getFlash('success');
 $errorMessage = Session::getFlash('error');
 
 // Page title
-$pageTitle = 'Department Reports';
+$pageTitle = 'Department Analytics';
+$includeCharts = true;
 ?>
 
 <?php include __DIR__ . '/../includes/header.php'; ?>
 
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
 <!-- Add Status Indicator CSS -->
 <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/status-indicators.css">
 
-<!-- Page Header -->
+<!-- Enhanced Dasher UI Styles -->
+<style>
+    /* Filter Styling */
+    .filter-form {
+        width: 100%;
+    }
+
+    .filter-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-4);
+        align-items: end;
+    }
+
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+
+    .filter-label {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        color: var(--text-primary);
+    }
+
+    .filter-select {
+        background: var(--bg-input);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: var(--spacing-2) var(--spacing-3);
+        color: var(--text-primary);
+        font-size: var(--font-size-sm);
+        transition: var(--theme-transition);
+    }
+
+    .filter-select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
+        outline: none;
+    }
+
+    /* Improved Stats Cards */
+    .improved-stats-card {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: var(--spacing-6);
+        transition: var(--theme-transition);
+    }
+
+    .improved-stats-card:hover {
+        border-color: var(--primary);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .improved-stats-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+        margin-bottom: var(--spacing-2);
+    }
+
+    .improved-stats-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--border-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-xl);
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .improved-stats-icon.primary {
+        background-color: var(--primary);
+    }
+
+    .improved-stats-icon.success {
+        background-color: var(--success);
+    }
+
+    .improved-stats-icon.warning {
+        background-color: var(--warning);
+    }
+
+    .improved-stats-icon.info {
+        background-color: var(--info);
+    }
+
+    .improved-stats-icon.danger {
+        background-color: var(--danger);
+    }
+
+    .improved-stats-content {
+        flex: 1;
+    }
+
+    .improved-stats-title {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        margin: 0 0 var(--spacing-1) 0;
+        font-weight: var(--font-weight-medium);
+    }
+
+    .improved-stats-value {
+        font-size: var(--font-size-4xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin: 0;
+        line-height: 1;
+    }
+
+    .improved-stats-change {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2);
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        margin-top: var(--spacing-2);
+    }
+
+    /* Improved Metric Cards */
+    .improved-metric-card {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: var(--spacing-5);
+        transition: var(--theme-transition);
+        white-space: nowrap;
+    }
+
+    .improved-metric-card:hover {
+        border-color: var(--primary);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .improved-metric-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+    }
+
+    .improved-metric-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--border-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-lg);
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .improved-metric-icon.primary {
+        background-color: var(--primary);
+    }
+
+    .improved-metric-icon.success {
+        background-color: var(--success);
+    }
+
+    .improved-metric-icon.warning {
+        background-color: var(--warning);
+    }
+
+    .improved-metric-icon.info {
+        background-color: var(--info);
+    }
+
+    .improved-metric-content {
+        flex: 1;
+    }
+
+    .improved-metric-value {
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-1);
+        line-height: 1;
+    }
+
+    .improved-metric-label {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    /* Charts Column Layout */
+    .charts-column-layout {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-6);
+        margin-bottom: var(--spacing-6);
+    }
+
+    @media (min-width: 1200px) {
+        .charts-column-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-6);
+        }
+    }
+
+    /* Chart Container Sizing */
+    .chart-container {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        min-height: 400px;
+    }
+
+    .chart-header {
+        padding: var(--spacing-4);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chart-title {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+    .chart-subtitle {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        margin: var(--spacing-1) 0 0 0;
+    }
+
+    .chart-body {
+        position: relative;
+        min-height: 350px;
+        padding: var(--spacing-4);
+        background: var(--bg-surface);
+    }
+
+    .chart-canvas {
+        max-height: 350px !important;
+        width: 100% !important;
+        height: 350px !important;
+    }
+
+    /* Mobile Filter Toggle */
+    .mobile-filter-toggle {
+        display: none;
+        gap: var(--spacing-2);
+    }
+
+    .mobile-filter-toggle .toggle-icon {
+        transition: transform 0.3s ease;
+        font-size: var(--font-size-sm);
+    }
+
+    .mobile-filter-toggle.active .toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Filter Collapse */
+    .filter-collapse {
+        max-height: 1000px;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+        opacity: 1;
+    }
+
+    .filter-collapse.collapsed {
+        max-height: 0;
+        opacity: 0;
+        padding: 0 !important;
+    }
+
+    /* Print Styles */
+    @media print {
+
+        .navbar,
+        .sidebar,
+        .footer,
+        .content-actions,
+        .btn,
+        .filter-form,
+        .breadcrumb {
+            display: none !important;
+        }
+
+        .content {
+            margin-left: 0 !important;
+            margin-top: 0 !important;
+            padding: 0 !important;
+        }
+
+        .table-container,
+        .chart-container {
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+            margin-bottom: 20px !important;
+        }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .mobile-filter-toggle {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .filter-collapse {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 !important;
+        }
+
+        .filter-collapse.show {
+            max-height: 2000px;
+            opacity: 1;
+            padding: var(--spacing-4) !important;
+        }
+
+        .chart-grid {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            gap: 0.75rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+
+        .improved-stats-card {
+            flex: 0 0 auto !important;
+            min-width: 200px !important;
+        }
+
+        .filter-grid {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-3);
+        }
+
+        .charts-column-layout {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+
+        .btn-group .btn {
+            font-size: var(--font-size-xs);
+            padding: var(--spacing-1) var(--spacing-2);
+        }
+
+        .content-actions .btn {
+            white-space: nowrap;
+            font-size: var(--font-size-sm);
+        }
+
+        .content-actions .btn i {
+            margin-right: var(--spacing-2);
+        }
+    }
+</style>
+
+<!-- Content Header -->
 <div class="content-header">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-start">
         <div>
-            <h1 class="content-title">
-                <i class="fas fa-chart-bar me-2"></i>Department Reports
-            </h1>
+            <h1 class="content-title">Department Analytics</h1>
             <p class="content-subtitle">
                 <?php echo htmlspecialchars($departmentInfo['department_name']); ?> - Team Requisition Analysis
             </p>
         </div>
-        <div class="d-flex gap-2">
+        <div class="content-actions">
+            <button type="button" class="btn btn-primary" id="print-report">
+                <i class="fas fa-print"></i>
+                <span>Print Report</span>
+            </button>
             <?php if (!empty($requisitions)): ?>
-                <a href="export-excel.php?<?php echo http_build_query(array_merge($filters, ['type' => 'department'])); ?>" 
-                   class="btn btn-success">
-                    <i class="fas fa-file-excel"></i> Export to Excel
+                <a href="export-excel.php?<?php echo http_build_query(array_merge($filters, ['type' => 'department'])); ?>"
+                    class="btn btn-success">
+                    <i class="fas fa-file-excel"></i>
+                    <span>Export Excel</span>
                 </a>
             <?php endif; ?>
-            <a href="<?php echo BASE_URL; ?>/dashboard/line-manager.php" class="btn btn-ghost">
-                <i class="fas fa-arrow-left"></i> Back to Dashboard
-            </a>
         </div>
     </div>
 </div>
@@ -124,387 +500,1025 @@ $pageTitle = 'Department Reports';
     </div>
 <?php endif; ?>
 
-<!-- Statistics Cards -->
-<div class="stats-grid">
-    <div class="stat-card">
-        <div class="stat-icon bg-info">
-            <i class="fas fa-file-alt"></i>
+<!-- Enhanced Statistics Cards -->
+<div class="chart-grid">
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon primary">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Total Requisitions</h3>
+                <p class="improved-stats-value"><?php echo number_format($statistics['total_count']); ?></p>
+            </div>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Total Requisitions</p>
-            <p class="stat-value"><?php echo number_format($statistics['total_count']); ?></p>
-        </div>
-    </div>
-    
-    <div class="stat-card">
-        <div class="stat-icon bg-success">
-            <i class="fas fa-money-bill-wave"></i>
-        </div>
-        <div class="stat-content">
-            <p class="stat-label">Total Amount</p>
-            <p class="stat-value"><?php echo format_currency($statistics['total_amount']); ?></p>
+        <div class="improved-stats-change">
+            <span>Department-wide submissions</span>
         </div>
     </div>
-    
-    <div class="stat-card">
-        <div class="stat-icon bg-primary">
-            <i class="fas fa-chart-line"></i>
+
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon success">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Total Amount</h3>
+                <p class="improved-stats-value"><?php echo format_currency($statistics['total_amount']); ?></p>
+            </div>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Average Amount</p>
-            <p class="stat-value"><?php echo format_currency($statistics['average_amount']); ?></p>
+        <div class="improved-stats-change">
+            <span>Total department spending</span>
         </div>
     </div>
-    
-    <div class="stat-card">
-        <div class="stat-icon bg-warning">
-            <i class="fas fa-users"></i>
+
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon info">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Completed</h3>
+                <p class="improved-stats-value"><?php echo number_format($statistics['completed_count'] ?? 0); ?></p>
+            </div>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Team Members</p>
-            <p class="stat-value"><?php echo count($departmentUsers); ?></p>
+        <div class="improved-stats-change">
+            <span><?php echo $statistics['total_count'] > 0 ? round((($statistics['completed_count'] ?? 0) / $statistics['total_count']) * 100, 1) : 0; ?>% completion rate</span>
+        </div>
+    </div>
+
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon warning">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Pending</h3>
+                <p class="improved-stats-value"><?php echo number_format($statistics['pending_count'] ?? 0); ?></p>
+            </div>
+        </div>
+        <div class="improved-stats-change">
+            <span>Awaiting approval</span>
+        </div>
+    </div>
+
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon danger">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Rejected</h3>
+                <p class="improved-stats-value"><?php echo number_format($statistics['rejected_count'] ?? 0); ?></p>
+            </div>
+        </div>
+        <div class="improved-stats-change">
+            <span><?php echo $statistics['total_count'] > 0 ? round((($statistics['rejected_count'] ?? 0) / $statistics['total_count']) * 100, 1) : 0; ?>% rejection rate</span>
+        </div>
+    </div>
+
+    <div class="improved-stats-card">
+        <div class="improved-stats-header">
+            <div class="improved-stats-icon" style="background-color: var(--text-secondary);">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="improved-stats-content">
+                <h3 class="improved-stats-title">Average Amount</h3>
+                <p class="improved-stats-value"><?php echo format_currency($statistics['average_amount']); ?></p>
+            </div>
+        </div>
+        <div class="improved-stats-change">
+            <span>Per requisition</span>
         </div>
     </div>
 </div>
 
-<!-- Info Alert -->
-<div class="alert alert-info mt-4">
-    <h6 class="alert-heading">
-        <i class="fas fa-info-circle"></i> About Department Reports
-    </h6>
-    <p class="mb-0">
-        This report shows all requisitions from your department (<?php echo htmlspecialchars($departmentInfo['department_name']); ?>).
-        Filter by team member, time period, or status to analyze spending patterns.
-    </p>
-</div>
-
-<!-- Filter Card -->
-<div class="card mb-4">
+<!-- Enhanced Filters -->
+<div class="table-container">
     <div class="card-header">
-        <h5 class="card-title mb-0">
-            <i class="fas fa-filter"></i> Report Filters
-        </h5>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <h2 class="card-title">Filter Options</h2>
+            <!-- Mobile Filter Toggle Button -->
+            <button type="button" class="btn btn-outline-primary mobile-filter-toggle" id="mobileFilterToggle">
+                <i class="fas fa-filter"></i>
+                <span>Filters</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </button>
+        </div>
     </div>
-    <div class="card-body">
-        <form method="GET" action="" class="row g-3">
-            <!-- Time Period -->
-            <div class="col-md-3">
-                <label class="form-label">Time Period</label>
-                <select name="period" class="form-control" id="periodSelect">
-                    <option value="">All Time</option>
-                    <option value="weekly" <?php echo ($filters['period'] === 'weekly') ? 'selected' : ''; ?>>This Week</option>
-                    <option value="monthly" <?php echo ($filters['period'] === 'monthly') ? 'selected' : ''; ?>>This Month</option>
-                    <option value="quarterly" <?php echo ($filters['period'] === 'quarterly') ? 'selected' : ''; ?>>This Quarter</option>
-                    <option value="yearly" <?php echo ($filters['period'] === 'yearly') ? 'selected' : ''; ?>>This Year</option>
-                    <option value="custom" <?php echo ($filters['period'] === 'custom') ? 'selected' : ''; ?>>Custom Range</option>
-                </select>
-            </div>
+    <div class="card-body filter-collapse" id="filterCollapse">
+        <form action="" method="get" class="filter-form">
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="period" class="filter-label">Time Period</label>
+                    <select class="filter-select" id="period" name="period">
+                        <option value="">All Time</option>
+                        <option value="weekly" <?php echo ($filters['period'] === 'weekly') ? 'selected' : ''; ?>>This Week</option>
+                        <option value="monthly" <?php echo ($filters['period'] === 'monthly') ? 'selected' : ''; ?>>This Month</option>
+                        <option value="quarterly" <?php echo ($filters['period'] === 'quarterly') ? 'selected' : ''; ?>>This Quarter</option>
+                        <option value="yearly" <?php echo ($filters['period'] === 'yearly') ? 'selected' : ''; ?>>This Year</option>
+                        <option value="custom" <?php echo ($filters['period'] === 'custom') ? 'selected' : ''; ?>>Custom Range</option>
+                    </select>
+                </div>
 
-            <!-- Date From -->
-            <div class="col-md-2" id="dateFromGroup" style="display: <?php echo ($filters['period'] === 'custom' || (!empty($filters['date_from']) && empty($filters['period']))) ? 'block' : 'none'; ?>;">
-                <label class="form-label">Date From</label>
-                <input type="date" 
-                       name="date_from" 
-                       class="form-control" 
-                       value="<?php echo htmlspecialchars($filters['date_from']); ?>">
-            </div>
+                <div class="filter-group" id="dateFromGroup" style="display: <?php echo ($filters['period'] === 'custom' || (!empty($filters['date_from']) && empty($filters['period']))) ? 'flex' : 'none'; ?>;">
+                    <label for="date_from" class="filter-label">From Date</label>
+                    <input type="date" class="filter-select" id="date_from" name="date_from" value="<?php echo $filters['date_from']; ?>">
+                </div>
 
-            <!-- Date To -->
-            <div class="col-md-2" id="dateToGroup" style="display: <?php echo ($filters['period'] === 'custom' || (!empty($filters['date_to']) && empty($filters['period']))) ? 'block' : 'none'; ?>;">
-                <label class="form-label">Date To</label>
-                <input type="date" 
-                       name="date_to" 
-                       class="form-control" 
-                       value="<?php echo htmlspecialchars($filters['date_to']); ?>">
-            </div>
+                <div class="filter-group" id="dateToGroup" style="display: <?php echo ($filters['period'] === 'custom' || (!empty($filters['date_to']) && empty($filters['period']))) ? 'flex' : 'none'; ?>;">
+                    <label for="date_to" class="filter-label">To Date</label>
+                    <input type="date" class="filter-select" id="date_to" name="date_to" value="<?php echo $filters['date_to']; ?>">
+                </div>
 
-            <!-- Team Member Filter -->
-            <div class="col-md-3">
-                <label class="form-label">Team Member</label>
-                <select name="user_id" class="form-control">
-                    <option value="">All Team Members</option>
-                    <?php foreach ($departmentUsers as $member): ?>
-                        <option value="<?php echo $member['id']; ?>" 
-                                <?php echo ($filters['user_id'] == $member['id']) ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($member['first_name'] . ' ' . $member['last_name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+                <div class="filter-group">
+                    <label for="user_id" class="filter-label">Team Member</label>
+                    <select class="filter-select" id="user_id" name="user_id">
+                        <option value="">All Team Members</option>
+                        <?php foreach ($departmentUsers as $member): ?>
+                            <option value="<?php echo $member['id']; ?>" <?php echo ($filters['user_id'] == $member['id']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($member['first_name'] . ' ' . $member['last_name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-            <!-- Status Filter -->
-            <div class="col-md-2">
-                <label class="form-label">Status</label>
-                <select name="status" class="form-control">
-                    <option value="">All Statuses</option>
-                    <option value="<?php echo STATUS_PENDING_LINE_MANAGER; ?>" <?php echo ($filters['status'] === STATUS_PENDING_LINE_MANAGER) ? 'selected' : ''; ?>>Pending My Approval</option>
-                    <option value="<?php echo STATUS_PENDING_MD; ?>" <?php echo ($filters['status'] === STATUS_PENDING_MD) ? 'selected' : ''; ?>>Pending MD</option>
-                    <option value="<?php echo STATUS_PENDING_FINANCE_MANAGER; ?>" <?php echo ($filters['status'] === STATUS_PENDING_FINANCE_MANAGER) ? 'selected' : ''; ?>>Pending Finance</option>
-                    <option value="<?php echo STATUS_APPROVED_FOR_PAYMENT; ?>" <?php echo ($filters['status'] === STATUS_APPROVED_FOR_PAYMENT) ? 'selected' : ''; ?>>Approved for Payment</option>
-                    <option value="<?php echo STATUS_PAID; ?>" <?php echo ($filters['status'] === STATUS_PAID) ? 'selected' : ''; ?>>Paid</option>
-                    <option value="<?php echo STATUS_COMPLETED; ?>" <?php echo ($filters['status'] === STATUS_COMPLETED) ? 'selected' : ''; ?>>Completed</option>
-                    <option value="<?php echo STATUS_REJECTED; ?>" <?php echo ($filters['status'] === STATUS_REJECTED) ? 'selected' : ''; ?>>Rejected</option>
-                </select>
-            </div>
+                <div class="filter-group">
+                    <label for="status" class="filter-label">Status</label>
+                    <select class="filter-select" id="status" name="status">
+                        <option value="">All Statuses</option>
+                        <option value="<?php echo STATUS_PENDING_LINE_MANAGER; ?>" <?php echo ($filters['status'] === STATUS_PENDING_LINE_MANAGER) ? 'selected' : ''; ?>>Pending Line Manager</option>
+                        <option value="<?php echo STATUS_PENDING_MD; ?>" <?php echo ($filters['status'] === STATUS_PENDING_MD) ? 'selected' : ''; ?>>Pending MD</option>
+                        <option value="<?php echo STATUS_PENDING_FINANCE_MANAGER; ?>" <?php echo ($filters['status'] === STATUS_PENDING_FINANCE_MANAGER) ? 'selected' : ''; ?>>Pending Finance</option>
+                        <option value="<?php echo STATUS_APPROVED_FOR_PAYMENT; ?>" <?php echo ($filters['status'] === STATUS_APPROVED_FOR_PAYMENT) ? 'selected' : ''; ?>>Approved for Payment</option>
+                        <option value="<?php echo STATUS_PAID; ?>" <?php echo ($filters['status'] === STATUS_PAID) ? 'selected' : ''; ?>>Paid</option>
+                        <option value="<?php echo STATUS_COMPLETED; ?>" <?php echo ($filters['status'] === STATUS_COMPLETED) ? 'selected' : ''; ?>>Completed</option>
+                        <option value="<?php echo STATUS_REJECTED; ?>" <?php echo ($filters['status'] === STATUS_REJECTED) ? 'selected' : ''; ?>>Rejected</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="category" class="filter-label">Category</label>
+                    <select class="filter-select" id="category" name="category">
+                        <option value="">All Categories</option>
+                        <?php foreach ($categories as $cat): ?>
+                            <option value="<?php echo htmlspecialchars($cat['category_name']); ?>"
+                                <?php echo ($filters['category'] === $cat['category_name']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($cat['category_name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="interval" class="filter-label">Time Interval</label>
+                    <select class="filter-select" id="interval" name="interval">
+                        <option value="daily" <?php echo ($filters['interval'] === 'daily') ? 'selected' : ''; ?>>Daily</option>
+                        <option value="weekly" <?php echo ($filters['interval'] === 'weekly') ? 'selected' : ''; ?>>Weekly</option>
+                        <option value="monthly" <?php echo ($filters['interval'] === 'monthly') ? 'selected' : ''; ?>>Monthly</option>
+                    </select>
+                </div>
 
-            <!-- Search -->
-            <div class="col-md-12">
-                <label class="form-label">Search</label>
-                <input type="text" 
-                       name="search" 
-                       class="form-control" 
-                       placeholder="Search by requisition number or purpose..."
-                       value="<?php echo htmlspecialchars($filters['search']); ?>">
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="col-md-12 d-flex gap-2 justify-content-end">
-                <a href="?" class="btn btn-ghost">
-                    <i class="fas fa-redo"></i> Reset
-                </a>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-search"></i> Generate Report
-                </button>
+                <div class="filter-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-filter"></i>
+                        <span>Apply Filters</span>
+                    </button>
+                    <a href="<?php echo BASE_URL; ?>/reports/department.php" class="btn btn-outline-secondary">
+                        <i class="fas fa-sync"></i>
+                        <span>Reset</span>
+                    </a>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<!-- Report Results Table -->
-<div class="card">
-    <div class="card-header">
-        <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-0">
-                <i class="fas fa-list"></i> Department Requisitions
-            </h5>
-            <span class="text-muted">Showing <?php echo number_format($statistics['total_count']); ?> requisitions</span>
-        </div>
-    </div>
-    <div class="card-body">
-        <?php if (empty($requisitions)): ?>
-            <div class="empty-state">
-                <div class="empty-state-icon">
-                    <i class="fas fa-chart-bar fa-3x"></i>
+<!-- Charts Column Layout -->
+<?php if (!empty($chartData)): ?>
+    <div class="charts-column-layout">
+        <!-- Requisition Trends Chart -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div>
+                    <h2 class="chart-title">Department Requisition Trends</h2>
+                    <p class="chart-subtitle">Team submissions over time</p>
                 </div>
-                <h3 class="empty-state-title">No Data Found</h3>
-                <p class="empty-state-text">
-                    No requisitions match your filter criteria for this department.
-                    Try adjusting your filters or check back later.
-                </p>
+                <div class="btn-group btn-group-sm" role="group" id="chartTypeToggle">
+                    <button type="button" class="btn btn-outline-primary active" data-chart-type="line">Line</button>
+                    <button type="button" class="btn btn-outline-primary" data-chart-type="bar">Bar</button>
+                    <button type="button" class="btn btn-outline-primary" data-chart-type="area">Area</button>
+                </div>
             </div>
-        <?php else: ?>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Req. No.</th>
-                            <th>Date</th>
-                            <th>Requester</th>
-                            <th>Purpose</th>
-                            <th class="text-end">Amount</th>
-                            <th>Status</th>
-                            <th class="text-end">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($requisitions as $req): ?>
-                            <tr>
-                                <td>
-                                    <span style="font-weight: var(--font-weight-medium); color: var(--text-primary);">
-                                        <?php echo htmlspecialchars($req['requisition_number']); ?>
-                                    </span>
-                                </td>
-                                <td><?php echo format_date($req['created_at']); ?></td>
-                                <td>
-                                    <?php echo htmlspecialchars($req['requester_first_name'] . ' ' . $req['requester_last_name']); ?>
-                                </td>
-                                <td>
-                                    <span style="max-width: 200px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <?php echo htmlspecialchars($req['purpose']); ?>
-                                    </span>
-                                </td>
-                                <td class="text-end">
-                                    <span style="font-weight: var(--font-weight-semibold);">
-                                        <?php echo format_currency($req['total_amount']); ?>
-                                    </span>
-                                </td>
-                                <td><?php echo get_status_indicator($req['status']); ?></td>
-                                <td class="text-end">
-                                    <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
-                                       class="btn btn-sm btn-ghost"
-                                       title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="chart-body">
+                <canvas id="requisitionTrendsChart" class="chart-canvas"></canvas>
             </div>
+        </div>
 
-            <!-- Pagination -->
-            <?php if ($pagination['total_pages'] > 1): ?>
-                <div class="pagination-wrapper">
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <!-- Previous -->
-                            <?php if ($pagination['current_page'] > 1): ?>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page=<?php echo ($pagination['current_page'] - 1); ?>&<?php echo http_build_query($filters); ?>">
-                                        <i class="fas fa-chevron-left"></i> Previous
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-
-                            <!-- Page Numbers -->
-                            <?php for ($i = max(1, $pagination['current_page'] - 2); $i <= min($pagination['total_pages'], $pagination['current_page'] + 2); $i++): ?>
-                                <li class="page-item <?php echo ($i == $pagination['current_page']) ? 'active' : ''; ?>">
-                                    <a class="page-link" href="?page=<?php echo $i; ?>&<?php echo http_build_query($filters); ?>">
-                                        <?php echo $i; ?>
-                                    </a>
-                                </li>
-                            <?php endfor; ?>
-
-                            <!-- Next -->
-                            <?php if ($pagination['current_page'] < $pagination['total_pages']): ?>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page=<?php echo ($pagination['current_page'] + 1); ?>&<?php echo http_build_query($filters); ?>">
-                                        Next <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-                    </nav>
-                    
-                    <div class="pagination-info">
-                        Showing <?php echo (($pagination['current_page'] - 1) * $pagination['per_page']) + 1; ?> 
-                        to <?php echo min($pagination['current_page'] * $pagination['per_page'], $pagination['total_records']); ?> 
-                        of <?php echo $pagination['total_records']; ?> requisitions
+        <!-- Status Distribution Chart -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div>
+                    <h2 class="chart-title">Status Distribution</h2>
+                    <p class="chart-subtitle">Breakdown by status</p>
+                </div>
+            </div>
+            <div class="chart-body">
+                <?php if (empty($chartData['status'])): ?>
+                    <div class="text-center py-5">
+                        <i class="fas fa-chart-pie" style="font-size: 2rem; color: var(--text-muted); opacity: 0.5;"></i>
+                        <p style="color: var(--text-muted);">No data available for the selected filters.</p>
                     </div>
-                </div>
-            <?php endif; ?>
-        <?php endif; ?>
-    </div>
-</div>
-
-<!-- Status Breakdown (if data exists) -->
-<?php if (!empty($statistics['status_breakdown'])): ?>
-    <div class="card mt-4">
-        <div class="card-header">
-            <h5 class="card-title mb-0">
-                <i class="fas fa-chart-pie"></i> Status Breakdown
-            </h5>
+                <?php else: ?>
+                    <canvas id="statusDistributionChart" class="chart-canvas"></canvas>
+                <?php endif; ?>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <?php foreach ($statistics['status_breakdown'] as $statusData): ?>
-                    <div class="col-md-4 mb-3">
-                        <div class="d-flex justify-content-between align-items-center p-3 bg-subtle rounded">
-                            <div>
-                                <?php echo get_status_indicator($statusData['status']); ?>
+    </div>
+
+    <!-- More Charts -->
+    <div class="charts-column-layout">
+        <!-- Top Team Members Chart -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div>
+                    <h2 class="chart-title">Top Requesters</h2>
+                    <p class="chart-subtitle">Most active team members</p>
+                </div>
+            </div>
+            <div class="chart-body">
+                <?php if (empty($chartData['top_users'])): ?>
+                    <div class="text-center py-5">
+                        <i class="fas fa-users" style="font-size: 2rem; color: var(--text-muted); opacity: 0.5;"></i>
+                        <p style="color: var(--text-muted);">No user data available.</p>
+                    </div>
+                <?php else: ?>
+                    <canvas id="topUsersChart" class="chart-canvas"></canvas>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Monthly Spending Chart -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div>
+                    <h2 class="chart-title">Monthly Department Spending</h2>
+                    <p class="chart-subtitle">Last 12 months</p>
+                </div>
+            </div>
+            <div class="chart-body">
+                <?php if (empty($chartData['monthly'])): ?>
+                    <div class="text-center py-5">
+                        <i class="fas fa-chart-bar" style="font-size: 2rem; color: var(--text-muted); opacity: 0.5;"></i>
+                        <p style="color: var(--text-muted);">No monthly data available.</p>
+                    </div>
+                <?php else: ?>
+                    <canvas id="monthlySpendingChart" class="chart-canvas"></canvas>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <!-- Distribution Charts -->
+    <div class="charts-column-layout">
+        <div class="chart-container">
+            <div class="chart-header">
+                <div>
+                    <h2 class="chart-title">Hourly Submission Pattern</h2>
+                    <p class="chart-subtitle">Department submissions by hour</p>
+                </div>
+            </div>
+            <div class="chart-body">
+                <canvas id="hourlyDistributionChart" class="chart-canvas"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-header">
+                <div>
+                    <h2 class="chart-title">Day of Week Analysis</h2>
+                    <p class="chart-subtitle">Department submissions by weekday</p>
+                </div>
+            </div>
+            <div class="chart-body">
+                <canvas id="weekdayDistributionChart" class="chart-canvas"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Analytics -->
+    <?php if (!empty($analytics)): ?>
+        <div class="table-container">
+            <div class="card-header">
+                <h2 class="card-title">Department Performance Metrics</h2>
+            </div>
+            <div class="card-body">
+                <div class="chart-grid">
+                    <div class="improved-metric-card">
+                        <div class="improved-metric-header">
+                            <div class="improved-metric-icon primary">
+                                <i class="fas fa-users"></i>
                             </div>
-                            <div class="text-end">
-                                <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary);">
-                                    <?php echo $statusData['count']; ?>
-                                </div>
-                                <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
-                                    <?php echo format_currency($statusData['total']); ?>
-                                </div>
+                            <div class="improved-metric-content">
+                                <div class="improved-metric-value"><?php echo count($departmentUsers); ?></div>
+                                <div class="improved-metric-label">Team Members</div>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+
+                    <div class="improved-metric-card">
+                        <div class="improved-metric-header">
+                            <div class="improved-metric-icon success">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="improved-metric-content">
+                                <div class="improved-metric-value"><?php echo $analytics['avg_approval_days'] ?? '0'; ?> days</div>
+                                <div class="improved-metric-label">Avg Approval Time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="improved-metric-card">
+                        <div class="improved-metric-header">
+                            <div class="improved-metric-icon warning">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="improved-metric-content">
+                                <div class="improved-metric-value" style="font-size: var(--font-size-lg);"><?php echo htmlspecialchars($analytics['top_requester'] ?? 'N/A'); ?></div>
+                                <div class="improved-metric-label">Top Requester</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="improved-metric-card">
+                        <div class="improved-metric-header">
+                            <div class="improved-metric-icon info">
+                                <i class="fas fa-calendar-week"></i>
+                            </div>
+                            <div class="improved-metric-content">
+                                <div class="improved-metric-value" style="font-size: var(--font-size-xl);"><?php echo $analytics['busiest_day'] ?? 'N/A'; ?></div>
+                                <div class="improved-metric-label">Busiest Submission Day</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="improved-metric-card">
+                        <div class="improved-metric-header">
+                            <div class="improved-metric-icon" style="background-color: var(--primary);">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="improved-metric-content">
+                                <div class="improved-metric-value" style="font-size: var(--font-size-lg);"><?php echo $analytics['busiest_hour'] ?? 'N/A'; ?></div>
+                                <div class="improved-metric-label">Peak Submission Time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="improved-metric-card">
+                        <div class="improved-metric-header">
+                            <div class="improved-metric-icon success">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="improved-metric-content">
+                                <div class="improved-metric-value"><?php echo $analytics['approval_rate'] ?? '0'; ?>%</div>
+                                <div class="improved-metric-label">Approval Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 <?php endif; ?>
 
-<!-- JavaScript for Dynamic Date Fields -->
+<!-- Recent Requisitions Table -->
+<div class="table-container">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="card-title">Department Requisitions</h2>
+            <span class="text-muted">Showing <?php echo number_format($statistics['total_count']); ?> requisitions</span>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Req. No.</th>
+                    <th>Requester</th>
+                    <th>Purpose</th>
+                    <th>Status</th>
+                    <th>Created On</th>
+                    <th class="text-end">Amount</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($requisitions)): ?>
+                    <tr>
+                        <td colspan="7" class="text-center py-4">
+                            <div style="color: var(--text-muted);">
+                                <i class="fas fa-file-alt" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                                <p>No requisitions found for the selected filters.</p>
+                            </div>
+                        </td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach ($requisitions as $req): ?>
+                        <tr>
+                            <td>
+                                <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
+                                    style="color: var(--primary); text-decoration: none; font-weight: var(--font-weight-medium);">
+                                    <?php echo htmlspecialchars($req['requisition_number']); ?>
+                                </a>
+                            </td>
+                            <td><?php echo htmlspecialchars(($req['requester_first_name'] ?? '') . ' ' . ($req['requester_last_name'] ?? '')); ?></td>
+                            <td>
+                                <span style="max-width: 200px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <?php echo htmlspecialchars($req['purpose']); ?>
+                                </span>
+                            </td>
+                            <td><?php echo get_status_indicator($req['status']); ?></td>
+                            <td style="color: var(--text-secondary); font-size: var(--font-size-sm);">
+                                <?php echo date('M d, Y g:i A', strtotime($req['created_at'])); ?>
+                            </td>
+                            <td class="text-end">
+                                <span style="font-weight: var(--font-weight-semibold);">
+                                    <?php echo format_currency($req['total_amount']); ?>
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
+                                    class="btn btn-sm btn-ghost"
+                                    title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Chart Initialization Script -->
 <script>
-document.getElementById('periodSelect').addEventListener('change', function() {
-    const dateFromGroup = document.getElementById('dateFromGroup');
-    const dateToGroup = document.getElementById('dateToGroup');
-    
-    if (this.value === 'custom') {
-        dateFromGroup.style.display = 'block';
-        dateToGroup.style.display = 'block';
-    } else {
-        dateFromGroup.style.display = 'none';
-        dateToGroup.style.display = 'none';
-    }
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎨 Initializing Department Analytics...');
+
+        // Check if Chart.js is loaded
+        if (typeof Chart === 'undefined') {
+            console.error('❌ Chart.js is not loaded!');
+            return;
+        }
+
+        function getDasherChartConfig() {
+            return {
+                colors: {
+                    primary: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim(),
+                    success: getComputedStyle(document.documentElement).getPropertyValue('--success').trim(),
+                    warning: getComputedStyle(document.documentElement).getPropertyValue('--warning').trim(),
+                    danger: getComputedStyle(document.documentElement).getPropertyValue('--danger').trim(),
+                    info: getComputedStyle(document.documentElement).getPropertyValue('--info').trim(),
+                    text: getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim(),
+                    textSecondary: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim(),
+                    border: getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim()
+                },
+                font: {
+                    family: getComputedStyle(document.documentElement).getPropertyValue('--font-family-base').trim(),
+                    size: 12
+                }
+            };
+        }
+
+        const chartConfig = getDasherChartConfig();
+        const colorSet = [
+            chartConfig.colors.primary + 'B3',
+            chartConfig.colors.danger + 'B3',
+            chartConfig.colors.success + 'B3',
+            chartConfig.colors.warning + 'B3',
+            chartConfig.colors.info + 'B3',
+            '#9b59b6B3', '#e74c3cB3', '#3498dbB3', '#f39c12B3', '#1abc9cB3'
+        ];
+
+        <?php if (!empty($chartData)): ?>
+            // Trends Chart
+            try {
+                const trendsData = <?php echo json_encode($chartData['trends'] ?? []); ?>;
+                const trendLabels = trendsData.map(item => item.time_period);
+                const trendCounts = trendsData.map(item => parseInt(item.count));
+
+                const trendsCanvas = document.getElementById('requisitionTrendsChart');
+                if (trendsCanvas && trendLabels.length > 0) {
+                    const requisitionTrendsChart = new Chart(trendsCanvas, {
+                        type: 'line',
+                        data: {
+                            labels: trendLabels,
+                            datasets: [{
+                                label: 'Requisitions',
+                                data: trendCounts,
+                                backgroundColor: chartConfig.colors.primary + '20',
+                                borderColor: chartConfig.colors.primary,
+                                borderWidth: 3,
+                                tension: 0.4,
+                                fill: true,
+                                pointBackgroundColor: chartConfig.colors.primary,
+                                pointBorderColor: '#ffffff',
+                                pointBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHoverRadius: 7
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    backgroundColor: 'rgba(0,0,0,0.8)',
+                                    titleColor: '#ffffff',
+                                    bodyColor: '#ffffff',
+                                    borderColor: chartConfig.colors.border,
+                                    borderWidth: 1,
+                                    cornerRadius: 8,
+                                    padding: 12
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: chartConfig.colors.border + '40',
+                                        drawBorder: false
+                                    },
+                                    border: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        precision: 0,
+                                        color: chartConfig.colors.textSecondary
+                                    }
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    border: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        color: chartConfig.colors.textSecondary
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Chart Type Toggle
+                    const chartTypeToggle = document.getElementById('chartTypeToggle');
+                    if (chartTypeToggle) {
+                        chartTypeToggle.addEventListener('click', function(e) {
+                            if (e.target.tagName === 'BUTTON') {
+                                this.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+                                e.target.classList.add('active');
+                                const chartType = e.target.getAttribute('data-chart-type');
+                                if (chartType === 'area') {
+                                    requisitionTrendsChart.config.type = 'line';
+                                    requisitionTrendsChart.data.datasets[0].fill = true;
+                                } else {
+                                    requisitionTrendsChart.config.type = chartType;
+                                    requisitionTrendsChart.data.datasets[0].fill = false;
+                                }
+                                requisitionTrendsChart.update();
+                            }
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error creating trends chart:', error);
+            }
+
+            // Status Distribution Chart
+            <?php if (!empty($chartData['status'])): ?>
+                try {
+                    const statusData = <?php echo json_encode($chartData['status']); ?>;
+                    const statusLabels = statusData.map(item => {
+                        const statusMap = {
+                            'pending_line_manager': 'Pending Line Mgr',
+                            'pending_md': 'Pending MD',
+                            'pending_finance_manager': 'Pending Finance',
+                            'approved_for_payment': 'Approved',
+                            'paid': 'Paid',
+                            'completed': 'Completed',
+                            'rejected': 'Rejected',
+                            'cancelled': 'Cancelled'
+                        };
+                        return statusMap[item.status] || item.status;
+                    });
+                    const statusCounts = statusData.map(item => parseInt(item.count));
+
+                    const statusCanvas = document.getElementById('statusDistributionChart');
+                    if (statusCanvas) {
+                        new Chart(statusCanvas, {
+                            type: 'doughnut',
+                            data: {
+                                labels: statusLabels,
+                                datasets: [{
+                                    data: statusCounts,
+                                    backgroundColor: colorSet,
+                                    borderColor: '#ffffff',
+                                    borderWidth: 2,
+                                    hoverBorderWidth: 3,
+                                    cutout: '60%'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            color: chartConfig.colors.text,
+                                            font: {
+                                                family: chartConfig.font.family,
+                                                size: 12
+                                            },
+                                            padding: 10,
+                                            usePointStyle: true
+                                        }
+                                    },
+                                    tooltip: {
+                                        backgroundColor: 'rgba(0,0,0,0.8)',
+                                        titleColor: '#ffffff',
+                                        bodyColor: '#ffffff',
+                                        borderColor: chartConfig.colors.border,
+                                        borderWidth: 1,
+                                        cornerRadius: 8,
+                                        padding: 12
+                                    }
+                                }
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error creating status chart:', error);
+                }
+            <?php endif; ?>
+
+            // Top Users Chart
+            <?php if (!empty($chartData['top_users'])): ?>
+                try {
+                    const topUsersData = <?php echo json_encode($chartData['top_users']); ?>;
+                    const userLabels = topUsersData.map(item => item.user_name);
+                    const userCounts = topUsersData.map(item => parseInt(item.count));
+
+                    const topUsersCanvas = document.getElementById('topUsersChart');
+                    if (topUsersCanvas) {
+                        new Chart(topUsersCanvas, {
+                            type: 'bar',
+                            data: {
+                                labels: userLabels,
+                                datasets: [{
+                                    label: 'Requisitions',
+                                    data: userCounts,
+                                    backgroundColor: chartConfig.colors.warning + '20',
+                                    borderColor: chartConfig.colors.warning,
+                                    borderWidth: 2,
+                                    borderRadius: 4,
+                                    borderSkipped: false
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                indexAxis: 'y',
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    tooltip: {
+                                        backgroundColor: 'rgba(0,0,0,0.8)',
+                                        titleColor: '#ffffff',
+                                        bodyColor: '#ffffff',
+                                        borderColor: chartConfig.colors.border,
+                                        borderWidth: 1,
+                                        cornerRadius: 8,
+                                        padding: 12
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        beginAtZero: true,
+                                        grid: {
+                                            color: chartConfig.colors.border + '40',
+                                            drawBorder: false
+                                        },
+                                        border: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            precision: 0,
+                                            color: chartConfig.colors.textSecondary
+                                        }
+                                    },
+                                    y: {
+                                        grid: {
+                                            display: false
+                                        },
+                                        border: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            color: chartConfig.colors.textSecondary
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error creating top users chart:', error);
+                }
+            <?php endif; ?>
+
+            // Monthly Spending Chart
+            <?php if (!empty($chartData['monthly'])): ?>
+                try {
+                    const monthlyData = <?php echo json_encode($chartData['monthly']); ?>;
+                    const monthlyLabels = monthlyData.map(item => item.month);
+                    const monthlyAmounts = monthlyData.map(item => parseFloat(item.total_amount));
+
+                    const monthlyCanvas = document.getElementById('monthlySpendingChart');
+                    if (monthlyCanvas) {
+                        new Chart(monthlyCanvas, {
+                            type: 'bar',
+                            data: {
+                                labels: monthlyLabels,
+                                datasets: [{
+                                    label: 'Total Spending',
+                                    data: monthlyAmounts,
+                                    backgroundColor: chartConfig.colors.success + '20',
+                                    borderColor: chartConfig.colors.success,
+                                    borderWidth: 2,
+                                    borderRadius: 4,
+                                    borderSkipped: false
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    tooltip: {
+                                        backgroundColor: 'rgba(0,0,0,0.8)',
+                                        titleColor: '#ffffff',
+                                        bodyColor: '#ffffff',
+                                        borderColor: chartConfig.colors.border,
+                                        borderWidth: 1,
+                                        cornerRadius: 8,
+                                        padding: 12,
+                                        callbacks: {
+                                            label: function(context) {
+                                                return 'Amount: ₦' + context.parsed.y.toLocaleString();
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        grid: {
+                                            color: chartConfig.colors.border + '40',
+                                            drawBorder: false
+                                        },
+                                        border: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            color: chartConfig.colors.textSecondary,
+                                            callback: function(value) {
+                                                return '₦' + value.toLocaleString();
+                                            }
+                                        }
+                                    },
+                                    x: {
+                                        grid: {
+                                            display: false
+                                        },
+                                        border: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            color: chartConfig.colors.textSecondary
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error creating monthly chart:', error);
+                }
+            <?php endif; ?>
+
+            // Hourly Distribution
+            try {
+                const hourlyData = <?php echo json_encode($chartData['hourly'] ?? array_fill(0, 24, 0)); ?>;
+                const hourlyCanvas = document.getElementById('hourlyDistributionChart');
+                if (hourlyCanvas) {
+                    new Chart(hourlyCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: Array.from({
+                                length: 24
+                            }, (_, i) => `${i}:00`),
+                            datasets: [{
+                                label: 'Submissions by Hour',
+                                data: hourlyData,
+                                backgroundColor: chartConfig.colors.info + '20',
+                                borderColor: chartConfig.colors.info,
+                                borderWidth: 2,
+                                borderRadius: 4,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    backgroundColor: 'rgba(0,0,0,0.8)',
+                                    titleColor: '#ffffff',
+                                    bodyColor: '#ffffff',
+                                    borderColor: chartConfig.colors.border,
+                                    borderWidth: 1,
+                                    cornerRadius: 8,
+                                    padding: 12
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: chartConfig.colors.border + '40',
+                                        drawBorder: false
+                                    },
+                                    border: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        precision: 0,
+                                        color: chartConfig.colors.textSecondary
+                                    }
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    border: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        color: chartConfig.colors.textSecondary
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error creating hourly chart:', error);
+            }
+
+            // Weekday Distribution
+            try {
+                const weekdayData = <?php echo json_encode($chartData['weekday'] ?? array_fill(0, 7, 0)); ?>;
+                const weekdayLabels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                const weekdayCanvas = document.getElementById('weekdayDistributionChart');
+                if (weekdayCanvas) {
+                    new Chart(weekdayCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: weekdayLabels,
+                            datasets: [{
+                                label: 'Submissions by Day',
+                                data: weekdayData,
+                                backgroundColor: chartConfig.colors.warning + '20',
+                                borderColor: chartConfig.colors.warning,
+                                borderWidth: 2,
+                                borderRadius: 4,
+                                borderSkipped: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    backgroundColor: 'rgba(0,0,0,0.8)',
+                                    titleColor: '#ffffff',
+                                    bodyColor: '#ffffff',
+                                    borderColor: chartConfig.colors.border,
+                                    borderWidth: 1,
+                                    cornerRadius: 8,
+                                    padding: 12
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: chartConfig.colors.border + '40',
+                                        drawBorder: false
+                                    },
+                                    border: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        precision: 0,
+                                        color: chartConfig.colors.textSecondary
+                                    }
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    border: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        color: chartConfig.colors.textSecondary
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error creating weekday chart:', error);
+            }
+        <?php endif; ?>
+
+        // Print Report
+        const printButton = document.getElementById('print-report');
+        if (printButton) {
+            printButton.addEventListener('click', function() {
+                window.print();
+            });
+        }
+
+        // Period select change handler
+        const periodSelect = document.getElementById('period');
+        if (periodSelect) {
+            periodSelect.addEventListener('change', function() {
+                const dateFromGroup = document.getElementById('dateFromGroup');
+                const dateToGroup = document.getElementById('dateToGroup');
+
+                if (this.value === 'custom') {
+                    dateFromGroup.style.display = 'flex';
+                    dateToGroup.style.display = 'flex';
+                } else {
+                    dateFromGroup.style.display = 'none';
+                    dateToGroup.style.display = 'none';
+                }
+            });
+        }
+
+        // Mobile Filter Toggle
+        const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+        const filterCollapse = document.getElementById('filterCollapse');
+
+        if (mobileFilterToggle && filterCollapse) {
+            mobileFilterToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                filterCollapse.classList.toggle('show');
+                filterCollapse.classList.toggle('collapsed');
+
+                const buttonText = this.querySelector('span');
+                if (filterCollapse.classList.contains('show')) {
+                    buttonText.textContent = 'Hide Filters';
+                } else {
+                    buttonText.textContent = 'Filters';
+                }
+            });
+
+            if (window.innerWidth <= 768) {
+                filterCollapse.classList.add('collapsed');
+            }
+        }
+
+        console.log('✅ Department Analytics initialized successfully');
+    });
 </script>
-
-<style>
-.empty-state {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.empty-state-icon {
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    opacity: 0.5;
-}
-
-.empty-state-title {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    margin-bottom: 10px;
-}
-
-.empty-state-text {
-    font-size: var(--font-size-base);
-    color: var(--text-secondary);
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.pagination-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: var(--spacing-4);
-    padding-top: var(--spacing-4);
-    border-top: 1px solid var(--border-color);
-}
-
-.pagination {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: var(--spacing-2);
-}
-
-.page-item.active .page-link {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-.page-link {
-    padding: var(--spacing-2) var(--spacing-4);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--text-primary);
-    text-decoration: none;
-}
-
-.page-link:hover:not(.active) {
-    background: var(--bg-hover);
-}
-
-.pagination-info {
-    color: var(--text-muted);
-    font-size: var(--font-size-sm);
-}
-
-.bg-subtle {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-color);
-}
-</style>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
