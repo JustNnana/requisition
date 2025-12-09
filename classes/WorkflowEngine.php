@@ -5,6 +5,8 @@
  * 
  * File: classes/WorkflowEngine.php
  * Purpose: Determine approval chains and route requisitions through proper workflow
+ * 
+ * FIXED: Type casting for database values to ensure strict comparison works correctly
  */
 
 class WorkflowEngine {
@@ -241,6 +243,12 @@ public function getNextApprover($requisitionId, $forStatus = null) {
                 return false;
             }
             
+            // ✅ FIX: Cast database values to integers for strict comparison
+            $data['role_id'] = (int)$data['role_id'];
+            $data['user_department_id'] = (int)$data['user_department_id'];
+            $data['department_id'] = (int)$data['department_id'];
+            $data['current_approver_id'] = $data['current_approver_id'] ? (int)$data['current_approver_id'] : null;
+            
             // Check if requisition is in a pending status
             $pendingStatuses = [
                 STATUS_PENDING_LINE_MANAGER,
@@ -268,7 +276,8 @@ public function getNextApprover($requisitionId, $forStatus = null) {
             }
             
             // Additional check: user should be the current approver
-            if ($data['current_approver_id'] && $data['current_approver_id'] != $userId) {
+            // ✅ FIX: Changed to strict comparison (!==)
+            if ($data['current_approver_id'] && $data['current_approver_id'] !== $userId) {
                 return false;
             }
             
@@ -314,6 +323,10 @@ public function getNextApprover($requisitionId, $forStatus = null) {
             if (!$user) {
                 return [];
             }
+            
+            // ✅ FIX: Cast database values to integers for strict comparison
+            $user['role_id'] = (int)$user['role_id'];
+            $user['department_id'] = $user['department_id'] ? (int)$user['department_id'] : null;
             
             // Build query based on role
             $sql = "SELECT r.*, 

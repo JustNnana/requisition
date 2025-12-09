@@ -119,9 +119,8 @@ $pageTitle = 'Pending Payments';
         </div>
         <div class="stat-content">
             <p class="stat-label">Total Amount (All Time)</p>
-            <p class="stat-value"><?php echo format_currency($allTimeStats['total_amount'] ?? 0); ?></p>
-            <p class="stat-hint">
-                <?php echo format_currency($thisMonthStats['total_amount'] ?? 0); ?> this month
+            <p class="stat-value">₦<?php echo number_format((float)$allTimeStats['total_amount'], 2 ?? 0); ?></p>
+            <p class="stat-hint">₦<?php echo number_format((float)$thisMonthStats['total_amount'], 2 ?? 0); ?> this month
             </p>
         </div>
     </div>
@@ -132,7 +131,7 @@ $pageTitle = 'Pending Payments';
         </div>
         <div class="stat-content">
             <p class="stat-label">Average Payment</p>
-            <p class="stat-value"><?php echo format_currency($allTimeStats['average_amount'] ?? 0); ?></p>
+            <p class="stat-value">₦<?php echo number_format((float)$allTimeStats['average_amount'], 2 ?? 0); ?></p>
             <p class="stat-hint">
                 Based on <?php echo number_format($allTimeStats['total_payments'] ?? 0); ?> payments
             </p>
@@ -216,8 +215,7 @@ $pageTitle = 'Pending Payments';
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <strong class="text-success">
-                                        <?php echo format_currency($req['total_amount']); ?>
+                                    <strong class="text-success">₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </strong>
                                 </td>
                                 <td>

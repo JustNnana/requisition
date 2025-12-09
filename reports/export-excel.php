@@ -221,9 +221,9 @@ try {
     // Statistics data
     $statsData = [
         ['Total Requisitions', number_format($statistics['total_count']), 'Pending', number_format($statistics['pending_count'] ?? 0)],
-        ['Total Amount', format_currency($statistics['total_amount']), 'Approved', number_format($statistics['approved_count'] ?? 0)],
-        ['Average Amount', format_currency($statistics['average_amount']), 'Rejected', number_format($statistics['rejected_count'] ?? 0)],
-        ['Highest Amount', format_currency($statistics['max_amount']), 'Completed', number_format($statistics['completed_count'] ?? 0)]
+        ['Total Amount','₦' .  number_format((float)$statistics['total_amount'], 2), 'Approved', number_format($statistics['approved_count'] ?? 0)],
+        ['Average Amount', '₦' .  number_format((float)$statistics['average_amount'], 2), 'Rejected', number_format($statistics['rejected_count'] ?? 0)],
+        ['Highest Amount', '₦' .  number_format((float)$statistics['max_amount'], 2), 'Completed', number_format($statistics['completed_count'] ?? 0)]
     ];
     
     foreach ($statsData as $statRow) {
@@ -303,7 +303,7 @@ try {
         
         $sheet->setCellValue('D' . $row, $req['purpose'] ?? 'N/A');
         $sheet->setCellValue('E' . $row, $req['department_name'] ?? 'N/A');
-        $sheet->setCellValue('F' . $row, format_currency($req['total_amount'] ?? 0));
+        $sheet->setCellValue('F' . $row, '₦' . number_format((float)$req['total_amount'], 2 ?? 0));
         $sheet->setCellValue('G' . $row, get_status_label($req['status'] ?? ''));
         $sheet->setCellValue('H' . $row, format_date($req['updated_at']));
         
@@ -347,7 +347,7 @@ try {
     
     // Add totals row
     $sheet->setCellValue('E' . $row, 'TOTAL:');
-    $sheet->setCellValue('F' . $row, format_currency($statistics['total_amount']));
+    $sheet->setCellValue('F' . $row,'₦' .  number_format((float)$statistics['total_amount'], 2));
     $sheet->getStyle("E{$row}:F{$row}")->getFont()->setBold(true)->setSize(12);
     $sheet->getStyle("E{$row}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_RIGHT);
     $sheet->getStyle("F{$row}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_RIGHT);

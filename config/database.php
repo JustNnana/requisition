@@ -16,9 +16,9 @@ defined('APP_ACCESS') or die('Direct access not permitted');
  * ========================================
  */
 define('DB_HOST', 'localhost');           // Database host
-define('DB_NAME', 'requisition');         // Database name
-define('DB_USER', 'root');                // Database username
-define('DB_PASS', '');                    // Database password
+define('DB_NAME', 'gateweyc_requisition');         // Database name
+define('DB_USER', 'gateweyc_request_admin');                // Database username
+define('DB_PASS', '{6Reg-0n-UG=&YVU');                    // Database password
 define('DB_CHARSET', 'utf8mb4');          // Character set
 define('DB_COLLATION', 'utf8mb4_unicode_ci'); // Collation
 

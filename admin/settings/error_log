@@ -1,0 +1,13 @@
+[07-Dec-2025 17:01:29 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 17:01:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 17:01:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 17:01:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 17:01:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 17:01:29 Africa/Lagos] Navbar Debug - Role ID: 1 | Role Name: Super Admin
+[07-Dec-2025 17:01:44 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 17:01:44 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: SELECT * FROM `v_active_users`
+[07-Dec-2025 17:01:44 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 17:01:44 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 17:01:44 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 17:01:44 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 17:01:44 Africa/Lagos] Navbar Debug - Role ID: 1 | Role Name: Super Admin

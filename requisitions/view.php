@@ -1267,8 +1267,7 @@ function getPreviewType($filename)
                         <p>Itemized list of requested items</p>
                     </div>
                 </div>
-                <div class="summary-value highlight">
-                    <?php echo format_currency($reqData['total_amount']); ?>
+                <div class="summary-value highlight">₦<?php echo number_format((float)$reqData['total_amount'], 2); ?>
                 </div>
             </div>
             <div class="section-body" style="padding: 0;">
@@ -1289,15 +1288,15 @@ function getPreviewType($filename)
                                     <td class="item-number1"><?php echo $index + 1; ?></td>
                                     <td><?php echo htmlspecialchars($item['item_description']); ?></td>
                                     <td><?php echo number_format($item['quantity']); ?></td>
-                                    <td class="text-right"><?php echo format_currency($item['unit_price']); ?></td>
-                                    <td class="text-right subtotal"><?php echo format_currency($item['subtotal']); ?></td>
+                                    <td class="text-right">₦<?php echo number_format((float)$item['unit_price'], 2); ?></td>
+                                    <td class="text-right subtotal">₦<?php echo number_format((float)$item['subtotal'], 2); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="4" class="text-right">Total Amount:</td>
-                                <td class="text-right total-amount"><?php echo format_currency($reqData['total_amount']); ?></td>
+                                <td class="text-right total-amount">₦<?php echo number_format((float)$reqData['total_amount'], 2); ?></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -1387,7 +1386,7 @@ function getPreviewType($filename)
                     <span class="summary-label">
                         <i class="fas fa-money-bill-wave"></i>Total Amount
                     </span>
-                    <span class="summary-value highlight"><?php echo format_currency($reqData['total_amount']); ?></span>
+                    <span class="summary-value highlight">₦<?php echo number_format((float)$reqData['total_amount'], 2); ?></span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">
@@ -1525,7 +1524,7 @@ function getPreviewType($filename)
             <div class="modal-body">
                 <p>Are you sure you want to approve this requisition?</p>
                 <p><strong>Requisition:</strong> <?php echo htmlspecialchars($reqData['requisition_number']); ?><br>
-                    <strong>Amount:</strong> <?php echo format_currency($reqData['total_amount']); ?>
+                    <strong>Amount:</strong>₦<?php echo number_format((float)$reqData['total_amount'], 2); ?>
                 </p>
 
                 <form method="POST" action="approve.php" id="approveForm">

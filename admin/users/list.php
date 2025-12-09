@@ -103,7 +103,254 @@ $pageTitle = 'User Management';
 ?>
 
 <?php include __DIR__ . '/../../includes/header.php'; ?>
+<style>
+/* ============================================
+   User List Filter Section Styles
+   ============================================ */
 
+/* Filter Card */
+.card.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+/* Form Row with Side-by-Side Layout */
+.row.g-3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0;
+    align-items: flex-end;
+}
+
+.row.g-3 > [class*="col-"] {
+    padding: 0;
+    flex-shrink: 0;
+}
+
+/* Form Labels */
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Form Controls (Input & Select) */
+.form-control,
+.form-select {
+    display: block;
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Input Field Specific */
+.form-control {
+    appearance: none;
+}
+
+/* Select Dropdown Specific */
+.form-select {
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
+    cursor: pointer;
+    background-color:#1C252E;
+    color:var(--text-secondary);
+}
+
+.form-select:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Select Options Styling */
+.form-select option {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Disabled State */
+.form-control:disabled,
+.form-select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Filter Buttons Container */
+.d-flex.align-items-end {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+/* Button Spacing */
+.btn.me-2 {
+    margin-right: 0.5rem;
+}
+
+/* Filter Buttons */
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    white-space: nowrap;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-primary i,
+.btn-secondary i {
+    margin-right: 0.5rem;
+}
+
+/* Column Sizing for Side-by-Side Layout */
+.col-md-3 {
+    flex: 0 0 auto;
+    width: calc(25% - 0.75rem);
+}
+
+.col-md-2 {
+    flex: 0 0 auto;
+    width: calc(16.666667% - 0.75rem);
+}
+
+/* Ensure columns fill remaining space properly */
+.row.g-3 > .col-md-3:first-child {
+    width: calc(25% - 0.75rem);
+}
+
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.25rem;
+}
+
+.page-item {
+    display: inline-block;
+}
+
+.page-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.page-link:hover {
+    transform: translateY(-1px);
+}
+
+.page-item.active .page-link {
+    font-weight: 600;
+}
+
+/* Table Actions */
+.table-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .col-md-3,
+    .col-md-2 {
+        width: calc(50% - 0.5rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .col-md-3,
+    .col-md-2 {
+        width: 100%;
+    }
+    
+    .row.g-3 {
+        gap: 1rem;
+    }
+    
+    .d-flex.align-items-end {
+        flex-direction: row;
+        width: 100%;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        flex: 1;
+        margin-right: 0 !important;
+    }
+    
+    .btn-primary {
+        margin-right: 0.5rem !important;
+    }
+}
+
+/* Focus Visible for Accessibility */
+.form-control:focus-visible,
+.form-select:focus-visible {
+    outline-offset: 2px;
+}
+
+/* Empty State Styling */
+.text-center.text-muted.py-5 {
+    padding: 3rem 0;
+}
+
+.text-center.text-muted.py-5 i {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.text-center.text-muted.py-5 p {
+    margin: 0.5rem 0;
+}
+
+/* Number Formatting */
+.d-flex.justify-content-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}    
+    
+</style>
 <!-- Page Header -->
 <div class="content-header">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -139,17 +386,18 @@ $pageTitle = 'User Management';
     <div class="card-body">
         <form method="GET" action="" class="row g-3">
             <div class="col-md-3">
-                <label class="form-label">Search</label>
+                <label for="search" class="form-label">Search Users</label>
                 <input type="text"
+                    id="search"
                     name="search"
                     class="form-control"
-                    placeholder="Name or email..."
+                    placeholder="Search by name or email..."
                     value="<?php echo htmlspecialchars($searchTerm); ?>">
             </div>
 
             <div class="col-md-2">
-                <label class="form-label">Role</label>
-                <select name="role" class="form-control">
+                <label for="role" class="form-label">Role</label>
+                <select id="role" name="role" class="form-select">
                     <option value="">All Roles</option>
                     <?php foreach ($roles as $role): ?>
                         <option value="<?php echo $role['id']; ?>"
@@ -161,8 +409,8 @@ $pageTitle = 'User Management';
             </div>
 
             <div class="col-md-3">
-                <label class="form-label">Department</label>
-                <select name="department" class="form-control">
+                <label for="department" class="form-label">Department</label>
+                <select id="department" name="department" class="form-select">
                     <option value="">All Departments</option>
                     <?php foreach ($departments as $dept): ?>
                         <option value="<?php echo $dept['id']; ?>"
@@ -174,8 +422,8 @@ $pageTitle = 'User Management';
             </div>
 
             <div class="col-md-2">
-                <label class="form-label">Status</label>
-                <select name="status" class="form-control">
+                <label for="status" class="form-label">Status</label>
+                <select id="status" name="status" class="form-select">
                     <option value="">All Status</option>
                     <option value="1" <?php echo ($statusFilter === '1') ? 'selected' : ''; ?>>Active</option>
                     <option value="0" <?php echo ($statusFilter === '0') ? 'selected' : ''; ?>>Inactive</option>
@@ -186,7 +434,7 @@ $pageTitle = 'User Management';
                 <button type="submit" class="btn btn-primary me-2">
                     <i class="fas fa-search"></i> Filter
                 </button>
-                <a href="list.php" class="btn btn-ghost">
+                <a href="list.php" class="btn btn-secondary">
                     <i class="fas fa-redo"></i>
                 </a>
             </div>
@@ -206,7 +454,7 @@ $pageTitle = 'User Management';
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -222,12 +470,20 @@ $pageTitle = 'User Management';
                             <td colspan="8" class="text-center text-muted py-5">
                                 <i class="fas fa-users fa-3x mb-3" style="opacity: 0.3;"></i>
                                 <p>No users found</p>
+                                <?php if (!empty($searchTerm) || !empty($roleFilter) || !empty($departmentFilter) || $statusFilter !== ''): ?>
+                                    <a href="list.php" class="btn btn-secondary btn-sm mt-2">
+                                        Clear Filters
+                                    </a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php else: ?>
-                        <?php foreach ($users as $userData): ?>
+                        <?php 
+                        $rowNumber = $offset + 1;
+                        foreach ($users as $userData): 
+                        ?>
                             <tr>
-                                <td><?php echo $userData['id']; ?></td>
+                                <td><?php echo $rowNumber++; ?></td>
                                 <td>
                                     <div style="font-weight: var(--font-weight-medium);">
                                         <?php echo htmlspecialchars($userData['first_name'] . ' ' . $userData['last_name']); ?>
@@ -244,7 +500,11 @@ $pageTitle = 'User Management';
                                     </span>
                                 </td>
                                 <td>
-                                    <?php echo $userData['department_name'] ? htmlspecialchars($userData['department_name']) : '<span class="text-muted">N/A</span>'; ?>
+                                    <?php if (!empty($userData['department_name'])): ?>
+                                        <?php echo htmlspecialchars($userData['department_name']); ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">N/A</span>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
                                     <?php if ($userData['is_active']): ?>
@@ -271,11 +531,11 @@ $pageTitle = 'User Management';
                                         if ($userData['id'] != ($currentUser['id'] ?? 0)):
                                         ?>
                                             <a href="delete.php?id=<?php echo $userData['id']; ?>"
-    class="btn btn-sm btn-ghost text-danger"
-    title="Delete User"
-    onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
-    <i class="fas fa-trash"></i>
-</a>
+                                                class="btn btn-sm btn-ghost text-danger"
+                                                title="Delete User"
+                                                onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
                                         <?php endif; ?>
                                     </div>
                                 </td>
@@ -290,7 +550,7 @@ $pageTitle = 'User Management';
         <?php if ($totalPages > 1): ?>
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
-                    Showing <?php echo $offset + 1; ?> to <?php echo min($offset + $perPage, $totalUsers); ?> of <?php echo number_format($totalUsers); ?> users
+                    Showing <?php echo number_format($offset + 1); ?> to <?php echo number_format(min($offset + $perPage, $totalUsers)); ?> of <?php echo number_format($totalUsers); ?> users
                 </div>
                 <nav>
                     <ul class="pagination mb-0">

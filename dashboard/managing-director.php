@@ -67,7 +67,7 @@ $sql = "SELECT COALESCE(SUM(total_amount), 0) as total
         FROM requisitions 
         WHERE status IN (?, ?)";
 $result = $db->fetchOne($sql, [STATUS_PAID, STATUS_COMPLETED]);
-$stats['organization_amount'] = $result['total'];  // ✅ CORRECT - only paid/completed
+$stats['organization_amount'] = $result['total'];  // âœ… CORRECT - only paid/completed
 
 // This month
 $sql = "SELECT COUNT(*) as count 
@@ -114,30 +114,60 @@ $sql = "SELECT r.*, u.first_name, u.last_name, d.department_name
         LIMIT 5";
 $recentActivity = $db->fetchAll($sql, [STATUS_DRAFT]);
 
-// Get department summary
-$sql = "SELECT d.department_name, d.department_code,
-               COUNT(r.id) as requisition_count,
-               COALESCE(SUM(r.total_amount), 0) as total_amount
+// Get department summary - FIXED to show only paid/completed amounts
+$sql = "SELECT d.department_name, d.department_code, d.id as department_id,
+               COUNT(r.id) as requisition_count
         FROM departments d
         LEFT JOIN requisitions r ON d.id = r.department_id AND r.status != ?
         WHERE d.is_active = 1
-        GROUP BY d.id, d.department_name, d.department_code
-        ORDER BY total_amount DESC";
-$departmentSummary = $db->fetchAll($sql, [STATUS_DRAFT]);
+        GROUP BY d.id, d.department_name, d.department_code";
+$departmentCounts = $db->fetchAll($sql, [STATUS_DRAFT]);
 
-// Get monthly data for chart (last 6 months)
+// Now get amounts - ONLY for paid/completed requisitions
+$departmentSummary = [];
+foreach ($departmentCounts as $dept) {
+    $amountSql = "SELECT COALESCE(SUM(total_amount), 0) as total_amount
+                  FROM requisitions
+                  WHERE department_id = ?
+                  AND status IN (?, ?)";
+    $amountResult = $db->fetchOne($amountSql, [$dept['department_id'], STATUS_PAID, STATUS_COMPLETED]);
+    
+    $departmentSummary[] = [
+        'department_name' => $dept['department_name'],
+        'department_code' => $dept['department_code'],
+        'requisition_count' => $dept['requisition_count'],
+        'total_amount' => $amountResult['total_amount']
+    ];
+}
+
+// Sort by total amount descending
+usort($departmentSummary, function($a, $b) {
+    return $b['total_amount'] <=> $a['total_amount'];
+});
+
+// Get monthly data for chart (last 6 months) - FIXED to show only paid/completed amounts
 $monthlyData = [];
 for ($i = 5; $i >= 0; $i--) {
     $date = date('Y-m', strtotime("-$i months"));
-    $sql = "SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
-            FROM requisitions
-            WHERE DATE_FORMAT(created_at, '%Y-%m') = ?
-            AND status != ?";
-    $result = $db->fetchOne($sql, [$date, STATUS_DRAFT]);
+    
+    // Count all non-draft requisitions
+    $countSql = "SELECT COUNT(*) as count
+                 FROM requisitions
+                 WHERE DATE_FORMAT(created_at, '%Y-%m') = ?
+                 AND status != ?";
+    $countResult = $db->fetchOne($countSql, [$date, STATUS_DRAFT]);
+    
+    // Sum ONLY paid/completed requisitions
+    $amountSql = "SELECT COALESCE(SUM(total_amount), 0) as total
+                  FROM requisitions
+                  WHERE DATE_FORMAT(created_at, '%Y-%m') = ?
+                  AND status IN (?, ?)";
+    $amountResult = $db->fetchOne($amountSql, [$date, STATUS_PAID, STATUS_COMPLETED]);
+    
     $monthlyData[] = [
         'month' => date('M Y', strtotime($date . '-01')),
-        'count' => $result['count'],
-        'amount' => $result['total']
+        'count' => $countResult['count'],
+        'amount' => $amountResult['total']
     ];
 }
 
@@ -672,7 +702,7 @@ $pageTitle = 'Managing Director Dashboard';
             </div>
             <div class="revenue-card-content">
                 <h3 class="revenue-card-title">Total Spending</h3>
-                <p class="revenue-card-value"><?php echo format_currency($stats['organization_amount']); ?></p>
+                <p class="revenue-card-value">₦<?php echo number_format((float)$stats['organization_amount'], 2); ?></p>
             </div>
         </div>
     </div>
@@ -881,9 +911,8 @@ $pageTitle = 'Managing Director Dashboard';
                                 </span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
-                                </span>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
+
                             </td>
                             <td class="text-end">
                                 <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
@@ -930,9 +959,8 @@ $pageTitle = 'Managing Director Dashboard';
                             </span>
                         </td>
                         <td class="text-end">
-                            <span style="font-weight: var(--font-weight-semibold);">
-                                <?php echo format_currency($dept['total_amount']); ?>
-                            </span>
+                            <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$dept['total_amount'], 2); ?></span>
+
                         </td>
                         <td class="text-end">
                             <?php 
@@ -985,9 +1013,8 @@ $pageTitle = 'Managing Director Dashboard';
                             <span class="text-muted"><?php echo htmlspecialchars($req['department_name'] ?? 'N/A'); ?></span>
                         </td>
                         <td class="text-end">
-                            <span style="font-weight: var(--font-weight-semibold);">
-                                <?php echo format_currency($req['total_amount']); ?>
-                            </span>
+<span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
+
                         </td>
                         <td>
                                 <?php
@@ -1020,7 +1047,7 @@ $pageTitle = 'Managing Director Dashboard';
 <!-- Dasher Chart Configuration and Initialization -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎨 Initializing Managing Director Dashboard...');
+    console.log('ðŸŽ¨ Initializing Managing Director Dashboard...');
 
     // Wait for Chart.js to be available
     if (typeof Chart === 'undefined') {
@@ -1156,7 +1183,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update chart when theme changes
     document.addEventListener('themeChanged', function(event) {
-        console.log('🎨 Updating MD charts for theme:', event.detail.theme);
+        console.log('ðŸŽ¨ Updating MD charts for theme:', event.detail.theme);
 
         const newConfig = getDasherChartConfig();
 
@@ -1172,7 +1199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('✅ Managing Director Dashboard initialized successfully');
+    console.log('âœ… Managing Director Dashboard initialized successfully');
 });
 </script>
 

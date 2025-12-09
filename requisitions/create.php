@@ -672,7 +672,7 @@ $pageTitle = 'Create Requisition';
                             >
                         </div>
                         <div class="item-field">
-                            <label class="form-label required">Unit Price (<?php echo CURRENCY_SYMBOL; ?>)</label>
+                            <label class="form-label required">Unit Price (₦)</label>
                             <input 
                                 type="number" 
                                 name="items[0][unit_price]" 
@@ -689,7 +689,7 @@ $pageTitle = 'Create Requisition';
                                 type="text" 
                                 class="form-control item-subtotal" 
                                 readonly 
-                                value="<?php echo CURRENCY_SYMBOL; ?>0.00"
+                                value="₦ 0.00"
                             >
                             <input type="hidden" name="items[0][subtotal]" class="item-subtotal-value" value="0">
                         </div>

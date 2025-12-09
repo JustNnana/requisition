@@ -524,7 +524,7 @@ $includeCharts = true;
             </div>
             <div class="improved-stats-content">
                 <h3 class="improved-stats-title">Total Amount</h3>
-                <p class="improved-stats-value"><?php echo format_currency($statistics['total_amount']); ?></p>
+                <p class="improved-stats-value">₦<?php echo number_format((float)$statistics['total_amount'], 2); ?></p>
             </div>
         </div>
         <div class="improved-stats-change">
@@ -584,7 +584,7 @@ $includeCharts = true;
             </div>
             <div class="improved-stats-content">
                 <h3 class="improved-stats-title">Average Amount</h3>
-                <p class="improved-stats-value"><?php echo format_currency($statistics['average_amount']); ?></p>
+                <p class="improved-stats-value">₦<?php echo number_format((float)$statistics['average_amount'], 2); ?></p>
             </div>
         </div>
         <div class="improved-stats-change">
@@ -940,8 +940,7 @@ $includeCharts = true;
                                 <?php echo date('M d, Y g:i A', strtotime($req['created_at'])); ?>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                 </span>
                             </td>
                             <td class="text-end">

@@ -469,7 +469,7 @@ $includeCharts = true;
                 </div>
                 <div class="improved-stats-content">
                     <h3 class="improved-stats-title">Total Amount</h3>
-                    <p class="improved-stats-value"><?php echo format_currency($statistics['total_amount']); ?></p>
+                    <p class="improved-stats-value">₦<?php echo number_format((float)$statistics['total_amount'], 2); ?></p>
                 </div>
             </div>
             <div class="improved-stats-change">
@@ -529,7 +529,7 @@ $includeCharts = true;
                 </div>
                 <div class="improved-stats-content">
                     <h3 class="improved-stats-title">Average Amount</h3>
-                    <p class="improved-stats-value"><?php echo format_currency($statistics['average_amount']); ?></p>
+                    <p class="improved-stats-value">₦<?php echo number_format((float)$statistics['average_amount'], 2); ?></p>
                 </div>
             </div>
             <div class="improved-stats-change">
@@ -875,8 +875,7 @@ $includeCharts = true;
                                     <?php echo date('M d, Y g:i A', strtotime($req['created_at'])); ?>
                                 </td>
                                 <td class="text-end">
-                                    <span style="font-weight: var(--font-weight-semibold);">
-                                        <?php echo format_currency($req['total_amount']); ?>
+                                    <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </span>
                                 </td>
                                 <td class="text-end">
@@ -899,7 +898,7 @@ $includeCharts = true;
 <!-- Dasher Chart Configuration and Initialization -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎨 Initializing Dasher UI Requisition Analytics...');
+    console.log('ðŸŽ¨ Initializing Dasher UI Requisition Analytics...');
 
     function getDasherChartConfig() {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -1191,7 +1190,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         padding: 12,
                         callbacks: {
                             label: function(context) {
-                                return 'Amount: ₦' + context.parsed.y.toLocaleString();
+                                return 'Amount: â‚¦' + context.parsed.y.toLocaleString();
                             }
                         }
                     }
@@ -1209,7 +1208,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         ticks: {
                             color: chartConfig.colors.textSecondary,
                             callback: function(value) {
-                                return '₦' + value.toLocaleString();
+                                return 'â‚¦' + value.toLocaleString();
                             }
                         }
                     },
@@ -1403,7 +1402,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update charts when theme changes
     document.addEventListener('themeChanged', function(event) {
-        console.log('🎨 Updating requisition analytics charts for theme:', event.detail.theme);
+        console.log('ðŸŽ¨ Updating requisition analytics charts for theme:', event.detail.theme);
 
         const newConfig = getDasherChartConfig();
 
@@ -1427,7 +1426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('✅ Dasher UI Requisition Analytics initialized successfully');
+    console.log('âœ… Dasher UI Requisition Analytics initialized successfully');
 });
 </script>
 

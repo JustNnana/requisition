@@ -206,8 +206,8 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                                 <tr>
                                     <td><?php echo htmlspecialchars($item['item_description']); ?></td>
                                     <td class="text-center"><?php echo $item['quantity']; ?></td>
-                                    <td class="text-right"><?php echo format_currency($item['unit_price']); ?></td>
-                                    <td class="text-right"><strong><?php echo format_currency($item['subtotal']); ?></strong></td>
+                                    <td class="text-right">₦<?php echo number_format((float)$item['unit_price'], 2); ?></td>
+                                    <td class="text-right"><strong>₦<?php echo number_format((float)$item['subtotal'], 2); ?></strong></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -215,8 +215,7 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                             <tr class="table-total">
                                 <th colspan="3" class="text-right">Total Amount:</th>
                                 <th class="text-right">
-                                    <span class="text-success" style="font-size: 1.2em;">
-                                        <?php echo format_currency($req['total_amount']); ?>
+                                    <span class="text-success" style="font-size: 1.2em;">₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </span>
                                 </th>
                             </tr>

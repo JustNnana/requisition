@@ -52,12 +52,14 @@ class Session {
             self::regenerateIfNeeded();
         }
     }
+    
     /**
- * Start session (alias for init() - backward compatibility)
- */
-public static function start() {
-    self::init();
-}
+     * Start session (alias for init() - backward compatibility)
+     */
+    public static function start() {
+        self::init();
+    }
+    
     /**
      * Regenerate session ID (prevents session fixation)
      * Call this after successful login
@@ -252,6 +254,7 @@ public static function start() {
     
     /**
      * Get current user ID
+     * ✅ FIXED: Added (int) cast to return integer
      * 
      * @return int|null User ID or null if not logged in
      */
@@ -262,15 +265,17 @@ public static function start() {
         
         // Try new format first
         if (isset($_SESSION[self::SESSION_USER_KEY]['id'])) {
-            return $_SESSION[self::SESSION_USER_KEY]['id'];
+            return (int)$_SESSION[self::SESSION_USER_KEY]['id'];
         }
         
         // Fall back to old format
-        return self::get('user_id');
+        $userId = self::get('user_id');
+        return $userId !== null ? (int)$userId : null;
     }
     
     /**
      * Get current user role ID
+     * ✅ FIXED: Added (int) cast to return integer
      * 
      * @return int|null Role ID or null if not logged in
      */
@@ -281,15 +286,17 @@ public static function start() {
         
         // Try new format first
         if (isset($_SESSION[self::SESSION_USER_KEY]['role_id'])) {
-            return $_SESSION[self::SESSION_USER_KEY]['role_id'];
+            return (int)$_SESSION[self::SESSION_USER_KEY]['role_id'];
         }
         
         // Fall back to old format
-        return self::get('user_role_id');
+        $roleId = self::get('user_role_id');
+        return $roleId !== null ? (int)$roleId : null;
     }
     
     /**
      * Get current user department ID
+     * ✅ FIXED: Added (int) cast to return integer
      * 
      * @return int|null Department ID or null if not logged in or no department
      */
@@ -300,11 +307,13 @@ public static function start() {
         
         // Try new format first
         if (isset($_SESSION[self::SESSION_USER_KEY]['department_id'])) {
-            return $_SESSION[self::SESSION_USER_KEY]['department_id'];
+            $deptId = $_SESSION[self::SESSION_USER_KEY]['department_id'];
+            return $deptId !== null ? (int)$deptId : null;
         }
         
         // Fall back to old format
-        return self::get('user_department_id');
+        $deptId = self::get('user_department_id');
+        return $deptId !== null ? (int)$deptId : null;
     }
     
     /**

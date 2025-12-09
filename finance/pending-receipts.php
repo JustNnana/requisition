@@ -98,12 +98,11 @@ $pageTitle = 'Pending Receipts';
         </div>
         <div class="stat-content">
             <p class="stat-label">Total Amount Paid</p>
-            <p class="stat-value">
-                <?php 
-                $totalAmount = array_sum(array_column($pendingReceipts, 'total_amount'));
-                echo format_currency($totalAmount);
-                ?>
-            </p>
+            <p class="stat-value">₦<?php 
+    $totalAmount = array_sum(array_column($pendingReceipts, 'total_amount'));
+    echo number_format((float)$totalAmount, 2);
+    ?>
+</p>
         </div>
     </div>
 </div>
@@ -210,8 +209,8 @@ $pageTitle = 'Pending Receipts';
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <strong class="text-success">
-                                        <?php echo format_currency($req['total_amount']); ?>
+                                    <strong class="text-success">₦
+                                        <?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </strong>
                                 </td>
                                 <td>

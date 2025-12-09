@@ -116,7 +116,7 @@ $pageTitle = 'Payment History';
         </div>
         <div class="stat-content">
             <p class="stat-label">Total Amount Paid</p>
-            <p class="stat-value"><?php echo format_currency($stats['total_amount'] ?? 0); ?></p>
+            <p class="stat-value">₦<?php echo number_format((float)$stats['total_amount'], 2 ?? 0); ?></p>
         </div>
     </div>
     
@@ -126,7 +126,7 @@ $pageTitle = 'Payment History';
         </div>
         <div class="stat-content">
             <p class="stat-label">Average Payment</p>
-            <p class="stat-value"><?php echo format_currency($stats['average_amount'] ?? 0); ?></p>
+            <p class="stat-value">₦<?php echo number_format((float)$stats['average_amount'], 2 ?? 0); ?></p>
         </div>
     </div>
     
@@ -263,8 +263,7 @@ $pageTitle = 'Payment History';
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <strong class="text-success">
-                                        <?php echo format_currency($record['total_amount']); ?>
+                                    <strong class="text-success">₦<?php echo number_format((float)$record['total_amount'], 2); ?>
                                     </strong>
                                 </td>
                                 <td>

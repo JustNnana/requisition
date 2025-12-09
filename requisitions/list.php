@@ -256,11 +256,15 @@ $pageTitle = 'My Requisitions';
                     </thead>
                     <tbody>
                         <?php
-                        // Sort requisitions by newest submitted_at
-                        usort($requisitions, function ($a, $b) {
-                            return strtotime($b['submitted_at']) - strtotime($a['submitted_at']);
-                        });
-                        ?>
+// Sort requisitions by newest submitted_at (with NULL handling for drafts)
+usort($requisitions, function ($a, $b) {
+    // Handle NULL values - use created_at for drafts or set to 0
+    $timeA = $a['submitted_at'] ? strtotime($a['submitted_at']) : ($a['created_at'] ? strtotime($a['created_at']) : 0);
+    $timeB = $b['submitted_at'] ? strtotime($b['submitted_at']) : ($b['created_at'] ? strtotime($b['created_at']) : 0);
+    
+    return $timeB - $timeA; // Newest first
+});
+?>
                         <?php foreach ($requisitions as $req): ?>
                             <tr>
                                 <td>
@@ -276,7 +280,7 @@ $pageTitle = 'My Requisitions';
                                     ?>
                                 </td>
                                 <td>
-                                    <strong><?php echo format_currency($req['total_amount']); ?></strong>
+                                    <strong>₦<?php echo number_format((float)$req['total_amount'], 2); ?></strong>
                                 </td>
                                 <td>
                                     <?php echo get_status_badge($req['status']); ?>

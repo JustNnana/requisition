@@ -663,7 +663,8 @@ $pageTitle = 'Finance Manager Dashboard';
             </div>
             <div class="revenue-card-content">
                 <h3 class="revenue-card-title">Total Paid</h3>
-                <p class="revenue-card-value"><?php echo format_currency($stats['total_paid_amount']); ?></p>
+                <p class="revenue-card-value">₦<?php echo number_format((float)$stats['total_paid_amount'], 2); ?></p>
+
             </div>
         </div>
     </div>
@@ -864,9 +865,8 @@ $pageTitle = 'Finance Manager Dashboard';
                                 <span class="text-muted"><?php echo htmlspecialchars($req['department_code'] ?? 'N/A'); ?></span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
-                                </span>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
+
                             </td>
                             <td class="text-end">
                                 <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
@@ -917,9 +917,8 @@ $pageTitle = 'Finance Manager Dashboard';
                                 <span class="text-muted"><?php echo htmlspecialchars($req['department_name'] ?? 'N/A'); ?></span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
-                                </span>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
+
                             </td>
                             <td class="text-end">
                                 <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
@@ -979,9 +978,8 @@ $pageTitle = 'Finance Manager Dashboard';
                                 <span class="text-muted"><?php echo htmlspecialchars($req['department_name'] ?? 'N/A'); ?></span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
-                                </span>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
+
                             </td>
                             <td>
                                 <?php if ($req['status'] == STATUS_COMPLETED): ?>
@@ -1015,7 +1013,7 @@ $pageTitle = 'Finance Manager Dashboard';
 <!-- Dasher Chart Configuration and Initialization -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎨 Initializing Finance Manager Dashboard...');
+    console.log('ðŸŽ¨ Initializing Finance Manager Dashboard...');
 
     // Wait for Chart.js to be available
     if (typeof Chart === 'undefined') {
@@ -1216,7 +1214,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update chart when theme changes
     document.addEventListener('themeChanged', function(event) {
-        console.log('🎨 Updating Finance Manager charts for theme:', event.detail.theme);
+        console.log('ðŸŽ¨ Updating Finance Manager charts for theme:', event.detail.theme);
 
         const newConfig = getDasherChartConfig();
 
@@ -1234,7 +1232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('✅ Finance Manager Dashboard initialized successfully');
+    console.log('âœ… Finance Manager Dashboard initialized successfully');
 });
 </script>
 

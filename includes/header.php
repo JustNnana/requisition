@@ -49,10 +49,10 @@ if ($hour < 12) {
 }
 
 // Get notification count (placeholder - implement actual notification logic)
-$notificationCount = 0;
+// $notificationCount = 0;
 
 // Get message count (placeholder - implement actual message logic)
-$messageCount = 0;
+// $messageCount = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light" data-bs-theme="light">
@@ -204,6 +204,7 @@ $messageCount = 0;
             cursor: pointer;
             transition: var(--transition-fast);
             font-size: var(--font-size-lg);
+            margin-right: var(--spacing-2);
         }
 
         .theme-toggle:hover {
@@ -579,20 +580,20 @@ $messageCount = 0;
             </button>
 
             <!-- Notifications -->
-            <button class="nav-btn position-relative" title="Notifications">
+            <!-- <button class="nav-btn position-relative" title="Notifications">
                 <i class="fas fa-bell"></i>
                 <?php if ($notificationCount > 0): ?>
                     <span class="notification-badge"><?php echo $notificationCount; ?></span>
                 <?php endif; ?>
-            </button>
+            </button> -->
 
             <!-- Messages -->
-            <button class="nav-btn position-relative" title="Messages">
+            <!-- <button class="nav-btn position-relative" title="Messages">
                 <i class="fas fa-envelope"></i>
                 <?php if ($messageCount > 0): ?>
                     <span class="notification-badge"><?php echo $messageCount; ?></span>
                 <?php endif; ?>
-            </button>
+            </button> -->
         </div>
 
         <!-- Right side with mobile actions and profile -->
@@ -605,20 +606,20 @@ $messageCount = 0;
                 </button>
 
                 <!-- Notifications (mobile) -->
-                <button class="nav-btn position-relative me-1">
+                <!-- <button class="nav-btn position-relative me-1">
                     <i class="fas fa-bell"></i>
                     <?php if ($notificationCount > 0): ?>
                         <span class="notification-badge"><?php echo $notificationCount; ?></span>
                     <?php endif; ?>
-                </button>
+                </button> -->
 
                 <!-- Messages (mobile) -->
-                <button class="nav-btn position-relative me-2">
+                <!-- <button class="nav-btn position-relative me-2">
                     <i class="fas fa-envelope"></i>
                     <?php if ($messageCount > 0): ?>
                         <span class="notification-badge"><?php echo $messageCount; ?></span>
                     <?php endif; ?>
-                </button>
+                </button> -->
             </div>
 
             <!-- User profile dropdown -->
@@ -638,12 +639,12 @@ $messageCount = 0;
                         <small style="color: var(--text-secondary);"><?php echo htmlspecialchars($userEmail); ?></small>
                     </div>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo BASE_URL; ?>/profile/index.php">
+                    <a class="dropdown-item" href="<?php echo BASE_URL; ?>#">
                         <i class="fas fa-user"></i> My Profile
                     </a>
-                    <a class="dropdown-item" href="<?php echo BASE_URL; ?>/profile/settings.php">
+                    <!-- <a class="dropdown-item" href="<?php echo BASE_URL; ?>/profile/settings.php">
                         <i class="fas fa-cog"></i> Settings
-                    </a>
+                    </a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="<?php echo BASE_URL; ?>/auth/logout.php">
                         <i class="fas fa-sign-out-alt"></i> Logout
@@ -668,7 +669,7 @@ $messageCount = 0;
                 <i class="fas fa-chart-bar"></i>
                 <span>Reports</span>
             </a>
-            <a href="<?php echo BASE_URL; ?>/profile/index.php" class="mobile-nav-item <?php echo ($currentDir === 'profile') ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>#" class="mobile-nav-item <?php echo ($currentDir === 'profile') ? 'active' : ''; ?>">
                 <i class="fas fa-user"></i>
                 <span>Profile</span>
             </a>

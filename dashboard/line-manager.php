@@ -81,7 +81,7 @@ $sql = "SELECT COALESCE(SUM(total_amount), 0) as total
         WHERE department_id = ? 
         AND status IN (?, ?)";
 $result = $db->fetchOne($sql, [$departmentId, STATUS_PAID, STATUS_COMPLETED]);
-$stats['department_amount'] = $result['total'];  // ✅ CORRECT - only paid/completed
+$stats['department_amount'] = $result['total'];  // âœ… CORRECT - only paid/completed
 
 // Department this month
 $sql = "SELECT COUNT(*) as count 
@@ -129,7 +129,7 @@ for ($i = 5; $i >= 0; $i--) {
             FROM requisitions
             WHERE department_id = ?
             AND DATE_FORMAT(created_at, '%Y-%m') = ?
-            AND status IN (?, ?)";  // ✅ CORRECT - only paid/completed
+            AND status IN (?, ?)";  // âœ… CORRECT - only paid/completed
     $result = $db->fetchOne($sql, [$departmentId, $date, STATUS_PAID, STATUS_COMPLETED]);
     $monthlyData[] = [
         'month' => date('M Y', strtotime($date . '-01')),
@@ -667,7 +667,7 @@ $pageTitle = 'Line Manager Dashboard';
             </div>
             <div class="revenue-card-content">
                 <h3 class="revenue-card-title">Department Total</h3>
-                <p class="revenue-card-value"><?php echo format_currency($stats['department_amount']); ?></p>
+<p class="revenue-card-value">₦<?php echo number_format((float)$stats['department_amount'], 2); ?></p>
             </div>
         </div>
     </div>
@@ -854,9 +854,7 @@ $pageTitle = 'Line Manager Dashboard';
                                 </span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
-                                </span>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
                             </td>
                             <td class="text-end">
                                 <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
@@ -915,9 +913,7 @@ $pageTitle = 'Line Manager Dashboard';
                                 </span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
-                                </span>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
                             </td>
                             <td>
                                 <?php
@@ -951,7 +947,7 @@ $pageTitle = 'Line Manager Dashboard';
 <!-- Dasher Chart Configuration and Initialization -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎨 Initializing Line Manager Dashboard...');
+    console.log('ðŸŽ¨ Initializing Line Manager Dashboard...');
 
     // Wait for Chart.js to be available
     if (typeof Chart === 'undefined') {
@@ -1087,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update chart when theme changes
     document.addEventListener('themeChanged', function(event) {
-        console.log('🎨 Updating Line Manager charts for theme:', event.detail.theme);
+        console.log('ðŸŽ¨ Updating Line Manager charts for theme:', event.detail.theme);
 
         const newConfig = getDasherChartConfig();
 
@@ -1103,7 +1099,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('✅ Line Manager Dashboard initialized successfully');
+    console.log('âœ… Line Manager Dashboard initialized successfully');
 });
 </script>
 

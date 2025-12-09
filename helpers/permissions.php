@@ -402,8 +402,11 @@ function checkRole($requiredRole, $redirectUrl = null) {
         exit;
     }
     
-    $user = Session::getUser();
-    $userRole = $user['role_id'] ?? null;
+    // ✅ FIX: Use Session::getUserRoleId() which casts to integer
+    $userRole = Session::getUserRoleId();
+    
+    // ✅ FIX: Cast requiredRole to integer for strict comparison
+    $requiredRole = (int)$requiredRole;
     
     // Check if user has required role
     if ($userRole !== $requiredRole) {
@@ -434,11 +437,14 @@ function checkAnyRole($requiredRoles, $redirectUrl = null) {
         exit;
     }
     
-    $user = Session::getUser();
-    $userRole = $user['role_id'] ?? null;
+    // ✅ FIX: Use Session::getUserRoleId() which casts to integer
+    $userRole = Session::getUserRoleId();
+    
+    // ✅ FIX: Cast all required roles to integers
+    $requiredRoles = array_map('intval', $requiredRoles);
     
     // Check if user has any of the required roles
-    if (!in_array($userRole, $requiredRoles)) {
+    if (!in_array($userRole, $requiredRoles, true)) {  // ✅ Added strict comparison
         Session::setFlash('error', 'You do not have permission to access this page.');
         
         if ($redirectUrl) {

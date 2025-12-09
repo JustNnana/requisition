@@ -163,7 +163,7 @@ $pageTitle = 'Review Queue - Finance Manager';
         </div>
         <div class="stat-content">
             <p class="stat-label">Total Amount</p>
-            <p class="stat-value"><?php echo format_currency($totalAmount); ?></p>
+            <p class="stat-value">₦<?php echo ($totalAmount); ?></p>
         </div>
     </div>
     
@@ -173,7 +173,7 @@ $pageTitle = 'Review Queue - Finance Manager';
         </div>
         <div class="stat-content">
             <p class="stat-label">Average Amount</p>
-            <p class="stat-value"><?php echo format_currency($avgAmount); ?></p>
+            <p class="stat-value">₦<?php echo ($avgAmount); ?></p>
         </div>
     </div>
     
@@ -183,7 +183,7 @@ $pageTitle = 'Review Queue - Finance Manager';
         </div>
         <div class="stat-content">
             <p class="stat-label">Highest Amount</p>
-            <p class="stat-value"><?php echo format_currency($maxAmount); ?></p>
+            <p class="stat-value">₦<?php echo ($maxAmount); ?></p>
         </div>
     </div>
 </div>
@@ -383,8 +383,7 @@ $pageTitle = 'Review Queue - Finance Manager';
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <strong class="text-success" style="font-size: 1.1em;">
-                                        <?php echo format_currency($req['total_amount']); ?>
+                                    <strong class="text-success" style="font-size: 1.1em;">₦<?php echo ($req['total_amount']); ?>
                                     </strong>
                                 </td>
                                 <td>

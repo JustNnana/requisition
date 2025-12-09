@@ -658,7 +658,7 @@ $pendingReceiptsCount = 0;
             </a>
         <?php endif; ?>
 
-        <a href="<?php echo BASE_URL; ?>/help/index.php" class="sidebar-link <?php echo isActive('index.php', 'help'); ?>">
+        <a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('index.php', 'help'); ?>">
             <div class="sidebar-icon">
                 <i class="fas fa-question-circle"></i>
             </div>

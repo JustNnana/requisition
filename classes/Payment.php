@@ -455,61 +455,55 @@ class Payment {
         }
     }
     
-    /**
-     * Get payment statistics
-     * 
-     * @param array $filters Optional filters (date_from, date_to, department_id)
-     * @return array Statistics
-     */
-    public function getPaymentStatistics($filters = []) {
-        try {
-            // Build WHERE clause first
-            $where = ["r.status IN (?, ?)"];
-            $whereParams = [STATUS_PAID, STATUS_COMPLETED];
-            
-            // Apply filters
-            if (!empty($filters['date_from'])) {
-                $where[] = "DATE(r.payment_date) >= ?";
-                $whereParams[] = $filters['date_from'];
-            }
-            
-            if (!empty($filters['date_to'])) {
-                $where[] = "DATE(r.payment_date) <= ?";
-                $whereParams[] = $filters['date_to'];
-            }
-            
-            if (!empty($filters['department_id'])) {
-                $where[] = "r.department_id = ?";
-                $whereParams[] = $filters['department_id'];
-            }
-            
-            $sql = "SELECT 
-                        COUNT(*) as total_payments,
-                        SUM(r.total_amount) as total_amount,
-                        AVG(r.total_amount) as average_amount,
-                        MIN(r.total_amount) as min_amount,
-                        MAX(r.total_amount) as max_amount,
-                        COUNT(CASE WHEN r.status = ? THEN 1 END) as paid_count,
-                        COUNT(CASE WHEN r.status = ? THEN 1 END) as completed_count
-                    FROM requisitions r
-                    WHERE " . implode(' AND ', $where);
-            
-            // CRITICAL: Params must match SQL placeholder order!
-            // SELECT placeholders come BEFORE WHERE placeholders
-            $params = [
-                STATUS_PAID,      // For first CASE WHEN in SELECT
-                STATUS_COMPLETED, // For second CASE WHEN in SELECT
-            ];
-            // Then append WHERE parameters
-            $params = array_merge($params, $whereParams);
-            
-            return $this->db->fetchOne($sql, $params);
-            
-        } catch (Exception $e) {
-            error_log("Get payment statistics error: " . $e->getMessage());
-            return [];
+/**
+ * Get payment statistics
+ * 
+ * @param array $filters Optional filters (date_from, date_to)
+ * @return array Statistics
+ */
+public function getPaymentStatistics($filters = []) {
+    try {
+        // Count paid requisitions and calculate amounts
+        $sql = "SELECT 
+                    COUNT(*) as paid_count,
+                    COUNT(*) as total_payments,
+                    COALESCE(SUM(total_amount), 0) as total_amount,
+                    COALESCE(AVG(total_amount), 0) as average_amount
+                FROM requisitions
+                WHERE status IN (?, ?)";
+        
+        $params = [STATUS_PAID, STATUS_COMPLETED];
+        
+        // Apply date filters if provided
+        if (!empty($filters['date_from'])) {
+            $sql .= " AND DATE(payment_date) >= ?";
+            $params[] = $filters['date_from'];
         }
+        
+        if (!empty($filters['date_to'])) {
+            $sql .= " AND DATE(payment_date) <= ?";
+            $params[] = $filters['date_to'];
+        }
+        
+        $result = $this->db->fetchOne($sql, $params);
+        
+        return [
+            'paid_count' => (int)$result['paid_count'],
+            'total_payments' => (int)$result['total_payments'],
+            'total_amount' => (float)$result['total_amount'],
+            'average_amount' => (float)$result['average_amount']
+        ];
+        
+    } catch (Exception $e) {
+        error_log("Get payment statistics error: " . $e->getMessage());
+        return [
+            'paid_count' => 0,
+            'total_payments' => 0,
+            'total_amount' => 0,
+            'average_amount' => 0
+        ];
     }
+}
     
     /**
      * Get invoice document for a requisition

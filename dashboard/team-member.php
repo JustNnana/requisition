@@ -137,7 +137,7 @@ for ($i = 5; $i >= 0; $i--) {
             FROM requisitions
             WHERE user_id = ?
             AND DATE_FORMAT(created_at, '%Y-%m') = ?
-            AND status IN (?, ?)";  // ✅ CORRECT - only paid/completed
+            AND status IN (?, ?)";  // âœ… CORRECT - only paid/completed
     $result = $db->fetchOne($sql, [$userId, $date, STATUS_PAID, STATUS_COMPLETED]);
     $monthlyData[] = [
         'month' => date('M Y', strtotime($date . '-01')),
@@ -660,7 +660,7 @@ $pageTitle = 'Dashboard';
             </div>
             <div class="revenue-card-content">
                 <h3 class="revenue-card-title">Total Spent</h3>
-                <p class="revenue-card-value"><?php echo format_currency($stats['total_amount']); ?></p>
+                <p class="revenue-card-value">₦<?php echo number_format((float)$stats['total_amount'], 2); ?></p>
             </div>
         </div>
     </div>
@@ -891,8 +891,7 @@ $pageTitle = 'Dashboard';
                                 </span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($req['total_amount']); ?>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
                                 </span>
                             </td>
                             <td>
@@ -928,7 +927,7 @@ $pageTitle = 'Dashboard';
 <!-- Dasher Chart Configuration and Initialization -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🎨 Initializing Team Member Dashboard...');
+        console.log('ðŸŽ¨ Initializing Team Member Dashboard...');
 
         // Wait for Chart.js to be available
         if (typeof Chart === 'undefined') {
@@ -1145,7 +1144,7 @@ $pageTitle = 'Dashboard';
 
         // Update charts when theme changes
         document.addEventListener('themeChanged', function(event) {
-            console.log('🎨 Updating team member charts for theme:', event.detail.theme);
+            console.log('ðŸŽ¨ Updating team member charts for theme:', event.detail.theme);
 
             const newConfig = getDasherChartConfig();
 
@@ -1167,7 +1166,7 @@ $pageTitle = 'Dashboard';
             }
         });
 
-        console.log('✅ Team Member Dashboard initialized successfully');
+        console.log('âœ… Team Member Dashboard initialized successfully');
     });
 </script>
 

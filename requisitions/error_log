@@ -1,0 +1,1194 @@
+[07-Dec-2025 10:26:32 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 10:26:32 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 10:26:32 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 10:26:32 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 10:26:32 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 10:26:32 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 10:26:32 Africa/Lagos] PHP Fatal error:  Uncaught Error: Undefined constant "CURRENCY_POSITION" in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php:402
+Stack trace:
+#0 /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/view.php(1271): format_currency()
+#1 {main}
+  thrown in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php on line 402
+[07-Dec-2025 11:14:43 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:14:43 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:14:43 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:14:43 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:14:43 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:14:43 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:18:19 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:18:19 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:18:19 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:18:19 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:18:19 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:18:19 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:18:57 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:18:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:18:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:18:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:18:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:18:57 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:19:20 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:19:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:19:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:19:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:19:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:19:20 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:19:20 Africa/Lagos] PHP Fatal error:  Uncaught Error: Undefined constant "CURRENCY_POSITION" in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php:402
+Stack trace:
+#0 /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php(279): format_currency()
+#1 {main}
+  thrown in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php on line 402
+[07-Dec-2025 11:21:13 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:21:13 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:21:13 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:21:13 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:21:13 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:21:13 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:22:23 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:22:23 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:22:23 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:22:23 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:22:23 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:22:23 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:22:23 Africa/Lagos] PHP Fatal error:  Uncaught Error: Undefined constant "CURRENCY_POSITION" in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php:402
+Stack trace:
+#0 /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/view.php(1271): format_currency()
+#1 {main}
+  thrown in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php on line 402
+[07-Dec-2025 11:26:27 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:26:27 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:26:27 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:26:27 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:26:27 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:26:27 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:27:19 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:27:19 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:27:19 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:27:19 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:27:19 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:27:19 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:28:54 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:28:54 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:28:54 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:28:54 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:28:54 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:28:54 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:30:21 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:30:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:30:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:30:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:30:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:30:21 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:30:50 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:30:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:30:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:30:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:30:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:30:50 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:30:56 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:30:56 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:30:56 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:30:56 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:30:56 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:30:56 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:33:00 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:00 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:00 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:00 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:33:00 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:33:00 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:33:00 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:33:00 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:33:14 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:14 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:33:14 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:33:14 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:33:14 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:33:14 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:33:35 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:35 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:36 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:33:36 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:36 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:45 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:33:45 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:33:45 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:34:01 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:01 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:34:22 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:34:22 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:34:22 Africa/Lagos] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/list.php on line 261
+[07-Dec-2025 11:36:30 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:36:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:36:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:36:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:36:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:36:30 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:36:33 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:36:33 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:36:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:36:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:36:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:36:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:36:33 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:36:57 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:36:57 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:36:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:36:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:36:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:36:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:36:57 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:37:11 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:37:11 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:37:11 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:37:11 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:37:11 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:37:11 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:37:11 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:37:28 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:37:28 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:37:28 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:37:28 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:37:28 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:37:28 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:41:05 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:41:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:41:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:41:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:41:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:41:06 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:41:40 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:41:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:41:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:41:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:41:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:41:40 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:46:57 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:46:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:46:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:46:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:46:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:46:57 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:46:58 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:46:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:46:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:46:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:46:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:46:58 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:47:04 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:47:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:47:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:47:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:47:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:47:04 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:47:16 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:47:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:47:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:47:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:47:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:47:16 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:48:18 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:48:18 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:48:18 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:48:18 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:48:18 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:48:18 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:48:18 Africa/Lagos] PHP Fatal error:  Uncaught Error: Undefined constant "CURRENCY_POSITION" in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php:402
+Stack trace:
+#0 /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/pending.php(207): format_currency()
+#1 {main}
+  thrown in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php on line 402
+[07-Dec-2025 11:48:41 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:48:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:48:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:48:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:48:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:48:41 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:50:01 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:01 Africa/Lagos] Validator calling: validateRequired for field: reason (depth: 1)
+[07-Dec-2025 11:50:01 Africa/Lagos] Validator calling: validateMin for field: reason (depth: 1)
+[07-Dec-2025 11:50:01 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:50:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:50:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:50:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:50:01 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:50:01 Africa/Lagos] PHP Fatal error:  Uncaught Error: Undefined constant "CURRENCY_POSITION" in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php:402
+Stack trace:
+#0 /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/pending.php(207): format_currency()
+#1 {main}
+  thrown in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php on line 402
+[07-Dec-2025 11:50:07 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:07 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:50:07 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:50:07 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:50:07 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:50:07 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:50:14 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:14 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:50:14 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:50:14 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:50:14 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:50:14 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:50:18 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:18 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:50:18 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:50:18 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:50:18 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:50:18 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:50:19 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:19 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:50:19 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:50:19 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:50:19 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:50:19 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:50:38 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:38 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:50:38 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:50:38 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:50:38 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:50:38 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:50:41 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:50:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:50:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:50:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:50:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:50:41 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:50:41 Africa/Lagos] PHP Fatal error:  Uncaught Error: Undefined constant "CURRENCY_POSITION" in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php:402
+Stack trace:
+#0 /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/pending.php(207): format_currency()
+#1 {main}
+  thrown in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php on line 402
+[07-Dec-2025 11:51:51 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:51:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:51:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:51:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:51:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:51:51 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:52:10 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:52:10 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:52:10 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:52:10 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:52:10 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:52:10 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:52:17 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:52:17 Africa/Lagos] Validator calling: validateRequired for field: reason (depth: 1)
+[07-Dec-2025 11:52:17 Africa/Lagos] Validator calling: validateMin for field: reason (depth: 1)
+[07-Dec-2025 11:52:17 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:52:17 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:52:17 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:52:17 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:52:17 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:52:17 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:52:32 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:52:32 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:52:32 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:52:32 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:52:32 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:52:32 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:52:39 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:52:39 Africa/Lagos] Validator calling: validateRequired for field: reason (depth: 1)
+[07-Dec-2025 11:52:39 Africa/Lagos] Validator calling: validateMin for field: reason (depth: 1)
+[07-Dec-2025 11:52:39 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:52:39 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:52:39 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:52:39 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:52:39 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:52:39 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:54:15 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:54:15 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:54:15 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:54:15 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:54:15 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:54:15 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:54:49 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:54:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:54:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:54:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:54:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:54:49 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:54:53 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:54:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:54:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:54:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:54:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:54:53 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:54:59 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:54:59 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:54:59 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:54:59 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:54:59 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:54:59 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:55:13 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:14 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:14 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:55:14 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:55:14 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:55:14 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:55:14 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:55:18 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:18 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:55:18 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:55:18 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:55:18 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:55:18 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:55:29 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:29 Africa/Lagos] Validator calling: validateRequired for field: reason (depth: 1)
+[07-Dec-2025 11:55:29 Africa/Lagos] Validator calling: validateMin for field: reason (depth: 1)
+[07-Dec-2025 11:55:29 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:55:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:55:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:55:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:55:29 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:55:41 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:55:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:55:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:55:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:55:41 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:55:50 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:50 Africa/Lagos] Validator calling: validateRequired for field: reason (depth: 1)
+[07-Dec-2025 11:55:50 Africa/Lagos] Validator calling: validateMin for field: reason (depth: 1)
+[07-Dec-2025 11:55:50 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:55:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:55:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:55:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:55:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:55:50 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:56:01 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:56:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:56:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:56:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:56:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:56:01 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:56:08 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:56:08 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:56:08 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:56:08 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:56:08 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:56:08 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:56:08 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:56:20 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:56:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:56:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:56:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:56:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:56:20 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:57:30 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:57:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:57:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:57:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:57:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:57:30 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:57:34 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:57:34 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:57:34 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:57:34 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:57:34 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:57:34 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:59:33 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:59:33 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:59:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:59:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:59:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:59:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:59:33 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 11:59:42 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:59:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:59:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:59:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:59:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:59:42 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 11:59:51 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 11:59:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 11:59:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 11:59:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 11:59:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 11:59:51 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:00:05 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:00:05 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:00:05 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:00:05 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:00:05 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:00:05 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:00:05 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:03:35 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:03:35 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:03:35 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:03:35 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:03:35 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:03:35 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:03:37 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:03:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:03:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:03:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:03:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:03:37 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:03:40 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:03:41 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:03:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:03:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:03:41 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:03:41 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:03:41 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:16:40 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:16:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:16:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:16:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:16:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:16:40 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:16:45 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:16:45 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:16:45 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:16:45 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:16:45 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:16:45 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:16:49 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:16:49 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 12:16:49 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 12:16:49 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:16:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:16:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:16:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:16:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:16:49 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:16:57 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:16:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:16:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:16:57 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:16:57 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:16:57 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:17:02 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:17:02 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 12:17:02 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 12:17:02 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:17:02 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:17:02 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:17:02 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:17:02 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:17:02 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:17:42 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:17:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:17:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:17:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:17:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:17:42 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:21:08 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:21:08 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:21:08 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:21:08 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:21:08 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:21:08 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 12:21:15 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:21:15 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:21:15 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:21:15 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:21:15 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:21:15 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 12:22:28 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:22:28 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:22:28 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:22:28 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:22:28 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:22:28 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[07-Dec-2025 12:22:50 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:22:50 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 12:22:50 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 12:22:50 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:22:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:22:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:22:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:22:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:22:50 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[07-Dec-2025 12:23:09 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:23:09 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:23:09 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:23:09 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:23:09 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:23:09 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[07-Dec-2025 12:23:20 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:23:20 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 12:23:20 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 12:23:21 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:23:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:23:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:23:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:23:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:23:21 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[07-Dec-2025 12:38:25 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:38:25 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:38:25 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:38:25 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:38:25 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:38:25 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 12:38:29 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:38:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:38:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:38:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:38:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:38:29 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 12:38:29 Africa/Lagos] PHP Fatal error:  Uncaught Error: Undefined constant "CURRENCY_POSITION" in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php:402
+Stack trace:
+#0 /home2/gateweyc/public_html/request.gatewey.com.ng/requisitions/upload-receipt.php(209): format_currency()
+#1 {main}
+  thrown in /home2/gateweyc/public_html/request.gatewey.com.ng/config/constants.php on line 402
+[07-Dec-2025 12:41:28 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:41:28 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:41:28 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:41:28 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:41:28 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:41:28 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 12:42:02 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:42:02 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 12:42:02 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 12:42:02 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:42:02 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:42:02 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:42:02 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:42:02 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:42:02 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 12:43:12 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:43:12 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:43:12 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:43:12 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:43:12 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:43:12 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:43:16 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:43:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:43:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:43:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:43:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:43:16 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 12:49:53 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:49:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:49:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:49:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:49:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:49:53 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 12:52:03 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 12:52:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 12:52:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 12:52:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 12:52:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 12:52:03 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 13:23:34 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 13:23:34 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 13:23:34 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 13:23:34 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 13:23:34 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 13:23:34 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 13:23:47 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 13:23:47 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 13:23:47 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 13:23:47 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 13:23:47 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 13:23:47 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 17:06:05 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 17:06:05 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 17:06:05 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 17:06:05 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 17:06:05 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 17:06:05 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 17:06:09 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 17:06:09 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 17:06:09 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 17:06:09 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 17:06:09 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 17:06:09 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 17:06:16 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 17:06:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 17:06:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 17:06:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 17:06:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 17:06:16 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 18:06:26 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 18:06:26 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 18:06:26 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 18:06:26 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 18:06:26 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 18:06:26 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 18:06:40 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 18:06:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 18:06:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 18:06:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 18:06:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 18:06:40 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 18:10:33 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 18:10:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 18:10:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 18:10:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 18:10:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 18:10:33 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 19:53:53 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 19:53:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 19:53:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 19:53:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 19:53:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 19:53:53 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 19:56:26 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 19:56:27 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 19:56:27 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 19:56:27 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 19:56:27 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 19:56:27 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 19:56:27 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 19:56:49 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 19:56:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 19:56:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 19:56:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 19:56:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 19:56:49 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 19:57:21 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 19:57:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 19:57:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 19:57:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 19:57:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 19:57:21 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 20:03:23 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:03:23 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:03:23 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:03:23 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:03:23 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:03:23 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 20:05:01 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:05:01 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:05:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:05:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:05:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:05:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:05:01 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 20:22:20 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:22:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:22:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:22:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:22:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:22:20 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 20:23:00 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:23:00 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:23:00 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:23:00 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:23:00 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:23:00 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 20:23:42 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:23:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:23:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:23:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:23:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:23:42 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 20:24:24 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:24:24 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 20:24:24 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 20:24:29 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:24:30 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:24:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:24:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:24:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:24:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:24:30 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 20:25:10 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:25:10 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:25:10 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:25:10 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:25:10 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:25:10 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[07-Dec-2025 20:34:37 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:34:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:34:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:34:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:34:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:34:37 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[07-Dec-2025 20:35:42 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:35:42 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 20:35:42 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 20:35:43 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:35:43 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:35:43 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:35:43 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:35:43 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:35:43 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[07-Dec-2025 20:47:29 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:47:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:47:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:47:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:47:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:47:29 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[07-Dec-2025 20:48:29 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:48:29 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 20:48:29 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 20:48:35 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 20:48:35 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 20:48:35 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 20:48:35 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 20:48:35 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 20:48:35 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[07-Dec-2025 21:06:30 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:06:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:06:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:06:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:06:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:06:30 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 21:07:33 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:07:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:07:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:07:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:07:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:07:33 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 21:08:20 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:08:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:08:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:08:20 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:08:20 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:08:20 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 21:08:37 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:08:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:08:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:08:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:08:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:08:37 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 21:08:49 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:08:49 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[07-Dec-2025 21:08:49 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[07-Dec-2025 21:08:49 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:08:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:08:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:08:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:08:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:08:49 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[07-Dec-2025 21:09:50 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:09:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:09:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:09:50 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:09:50 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:09:50 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 21:11:53 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:11:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:11:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:11:53 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:11:53 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:11:53 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[07-Dec-2025 21:12:17 Africa/Lagos] Database connection established successfully
+[07-Dec-2025 21:12:17 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[07-Dec-2025 21:12:17 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[07-Dec-2025 21:12:17 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[07-Dec-2025 21:12:17 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[07-Dec-2025 21:12:17 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 09:04:16 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 09:04:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 09:04:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 09:04:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 09:04:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 09:04:16 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 09:05:01 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 09:05:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 09:05:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 09:05:01 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 09:05:01 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 09:05:01 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[08-Dec-2025 09:07:51 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 09:07:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 09:07:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 09:07:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 09:07:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 09:07:51 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 10:49:15 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 10:49:15 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 10:49:15 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 10:49:15 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 10:49:15 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 10:49:15 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 11:04:08 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:04:08 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:04:08 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:04:08 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:04:08 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:04:08 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 11:04:49 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:04:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:04:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:04:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:04:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:04:49 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 11:04:59 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:04:59 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:04:59 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:04:59 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:04:59 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:04:59 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 11:51:40 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:51:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:51:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:51:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:51:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:51:40 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 11:55:04 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:55:04 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:55:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:55:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:55:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:55:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:55:04 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 11:57:21 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:57:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:57:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:57:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:57:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:57:21 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[08-Dec-2025 11:59:22 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:59:22 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[08-Dec-2025 11:59:22 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[08-Dec-2025 11:59:22 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:59:22 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:59:22 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:59:22 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:59:22 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:59:22 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[08-Dec-2025 11:59:59 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 11:59:59 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 11:59:59 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 11:59:59 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 11:59:59 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 11:59:59 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[08-Dec-2025 12:04:05 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:04:05 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:04:05 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:04:05 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:04:05 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:04:05 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[08-Dec-2025 12:04:06 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:04:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:04:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:04:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:04:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:04:06 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[08-Dec-2025 12:04:46 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:04:46 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[08-Dec-2025 12:04:46 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[08-Dec-2025 12:04:46 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:04:46 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:04:46 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:04:46 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:04:46 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:04:46 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[08-Dec-2025 12:09:33 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:09:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:09:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:09:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:09:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:09:33 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[08-Dec-2025 12:10:44 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:10:45 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[08-Dec-2025 12:10:45 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[08-Dec-2025 12:10:45 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:10:45 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:10:45 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:10:45 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:10:45 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:10:45 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[08-Dec-2025 12:18:37 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:18:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:18:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:18:37 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:18:37 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:18:37 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 12:19:04 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:19:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:19:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:19:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:19:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:19:04 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 12:19:46 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:19:46 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[08-Dec-2025 12:19:46 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[08-Dec-2025 12:19:46 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 12:19:46 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 12:19:46 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 12:19:46 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 12:19:46 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 12:19:46 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 14:28:17 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 14:28:17 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 14:28:17 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 14:28:17 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 14:28:17 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 14:28:17 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 14:29:06 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 14:29:06 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 14:29:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 14:29:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 14:29:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 14:29:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 14:29:06 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 14:56:51 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 14:56:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 14:56:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 14:56:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 14:56:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 14:56:51 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[08-Dec-2025 15:54:44 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 15:54:44 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 15:54:44 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 15:54:44 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 15:54:44 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 15:54:44 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 15:54:51 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 15:54:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 15:54:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 15:54:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 15:54:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 15:54:51 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 15:54:58 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 15:54:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 15:54:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 15:54:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 15:54:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 15:54:58 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 15:55:21 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 15:55:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 15:55:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 15:55:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 15:55:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 15:55:21 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[08-Dec-2025 15:55:27 Africa/Lagos] Database connection established successfully
+[08-Dec-2025 15:55:27 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[08-Dec-2025 15:55:27 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[08-Dec-2025 15:55:27 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[08-Dec-2025 15:55:27 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[08-Dec-2025 15:55:27 Africa/Lagos] Navbar Debug - Role ID: 4 | Role Name: Finance Member
+[09-Dec-2025 09:46:51 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 09:46:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 09:46:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 09:46:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 09:46:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 09:46:51 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[09-Dec-2025 09:46:58 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 09:46:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 09:46:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 09:46:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 09:46:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 09:46:58 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[09-Dec-2025 09:50:32 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 09:50:32 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 09:50:32 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 09:50:32 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 09:50:32 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 09:50:32 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 09:50:32 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[09-Dec-2025 10:00:03 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 10:00:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 10:00:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 10:00:04 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 10:00:04 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 10:00:04 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[09-Dec-2025 10:03:29 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 10:03:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 10:03:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 10:03:29 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 10:03:29 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 10:03:29 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[09-Dec-2025 10:03:42 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 10:03:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 10:03:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 10:03:42 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 10:03:42 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 10:03:42 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[09-Dec-2025 16:48:09 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 16:48:09 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 16:48:09 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 16:48:09 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 16:48:09 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 16:48:09 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[09-Dec-2025 16:49:51 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 16:49:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 16:49:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 16:49:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 16:49:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 16:49:51 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[09-Dec-2025 16:49:58 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 16:49:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 16:49:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 16:49:58 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 16:49:58 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 16:49:58 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[09-Dec-2025 16:50:03 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 16:50:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 585
+[09-Dec-2025 16:50:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 593
+[09-Dec-2025 16:50:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 611
+[09-Dec-2025 16:50:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 619
+[09-Dec-2025 16:50:03 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member

@@ -204,7 +204,7 @@ $pageTitle = 'Pending Approvals';
                                 </td>
                                 <td>
                                     <strong class="text-success">
-                                        <?php echo format_currency($req['total_amount']); ?>
+                                        ₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </strong>
                                 </td>
                                 <td>

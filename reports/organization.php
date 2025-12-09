@@ -356,7 +356,7 @@ $pageTitle = 'Organization Reports';
         </div>
         <div class="stat-content">
             <p class="stat-label">Total Requisitions</p>
-            <p class="stat-value"><?php echo number_format($statistics['total_count']); ?></p>
+            <p class="stat-value"><?php echo ($statistics['total_count']); ?></p>
         </div>
     </div>
     
@@ -366,7 +366,7 @@ $pageTitle = 'Organization Reports';
         </div>
         <div class="stat-content">
             <p class="stat-label">Total Amount</p>
-            <p class="stat-value"><?php echo format_currency($statistics['total_amount']); ?></p>
+            <p class="stat-value">₦<?php echo number_format((float)$statistics['total_amount'], 2); ?></p>
         </div>
     </div>
     
@@ -376,7 +376,7 @@ $pageTitle = 'Organization Reports';
         </div>
         <div class="stat-content">
             <p class="stat-label">Average Amount</p>
-            <p class="stat-value"><?php echo format_currency($statistics['average_amount']); ?></p>
+            <p class="stat-value">₦<?php echo number_format((float)$statistics['average_amount'], 2); ?></p>
         </div>
     </div>
     
@@ -426,7 +426,7 @@ $pageTitle = 'Organization Reports';
         </div>
         <div class="stat-content">
             <p class="stat-label">Highest Amount</p>
-            <p class="stat-value"><?php echo format_currency($statistics['max_amount']); ?></p>
+            <p class="stat-value">₦<?php echo number_format((float)$statistics['max_amount'], 2); ?></p>
         </div>
     </div>
 </div>
@@ -783,8 +783,7 @@ $pageTitle = 'Organization Reports';
                                 </span>
                             </td>
                             <td class="text-end">
-                                <span style="font-weight: var(--font-weight-semibold);">
-                                    <?php echo format_currency($dept['total_amount']); ?>
+                                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$dept['total_amount'], 2); ?>
                                 </span>
                             </td>
                             <td class="text-end">
@@ -793,8 +792,7 @@ $pageTitle = 'Organization Reports';
                                     ? $dept['total_amount'] / $dept['requisition_count'] 
                                     : 0;
                                 ?>
-                                <span class="text-muted">
-                                    <?php echo format_currency($avgAmount); ?>
+                                <span class="text-muted">₦<?php echo number_format((float)$avgAmount), 2; ?>
                                 </span>
                             </td>
                             <td class="text-end">
@@ -882,8 +880,7 @@ $pageTitle = 'Organization Reports';
                                     </span>
                                 </td>
                                 <td class="text-end">
-                                    <span style="font-weight: var(--font-weight-semibold);">
-                                        <?php echo format_currency($req['total_amount']); ?>
+                                    <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </span>
                                 </td>
                                 <td><?php echo get_status_indicator($req['status']); ?></td>

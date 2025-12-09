@@ -587,13 +587,12 @@ $pageTitle = 'Admin Dashboard';
                 </div>
                 <div class="improved-stats-content">
                     <h3 class="improved-stats-title">This Month</h3>
-                    <p class="improved-stats-value">$<?php echo number_format($stats['monthly_spending'], 0); ?></p>
+                    <p class="improved-stats-value">₦<?php echo number_format($stats['monthly_spending'], 2); ?></p>
                 </div>
             </div>
             <p class="stats-subtitle">
                 <span style="color: var(--text-muted);">Year: </span>
-                <span style="font-weight: var(--font-weight-semibold);">
-                    $<?php echo number_format($stats['yearly_spending'], 0); ?>
+                <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format($stats['yearly_spending'], 2); ?>
                 </span>
             </p>
             <div style="margin-top: var(--spacing-3);">
