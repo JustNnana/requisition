@@ -693,6 +693,186 @@ $pageTitle = 'Managing Director Dashboard';
     </div>
 <?php endif; ?>
 
+<!-- Receipt Upload Alert -->
+<?php
+// Get organization-wide paid requisitions needing receipt upload
+$sql = "SELECT r.*, u.first_name, u.last_name, d.department_name, d.department_code
+        FROM requisitions r
+        JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON r.department_id = d.id
+        WHERE r.status = ?
+        AND (r.receipt_uploaded IS NULL OR r.receipt_uploaded = '' OR r.receipt_uploaded = 0)
+        ORDER BY r.payment_date DESC
+        LIMIT 10";
+$needsReceipt = $db->fetchAll($sql, [STATUS_PAID]);
+?>
+
+<?php if (!empty($needsReceipt)): ?>
+    <div style="border: 1px solid var(--info); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6);">
+        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+            <!-- Info Icon -->
+            <i class="fas fa-receipt" style="font-size: 2.2rem; color: var(--info); flex-shrink: 0; margin-top: 0.2rem;"></i>
+
+            <!-- Text + Button Container -->
+            <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-end; min-width: 0;">
+                <!-- Text -->
+                <div style="flex: 1; min-width: 0;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: 600; color: white;">
+                        Organization Receipt Uploads Pending
+                    </h5>
+                    <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9; color: white;">
+                        <?php echo count($needsReceipt); ?> paid requisition(s) across the organization are awaiting receipt upload.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-2); font-size: var(--font-size-sm);">
+                        <?php foreach (array_slice($needsReceipt, 0, 4) as $req): ?>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-2); opacity: 0.9;">
+                                <i class="fas fa-user" style="opacity: 0.7;"></i>
+                                <span><strong><?php echo htmlspecialchars($req['first_name'] . ' ' . $req['last_name']); ?></strong></span>
+                                <span>•</span>
+                                <span style="opacity: 0.7;"><?php echo htmlspecialchars($req['department_code'] ?? 'N/A'); ?></span>
+                                <span>•</span>
+                                <span><?php echo htmlspecialchars($req['requisition_number']); ?></span>
+                                <span>•</span>
+                                <span>₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php if (count($needsReceipt) > 4): ?>
+                            <div style="opacity: 0.7; font-style: italic;">
+                                ... and <?php echo count($needsReceipt) - 4; ?> more
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <!-- Button - pushed to the right -->
+                <div style="margin-left: 2rem; flex-shrink: 0;">
+                    <a href="<?php echo BASE_URL; ?>/requisitions/list.php?status=paid&no_receipt=1" 
+                       class="btn btn-info" 
+                       style="white-space: nowrap;">
+                        <i class="fas fa-list me-2"></i>
+                        View All <strong><?php echo count($needsReceipt); ?></strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<!-- Executive Office Budget Status Card -->
+<?php
+// Get Executive Office budget information
+$budgetModel = new Budget();
+$departmentId = Session::getUserDepartmentId(); // MD's department (Executive Office)
+$budgetInfo = null;
+
+if ($departmentId) {
+    $budgetInfo = $budgetModel->getBudgetStats($departmentId);
+}
+?>
+
+<?php if ($budgetInfo): ?>
+    <?php
+    $utilizationPercentage = ($budgetInfo['budget_amount'] > 0) 
+        ? ($budgetInfo['allocated_amount'] / $budgetInfo['budget_amount']) * 100 
+        : 0;
+    $isLowBudget = $utilizationPercentage > 75;
+    $isCritical = $utilizationPercentage > 90;
+    ?>
+    
+    <div style="border: 1px solid <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; 
+                border-radius: var(--border-radius); 
+                padding: var(--spacing-5); 
+                margin-bottom: var(--spacing-6); 
+                background: rgba(<?php echo $isCritical ? 'var(--danger-rgb)' : ($isLowBudget ? 'var(--warning-rgb)' : 'var(--success-rgb)'); ?>, 0.05);">
+        <div class="d-flex align-items-start gap-3">
+            <i class="fas fa-wallet" style="font-size: 2rem; color: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
+            
+            <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--spacing-2);">
+                    <h5 style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--text-primary);">
+                        <?php echo $isCritical ? '🔴 Critical: ' : ($isLowBudget ? '⚠️ Warning: ' : '✅ '); ?>Executive Office Budget
+                    </h5>
+                    <span style="background: var(--bg-subtle); padding: var(--spacing-1) var(--spacing-3); border-radius: var(--border-radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);">
+                        <?php echo date('M Y', strtotime($budgetInfo['start_date'])); ?> - <?php echo date('M Y', strtotime($budgetInfo['end_date'])); ?>
+                    </span>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-4); margin-bottom: var(--spacing-4);">
+                    <div>
+                        <p style="margin: 0; font-size: var(--font-size-xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Total Budget</p>
+                        <p style="margin: var(--spacing-1) 0 0 0; font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary);">
+                            ₦<?php echo number_format($budgetInfo['budget_amount'], 2); ?>
+                        </p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-size: var(--font-size-xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Allocated</p>
+                        <p style="margin: var(--spacing-1) 0 0 0; font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--warning);">
+                            ₦<?php echo number_format($budgetInfo['allocated_amount'], 2); ?>
+                        </p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-size: var(--font-size-xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Available</p>
+                        <p style="margin: var(--spacing-1) 0 0 0; font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: <?php echo $isCritical ? 'var(--danger)' : 'var(--success)'; ?>;">
+                            ₦<?php echo number_format($budgetInfo['available_amount'], 2); ?>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div style="background: var(--bg-subtle); border-radius: var(--border-radius-full); height: 28px; margin-bottom: var(--spacing-2); border: 1px solid var(--border-color); position: relative; overflow: hidden;">
+                    <div style="background: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; 
+                                height: 100%; 
+                                width: <?php echo min($utilizationPercentage, 100); ?>%; 
+                                transition: width 0.3s ease;
+                                box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+                    </div>
+                    <div style="position: absolute; 
+                                top: 0; 
+                                left: 0; 
+                                right: 0; 
+                                bottom: 0; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                color: <?php echo $utilizationPercentage > 50 ? 'white' : 'var(--text-primary)'; ?>; 
+                                font-weight: var(--font-weight-bold); 
+                                font-size: var(--font-size-sm);
+                                pointer-events: none;">
+                        <?php echo number_format($utilizationPercentage, 1); ?>% Used
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: var(--spacing-4); font-size: var(--font-size-sm); flex-wrap: wrap;">
+                    <span style="color: var(--text-secondary);">
+                        <i class="fas fa-chart-line"></i> Active Allocations: <strong><?php echo $budgetInfo['active_allocations']; ?></strong>
+                    </span>
+                    <span style="color: var(--text-secondary);">
+                        <i class="fas fa-history"></i> Total Allocations: <strong><?php echo $budgetInfo['total_allocations']; ?></strong>
+                    </span>
+                    <?php
+                    $daysRemaining = max(0, floor((strtotime($budgetInfo['end_date']) - time()) / (60 * 60 * 24)));
+                    ?>
+                    <span style="color: <?php echo $daysRemaining < 7 ? 'var(--warning)' : 'var(--text-secondary)'; ?>;">
+                        <i class="fas fa-clock"></i> Days Remaining: <strong><?php echo $daysRemaining; ?></strong>
+                    </span>
+                </div>
+                
+                <?php if ($isCritical): ?>
+                <div style="margin-top: var(--spacing-3); padding: var(--spacing-3); background: rgba(var(--danger-rgb), 0.1); border-radius: var(--border-radius); border-left: 4px solid var(--danger);">
+                    <p style="margin: 0; color: var(--danger); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">
+                        <i class="fas fa-exclamation-triangle"></i> <strong>Critical:</strong> Only ₦<?php echo number_format($budgetInfo['available_amount'], 2); ?> remaining in Executive Office budget. New requisitions may be rejected due to insufficient budget.
+                    </p>
+                </div>
+                <?php elseif ($isLowBudget): ?>
+                <div style="margin-top: var(--spacing-3); padding: var(--spacing-3); background: rgba(var(--warning-rgb), 0.1); border-radius: var(--border-radius); border-left: 4px solid var(--warning);">
+                    <p style="margin: 0; color: var(--warning); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">
+                        <i class="fas fa-info-circle"></i> <strong>Notice:</strong> Executive Office budget is <?php echo number_format($utilizationPercentage, 1); ?>% utilized. Consider planning for budget renewal.
+                    </p>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <!-- Key Metrics - Revenue Card Style -->
 <div class="revenue-cards-grid">
     <div class="revenue-card">

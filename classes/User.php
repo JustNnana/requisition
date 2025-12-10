@@ -20,6 +20,7 @@ class User {
     
     /**
      * Create a new user
+     * WITH AUTO-ASSIGNMENT OF EXECUTIVE DEPARTMENT FOR MD
      * 
      * @param array $data User data
      * @return array Result with success status and user_id or error message
@@ -36,6 +37,26 @@ class User {
             // Check if email already exists
             if ($this->emailExists($data['email'])) {
                 return ['success' => false, 'message' => 'Email address already exists.'];
+            }
+            
+            // AUTO-ASSIGN: If role is Managing Director, assign to Executive department
+            if ((int)$data['role_id'] === ROLE_MANAGING_DIRECTOR) {
+                $execDept = $this->db->fetchOne(
+                    "SELECT id FROM departments WHERE department_code = 'EXEC' AND is_active = 1 LIMIT 1"
+                );
+                
+                if ($execDept) {
+                    $data['department_id'] = $execDept['id'];
+                    error_log("Auto-assigning MD to Executive Office department (ID: {$data['department_id']})");
+                } else {
+                    // Executive department not found - create it automatically
+                    $this->db->execute(
+                        "INSERT INTO departments (department_name, department_code, is_active, created_at, updated_at) 
+                         VALUES ('Executive Office', 'EXEC', 1, NOW(), NOW())"
+                    );
+                    $data['department_id'] = $this->db->lastInsertId();
+                    error_log("Created Executive Office department (ID: {$data['department_id']})");
+                }
             }
             
             // Hash password
@@ -112,6 +133,7 @@ class User {
     
     /**
      * Update user
+     * WITH AUTO-ASSIGNMENT OF EXECUTIVE DEPARTMENT FOR MD
      * 
      * @param int $userId User ID
      * @param array $data User data to update
@@ -129,6 +151,26 @@ class User {
             if (isset($data['email']) && $data['email'] !== $user['email']) {
                 if ($this->emailExists($data['email'], $userId)) {
                     return ['success' => false, 'message' => 'Email address already exists.'];
+                }
+            }
+            
+            // AUTO-ASSIGN: If role is being changed to Managing Director, assign to Executive department
+            if (isset($data['role_id']) && (int)$data['role_id'] === ROLE_MANAGING_DIRECTOR) {
+                $execDept = $this->db->fetchOne(
+                    "SELECT id FROM departments WHERE department_code = 'EXEC' AND is_active = 1 LIMIT 1"
+                );
+                
+                if ($execDept) {
+                    $data['department_id'] = $execDept['id'];
+                    error_log("Auto-assigning MD to Executive Office department (ID: {$data['department_id']})");
+                } else {
+                    // Executive department not found - create it automatically
+                    $this->db->execute(
+                        "INSERT INTO departments (department_name, department_code, is_active, created_at, updated_at) 
+                         VALUES ('Executive Office', 'EXEC', 1, NOW(), NOW())"
+                    );
+                    $data['department_id'] = $this->db->lastInsertId();
+                    error_log("Created Executive Office department (ID: {$data['department_id']})");
                 }
             }
             
@@ -400,38 +442,38 @@ class User {
         $this->db->execute($sql, [$userId]);
     }
     
-/**
- * Change user password
- * 
- * @param int $userId User ID
- * @param string $newPassword New password
- * @return array Result with success status
- */
-public function changePassword($userId, $newPassword) {
-    try {
-        // Verify user exists
-        $user = $this->getById($userId);
-        if (!$user) {
-            return ['success' => false, 'message' => 'User not found.'];
+    /**
+     * Change user password
+     * 
+     * @param int $userId User ID
+     * @param string $newPassword New password
+     * @return array Result with success status
+     */
+    public function changePassword($userId, $newPassword) {
+        try {
+            // Verify user exists
+            $user = $this->getById($userId);
+            if (!$user) {
+                return ['success' => false, 'message' => 'User not found.'];
+            }
+            
+            $passwordHash = password_hash($newPassword, PASSWORD_BCRYPT);
+            
+            $sql = "UPDATE users SET password_hash = ?, updated_at = NOW() WHERE id = ?";
+            $this->db->execute($sql, [$passwordHash, $userId]);
+            
+            // Log password change
+            if (ENABLE_AUDIT_LOG) {
+                $this->logAction($userId, AUDIT_USER_PASSWORD_CHANGED, "Password changed for user: {$user['email']}");
+            }
+            
+            return ['success' => true, 'message' => 'Password changed successfully.'];
+            
+        } catch (Exception $e) {
+            error_log("Change password error: " . $e->getMessage());
+            return ['success' => false, 'message' => 'An error occurred while changing password.'];
         }
-        
-        $passwordHash = password_hash($newPassword, PASSWORD_BCRYPT);
-        
-        $sql = "UPDATE users SET password_hash = ?, updated_at = NOW() WHERE id = ?";
-        $this->db->execute($sql, [$passwordHash, $userId]);
-        
-        // Log password change
-        if (ENABLE_AUDIT_LOG) {
-            $this->logAction($userId, AUDIT_USER_PASSWORD_CHANGED, "Password changed for user: {$user['email']}");
-        }
-        
-        return ['success' => true, 'message' => 'Password changed successfully.'];
-        
-    } catch (Exception $e) {
-        error_log("Change password error: " . $e->getMessage());
-        return ['success' => false, 'message' => 'An error occurred while changing password.'];
     }
-}
     
     /**
      * Verify user password

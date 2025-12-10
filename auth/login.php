@@ -434,15 +434,29 @@ $pageTitle = 'Login';
                 <p>Login to your GateWey account</p>
             </div>
             
-            <!-- Login Body -->
-            <div class="login-body">
-                <!-- Error Message -->
-                <?php if ($error): ?>
-                <div class="alert alert-error">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span><?php echo htmlspecialchars($error); ?></span>
-                </div>
-                <?php endif; ?>
+<!-- Login Body -->
+<div class="login-body">
+    <!-- Error Message -->
+    <?php 
+    // Handle URL error parameters for system-generated errors
+    if (!$error && isset($_GET['error'])) {
+        switch ($_GET['error']) {
+            case 'account_inactive':
+                $error = 'Your account has been deactivated. Please contact the administrator.';
+                break;
+            case 'system_error':
+                $error = 'A system error occurred. Please try again or contact support.';
+                break;
+        }
+    }
+    
+    if ($error): 
+    ?>
+    <div class="alert alert-error">
+        <i class="fas fa-exclamation-circle"></i>
+        <span><?php echo htmlspecialchars($error); ?></span>
+    </div>
+    <?php endif; ?>
                 
                 <!-- Success Message -->
                 <?php if ($success): ?>

@@ -18,9 +18,11 @@ Session::start();
 
 // Check authentication
 require_once __DIR__ . '/../middleware/auth-check.php';
+
 // Load helpers - MUST include permissions.php before using role functions
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
+
 // Get requisition ID
 $requisitionId = Sanitizer::int($_GET['id'] ?? 0);
 
@@ -101,7 +103,485 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
 
 <?php include __DIR__ . '/../includes/header.php'; ?>
 
-<!-- Page Header -->
+<style>
+    /* Content Header */
+    .content-header {
+        margin-bottom: var(--spacing-6);
+    }
+
+    .content-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-1) 0;
+    }
+
+    .content-subtitle {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        margin: 0;
+    }
+
+    /* Alert Messages */
+    .alert {
+        display: flex;
+        align-items: flex-start;
+        padding: var(--spacing-4);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        margin-bottom: var(--spacing-4);
+        gap: var(--spacing-3);
+        position: relative;
+    }
+
+    .alert-error {
+        background: rgba(var(--danger-rgb), 0.1);
+        border-color: rgba(var(--danger-rgb), 0.2);
+        color: var(--danger);
+    }
+
+    .alert-warning {
+        background: rgba(var(--warning-rgb), 0.1);
+        border-color: rgba(var(--warning-rgb), 0.2);
+        color: var(--warning);
+    }
+
+    .alert i {
+        font-size: var(--font-size-lg);
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .alert-dismissible {
+        padding-right: var(--spacing-8);
+    }
+
+    .btn-close {
+        position: absolute;
+        right: var(--spacing-3);
+        top: var(--spacing-3);
+        background: transparent;
+        border: none;
+        font-size: var(--font-size-lg);
+        color: currentColor;
+        opacity: 0.5;
+        cursor: pointer;
+        padding: var(--spacing-1);
+        line-height: 1;
+        transition: var(--theme-transition);
+    }
+
+    .btn-close:hover {
+        opacity: 1;
+    }
+
+    .btn-close::before {
+        content: "×";
+        font-size: 24px;
+    }
+
+    .alert-heading {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-2);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2);
+    }
+
+    /* Row and Column Layout */
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-5);
+        margin-bottom: var(--spacing-6);
+    }
+
+    .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+    }
+
+    /* Card Styles */
+    .card {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: var(--spacing-4);
+        background: var(--bg-subtle);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-header.bg-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        border-bottom-color: transparent;
+    }
+
+    .card-header.bg-info {
+        background: linear-gradient(135deg, var(--info), #0284c7);
+        border-bottom-color: transparent;
+    }
+
+    .card-header.bg-primary .card-title,
+    .card-header.bg-info .card-title {
+        color: white;
+    }
+
+    .card-title {
+        margin: 0;
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2);
+    }
+
+    .card-title i {
+        font-size: var(--font-size-base);
+    }
+
+    .card-body {
+        padding: var(--spacing-5);
+    }
+
+    .bg-light {
+        background: var(--bg-subtle) !important;
+    }
+
+    /* Info Groups */
+    .info-group {
+        margin-bottom: var(--spacing-4);
+        padding-bottom: var(--spacing-4);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-group:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .info-group label {
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-secondary);
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: var(--spacing-2);
+        display: block;
+    }
+
+    .info-group p {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: var(--font-size-sm);
+    }
+
+    /* Table Styles */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table thead {
+        background: var(--bg-subtle);
+    }
+
+    .table th {
+        padding: var(--spacing-3);
+        text-align: left;
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--font-size-xs);
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border-color);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .table td {
+        padding: var(--spacing-3);
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-primary);
+        font-size: var(--font-size-sm);
+    }
+
+    .table tbody tr {
+        transition: var(--theme-transition);
+    }
+
+    .table tbody tr:hover {
+        background: var(--bg-subtle);
+    }
+
+    .table-sm th,
+    .table-sm td {
+        padding: var(--spacing-2) var(--spacing-3);
+    }
+
+    .table-total {
+        border-top: 2px solid var(--border-color);
+        background: var(--bg-subtle);
+        font-weight: var(--font-weight-bold);
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    /* Form Styles */
+    .form-group {
+        margin-bottom: var(--spacing-4);
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: var(--font-weight-medium);
+        color: var(--text-primary);
+        font-size: var(--font-size-sm);
+        margin-bottom: var(--spacing-2);
+    }
+
+    .form-group label.required::after {
+        content: ' *';
+        color: var(--danger);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: var(--spacing-3);
+        font-size: var(--font-size-sm);
+        background: var(--bg-input);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        color: var(--text-primary);
+        transition: var(--theme-transition);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form-text {
+        display: block;
+        margin-top: var(--spacing-2);
+        font-size: var(--font-size-xs);
+        color: var(--text-muted);
+    }
+
+    /* Form Actions */
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3);
+        margin-top: var(--spacing-6);
+        padding-top: var(--spacing-6);
+        border-top: 1px solid var(--border-color);
+    }
+
+    /* Button Styles */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-2);
+        padding: var(--spacing-3) var(--spacing-4);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        border-radius: var(--border-radius);
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: var(--theme-transition);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+
+    .btn-ghost {
+        background: transparent;
+        color: var(--text-secondary);
+        border-color: var(--border-color);
+    }
+
+    .btn-ghost:hover {
+        background: var(--bg-subtle);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+    }
+
+    .btn-lg {
+        padding: var(--spacing-4) var(--spacing-5);
+        font-size: var(--font-size-base);
+    }
+
+    .btn-block {
+        width: 100%;
+    }
+
+    /* Badge Styles */
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-1);
+        padding: var(--spacing-1) var(--spacing-3);
+        border-radius: var(--border-radius-full);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-semibold);
+        white-space: nowrap;
+    }
+
+    .badge-outline-secondary {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+    }
+
+    .badge-outline-info {
+        background: transparent;
+        border: 1px solid var(--info);
+        color: var(--info);
+    }
+
+    /* File Display */
+    .d-flex {
+        display: flex;
+    }
+
+    .align-items-center {
+        align-items: center;
+    }
+
+    .justify-content-between {
+        justify-content: space-between;
+    }
+
+    .gap-2 {
+        gap: var(--spacing-2);
+    }
+
+    .ml-2 {
+        margin-left: var(--spacing-2);
+    }
+
+    .fa-2x {
+        font-size: 2em;
+    }
+
+    /* Checklist */
+    .card-body ul {
+        margin: 0;
+        padding-left: var(--spacing-5);
+    }
+
+    .card-body ul li {
+        margin-bottom: var(--spacing-2);
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+    }
+
+    .card-body ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Utility Classes */
+    .mb-0 {
+        margin-bottom: 0;
+    }
+
+    .mb-4 {
+        margin-bottom: var(--spacing-4);
+    }
+
+    .mt-4 {
+        margin-top: var(--spacing-4);
+    }
+
+    .text-muted {
+        color: var(--text-muted) !important;
+    }
+
+    .text-primary {
+        color: var(--primary) !important;
+    }
+
+    .text-success {
+        color: var(--success) !important;
+    }
+
+    .text-white {
+        color: white !important;
+    }
+
+    .small {
+        font-size: var(--font-size-xs);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .content-header .d-flex {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: var(--spacing-3);
+        }
+
+        .content-header .btn {
+            width: 100%;
+        }
+
+        .table {
+            font-size: var(--font-size-xs);
+        }
+
+        .table th,
+        .table td {
+            padding: var(--spacing-2);
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<!-- Content Header -->
 <div class="content-header">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -110,18 +590,19 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
         </div>
         <div class="d-flex gap-2">
             <a href="view.php?id=<?php echo $requisitionId; ?>" class="btn btn-ghost">
-                <i class="fas fa-arrow-left"></i> Back to Requisition
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Requisition</span>
             </a>
         </div>
     </div>
 </div>
 
-<!-- Error Messages -->
+<!-- Alert Messages -->
 <?php if ($errorMessage): ?>
     <div class="alert alert-error alert-dismissible">
         <i class="fas fa-exclamation-circle"></i>
-        <?php echo htmlspecialchars($errorMessage); ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <div><?php echo htmlspecialchars($errorMessage); ?></div>
+        <button type="button" class="btn-close" onclick="this.parentElement.style.display='none'"></button>
     </div>
 <?php endif; ?>
 
@@ -129,21 +610,22 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
     <!-- Left Column - Requisition Details -->
     <div class="col-md-6">
         <!-- Requisition Info Card -->
-        <div class="card mb-4">
+        <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="fas fa-file-invoice"></i> Requisition Details
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Requisition Details</span>
                 </h5>
             </div>
             <div class="card-body">
                 <div class="info-group">
-                    <label>Requisition Number:</label>
+                    <label>Requisition Number</label>
                     <p class="text-primary"><strong><?php echo htmlspecialchars($req['requisition_number']); ?></strong></p>
                 </div>
                 
                 <?php if ($req['department_name']): ?>
                     <div class="info-group">
-                        <label>Department:</label>
+                        <label>Department</label>
                         <p>
                             <span class="badge badge-outline-secondary"><?php echo htmlspecialchars($req['department_code']); ?></span>
                             <?php echo htmlspecialchars($req['department_name']); ?>
@@ -152,17 +634,17 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                 <?php endif; ?>
                 
                 <div class="info-group">
-                    <label>Purpose:</label>
+                    <label>Purpose</label>
                     <p><?php echo nl2br(htmlspecialchars($req['purpose'])); ?></p>
                 </div>
                 
                 <div class="info-group">
-                    <label>Status:</label>
+                    <label>Status</label>
                     <p><?php echo get_status_badge($req['status']); ?></p>
                 </div>
                 
                 <div class="info-group">
-                    <label>Paid Date:</label>
+                    <label>Paid Date</label>
                     <p>
                         <?php echo format_datetime($req['payment_date']); ?><br>
                         <span class="text-muted"><?php echo get_relative_time($req['payment_date']); ?></span>
@@ -171,7 +653,7 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                 
                 <?php if ($req['payment_method']): ?>
                     <div class="info-group">
-                        <label>Payment Method:</label>
+                        <label>Payment Method</label>
                         <p>
                             <span class="badge badge-outline-info"><?php echo htmlspecialchars($req['payment_method']); ?></span>
                             <?php if ($req['payment_reference']): ?>
@@ -184,10 +666,11 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
         </div>
         
         <!-- Items Card -->
-        <div class="card mb-4">
+        <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="fas fa-list"></i> Requisition Items
+                    <i class="fas fa-list"></i>
+                    <span>Requisition Items</span>
                 </h5>
             </div>
             <div class="card-body">
@@ -215,7 +698,8 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                             <tr class="table-total">
                                 <th colspan="3" class="text-right">Total Amount:</th>
                                 <th class="text-right">
-                                    <span class="text-success" style="font-size: 1.2em;">₦<?php echo number_format((float)$req['total_amount'], 2); ?>
+                                    <span class="text-success" style="font-size: 1.2em;">
+                                        ₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </span>
                                 </th>
                             </tr>
@@ -229,8 +713,9 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
         <?php if ($invoice): ?>
             <div class="card">
                 <div class="card-header bg-info text-white">
-                    <h5 class="card-title mb-0">
-                        <i class="fas fa-file-invoice"></i> Payment Invoice
+                    <h5 class="card-title">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Payment Invoice</span>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -244,7 +729,8 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                         <a href="../api/download-file.php?id=<?php echo $invoice['id']; ?>" 
                            class="btn btn-primary" 
                            target="_blank">
-                            <i class="fas fa-download"></i> View Invoice
+                            <i class="fas fa-download"></i>
+                            <span>View Invoice</span>
                         </a>
                     </div>
                 </div>
@@ -256,19 +742,23 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
     <div class="col-md-6">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                <h5 class="card-title mb-0">
-                    <i class="fas fa-receipt"></i> Upload Receipt
+                <h5 class="card-title">
+                    <i class="fas fa-receipt"></i>
+                    <span>Upload Receipt</span>
                 </h5>
             </div>
             <div class="card-body">
                 <div class="alert alert-warning mb-4">
-                    <h6 class="alert-heading">
-                        <i class="fas fa-exclamation-triangle"></i> Important
-                    </h6>
-                    <p class="mb-0">
-                        Please upload a clear and legible receipt showing proof that goods/services 
-                        were received. This is required to complete the requisition process.
-                    </p>
+                    <div>
+                        <h6 class="alert-heading">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Important</span>
+                        </h6>
+                        <p class="mb-0">
+                            Please upload a clear and legible receipt showing proof that goods/services 
+                            were received. This is required to complete the requisition process.
+                        </p>
+                    </div>
                 </div>
                 
                 <form method="POST" enctype="multipart/form-data">
@@ -283,7 +773,7 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                                class="form-control" 
                                accept=".pdf,.jpg,.jpeg,.png"
                                required>
-                        <small class="form-text text-muted">
+                        <small class="form-text">
                             Upload receipt (PDF, JPG, PNG - Max 10MB)
                         </small>
                     </div>
@@ -296,7 +786,7 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                                   class="form-control" 
                                   rows="4"
                                   placeholder="Add any notes about the receipt or goods/services received..."></textarea>
-                        <small class="form-text text-muted">
+                        <small class="form-text">
                             Example: Goods received in good condition, Delivery date: DD/MM/YYYY
                         </small>
                     </div>
@@ -305,7 +795,7 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                     <div class="card bg-light mb-4">
                         <div class="card-body">
                             <h6 class="card-title">Receipt Requirements Checklist:</h6>
-                            <ul class="mb-0">
+                            <ul>
                                 <li>Receipt is clear and legible</li>
                                 <li>Shows date of purchase/delivery</li>
                                 <li>Shows vendor/supplier name</li>
@@ -319,10 +809,12 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                     <!-- Submit Button -->
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary btn-lg btn-block">
-                            <i class="fas fa-upload"></i> Upload Receipt
+                            <i class="fas fa-upload"></i>
+                            <span>Upload Receipt</span>
                         </button>
                         <a href="view.php?id=<?php echo $requisitionId; ?>" class="btn btn-ghost btn-lg btn-block">
-                            <i class="fas fa-times"></i> Cancel
+                            <i class="fas fa-times"></i>
+                            <span>Cancel</span>
                         </a>
                     </div>
                 </form>
@@ -330,13 +822,16 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
         </div>
         
         <!-- Help Card -->
-        <div class="card mt-4">
-            <div class="card-body">
+        <div class="card">
+            <div class="card-header">
                 <h6 class="card-title">
-                    <i class="fas fa-question-circle"></i> Need Help?
+                    <i class="fas fa-question-circle"></i>
+                    <span>Need Help?</span>
                 </h6>
+            </div>
+            <div class="card-body">
                 <p>After uploading your receipt:</p>
-                <ul class="mb-0">
+                <ul>
                     <li>The requisition will be marked as "Completed"</li>
                     <li>All approvers will be notified</li>
                     <li>The receipt will be stored in the system</li>
@@ -346,42 +841,5 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
         </div>
     </div>
 </div>
-
-<style>
-.info-group {
-    margin-bottom: var(--spacing-4);
-}
-
-.info-group label {
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-    text-transform: uppercase;
-    margin-bottom: var(--spacing-2);
-    display: block;
-}
-
-.info-group p {
-    margin-bottom: 0;
-    color: var(--text-primary);
-}
-
-.table-total {
-    border-top: 2px solid var(--border-color);
-    background: var(--bg-subtle);
-}
-
-.form-actions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-3);
-    margin-top: var(--spacing-6);
-}
-
-.required::after {
-    content: ' *';
-    color: var(--danger);
-}
-</style>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

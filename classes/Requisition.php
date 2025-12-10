@@ -45,19 +45,20 @@ class Requisition
                 $currentApproverId = $this->determineNextApprover($requesterRoleId, Session::getUserDepartmentId());
             }
 
-           // Insert requisition
+// Insert requisition
 $sql = "INSERT INTO requisitions (
             requisition_number, user_id, department_id, purpose, description,
-            total_amount, status, current_approver_id, is_draft,
+            category_id, total_amount, status, current_approver_id, is_draft,
             created_at, submitted_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 
 $params = [
     $requisitionNumber,
     Session::getUserId(),
     Session::getUserDepartmentId(),
     $data['purpose'],
-    $data['description'] ?? null,  // ADD THIS
+    $data['description'] ?? null,
+    $data['category_id'] ?? null,  // ✅ ADD THIS
     $data['total_amount'],
     $status,
     $currentApproverId,
@@ -138,6 +139,7 @@ $params = [
 $sql = "UPDATE requisitions 
         SET purpose = ?, 
             description = ?,
+            category_id = ?,
             total_amount = ?, 
             status = ?,
             current_approver_id = ?,
@@ -151,7 +153,8 @@ $sql = "UPDATE requisitions
 
 $params = [
     $data['purpose'],
-    $data['description'] ?? null,  // ADD THIS
+    $data['description'] ?? null,
+    $data['category_id'] ?? null,  // ✅ ADD THIS
     $data['total_amount'],
     $newStatus,
     $currentApproverId,

@@ -102,3 +102,9 @@ Stack trace:
 [07-Dec-2025 16:19:15 Africa/Lagos] Database connection established successfully
 [07-Dec-2025 16:19:33 Africa/Lagos] Database connection established successfully
 [07-Dec-2025 16:32:13 Africa/Lagos] PHP Warning:  Array to string conversion in /home2/gateweyc/public_html/request.gatewey.com.ng/debug-session.php on line 146
+[10-Dec-2025 02:23:44 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:28:22 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:28:22 Africa/Lagos] Query Execution Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`gateweyc_requisition`.`budget_allocations`, CONSTRAINT `budget_allocations_ibfk_2` FOREIGN KEY (`requisition_id`) REFERENCES `requisitions` (`id`) ON DELETE CASCADE) | SQL: INSERT INTO budget_allocations 
+                    (budget_id, requisition_id, amount, allocation_type, allocated_at, notes)
+                    VALUES (?, ?, ?, 'allocated', NOW(), ?)
+[10-Dec-2025 02:28:22 Africa/Lagos] Allocate budget error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`gateweyc_requisition`.`budget_allocations`, CONSTRAINT `budget_allocations_ibfk_2` FOREIGN KEY (`requisition_id`) REFERENCES `requisitions` (`id`) ON DELETE CASCADE)

@@ -21,7 +21,56 @@ $userName = Session::getUserFullName() ?? 'User';
 $userEmail = Session::getUserEmail() ?? '';
 $userRoleId = Session::getUserRoleId();
 $userRole = get_role_name($userRoleId);
+// Get current user information using Session helper methods
+$userName = Session::getUserFullName() ?? 'User';
+$userEmail = Session::getUserEmail() ?? '';
+$userRoleId = Session::getUserRoleId();
+$userRole = get_role_name($userRoleId);
 
+// **REPLACE THE PREVIOUS CODE WITH THIS CORRECTED VERSION**
+// Check if user account is still active
+$userId = Session::get('user_id');
+if ($userId) {
+    try {
+        // Get database connection using Database class
+        $db = Database::getInstance();
+        $pdo = $db->getConnection();
+        
+        // Check user status directly from database
+        $stmt = $pdo->prepare("SELECT is_active FROM users WHERE id = ?");
+        $stmt->execute([$userId]);
+        $userStatus = $stmt->fetchColumn();
+        
+        // If user is inactive, destroy session and redirect to login
+        if ($userStatus !== 1 && $userStatus !== '1' && $userStatus !== true) {
+            // Log the forced logout
+            error_log("Inactive user attempted access: User ID {$userId}");
+            
+            // Destroy session
+            Session::destroy();
+            
+            // Redirect to login with message
+            header('Location: ' . BASE_URL . '/auth/login.php?error=account_inactive');
+            exit;
+        }
+    } catch (PDOException $e) {
+        // Log error but don't expose to user
+        error_log("User status check failed: " . $e->getMessage());
+        // For security, log out user if we can't verify their status
+        Session::destroy();
+        header('Location: ' . BASE_URL . '/auth/login.php?error=system_error');
+        exit;
+    } catch (Exception $e) {
+        // Catch any other errors (like Database class not found)
+        error_log("User status check error: " . $e->getMessage());
+        Session::destroy();
+        header('Location: ' . BASE_URL . '/auth/login.php?error=system_error');
+        exit;
+    }
+}
+
+// Generate initials from full name
+$nameParts = explode(' ', $userName);
 // Generate initials from full name
 $nameParts = explode(' ', $userName);
 $userInitials = '';

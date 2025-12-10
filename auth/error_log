@@ -953,3 +953,400 @@
 [09-Dec-2025 17:23:03 Africa/Lagos] Database connection established successfully
 [09-Dec-2025 17:32:36 Africa/Lagos] Database connection established successfully
 [09-Dec-2025 17:57:36 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 20:50:26 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 20:50:39 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 20:50:39 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 20:50:39 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 20:50:39 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 20:50:39 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[09-Dec-2025 20:50:39 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[09-Dec-2025 20:50:47 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:15:20 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:15:21 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:15:47 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:15:47 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 21:15:47 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 21:15:47 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 21:15:47 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[09-Dec-2025 21:15:47 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[09-Dec-2025 21:15:55 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:21:46 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:21:59 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:21:59 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 21:21:59 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 21:21:59 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 21:23:14 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:23:14 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:23:26 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:23:26 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 21:23:26 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 21:23:26 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 21:30:44 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:30:44 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:30:55 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:30:55 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 21:30:55 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 21:30:55 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 21:54:36 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:54:51 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 21:54:51 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 21:54:51 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 21:54:51 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 21:54:51 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[09-Dec-2025 21:54:51 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[09-Dec-2025 21:55:13 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:00:59 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:01:11 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:01:11 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 22:01:11 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 22:01:11 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 22:17:03 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:17:07 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:17:07 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 22:17:07 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 22:17:07 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[09-Dec-2025 22:17:07 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[09-Dec-2025 22:17:07 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[09-Dec-2025 22:17:15 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:18:47 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:19:30 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:19:30 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:19:40 Africa/Lagos] Database connection established successfully
+[09-Dec-2025 22:19:40 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[09-Dec-2025 22:19:40 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[09-Dec-2025 22:19:40 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:16:41 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:16:53 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:16:53 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:16:53 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:16:53 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:16:53 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 01:16:53 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 01:17:00 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:23:02 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:23:11 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:23:11 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:23:11 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:23:11 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:27:25 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:27:25 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:27:37 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:27:37 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:27:37 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:27:37 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:27:37 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 01:27:37 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 01:27:51 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:28:14 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:28:14 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:28:21 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:28:21 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:28:21 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:28:21 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:28:37 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:28:38 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:28:48 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:28:48 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:28:48 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:28:48 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:45:03 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:45:03 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:45:13 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:45:13 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:45:13 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:45:13 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:45:55 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:45:55 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:04 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:04 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:46:04 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:46:04 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:46:21 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:21 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:32 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:32 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:46:32 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:46:32 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:46:47 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:47 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:55 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:46:55 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:46:55 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:46:55 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:58:51 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:59:14 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:59:14 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:59:14 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:59:14 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:59:30 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:59:30 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:59:49 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 01:59:49 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 01:59:49 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 01:59:49 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 01:59:49 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 01:59:49 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 01:59:56 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:00:12 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:00:12 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 02:00:12 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 02:00:12 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 02:01:16 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:01:43 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:01:43 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 02:01:43 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 02:01:43 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 02:02:35 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:02:35 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:02:46 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:02:46 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 02:02:46 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 02:02:46 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 02:33:00 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:33:01 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:33:14 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 02:33:14 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 02:33:14 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 02:33:14 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 02:37:42 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:30:34 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:30:48 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:30:48 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 08:30:48 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 08:30:48 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 08:37:02 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:37:12 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:37:12 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 08:37:12 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 08:37:12 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 08:43:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:43:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:43:32 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:43:32 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 08:43:32 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 08:43:32 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 08:44:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:44:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:44:29 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 08:44:29 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 08:44:29 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 08:44:29 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 09:11:34 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 09:11:34 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 09:11:45 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 09:11:45 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 09:11:45 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 09:11:45 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:00:04 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:00:16 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:00:16 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:00:16 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:00:16 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:00:16 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 10:00:16 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 10:00:24 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:01:41 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:01:41 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:01:53 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:01:53 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:01:53 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:01:53 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:09:55 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:09:55 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:09:55 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:10:08 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:10:08 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:10:08 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:10:08 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:10:08 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 10:10:08 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 10:10:15 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:12:06 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:12:06 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:15:47 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:15:47 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:15:47 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:15:47 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:15:47 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 10:15:47 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 10:15:56 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:18:58 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:18:59 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:19:12 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:19:12 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:19:12 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:19:12 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:19:12 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 10:19:12 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 10:19:27 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:24:24 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:24:24 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:24:35 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:24:35 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:24:35 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:24:35 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:24:35 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 10:24:35 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 10:24:43 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:25:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:25:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:25:29 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:25:29 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:25:29 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:25:29 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:25:41 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:25:41 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:25:41 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:25:41 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:25:54 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:25:54 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:25:54 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:25:54 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:39:31 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:39:31 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:39:31 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:39:31 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:39:39 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:39:39 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:39:39 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:39:39 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:42:10 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:42:11 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:42:26 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:42:26 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:42:26 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:42:26 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:43:07 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:43:07 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:43:07 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:43:07 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:43:30 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 10:43:30 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 10:43:30 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 10:43:30 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 10:43:52 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 13:55:40 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 13:56:12 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 13:56:12 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 13:56:12 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 13:56:12 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 13:56:12 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 13:56:12 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 13:56:30 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:00:56 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:00:56 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:01:10 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:01:10 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:01:10 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:01:10 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:01:49 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:01:58 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:01:58 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:01:58 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:01:58 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:02:19 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:02:19 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:02:26 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:02:26 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:02:26 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:02:26 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:22:38 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:22:38 Africa/Lagos] PHP Fatal error:  Cannot redeclare User::update() in /home2/gateweyc/public_html/request.gatewey.com.ng/classes/User.php on line 227
+[10-Dec-2025 14:24:53 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:24:53 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:25:05 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:25:05 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:25:05 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:25:05 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:25:05 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 14:25:05 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 14:25:17 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:27:49 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:27:49 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:28:00 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:28:00 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:28:00 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:28:00 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:34:19 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:34:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:34:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:34:29 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:34:29 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:34:29 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:34:29 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:34:29 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 14:34:29 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 14:34:35 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:37:15 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:37:42 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:37:42 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:37:42 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:37:42 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:51:17 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:51:33 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 14:51:33 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 14:51:33 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 14:51:33 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 14:51:33 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 14:51:33 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 14:51:41 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 15:53:57 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:19:45 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:19:57 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:19:57 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 16:19:57 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 16:19:57 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 16:19:57 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 16:19:57 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 16:20:11 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:21:14 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:21:14 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:21:24 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:21:24 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 16:21:24 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 16:21:24 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 16:29:29 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:29:29 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:29:51 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 16:29:51 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 16:29:51 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 16:29:51 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 17:47:56 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:48:10 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:48:10 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 17:48:10 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 17:48:10 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 17:48:10 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 17:48:10 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 17:48:17 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:49:15 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:49:15 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:49:36 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:49:36 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 17:49:36 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 17:49:36 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 17:49:42 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:49:42 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 17:49:42 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 17:49:42 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 17:52:45 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:52:45 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:52:56 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 17:52:56 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 17:52:56 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 17:52:56 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 17:52:56 Africa/Lagos] Query Execution Error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared | SQL: UPDATE users SET last_login = NOW() WHERE id = ?
+[10-Dec-2025 17:52:56 Africa/Lagos] Login error: SQLSTATE[HY000]: General error: 1615 Prepared statement needs to be re-prepared
+[10-Dec-2025 17:53:03 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 18:06:15 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 18:06:15 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 18:06:34 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 18:06:34 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 18:06:34 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 18:06:34 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)
+[10-Dec-2025 19:06:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 19:06:20 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 19:06:31 Africa/Lagos] Database connection established successfully
+[10-Dec-2025 19:06:31 Africa/Lagos] Validator calling: validateRequired for field: email (depth: 1)
+[10-Dec-2025 19:06:31 Africa/Lagos] Validator calling: validateEmail for field: email (depth: 1)
+[10-Dec-2025 19:06:31 Africa/Lagos] Validator calling: validateRequired for field: password (depth: 1)

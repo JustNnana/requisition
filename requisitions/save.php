@@ -5,6 +5,8 @@
  * 
  * File: requisitions/save.php
  * Purpose: POST handler for creating and updating requisitions
+ * 
+ * UPDATED: Added category_id support for budget tracking
  */
 
 // Define access level
@@ -54,9 +56,11 @@ $action = Sanitizer::string($_POST['action'] ?? 'create');
 $requisitionId = isset($_POST['requisition_id']) ? Sanitizer::int($_POST['requisition_id']) : null;
 $isDraft = isset($_POST['is_draft']) && $_POST['is_draft'] == '1';
 
+// Capture form data with category_id
 $formData = [
     'purpose' => Sanitizer::string($_POST['purpose'] ?? ''),
     'description' => Sanitizer::string($_POST['description'] ?? ''),
+    'category_id' => !empty($_POST['category_id']) ? Sanitizer::int($_POST['category_id']) : null, // ✅ ADDED
     'total_amount' => Sanitizer::float($_POST['total_amount'] ?? '0'),
     'is_draft' => $isDraft,
     'items' => []
@@ -65,6 +69,24 @@ $formData = [
 // Validate purpose
 if (empty($formData['purpose'])) {
     $errors[] = 'Purpose/Description is required.';
+}
+
+// Validate category_id (optional but log if present)
+if (!empty($formData['category_id'])) {
+    // Verify category exists and is active
+    try {
+        $categoryModel = new RequisitionCategory();
+        $category = $categoryModel->getById($formData['category_id']);
+        
+        if (!$category) {
+            $errors[] = 'Invalid category selected.';
+        } elseif (!$category['is_active']) {
+            $errors[] = 'Selected category is no longer active.';
+        }
+    } catch (Exception $e) {
+        error_log("Category validation error: " . $e->getMessage());
+        // Continue without blocking - category validation is not critical
+    }
 }
 
 // Validate and process items

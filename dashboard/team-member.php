@@ -651,6 +651,136 @@ $pageTitle = 'Dashboard';
     </div>
 <?php endif; ?>
 
+<!-- Receipt Upload Alert -->
+<?php
+// Get paid requisitions needing receipt upload
+$sql = "SELECT r.*, d.department_name
+        FROM requisitions r
+        LEFT JOIN departments d ON r.department_id = d.id
+        WHERE r.user_id = ? 
+        AND r.status = ?
+        AND (r.receipt_uploaded IS NULL OR r.receipt_uploaded = '' OR r.receipt_uploaded = 0)
+        ORDER BY r.payment_date DESC
+        LIMIT 5";
+$needsReceipt = $db->fetchAll($sql, [$userId, STATUS_PAID]);
+?>
+
+<?php if (!empty($needsReceipt)): ?>
+    <div style="border: solid 1px var(--info); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6);">
+        <div class="d-flex align-items-start gap-3">
+            <i class="fas fa-receipt" style="font-size: 2rem; color: var(--info); margin-top: 0.25rem; margin-right: 0.55rem;"></i>
+            <div style="flex: 1;">
+                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">Receipt Upload Required</h5>
+                <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9; color: white;">You have <?php echo count($needsReceipt); ?> paid requisition(s) that require receipt upload:</p>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
+                    <?php foreach ($needsReceipt as $req): ?>
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.1); padding: var(--spacing-3); border-radius: var(--border-radius);">
+                            <div style="flex: 1; min-width: 0;">
+                                <strong><?php echo htmlspecialchars($req['requisition_number']); ?></strong>
+                                <span style="margin: 0 var(--spacing-2);">•</span>
+                                <span style="opacity: 0.9;">
+                                    ₦<?php echo number_format((float)$req['total_amount'], 2); ?>
+                                </span>
+                                <span style="margin: 0 var(--spacing-2);">•</span>
+                                <span style="opacity: 0.8; font-size: var(--font-size-sm);">
+                                    Paid: <?php echo format_date($req['payment_date']); ?>
+                                </span>
+                            </div>
+                            <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" class="btn btn-info" style="white-space: nowrap; margin-left: var(--spacing-3);">
+                                <i class="fas fa-upload me-2"></i>Upload Receipt
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<!-- Department Budget Status Card (if applicable) -->
+<?php
+// Get department budget information
+$budgetModel = new Budget();
+$departmentId = Session::getUserDepartmentId();
+$budgetInfo = null;
+
+if ($departmentId) {
+    $budgetInfo = $budgetModel->getBudgetStats($departmentId);
+}
+?>
+
+<?php if ($budgetInfo): ?>
+    <?php
+    $utilizationPercentage = ($budgetInfo['budget_amount'] > 0) 
+        ? ($budgetInfo['allocated_amount'] / $budgetInfo['budget_amount']) * 100 
+        : 0;
+    $isLowBudget = $utilizationPercentage > 75;
+    $isCritical = $utilizationPercentage > 90;
+    ?>
+    
+    <div style="border: 1px solid <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--info)'); ?>; 
+                border-radius: var(--border-radius); 
+                padding: var(--spacing-5); 
+                margin-bottom: var(--spacing-6); 
+                background: rgba(<?php echo $isCritical ? 'var(--danger-rgb)' : ($isLowBudget ? 'var(--warning-rgb)' : 'var(--info-rgb)'); ?>, 0.05);">
+        <div class="d-flex align-items-start gap-3">
+            <i class="fas fa-wallet" style="font-size: 2rem; color: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--info)'); ?>; flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
+            
+            <div style="flex: 1;">
+                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: var(--text-primary);">
+                    <?php echo $isCritical ? '⚠️ Critical: ' : ($isLowBudget ? '⚠️ Low Budget: ' : ''); ?>Department Budget Status
+                </h5>
+                <p style="margin: 0 0 var(--spacing-3) 0; color: var(--text-secondary); font-size: var(--font-size-sm);">
+                    Your department has used <strong>₦<?php echo number_format($budgetInfo['allocated_amount'], 2); ?></strong> 
+                    of <strong>₦<?php echo number_format($budgetInfo['budget_amount'], 2); ?></strong> 
+                    (<?php echo number_format($utilizationPercentage, 1); ?>% utilized)
+                </p>
+                
+<!-- Progress Bar -->
+<div style="background: var(--bg-subtle); border-radius: var(--border-radius-full); height: 24px; margin-bottom: var(--spacing-3); border: 1px solid var(--border-color); position: relative; overflow: hidden;">
+    <div style="background: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; 
+                height: 100%; 
+                width: <?php echo min($utilizationPercentage, 100); ?>%; 
+                transition: width 0.3s ease;">
+    </div>
+    <div style="position: absolute; 
+                top: 0; 
+                left: 0; 
+                right: 0; 
+                bottom: 0; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                color: <?php echo $utilizationPercentage > 50 ? 'white' : 'var(--text-primary)'; ?>; 
+                font-weight: var(--font-weight-semibold); 
+                font-size: var(--font-size-xs);
+                pointer-events: none;">
+        <?php echo number_format($utilizationPercentage, 1); ?>%
+    </div>
+</div>
+                
+                <div style="display: flex; justify-content: space-between; font-size: var(--font-size-sm);">
+                    <span style="color: var(--text-secondary);">
+                        <i class="fas fa-check-circle"></i> Remaining: <strong style="color: var(--success);">₦<?php echo number_format($budgetInfo['available_amount'], 2); ?></strong>
+                    </span>
+                    <span style="color: var(--text-secondary);">
+                        <i class="fas fa-calendar"></i> Period ends: <strong><?php echo date('M d, Y', strtotime($budgetInfo['end_date'])); ?></strong>
+                    </span>
+                </div>
+                
+                <?php if ($isCritical || $isLowBudget): ?>
+                <p style="margin: var(--spacing-3) 0 0 0; color: <?php echo $isCritical ? 'var(--danger)' : 'var(--warning)'; ?>; font-size: var(--font-size-xs);">
+                    <i class="fas fa-info-circle"></i> 
+                    <?php if ($isCritical): ?>
+                        <strong>Critical:</strong> Department budget is nearly exhausted. New requisitions may be delayed.
+                    <?php else: ?>
+                        <strong>Notice:</strong> Department budget is running low. Plan accordingly for upcoming requests.
+                    <?php endif; ?>
+                </p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <!-- Key Metrics - Revenue Card Style -->
 <div class="revenue-cards-grid">
     <div class="revenue-card">

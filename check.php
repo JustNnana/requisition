@@ -1,97 +1,71 @@
 <?php
-/**
- * CONSTANTS CHECK
- * Upload to ROOT and visit
- */
-
 define('APP_ACCESS', true);
 require_once __DIR__ . '/config/config.php';
 
-echo "<!DOCTYPE html><html><head><title>Constants Check</title>";
-echo "<style>body{font-family:Arial;max-width:800px;margin:30px auto;padding:20px;background:#f5f5f5;}";
-echo ".error{background:#fee;border-left:4px solid #f44336;padding:15px;color:#c62828;margin:10px 0;}";
-echo ".success{background:#d4edda;border-left:4px solid #4CAF50;padding:15px;color:#155724;margin:10px 0;}";
-echo "h1{color:#333;}table{width:100%;border-collapse:collapse;background:white;margin:15px 0;}";
-echo "td,th{padding:10px;text-align:left;border-bottom:1px solid #ddd;}th{background:#f8f9fa;font-weight:600;}";
-echo "</style></head><body>";
+echo "Testing Budget Methods...\n\n";
 
-echo "<h1>🔍 Constants Check</h1>";
-
-// Check if role constants are defined
-$constants = [
-    'ROLE_SUPER_ADMIN' => 1,
-    'ROLE_MANAGING_DIRECTOR' => 2,
-    'ROLE_FINANCE_MANAGER' => 3,
-    'ROLE_FINANCE_MEMBER' => 4,
-    'ROLE_LINE_MANAGER' => 5,
-    'ROLE_TEAM_MEMBER' => 6
-];
-
-$allDefined = true;
-
-echo "<table>";
-echo "<tr><th>Constant</th><th>Expected Value</th><th>Actual Value</th><th>Status</th></tr>";
-
-foreach ($constants as $name => $expected) {
-    $defined = defined($name);
-    $actual = $defined ? constant($name) : 'NOT DEFINED';
-    $match = $defined && constant($name) === $expected;
+try {
+    $budget = new Budget();
     
-    if (!$match) $allDefined = false;
+    // Test 1: Get active budget for department 1 (change this to your department ID)
+    $departmentId = 1; // CHANGE THIS TO YOUR ACTUAL DEPARTMENT ID
     
-    echo "<tr>";
-    echo "<td><code>$name</code></td>";
-    echo "<td>$expected</td>";
-    echo "<td>" . ($defined ? $actual : '<span style="color:#f44336;">NOT DEFINED</span>') . "</td>";
-    echo "<td>" . ($match ? '<span style="color:#4CAF50;">✓ OK</span>' : '<span style="color:#f44336;">✗ FAIL</span>') . "</td>";
-    echo "</tr>";
-}
-
-echo "</table>";
-
-if ($allDefined) {
-    echo "<div class='success'>";
-    echo "<strong>✓ ALL ROLE CONSTANTS ARE DEFINED CORRECTLY!</strong><br>";
-    echo "The issue is not with constants. Check Session::getUserRoleId() implementation.";
-    echo "</div>";
-} else {
-    echo "<div class='error'>";
-    echo "<strong>✗ ROLE CONSTANTS ARE NOT DEFINED!</strong><br><br>";
-    echo "<strong>This is why is_team_member() returns false!</strong><br><br>";
-    echo "<strong>FIX:</strong> Edit config/config.php and add this line AFTER the APP_ACCESS check:<br>";
-    echo "<pre style='background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:4px;overflow-x:auto;'>require_once CONFIG_PATH . '/constants.php';</pre>";
-    echo "Or if CONFIG_PATH is not defined:<br>";
-    echo "<pre style='background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:4px;overflow-x:auto;'>require_once __DIR__ . '/constants.php';</pre>";
-    echo "</div>";
-}
-
-// Test the permission function
-echo "<h2>Permission Function Test</h2>";
-
-Session::start();
-
-if (Session::isLoggedIn()) {
-    $roleId = Session::getUserRoleId();
-    echo "<p>Your Role ID: <strong>$roleId</strong></p>";
+    echo "Test 1: Getting active budget for department {$departmentId}...\n";
+    $activeBudget = $budget->getActiveBudget($departmentId);
     
-    if (defined('ROLE_TEAM_MEMBER')) {
-        echo "<p>ROLE_TEAM_MEMBER constant: <strong>" . ROLE_TEAM_MEMBER . "</strong></p>";
-        echo "<p>Comparison: $roleId === " . ROLE_TEAM_MEMBER . " = " . ($roleId === ROLE_TEAM_MEMBER ? 'TRUE' : 'FALSE') . "</p>";
-        
-        if (function_exists('is_team_member')) {
-            $result = is_team_member();
-            echo "<p>is_team_member() result: <strong>" . ($result ? 'TRUE' : 'FALSE') . "</strong></p>";
-        }
+    if ($activeBudget) {
+        echo "✅ Active budget found:\n";
+        echo "   - Budget ID: {$activeBudget['id']}\n";
+        echo "   - Budget Amount: ₦" . number_format($activeBudget['budget_amount'], 2) . "\n";
+        echo "   - Available Amount: ₦" . number_format($activeBudget['available_amount'], 2) . "\n";
     } else {
-        echo "<p style='color:#f44336;'>ROLE_TEAM_MEMBER is NOT defined!</p>";
+        echo "❌ No active budget found for this department\n";
+        exit;
     }
-} else {
-    echo "<p>Not logged in - cannot test</p>";
+    
+    echo "\n";
+    
+    // Test 2: Check availability
+    $testAmount = 1000.00;
+    echo "Test 2: Checking if ₦" . number_format($testAmount, 2) . " is available...\n";
+    $isAvailable = $budget->checkAvailability($departmentId, $testAmount);
+    echo ($isAvailable ? "✅" : "❌") . " Budget availability: " . ($isAvailable ? "SUFFICIENT" : "INSUFFICIENT") . "\n";
+    
+    echo "\n";
+    
+    // Test 3: Try allocation (we won't actually commit this)
+    echo "Test 3: Testing allocation method (dry run)...\n";
+    $testRequisitionId = 9999; // Fake requisition ID
+    
+    try {
+        $result = $budget->allocateBudget(
+            $activeBudget['id'],
+            $testRequisitionId,
+            $testAmount,
+            'Test allocation - will be rolled back'
+        );
+        
+        if ($result['success']) {
+            echo "✅ Allocation method executed successfully\n";
+            echo "   Message: {$result['message']}\n";
+            
+            // Manually rollback for safety
+            $db = Database::getInstance();
+            if ($db->getConnection()->inTransaction()) {
+                $db->rollback();
+                echo "   (Transaction rolled back - no actual changes made)\n";
+            }
+        } else {
+            echo "❌ Allocation failed: {$result['message']}\n";
+        }
+    } catch (Exception $e) {
+        echo "❌ Exception in allocateBudget: " . $e->getMessage() . "\n";
+        echo "   Stack trace: " . $e->getTraceAsString() . "\n";
+    }
+    
+    echo "\n✅ All budget method tests completed!\n";
+    
+} catch (Exception $e) {
+    echo "❌ FATAL ERROR: " . $e->getMessage() . "\n";
+    echo "Stack trace: " . $e->getTraceAsString() . "\n";
 }
-
-echo "<div style='background:#fee;border:2px solid #f44336;padding:15px;text-align:center;margin:20px 0;'>";
-echo "<strong style='color:#f44336;'>DELETE THIS FILE!</strong>";
-echo "</div>";
-
-echo "</body></html>";
-?>

@@ -653,7 +653,162 @@ $pageTitle = 'Finance Manager Dashboard';
         
     </div>
 <?php endif; ?>
+<!-- Budget Expiry Alerts -->
+<?php
+// Get budgets expiring soon (within 7 days) and expired budgets
+$budgetModel = new Budget();
 
+// Get expiring budgets (active, ending within 7 days)
+$sql = "SELECT db.*, d.department_name, d.department_code,
+        DATEDIFF(db.end_date, CURRENT_DATE()) as days_remaining
+        FROM department_budgets db
+        JOIN departments d ON db.department_id = d.id
+        WHERE db.status = 'active'
+        AND db.end_date BETWEEN CURRENT_DATE() AND DATE_ADD(CURRENT_DATE(), INTERVAL 7 DAY)
+        ORDER BY db.end_date ASC";
+$expiringBudgets = $db->fetchAll($sql);
+
+// Get expired budgets (need renewal)
+$sql = "SELECT db.*, d.department_name, d.department_code,
+        DATEDIFF(CURRENT_DATE(), db.end_date) as days_expired
+        FROM department_budgets db
+        JOIN departments d ON db.department_id = d.id
+        WHERE db.status = 'expired'
+        AND NOT EXISTS (
+            SELECT 1 FROM department_budgets db2 
+            WHERE db2.department_id = db.department_id 
+            AND db2.status IN ('active', 'upcoming')
+        )
+        ORDER BY db.end_date DESC
+        LIMIT 5";
+$expiredBudgets = $db->fetchAll($sql);
+?>
+
+<!-- Expired Budgets Alert (Critical) -->
+<?php if (!empty($expiredBudgets)): ?>
+<div style="border: 1px solid var(--danger); 
+            border-radius: var(--border-radius); 
+            padding: var(--spacing-5); 
+            margin-bottom: var(--spacing-6); 
+            background: rgba(var(--danger-rgb), 0.05);">
+    <div class="d-flex align-items-start gap-3">
+        <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: var(--danger); flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
+        
+        <div style="flex: 1;">
+            <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: var(--danger);">
+                🔴 Budget Renewal Required
+            </h5>
+            <p style="margin: 0 0 var(--spacing-3) 0; color: var(--text-primary);">
+                <strong><?php echo count($expiredBudgets); ?></strong> department<?php echo count($expiredBudgets) > 1 ? 's have' : ' has'; ?> expired budget<?php echo count($expiredBudgets) > 1 ? 's' : ''; ?> needing renewal:
+            </p>
+            
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
+                <?php foreach ($expiredBudgets as $budget): ?>
+                    <?php
+                    $utilizationPercentage = ($budget['budget_amount'] > 0) 
+                        ? ($budget['allocated_amount'] / $budget['budget_amount']) * 100 
+                        : 0;
+                    ?>
+                    <div style="display: flex; align-items: center; justify-content: space-between; 
+                                background: var(--bg-card); 
+                                padding: var(--spacing-3); 
+                                border-radius: var(--border-radius);
+                                border: 1px solid var(--border-color);">
+                        <div style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: var(--spacing-2); margin-bottom: var(--spacing-1);">
+                                <strong style="color: var(--text-primary);"><?php echo htmlspecialchars($budget['department_name']); ?></strong>
+                                <span style="background: var(--danger); color: white; padding: 2px 8px; border-radius: var(--border-radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);">
+                                    Expired <?php echo $budget['days_expired']; ?> day<?php echo $budget['days_expired'] > 1 ? 's' : ''; ?> ago
+                                </span>
+                            </div>
+                            <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                <span>Period: <?php echo date('M d', strtotime($budget['start_date'])); ?> - <?php echo date('M d, Y', strtotime($budget['end_date'])); ?></span>
+                                <span style="margin-left: var(--spacing-3);">Budget: ₦<?php echo number_format($budget['budget_amount'], 2); ?></span>
+                                <span style="margin-left: var(--spacing-3);">Used: <?php echo number_format($utilizationPercentage, 1); ?>%</span>
+                            </div>
+                        </div>
+                        <a href="<?php echo BASE_URL; ?>/finance/budget/set-budget.php?department=<?php echo $budget['department_id']; ?>" 
+                           class="btn btn-danger btn-sm" 
+                           style="white-space: nowrap; margin-left: var(--spacing-3);">
+                            <i class="fas fa-plus me-2"></i>Set New Budget
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div style="margin-top: var(--spacing-3); padding-top: var(--spacing-3); border-top: 1px solid var(--border-color);">
+                <a href="<?php echo BASE_URL; ?>/finance/budget/index.php?status=expired" 
+                   class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-list me-2"></i>View All Expired Budgets
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<!-- Expiring Soon Budgets Alert (Warning) -->
+<?php if (!empty($expiringBudgets)): ?>
+<div style="border: 1px solid var(--warning); 
+            border-radius: var(--border-radius); 
+            padding: var(--spacing-5); 
+            margin-bottom: var(--spacing-6); 
+            background: rgba(var(--warning-rgb), 0.05);">
+    <div class="d-flex align-items-start gap-3">
+        <i class="fas fa-clock" style="font-size: 2rem; color: var(--warning); flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
+        
+        <div style="flex: 1;">
+            <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: var(--warning);">
+                ⚠️ Budgets Expiring Soon
+            </h5>
+            <p style="margin: 0 0 var(--spacing-3) 0; color: var(--text-primary);">
+                <strong><?php echo count($expiringBudgets); ?></strong> budget<?php echo count($expiringBudgets) > 1 ? 's' : ''; ?> will expire within the next 7 days:
+            </p>
+            
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
+                <?php foreach ($expiringBudgets as $budget): ?>
+                    <?php
+                    $utilizationPercentage = ($budget['budget_amount'] > 0) 
+                        ? ($budget['allocated_amount'] / $budget['budget_amount']) * 100 
+                        : 0;
+                    ?>
+                    <div style="display: flex; align-items: center; justify-content: space-between; 
+                                background: var(--bg-card); 
+                                padding: var(--spacing-3); 
+                                border-radius: var(--border-radius);
+                                border: 1px solid var(--border-color);">
+                        <div style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: var(--spacing-2); margin-bottom: var(--spacing-1);">
+                                <strong style="color: var(--text-primary);"><?php echo htmlspecialchars($budget['department_name']); ?></strong>
+                                <span style="background: var(--warning); color: white; padding: 2px 8px; border-radius: var(--border-radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);">
+                                    <?php echo $budget['days_remaining']; ?> day<?php echo $budget['days_remaining'] > 1 ? 's' : ''; ?> left
+                                </span>
+                            </div>
+                            <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                <span>Expires: <?php echo date('M d, Y', strtotime($budget['end_date'])); ?></span>
+                                <span style="margin-left: var(--spacing-3);">Available: ₦<?php echo number_format($budget['available_amount'], 2); ?></span>
+                                <span style="margin-left: var(--spacing-3);">Used: <?php echo number_format($utilizationPercentage, 1); ?>%</span>
+                            </div>
+                        </div>
+                        <a href="<?php echo BASE_URL; ?>/finance/budget/view-budget.php?id=<?php echo $budget['id']; ?>" 
+                           class="btn btn-warning btn-sm" 
+                           style="white-space: nowrap; margin-left: var(--spacing-3);">
+                            <i class="fas fa-eye me-2"></i>View Details
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div style="margin-top: var(--spacing-3); padding-top: var(--spacing-3); border-top: 1px solid var(--border-color);">
+                <a href="<?php echo BASE_URL; ?>/finance/budget/index.php" 
+                   class="btn btn-sm btn-outline-warning">
+                    <i class="fas fa-wallet me-2"></i>Manage Budgets
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
 <!-- Key Metrics - Revenue Card Style -->
 <div class="revenue-cards-grid">
     <div class="revenue-card">

@@ -602,24 +602,27 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
             </div>
         </div>
         <div class="form-section-body">
-            <!-- Purpose/Category Dropdown -->
-            <div class="form-group">
-                <label for="purpose" class="form-label required">Purpose/Category</label>
-                <select
-                    id="purpose"
-                    name="purpose"
-                    class="form-control"
-                    required>
-                    <option value="">-- Select Purpose --</option>
-                    <?php foreach ($categories as $category): ?>
-                        <option value="<?php echo htmlspecialchars($category['category_name']); ?>"
-                            <?php echo ($reqData['purpose'] == $category['category_name']) ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($category['category_name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <div class="form-text">Select the category that best describes this requisition.</div>
-            </div>
+<!-- Purpose/Category Dropdown -->
+<div class="form-group">
+    <label for="category_id" class="form-label required">Purpose/Category</label>
+    <select
+        id="category_id"
+        name="category_id"
+        class="form-control"
+        required>
+        <option value="">-- Select Purpose --</option>
+        <?php foreach ($categories as $category): ?>
+            <option value="<?php echo $category['id']; ?>"
+                data-name="<?php echo htmlspecialchars($category['category_name']); ?>"
+                <?php echo ($reqData['category_id'] == $category['id']) ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($category['category_name']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <!-- Hidden field to store the category name for display purposes -->
+    <input type="hidden" id="purpose" name="purpose" value="<?php echo htmlspecialchars($reqData['purpose']); ?>">
+    <div class="form-text">Select the category that best describes this requisition.</div>
+</div>
 
             <!-- Additional Description (Optional) -->
             <div class="form-group">
@@ -714,8 +717,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
                         <h4>Total Amount</h4>
                         <p>Sum of all items</p>
                     </div>
-                    <div class="total-amount" id="grandTotal">
-                        <?php echo format_currency($reqData['total_amount']); ?>
+                    <div class="total-amount" id="grandTotal">₦<?php echo number_format((float)$reqData['total_amount'], 2); ?>
                     </div>
                 </div>
                 <input type="hidden" name="total_amount" id="total_amount" value="<?php echo $reqData['total_amount']; ?>">
@@ -842,6 +844,30 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
             form.dataset.changed = 'false';
         });
     });
+</script>
+<script>
+// Sync the hidden purpose field when category dropdown changes
+document.addEventListener('DOMContentLoaded', function() {
+    const categorySelect = document.getElementById('category_id');
+    const purposeHidden = document.getElementById('purpose');
+    
+    if (categorySelect && purposeHidden) {
+        categorySelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            if (selectedOption && selectedOption.value) {
+                purposeHidden.value = selectedOption.getAttribute('data-name') || selectedOption.text;
+            } else {
+                purposeHidden.value = '';
+            }
+        });
+        
+        // Initialize purpose on page load
+        if (categorySelect.value) {
+            const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+            purposeHidden.value = selectedOption.getAttribute('data-name') || selectedOption.text;
+        }
+    }
+});
 </script>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
