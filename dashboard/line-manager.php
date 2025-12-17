@@ -635,10 +635,10 @@ $pageTitle = 'Line Manager Dashboard';
             <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-end; min-width: 0;">
                 <!-- Text -->
                 <div style="flex: 1; min-width: 0;">
-                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: 600; color: white;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: 600; color: var(--text-primary);">
                         Action Required
                     </h5>
-                    <p style="margin: 0; opacity: 0.9; color: white;">
+                    <p style="margin: 0; opacity: 0.9; color: var(--text-primary);">
                         You have <strong><?php echo $stats['pending_my_approval']; ?></strong> 
                         requisition<?php echo $stats['pending_my_approval'] > 1 ? 's' : ''; ?> awaiting your approval.
                     </p>
@@ -721,11 +721,16 @@ $needsReceipt = $db->fetchAll($sql, [$departmentId, STATUS_PAID]);
         </div>
     </div>
 <?php endif; ?>
+
 <!-- Department Budget Status Card -->
 <?php
+// IMPORTANT: Re-get the department ID to ensure it's in scope
+$departmentId = Session::getUserDepartmentId();
+
 // Get department budget information
 $budgetModel = new Budget();
 $budgetInfo = $budgetModel->getBudgetStats($departmentId);
+
 ?>
 
 <?php if ($budgetInfo): ?>
@@ -736,7 +741,6 @@ $budgetInfo = $budgetModel->getBudgetStats($departmentId);
     $isLowBudget = $utilizationPercentage > 75;
     $isCritical = $utilizationPercentage > 90;
     ?>
-    
     <div style="border: 1px solid <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; 
                 border-radius: var(--border-radius); 
                 padding: var(--spacing-5); 
@@ -802,8 +806,30 @@ $budgetInfo = $budgetModel->getBudgetStats($departmentId);
                 
                 <div style="display: flex; gap: var(--spacing-4); font-size: var(--font-size-sm); flex-wrap: wrap;">
                     <span style="color: var(--text-secondary);">
+                        <i class="fa-solid fa-users"></i> Original Budget: ₦ <strong><?php echo number_format($budgetInfo['original_budget'], 2); ?></strong>
+                    </span>
+                    
+                     <?php
+$budgetDiff = $budgetInfo['budget_amount'] - $budgetInfo['original_budget'];
+if ($budgetDiff != 0):
+    $absDiff = abs($budgetDiff);
+    if ($budgetDiff > 0):
+?>
+        <span style="color: var(--success);">
+            <i class="fa-solid fa-circle-plus"></i> Added Supplements: +₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php else: ?>
+        <span style="color: var(--warning);">
+            <i class="fa-solid fa-circle-minus"></i> Budget Reduction: -₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php endif; ?>
+<?php endif; ?>
+                   
+                    <span style="color: var(--text-secondary);">
                         <i class="fas fa-chart-line"></i> Active Allocations: <strong><?php echo $budgetInfo['active_allocations']; ?></strong>
                     </span>
+                    
+                   
                     <span style="color: var(--text-secondary);">
                         <i class="fas fa-history"></i> Total Allocations: <strong><?php echo $budgetInfo['total_allocations']; ?></strong>
                     </span>
@@ -1186,11 +1212,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: chartConfig.colors.text + '10',
-                            titleColor: chartConfig.colors.text,
-                            bodyColor: chartConfig.colors.text,
-                            borderColor: chartConfig.colors.border,
-                            borderWidth: 1,
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)',  // ✅ Black background
+    titleColor: '#ffffff',                   // ✅ White text
+    bodyColor: '#ffffff',                    // ✅ White text
+    borderColor: chartConfig.colors.border,
+    borderWidth: 1,
                             cornerRadius: 8,
                             padding: 12,
                             titleFont: {

@@ -633,9 +633,9 @@ $pageTitle = 'Dashboard';
             <div style="flex: 1;">
                 <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold);">Action Required</h5>
                 <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9;">You have <?php echo count($pendingActions); ?> rejected requisition(s) that need your attention:</p>
-                <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-2); color:var(--text-primary);">
                     <?php foreach ($pendingActions as $action): ?>
-                        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.1); padding: var(--spacing-3); border-radius: var(--border-radius);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; border:1px solid var(--border-color); padding: var(--spacing-3); border-radius: var(--border-radius);">
                             <div>
                                 <strong><?php echo htmlspecialchars($action['requisition_number']); ?></strong> -
                                 <?php echo htmlspecialchars(substr($action['purpose'], 0, 50)) . (strlen($action['purpose']) > 50 ? '...' : ''); ?>
@@ -759,6 +759,25 @@ if ($departmentId) {
 </div>
                 
                 <div style="display: flex; justify-content: space-between; font-size: var(--font-size-sm);">
+                    <span style="color: var(--text-secondary);">
+                        <i class="fa-solid fa-users"></i> Original Budget: ₦ <strong><?php echo number_format($budgetInfo['original_budget'], 2); ?></strong>
+                    </span>
+                    
+<?php
+$budgetDiff = $budgetInfo['budget_amount'] - $budgetInfo['original_budget'];
+if ($budgetDiff != 0):
+    $absDiff = abs($budgetDiff);
+    if ($budgetDiff > 0):
+?>
+        <span style="color: var(--success);">
+            <i class="fa-solid fa-circle-plus"></i> Added Supplements: +₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php else: ?>
+        <span style="color: var(--warning);">
+            <i class="fa-solid fa-circle-minus"></i> Budget Reduction: -₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php endif; ?>
+<?php endif; ?>
                     <span style="color: var(--text-secondary);">
                         <i class="fas fa-check-circle"></i> Remaining: <strong style="color: var(--success);">₦<?php echo number_format($budgetInfo['available_amount'], 2); ?></strong>
                     </span>
@@ -1153,11 +1172,11 @@ if ($departmentId) {
                                 }
                             },
                             tooltip: {
-                                backgroundColor: chartConfig.colors.text + '10',
-                                titleColor: chartConfig.colors.text,
-                                bodyColor: chartConfig.colors.text,
-                                borderColor: chartConfig.colors.border,
-                                borderWidth: 1,
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)',  // ✅ Black background
+    titleColor: '#ffffff',                   // ✅ White text
+    bodyColor: '#ffffff',                    // ✅ White text
+    borderColor: chartConfig.colors.border,
+    borderWidth: 1,
                                 cornerRadius: 8,
                                 padding: 12,
                                 titleFont: {
@@ -1273,28 +1292,41 @@ if ($departmentId) {
         <?php endif; ?>
 
         // Update charts when theme changes
-        document.addEventListener('themeChanged', function(event) {
-            console.log('ðŸŽ¨ Updating team member charts for theme:', event.detail.theme);
+    document.addEventListener('themeChanged', function(event) {
+    console.log('🎨 Updating team member charts for theme:', event.detail.theme);
+    const newConfig = getDasherChartConfig();
 
-            const newConfig = getDasherChartConfig();
+    if (monthlySummaryChart) {
+        // Existing updates (datasets, points, etc.)
+        monthlySummaryChart.data.datasets[0].borderColor = newConfig.colors.primary;
+        monthlySummaryChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '20';
+        monthlySummaryChart.data.datasets[0].pointBackgroundColor = newConfig.colors.primary;
 
-            // Update monthly summary chart
-            if (monthlySummaryChart) {
-                monthlySummaryChart.data.datasets[0].borderColor = newConfig.colors.primary;
-                monthlySummaryChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '20';
-                monthlySummaryChart.data.datasets[0].pointBackgroundColor = newConfig.colors.primary;
+        monthlySummaryChart.data.datasets[1].borderColor = newConfig.colors.success;
+        monthlySummaryChart.data.datasets[1].backgroundColor = newConfig.colors.success + '20';
+        monthlySummaryChart.data.datasets[1].pointBackgroundColor = newConfig.colors.success;
 
-                monthlySummaryChart.data.datasets[1].borderColor = newConfig.colors.success;
-                monthlySummaryChart.data.datasets[1].backgroundColor = newConfig.colors.success + '20';
-                monthlySummaryChart.data.datasets[1].pointBackgroundColor = newConfig.colors.success;
+        // Ticks and grid
+        monthlySummaryChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
+        monthlySummaryChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
+        monthlySummaryChart.options.scales.y.grid.color = newConfig.colors.border + '40';
+        monthlySummaryChart.options.scales.y1.ticks.color = newConfig.colors.textSecondary;
 
-                monthlySummaryChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
-                monthlySummaryChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
-                monthlySummaryChart.options.scales.y.grid.color = newConfig.colors.border + '40';
-                monthlySummaryChart.options.scales.y1.ticks.color = newConfig.colors.textSecondary;
-                monthlySummaryChart.update('none');
-            }
-        });
+        // === ADD THESE LINES FOR DARK MODE SUPPORT ===
+        // Legend text color
+        monthlySummaryChart.options.plugins.legend.labels.color = newConfig.colors.text;
+        
+        // Axis titles (y and y1)
+        monthlySummaryChart.options.scales.y.title.color = newConfig.colors.text;
+        monthlySummaryChart.options.scales.y1.title.color = newConfig.colors.text;
+
+        // Tooltip border (optional, for consistency)
+        monthlySummaryChart.options.plugins.tooltip.borderColor = newConfig.colors.border;
+
+        // Apply all changes
+        monthlySummaryChart.update('none');
+    }
+});
 
         console.log('âœ… Team Member Dashboard initialized successfully');
     });

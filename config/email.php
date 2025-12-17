@@ -16,19 +16,19 @@ defined('APP_ACCESS') or die('Direct access not permitted');
 
 // SMTP Settings
 define('SMTP_ENABLED', true); // Set to false to disable email sending
-define('SMTP_HOST', 'smtp.gmail.com'); // SMTP server (e.g., smtp.gmail.com, smtp.office365.com)
-define('SMTP_PORT', 587); // SMTP port (587 for TLS, 465 for SSL, 25 for non-encrypted)
-define('SMTP_SECURE', 'tls'); // Encryption: 'tls', 'ssl', or false for no encryption
+define('SMTP_HOST', 'mail.gatewey.com.ng'); // SMTP server (e.g., smtp.gmail.com, smtp.office365.com)
+define('SMTP_PORT', 465); // SMTP port (587 for TLS, 465 for SSL, 25 for non-encrypted)
+define('SMTP_SECURE', 'ssl'); // Encryption: 'tls', 'ssl', or false for no encryption
 define('SMTP_AUTH', true); // Enable SMTP authentication
-define('SMTP_USERNAME', 'your-email@gmail.com'); // SMTP username
-define('SMTP_PASSWORD', 'your-app-password'); // SMTP password or app-specific password
+define('SMTP_USERNAME', 'hello@gatewey.com.ng'); // SMTP username
+define('SMTP_PASSWORD', 'Q}A]m5aK1)KeiiWG'); // SMTP password or app-specific password
 
 // Email From Details
-define('MAIL_FROM_EMAIL', 'noreply@gatewey.com');
+define('MAIL_FROM_EMAIL', 'hello@gatewey.com.ng');
 define('MAIL_FROM_NAME', 'GateWey Requisitions');
 
 // Email Reply-To
-define('MAIL_REPLYTO_EMAIL', 'support@gatewey.com');
+define('MAIL_REPLYTO_EMAIL', 'hello@gatewey.com');
 define('MAIL_REPLYTO_NAME', 'GateWey Support');
 
 // Email Settings
@@ -103,7 +103,6 @@ define('NOTIFICATION_RECIPIENTS', [
     ],
     NOTIF_REQUISITION_REJECTED => [
         'requester', // Notify requester
-        'approver' // CC to the one who rejected
     ],
     NOTIF_REQUISITION_PAID => [
         'requester', // Notify requester
@@ -111,7 +110,6 @@ define('NOTIFICATION_RECIPIENTS', [
     ],
     NOTIF_RECEIPT_UPLOADED => [
         'line_manager', // If applicable
-        'managing_director',
         'finance_manager',
         'finance_member' // The one who processed payment
     ],
@@ -120,16 +118,15 @@ define('NOTIFICATION_RECIPIENTS', [
     ],
     NOTIF_REQUISITION_CANCELLED => [
         'line_manager', // If applicable
-        'managing_director',
         'finance_manager'
     ]
 ]);
 
 // CC and BCC Settings
 define('EMAIL_CC_ADMIN_ON_ALL', false); // CC admin on all emails
-define('EMAIL_ADMIN_CC', 'admin@gatewey.com'); // Admin email for CC
+define('EMAIL_ADMIN_CC', 'hello@gatewey.com'); // Admin email for CC
 define('EMAIL_BCC_ARCHIVE', false); // BCC all emails to archive
-define('EMAIL_ARCHIVE_BCC', 'archive@gatewey.com'); // Archive email for BCC
+define('EMAIL_ARCHIVE_BCC', 'hello@gatewey.com'); // Archive email for BCC
 
 /**
  * COMMON SMTP PROVIDER CONFIGURATIONS

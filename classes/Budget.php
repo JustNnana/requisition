@@ -77,22 +77,23 @@ class Budget {
                 $status = 'expired';
             }
             
-            // Insert new budget
-            $sql = "INSERT INTO department_budgets 
-                    (department_id, budget_amount, allocated_amount, available_amount, 
-                     duration_type, start_date, end_date, status, created_by, created_at, updated_at)
-                    VALUES (?, ?, 0.00, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-            
-            $this->db->execute($sql, [
-                $departmentId,
-                $amount,
-                $amount, // available_amount starts equal to budget_amount
-                $durationType,
-                $startDate,
-                $endDate,
-                $status,
-                $createdBy
-            ]);
+// Insert new budget
+$sql = "INSERT INTO department_budgets 
+        (department_id, budget_amount, original_budget_amount, allocated_amount, available_amount, 
+         duration_type, start_date, end_date, status, created_by, created_at, updated_at)
+        VALUES (?, ?, ?, 0.00, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+
+$this->db->execute($sql, [
+    $departmentId,
+    $amount,
+    $amount,  // ✅ NEW: original_budget_amount = initial amount
+    $amount,  // available_amount starts equal to budget_amount
+    $durationType,
+    $startDate,
+    $endDate,
+    $status,
+    $createdBy
+]);
             
             // Log action
             if (defined('ENABLE_AUDIT_LOG') && ENABLE_AUDIT_LOG) {
@@ -433,16 +434,22 @@ public function releaseBudget($requisitionId, $notes = null) {
      * 
      * @return int Number of budgets expired
      */
-    public function expireBudgets() {
+public function expireBudgets() {
         try {
             $sql = "UPDATE department_budgets 
                     SET status = 'expired', updated_at = NOW()
                     WHERE status = 'active' 
                     AND end_date < CURDATE()";
             
-            $this->db->execute($sql);
+            $stmt = $this->db->execute($sql);                     // ✅ CAPTURE STATEMENT
+            $affectedRows = $stmt->rowCount();                    // ✅ USE rowCount()
             
-            return $this->db->getConnection()->lastInsertId();
+            // Log the action
+            if ($affectedRows > 0) {
+                error_log("Budget expiration: {$affectedRows} budget(s) expired automatically");
+            }
+            
+            return $affectedRows;                                  // ✅ RETURN COUNT
         } catch (Exception $e) {
             error_log("Expire budgets error: " . $e->getMessage());
             return 0;
@@ -454,7 +461,7 @@ public function releaseBudget($requisitionId, $notes = null) {
      * 
      * @return int Number of budgets activated
      */
-    public function activateUpcomingBudgets() {
+ public function activateUpcomingBudgets() {
         try {
             $sql = "UPDATE department_budgets 
                     SET status = 'active', updated_at = NOW()
@@ -462,9 +469,15 @@ public function releaseBudget($requisitionId, $notes = null) {
                     AND start_date <= CURDATE()
                     AND end_date >= CURDATE()";
             
-            $this->db->execute($sql);
+            $stmt = $this->db->execute($sql);                     // ✅ CAPTURE STATEMENT
+            $affectedRows = $stmt->rowCount();                    // ✅ USE rowCount()
             
-            return $this->db->getConnection()->lastInsertId();
+            // Log the action
+            if ($affectedRows > 0) {
+                error_log("Budget activation: {$affectedRows} budget(s) activated automatically");
+            }
+            
+            return $affectedRows;                                  // ✅ RETURN COUNT
         } catch (Exception $e) {
             error_log("Activate budgets error: " . $e->getMessage());
             return 0;
@@ -485,12 +498,22 @@ public function getBudgetStats($departmentId = null, $budgetId = null) {
             $sql = "SELECT b.*, d.department_name, d.department_code,
                            (SELECT COUNT(*) FROM budget_allocations WHERE budget_id = b.id) as total_allocations,
                            (SELECT COUNT(*) FROM budget_allocations WHERE budget_id = b.id AND allocation_type = 'allocated') as active_allocations,
-                           ROUND((b.allocated_amount / b.budget_amount) * 100, 2) as utilization_percentage
+                           ROUND((b.allocated_amount / b.budget_amount) * 100, 2) as utilization_percentage,
+                           -- ✅ NEW: Calculate supplement (difference between current and original)
+                           COALESCE(b.original_budget_amount, b.budget_amount) as original_budget,
+                           COALESCE(b.budget_amount - b.original_budget_amount, 0) as total_supplements
                     FROM department_budgets b
                     INNER JOIN departments d ON b.department_id = d.id
                     WHERE b.id = ?";
             
-            return $this->db->fetchOne($sql, [$budgetId]);
+            $budget = $this->db->fetchOne($sql, [$budgetId]);
+            
+            // ✅ NEW: Add flag if budget has been supplemented
+            if ($budget) {
+                $budget['has_supplement'] = ($budget['total_supplements'] > 0);
+            }
+            
+            return $budget;
         } else if ($departmentId) {
             // Get stats for active budget
             $budget = $this->getActiveBudget($departmentId);
@@ -706,26 +729,26 @@ public function updateBudget($budgetId, $amount, $durationType, $startDate, $end
         $allocatedAmount = (float)$currentBudget['allocated_amount'];
         $newAvailableAmount = $amount - $allocatedAmount;
         
-        // Update budget
-        $sql = "UPDATE department_budgets 
-                SET budget_amount = ?,
-                    available_amount = ?,
-                    duration_type = ?,
-                    start_date = ?,
-                    end_date = ?,
-                    status = ?,
-                    updated_at = NOW()
-                WHERE id = ?";
-        
-        $this->db->execute($sql, [
-            $amount,
-            $newAvailableAmount,
-            $durationType,
-            $startDate,
-            $endDate,
-            $status,
-            $budgetId
-        ]);
+// Update budget (original_budget_amount is NEVER changed)
+$sql = "UPDATE department_budgets 
+        SET budget_amount = ?,
+            available_amount = ?,
+            duration_type = ?,
+            start_date = ?,
+            end_date = ?,
+            status = ?,
+            updated_at = NOW()
+        WHERE id = ?";
+
+$this->db->execute($sql, [
+    $amount,
+    $newAvailableAmount,
+    $durationType,
+    $startDate,
+    $endDate,
+    $status,
+    $budgetId
+]);
         
         // Log action
         if (defined('ENABLE_AUDIT_LOG') && ENABLE_AUDIT_LOG) {

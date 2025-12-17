@@ -190,10 +190,18 @@ class Payment {
             );
             error_log("Audit log created");
             
-            // Commit transaction
+// Commit transaction
             error_log("Committing transaction...");
             $this->db->commit();
             error_log("=== PROCESS PAYMENT SUCCESS ===");
+            
+            // ✅ SEND EMAIL NOTIFICATION
+            try {
+                Notification::send(NOTIF_REQUISITION_PAID, $requisitionId);
+            } catch (Exception $e) {
+                error_log("Email notification failed: " . $e->getMessage());
+                // Don't block the flow if email fails
+            }
             
             return [
                 'success' => true,
@@ -306,8 +314,16 @@ class Payment {
                 ['receipt_id' => $uploadResult['document_id']]
             );
             
-            // Commit transaction
+// Commit transaction
             $this->db->commit();
+            
+            // ✅ SEND EMAIL NOTIFICATION
+            try {
+                Notification::send(NOTIF_RECEIPT_UPLOADED, $requisitionId);
+            } catch (Exception $e) {
+                error_log("Email notification failed: " . $e->getMessage());
+                // Don't block the flow if email fails
+            }
             
             return [
                 'success' => true,

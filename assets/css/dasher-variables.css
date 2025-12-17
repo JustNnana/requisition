@@ -102,20 +102,23 @@
   --bg-input: #ffffff;
   --bg-hover: #f4f6f8;
   --bg-overlay: rgba(20, 26, 33, 0.8);
+  --kadickred-light: #ec3339;
+  --kadicktext-light: #ffffff;
+  --bg-hover: #EC3338;
   
   /* Text Colors */
   --text-primary: #1c252e;
   --text-secondary: #637381;
-  --text-muted: #919eab;
-  --text-link: #00a76f;
-  --text-link-hover: #008865;
+  --text-muted: #1c252e;
+  --text-link: #EC3338;
+  --text-link-hover: #EC3338;
   
   /* Border Colors */
   --border-color: #dfe3e8;
   --border-light: #f4f6f8;
   --border-dark: #c4cdd5;
   --border-input: #dfe3e8;
-  --border-input-focus: #00a76f;
+  --border-input-focus: #EC3338;
   
   /* Light variations for badges and backgrounds */
   --primary-light: rgba(0, 167, 111, 0.08);
@@ -201,29 +204,30 @@
 /* ===== DARK THEME OVERRIDES ===== */
 [data-theme="dark"] {
   /* Dark theme backgrounds */
-  --bg-primary: #141a21;
-  --bg-secondary: #1c252e;
+  --bg-primary: #29292A;
+  --bg-secondary: #29292A;
   --bg-tertiary: #454f5b;
-  --bg-card: #1c252e;
-  --bg-navbar: #1c252e;
-  --bg-sidebar: #1c252e;
-  --bg-input: #1c252e;
-  --bg-hover: #454f5b;
+  --bg-card: #29292A;
+  --bg-navbar: #29292A;
+  --bg-sidebar: #29292A;
+  --bg-input: #29292A;
+  --bg-hover: #EC3338;
   --bg-overlay: rgba(20, 26, 33, 0.9);
+  --kadickred-light: #ec3339a2;
   
   /* Dark theme text colors */
   --text-primary: #f9fafb;
-  --text-secondary: #c4cdd5;
-  --text-muted: #919eab;
-  --text-link: #5be49b;
-  --text-link-hover: #2dd482;
+  --text-secondary: #ffffff;
+  --text-muted: #ffffff;
+  --text-link: #ffffff;
+  --text-link-hover: #ffffff;
   
   /* Dark theme borders */
-  --border-color: #454f5b;
-  --border-light: #637381;
-  --border-dark: #919eab;
+  --border-color: #565657ad;
+  --border-light: #565657ad;
+  --border-dark: #565657ad;
   --border-input: #454f5b;
-  --border-input-focus: #5be49b;
+  --border-input-focus: #EC3338;
   
   /* Adjusted shadows for dark mode */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.16);

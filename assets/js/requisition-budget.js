@@ -3,7 +3,7 @@
  * Requisition Budget Check JavaScript
  * 
  * File: assets/js/requisition-budget.js
- * Purpose: Real-time budget validation ONLY when category = "Budget"
+ * Purpose: Real-time budget validation for ALL categories
  */
 
 (function() {
@@ -44,25 +44,27 @@
             };
         },
 
-        bindEvents() {
-            // Watch for category change
-            if (this.elements.purposeSelect) {
-                this.elements.purposeSelect.addEventListener('change', (e) => {
-                    this.isBudgetCategory = (e.target.value === 'Budget');
-                    
-                    if (this.isBudgetCategory) {
-                        this.elements.budgetCard.style.display = 'block';
-                        // Trigger check if items already exist
-                        if (this.currentTotal > 0) {
-                            this.handleItemChange();
-                        }
-                    } else {
-                        this.elements.budgetCard.style.display = 'none';
-                        this.hideError();
-                        this.enableSubmit();
-                    }
-                });
+bindEvents() {
+    // Watch for category change - ALL categories now affect budget
+    if (this.elements.purposeSelect) {
+        this.elements.purposeSelect.addEventListener('change', (e) => {
+            // Show budget card whenever ANY category is selected
+            if (e.target.value) {
+                this.isBudgetCategory = true;  // Always true now
+                this.elements.budgetCard.style.display = 'block';
+                // Trigger check if items already exist
+                if (this.currentTotal > 0) {
+                    this.handleItemChange();
+                }
+            } else {
+                // Only hide if NO category is selected
+                this.isBudgetCategory = false;
+                this.elements.budgetCard.style.display = 'none';
+                this.hideError();
+                this.enableSubmit();
             }
+        });
+    }
 
             // Watch for changes in items table
             if (this.elements.itemsContainer) {
@@ -90,25 +92,25 @@
             }
         },
 
-        handleItemChange() {
-            // Calculate current total
-            this.calculateTotal();
+handleItemChange() {
+    // Calculate current total
+    this.calculateTotal();
 
-            // Only check budget if category is "Budget"
-            if (!this.isBudgetCategory) {
-                return;
-            }
+    // Only check budget if a category is selected (any category, not just "Budget")
+    if (!this.isBudgetCategory) {
+        return;
+    }
 
-            // Debounce budget check
-            clearTimeout(this.checkTimeout);
-            this.checkTimeout = setTimeout(() => {
-                if (this.currentTotal > 0) {
-                    this.checkBudget();
-                } else {
-                    this.hideBudgetCheck();
-                }
-            }, 500);
-        },
+    // Debounce budget check
+    clearTimeout(this.checkTimeout);
+    this.checkTimeout = setTimeout(() => {
+        if (this.currentTotal > 0) {
+            this.checkBudget();
+        } else {
+            this.hideBudgetCheck();
+        }
+    }, 500);
+},
 
         calculateTotal() {
             let total = 0;

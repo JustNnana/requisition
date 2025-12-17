@@ -1,0 +1,2420 @@
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 20:58:02] === Budget Update Cron Job Started ===
+[2025-12-16 20:58:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 20:58:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 21:58:02] Loaded: config.php
+[2025-12-16 21:58:02] Loaded: database.php (Database class included)
+[2025-12-16 21:58:02] Loaded: Budget.php
+[2025-12-16 21:58:02] Initializing Budget class...
+[2025-12-16 21:58:02] Budget class initialized successfully
+[2025-12-16 21:58:02] Database connection verified
+[2025-12-16 21:58:02] Current MySQL date: 2025-12-16 2025-12-16 21:58:02
+[2025-12-16 21:58:02] Checking for budgets to expire...
+[2025-12-16 21:58:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 21:58:02] ✓ Successfully expired 1 budget(s)
+[2025-12-16 21:58:02]   - Budget #2: Executive Office (ended 2025-12-15)
+[2025-12-16 21:58:02] Checking for budgets to activate...
+[2025-12-16 21:58:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 21:58:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 21:58:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 21:58:02] Summary: Expired=1, Activated=0
+[2025-12-16 21:58:02] Execution time: 93.88 ms
+[2025-12-16 21:58:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 20:59:02] === Budget Update Cron Job Started ===
+[2025-12-16 20:59:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 20:59:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 21:59:02] Loaded: config.php
+[2025-12-16 21:59:02] Loaded: database.php (Database class included)
+[2025-12-16 21:59:02] Loaded: Budget.php
+[2025-12-16 21:59:02] Initializing Budget class...
+[2025-12-16 21:59:02] Budget class initialized successfully
+[2025-12-16 21:59:02] Database connection verified
+[2025-12-16 21:59:02] Current MySQL date: 2025-12-16 2025-12-16 21:59:02
+[2025-12-16 21:59:02] Checking for budgets to expire...
+[2025-12-16 21:59:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 21:59:02] No budgets expired (all active budgets are still valid)
+[2025-12-16 21:59:02] Checking for budgets to activate...
+[2025-12-16 21:59:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 21:59:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 21:59:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 21:59:02] Summary: Expired=0, Activated=0
+[2025-12-16 21:59:02] Execution time: 10.75 ms
+[2025-12-16 21:59:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 21:00:03] === Budget Update Cron Job Started ===
+[2025-12-16 21:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 21:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 22:00:03] Loaded: config.php
+[2025-12-16 22:00:03] Loaded: database.php (Database class included)
+[2025-12-16 22:00:03] Loaded: Budget.php
+[2025-12-16 22:00:03] Initializing Budget class...
+[2025-12-16 22:00:03] Budget class initialized successfully
+[2025-12-16 22:00:03] Database connection verified
+[2025-12-16 22:00:03] Current MySQL date: 2025-12-16 2025-12-16 22:00:03
+[2025-12-16 22:00:03] Checking for budgets to expire...
+[2025-12-16 22:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 22:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-16 22:00:03] Checking for budgets to activate...
+[2025-12-16 22:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 22:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 22:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 22:00:03] Summary: Expired=0, Activated=0
+[2025-12-16 22:00:03] Execution time: 13.39 ms
+[2025-12-16 22:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 21:15:02] === Budget Update Cron Job Started ===
+[2025-12-16 21:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 21:15:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 22:15:03] Loaded: config.php
+[2025-12-16 22:15:03] Loaded: database.php (Database class included)
+[2025-12-16 22:15:03] Loaded: Budget.php
+[2025-12-16 22:15:03] Initializing Budget class...
+[2025-12-16 22:15:03] Budget class initialized successfully
+[2025-12-16 22:15:03] Database connection verified
+[2025-12-16 22:15:03] Current MySQL date: 2025-12-16 2025-12-16 22:15:03
+[2025-12-16 22:15:03] Checking for budgets to expire...
+[2025-12-16 22:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 22:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-16 22:15:03] Checking for budgets to activate...
+[2025-12-16 22:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 22:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 22:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 22:15:03] Summary: Expired=0, Activated=0
+[2025-12-16 22:15:03] Execution time: 463.68 ms
+[2025-12-16 22:15:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 21:30:03] === Budget Update Cron Job Started ===
+[2025-12-16 21:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 21:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 22:30:03] Loaded: config.php
+[2025-12-16 22:30:03] Loaded: database.php (Database class included)
+[2025-12-16 22:30:03] Loaded: Budget.php
+[2025-12-16 22:30:03] Initializing Budget class...
+[2025-12-16 22:30:03] Budget class initialized successfully
+[2025-12-16 22:30:03] Database connection verified
+[2025-12-16 22:30:03] Current MySQL date: 2025-12-16 2025-12-16 22:30:03
+[2025-12-16 22:30:03] Checking for budgets to expire...
+[2025-12-16 22:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 22:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-16 22:30:03] Checking for budgets to activate...
+[2025-12-16 22:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 22:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 22:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 22:30:03] Summary: Expired=0, Activated=0
+[2025-12-16 22:30:03] Execution time: 16.34 ms
+[2025-12-16 22:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 21:45:02] === Budget Update Cron Job Started ===
+[2025-12-16 21:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 21:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 22:45:02] Loaded: config.php
+[2025-12-16 22:45:02] Loaded: database.php (Database class included)
+[2025-12-16 22:45:02] Loaded: Budget.php
+[2025-12-16 22:45:02] Initializing Budget class...
+[2025-12-16 22:45:02] Budget class initialized successfully
+[2025-12-16 22:45:02] Database connection verified
+[2025-12-16 22:45:02] Current MySQL date: 2025-12-16 2025-12-16 22:45:02
+[2025-12-16 22:45:02] Checking for budgets to expire...
+[2025-12-16 22:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 22:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-16 22:45:02] Checking for budgets to activate...
+[2025-12-16 22:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 22:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 22:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 22:45:02] Summary: Expired=0, Activated=0
+[2025-12-16 22:45:02] Execution time: 16.17 ms
+[2025-12-16 22:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 22:00:03] === Budget Update Cron Job Started ===
+[2025-12-16 22:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 22:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 23:00:03] Loaded: config.php
+[2025-12-16 23:00:03] Loaded: database.php (Database class included)
+[2025-12-16 23:00:03] Loaded: Budget.php
+[2025-12-16 23:00:03] Initializing Budget class...
+[2025-12-16 23:00:03] Budget class initialized successfully
+[2025-12-16 23:00:03] Database connection verified
+[2025-12-16 23:00:03] Current MySQL date: 2025-12-16 2025-12-16 23:00:03
+[2025-12-16 23:00:03] Checking for budgets to expire...
+[2025-12-16 23:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 23:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-16 23:00:03] Checking for budgets to activate...
+[2025-12-16 23:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 23:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 23:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 23:00:03] Summary: Expired=0, Activated=0
+[2025-12-16 23:00:03] Execution time: 17.8 ms
+[2025-12-16 23:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 22:15:02] === Budget Update Cron Job Started ===
+[2025-12-16 22:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 22:15:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 23:15:02] Loaded: config.php
+[2025-12-16 23:15:02] Loaded: database.php (Database class included)
+[2025-12-16 23:15:02] Loaded: Budget.php
+[2025-12-16 23:15:02] Initializing Budget class...
+[2025-12-16 23:15:02] Budget class initialized successfully
+[2025-12-16 23:15:02] Database connection verified
+[2025-12-16 23:15:02] Current MySQL date: 2025-12-16 2025-12-16 23:15:02
+[2025-12-16 23:15:02] Checking for budgets to expire...
+[2025-12-16 23:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 23:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-16 23:15:02] Checking for budgets to activate...
+[2025-12-16 23:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 23:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 23:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 23:15:02] Summary: Expired=0, Activated=0
+[2025-12-16 23:15:02] Execution time: 14.14 ms
+[2025-12-16 23:15:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 22:30:02] === Budget Update Cron Job Started ===
+[2025-12-16 22:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 22:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 23:30:03] Loaded: config.php
+[2025-12-16 23:30:03] Loaded: database.php (Database class included)
+[2025-12-16 23:30:03] Loaded: Budget.php
+[2025-12-16 23:30:03] Initializing Budget class...
+[2025-12-16 23:30:03] Budget class initialized successfully
+[2025-12-16 23:30:03] Database connection verified
+[2025-12-16 23:30:03] Current MySQL date: 2025-12-16 2025-12-16 23:30:03
+[2025-12-16 23:30:03] Checking for budgets to expire...
+[2025-12-16 23:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 23:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-16 23:30:03] Checking for budgets to activate...
+[2025-12-16 23:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 23:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 23:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 23:30:03] Summary: Expired=0, Activated=0
+[2025-12-16 23:30:03] Execution time: 16.18 ms
+[2025-12-16 23:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 22:45:02] === Budget Update Cron Job Started ===
+[2025-12-16 22:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 22:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-16 23:45:02] Loaded: config.php
+[2025-12-16 23:45:02] Loaded: database.php (Database class included)
+[2025-12-16 23:45:02] Loaded: Budget.php
+[2025-12-16 23:45:02] Initializing Budget class...
+[2025-12-16 23:45:02] Budget class initialized successfully
+[2025-12-16 23:45:02] Database connection verified
+[2025-12-16 23:45:02] Current MySQL date: 2025-12-16 2025-12-16 23:45:02
+[2025-12-16 23:45:02] Checking for budgets to expire...
+[2025-12-16 23:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-16 23:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-16 23:45:02] Checking for budgets to activate...
+[2025-12-16 23:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-16 23:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-16 23:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-16 23:45:02] Summary: Expired=0, Activated=0
+[2025-12-16 23:45:02] Execution time: 12.76 ms
+[2025-12-16 23:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 23:00:03] === Budget Update Cron Job Started ===
+[2025-12-16 23:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 23:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 00:00:03] Loaded: config.php
+[2025-12-17 00:00:03] Loaded: database.php (Database class included)
+[2025-12-17 00:00:03] Loaded: Budget.php
+[2025-12-17 00:00:03] Initializing Budget class...
+[2025-12-17 00:00:03] Budget class initialized successfully
+[2025-12-17 00:00:03] Database connection verified
+[2025-12-17 00:00:03] Current MySQL date: 2025-12-17 2025-12-17 00:00:03
+[2025-12-17 00:00:03] Checking for budgets to expire...
+[2025-12-17 00:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 00:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 00:00:03] Checking for budgets to activate...
+[2025-12-17 00:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 00:00:03] ✓ Successfully activated 1 budget(s)
+[2025-12-17 00:00:03]   - Budget #5: Executive Office (period: 2025-12-17 to 2026-03-16)
+[2025-12-17 00:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 00:00:03] Summary: Expired=0, Activated=1
+[2025-12-17 00:00:03] Execution time: 37.41 ms
+[2025-12-17 00:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 23:15:05] === Budget Update Cron Job Started ===
+[2025-12-16 23:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 23:15:06] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 00:15:08] Loaded: config.php
+[2025-12-17 00:15:08] Loaded: database.php (Database class included)
+[2025-12-17 00:15:08] Loaded: Budget.php
+[2025-12-17 00:15:08] Initializing Budget class...
+[2025-12-17 00:15:08] Budget class initialized successfully
+[2025-12-17 00:15:08] Database connection verified
+[2025-12-17 00:15:08] Current MySQL date: 2025-12-17 2025-12-17 00:15:08
+[2025-12-17 00:15:08] Checking for budgets to expire...
+[2025-12-17 00:15:08] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 00:15:08] No budgets expired (all active budgets are still valid)
+[2025-12-17 00:15:08] Checking for budgets to activate...
+[2025-12-17 00:15:08] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 00:15:08] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 00:15:08] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 00:15:08] Summary: Expired=0, Activated=0
+[2025-12-17 00:15:08] Execution time: 2200.63 ms
+[2025-12-17 00:15:08] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 23:30:03] === Budget Update Cron Job Started ===
+[2025-12-16 23:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 23:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 00:30:03] Loaded: config.php
+[2025-12-17 00:30:03] Loaded: database.php (Database class included)
+[2025-12-17 00:30:03] Loaded: Budget.php
+[2025-12-17 00:30:03] Initializing Budget class...
+[2025-12-17 00:30:03] Budget class initialized successfully
+[2025-12-17 00:30:03] Database connection verified
+[2025-12-17 00:30:03] Current MySQL date: 2025-12-17 2025-12-17 00:30:03
+[2025-12-17 00:30:03] Checking for budgets to expire...
+[2025-12-17 00:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 00:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 00:30:03] Checking for budgets to activate...
+[2025-12-17 00:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 00:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 00:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 00:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 00:30:03] Execution time: 17.81 ms
+[2025-12-17 00:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-16 23:45:02] === Budget Update Cron Job Started ===
+[2025-12-16 23:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-16 23:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 00:45:02] Loaded: config.php
+[2025-12-17 00:45:02] Loaded: database.php (Database class included)
+[2025-12-17 00:45:02] Loaded: Budget.php
+[2025-12-17 00:45:02] Initializing Budget class...
+[2025-12-17 00:45:02] Budget class initialized successfully
+[2025-12-17 00:45:02] Database connection verified
+[2025-12-17 00:45:02] Current MySQL date: 2025-12-17 2025-12-17 00:45:02
+[2025-12-17 00:45:02] Checking for budgets to expire...
+[2025-12-17 00:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 00:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 00:45:02] Checking for budgets to activate...
+[2025-12-17 00:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 00:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 00:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 00:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 00:45:02] Execution time: 15.72 ms
+[2025-12-17 00:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 00:00:02] === Budget Update Cron Job Started ===
+[2025-12-17 00:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 00:00:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 01:00:02] Loaded: config.php
+[2025-12-17 01:00:02] Loaded: database.php (Database class included)
+[2025-12-17 01:00:02] Loaded: Budget.php
+[2025-12-17 01:00:02] Initializing Budget class...
+[2025-12-17 01:00:02] Budget class initialized successfully
+[2025-12-17 01:00:02] Database connection verified
+[2025-12-17 01:00:02] Current MySQL date: 2025-12-17 2025-12-17 01:00:02
+[2025-12-17 01:00:02] Checking for budgets to expire...
+[2025-12-17 01:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 01:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 01:00:02] Checking for budgets to activate...
+[2025-12-17 01:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 01:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 01:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 01:00:02] Summary: Expired=0, Activated=0
+[2025-12-17 01:00:02] Execution time: 43.05 ms
+[2025-12-17 01:00:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 00:15:02] === Budget Update Cron Job Started ===
+[2025-12-17 00:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 00:15:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 01:15:02] Loaded: config.php
+[2025-12-17 01:15:02] Loaded: database.php (Database class included)
+[2025-12-17 01:15:02] Loaded: Budget.php
+[2025-12-17 01:15:02] Initializing Budget class...
+[2025-12-17 01:15:02] Budget class initialized successfully
+[2025-12-17 01:15:02] Database connection verified
+[2025-12-17 01:15:02] Current MySQL date: 2025-12-17 2025-12-17 01:15:02
+[2025-12-17 01:15:02] Checking for budgets to expire...
+[2025-12-17 01:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 01:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 01:15:02] Checking for budgets to activate...
+[2025-12-17 01:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 01:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 01:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 01:15:02] Summary: Expired=0, Activated=0
+[2025-12-17 01:15:02] Execution time: 50.39 ms
+[2025-12-17 01:15:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 00:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 00:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 00:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 01:30:03] Loaded: config.php
+[2025-12-17 01:30:03] Loaded: database.php (Database class included)
+[2025-12-17 01:30:03] Loaded: Budget.php
+[2025-12-17 01:30:03] Initializing Budget class...
+[2025-12-17 01:30:03] Budget class initialized successfully
+[2025-12-17 01:30:03] Database connection verified
+[2025-12-17 01:30:03] Current MySQL date: 2025-12-17 2025-12-17 01:30:03
+[2025-12-17 01:30:03] Checking for budgets to expire...
+[2025-12-17 01:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 01:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 01:30:03] Checking for budgets to activate...
+[2025-12-17 01:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 01:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 01:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 01:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 01:30:03] Execution time: 13.74 ms
+[2025-12-17 01:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 00:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 00:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 00:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 01:45:02] Loaded: config.php
+[2025-12-17 01:45:02] Loaded: database.php (Database class included)
+[2025-12-17 01:45:02] Loaded: Budget.php
+[2025-12-17 01:45:02] Initializing Budget class...
+[2025-12-17 01:45:02] Budget class initialized successfully
+[2025-12-17 01:45:02] Database connection verified
+[2025-12-17 01:45:02] Current MySQL date: 2025-12-17 2025-12-17 01:45:02
+[2025-12-17 01:45:02] Checking for budgets to expire...
+[2025-12-17 01:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 01:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 01:45:02] Checking for budgets to activate...
+[2025-12-17 01:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 01:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 01:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 01:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 01:45:02] Execution time: 12.4 ms
+[2025-12-17 01:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 01:00:02] === Budget Update Cron Job Started ===
+[2025-12-17 01:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 01:00:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 02:00:02] Loaded: config.php
+[2025-12-17 02:00:02] Loaded: database.php (Database class included)
+[2025-12-17 02:00:02] Loaded: Budget.php
+[2025-12-17 02:00:02] Initializing Budget class...
+[2025-12-17 02:00:02] Budget class initialized successfully
+[2025-12-17 02:00:02] Database connection verified
+[2025-12-17 02:00:02] Current MySQL date: 2025-12-17 2025-12-17 02:00:02
+[2025-12-17 02:00:02] Checking for budgets to expire...
+[2025-12-17 02:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 02:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 02:00:02] Checking for budgets to activate...
+[2025-12-17 02:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 02:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 02:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 02:00:02] Summary: Expired=0, Activated=0
+[2025-12-17 02:00:02] Execution time: 22.12 ms
+[2025-12-17 02:00:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 01:15:08] === Budget Update Cron Job Started ===
+[2025-12-17 01:15:08] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 01:15:08] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 02:15:09] Loaded: config.php
+[2025-12-17 02:15:09] Loaded: database.php (Database class included)
+[2025-12-17 02:15:09] Loaded: Budget.php
+[2025-12-17 02:15:09] Initializing Budget class...
+[2025-12-17 02:15:09] Budget class initialized successfully
+[2025-12-17 02:15:09] Database connection verified
+[2025-12-17 02:15:09] Current MySQL date: 2025-12-17 2025-12-17 02:15:09
+[2025-12-17 02:15:09] Checking for budgets to expire...
+[2025-12-17 02:15:09] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 02:15:09] No budgets expired (all active budgets are still valid)
+[2025-12-17 02:15:09] Checking for budgets to activate...
+[2025-12-17 02:15:09] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 02:15:09] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 02:15:09] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 02:15:09] Summary: Expired=0, Activated=0
+[2025-12-17 02:15:09] Execution time: 898.9 ms
+[2025-12-17 02:15:09] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 01:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 01:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 01:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 02:30:02] Loaded: config.php
+[2025-12-17 02:30:02] Loaded: database.php (Database class included)
+[2025-12-17 02:30:02] Loaded: Budget.php
+[2025-12-17 02:30:02] Initializing Budget class...
+[2025-12-17 02:30:02] Budget class initialized successfully
+[2025-12-17 02:30:02] Database connection verified
+[2025-12-17 02:30:02] Current MySQL date: 2025-12-17 2025-12-17 02:30:02
+[2025-12-17 02:30:02] Checking for budgets to expire...
+[2025-12-17 02:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 02:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 02:30:02] Checking for budgets to activate...
+[2025-12-17 02:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 02:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 02:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 02:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 02:30:02] Execution time: 14.22 ms
+[2025-12-17 02:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 01:45:03] === Budget Update Cron Job Started ===
+[2025-12-17 01:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 01:45:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 02:45:03] Loaded: config.php
+[2025-12-17 02:45:03] Loaded: database.php (Database class included)
+[2025-12-17 02:45:03] Loaded: Budget.php
+[2025-12-17 02:45:03] Initializing Budget class...
+[2025-12-17 02:45:03] Budget class initialized successfully
+[2025-12-17 02:45:03] Database connection verified
+[2025-12-17 02:45:03] Current MySQL date: 2025-12-17 2025-12-17 02:45:03
+[2025-12-17 02:45:03] Checking for budgets to expire...
+[2025-12-17 02:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 02:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 02:45:03] Checking for budgets to activate...
+[2025-12-17 02:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 02:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 02:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 02:45:03] Summary: Expired=0, Activated=0
+[2025-12-17 02:45:03] Execution time: 12.46 ms
+[2025-12-17 02:45:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 02:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 02:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 02:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 03:00:03] Loaded: config.php
+[2025-12-17 03:00:03] Loaded: database.php (Database class included)
+[2025-12-17 03:00:03] Loaded: Budget.php
+[2025-12-17 03:00:03] Initializing Budget class...
+[2025-12-17 03:00:03] Budget class initialized successfully
+[2025-12-17 03:00:03] Database connection verified
+[2025-12-17 03:00:03] Current MySQL date: 2025-12-17 2025-12-17 03:00:03
+[2025-12-17 03:00:03] Checking for budgets to expire...
+[2025-12-17 03:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 03:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 03:00:03] Checking for budgets to activate...
+[2025-12-17 03:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 03:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 03:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 03:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 03:00:03] Execution time: 15.67 ms
+[2025-12-17 03:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 02:15:05] === Budget Update Cron Job Started ===
+[2025-12-17 02:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 02:15:05] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 03:15:05] Loaded: config.php
+[2025-12-17 03:15:05] Loaded: database.php (Database class included)
+[2025-12-17 03:15:05] Loaded: Budget.php
+[2025-12-17 03:15:05] Initializing Budget class...
+[2025-12-17 03:15:05] Budget class initialized successfully
+[2025-12-17 03:15:05] Database connection verified
+[2025-12-17 03:15:05] Current MySQL date: 2025-12-17 2025-12-17 03:15:05
+[2025-12-17 03:15:05] Checking for budgets to expire...
+[2025-12-17 03:15:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 03:15:05] No budgets expired (all active budgets are still valid)
+[2025-12-17 03:15:05] Checking for budgets to activate...
+[2025-12-17 03:15:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 03:15:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 03:15:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 03:15:05] Summary: Expired=0, Activated=0
+[2025-12-17 03:15:05] Execution time: 383.87 ms
+[2025-12-17 03:15:05] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 02:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 02:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 02:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 03:30:03] Loaded: config.php
+[2025-12-17 03:30:03] Loaded: database.php (Database class included)
+[2025-12-17 03:30:03] Loaded: Budget.php
+[2025-12-17 03:30:03] Initializing Budget class...
+[2025-12-17 03:30:03] Budget class initialized successfully
+[2025-12-17 03:30:03] Database connection verified
+[2025-12-17 03:30:03] Current MySQL date: 2025-12-17 2025-12-17 03:30:03
+[2025-12-17 03:30:03] Checking for budgets to expire...
+[2025-12-17 03:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 03:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 03:30:03] Checking for budgets to activate...
+[2025-12-17 03:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 03:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 03:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 03:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 03:30:03] Execution time: 15.86 ms
+[2025-12-17 03:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 02:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 02:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 02:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 03:45:02] Loaded: config.php
+[2025-12-17 03:45:02] Loaded: database.php (Database class included)
+[2025-12-17 03:45:02] Loaded: Budget.php
+[2025-12-17 03:45:02] Initializing Budget class...
+[2025-12-17 03:45:02] Budget class initialized successfully
+[2025-12-17 03:45:02] Database connection verified
+[2025-12-17 03:45:02] Current MySQL date: 2025-12-17 2025-12-17 03:45:02
+[2025-12-17 03:45:02] Checking for budgets to expire...
+[2025-12-17 03:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 03:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 03:45:02] Checking for budgets to activate...
+[2025-12-17 03:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 03:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 03:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 03:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 03:45:02] Execution time: 13.03 ms
+[2025-12-17 03:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 03:00:02] === Budget Update Cron Job Started ===
+[2025-12-17 03:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 03:00:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 04:00:02] Loaded: config.php
+[2025-12-17 04:00:02] Loaded: database.php (Database class included)
+[2025-12-17 04:00:02] Loaded: Budget.php
+[2025-12-17 04:00:02] Initializing Budget class...
+[2025-12-17 04:00:02] Budget class initialized successfully
+[2025-12-17 04:00:02] Database connection verified
+[2025-12-17 04:00:02] Current MySQL date: 2025-12-17 2025-12-17 04:00:02
+[2025-12-17 04:00:02] Checking for budgets to expire...
+[2025-12-17 04:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 04:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 04:00:02] Checking for budgets to activate...
+[2025-12-17 04:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 04:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 04:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 04:00:02] Summary: Expired=0, Activated=0
+[2025-12-17 04:00:02] Execution time: 15.01 ms
+[2025-12-17 04:00:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 03:15:04] === Budget Update Cron Job Started ===
+[2025-12-17 03:15:04] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 03:15:04] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 04:15:04] Loaded: config.php
+[2025-12-17 04:15:04] Loaded: database.php (Database class included)
+[2025-12-17 04:15:04] Loaded: Budget.php
+[2025-12-17 04:15:04] Initializing Budget class...
+[2025-12-17 04:15:04] Budget class initialized successfully
+[2025-12-17 04:15:04] Database connection verified
+[2025-12-17 04:15:04] Current MySQL date: 2025-12-17 2025-12-17 04:15:04
+[2025-12-17 04:15:04] Checking for budgets to expire...
+[2025-12-17 04:15:04] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 04:15:04] No budgets expired (all active budgets are still valid)
+[2025-12-17 04:15:04] Checking for budgets to activate...
+[2025-12-17 04:15:04] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 04:15:04] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 04:15:04] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 04:15:04] Summary: Expired=0, Activated=0
+[2025-12-17 04:15:04] Execution time: 319.86 ms
+[2025-12-17 04:15:04] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 03:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 03:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 03:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 04:30:03] Loaded: config.php
+[2025-12-17 04:30:03] Loaded: database.php (Database class included)
+[2025-12-17 04:30:03] Loaded: Budget.php
+[2025-12-17 04:30:03] Initializing Budget class...
+[2025-12-17 04:30:03] Budget class initialized successfully
+[2025-12-17 04:30:03] Database connection verified
+[2025-12-17 04:30:03] Current MySQL date: 2025-12-17 2025-12-17 04:30:03
+[2025-12-17 04:30:03] Checking for budgets to expire...
+[2025-12-17 04:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 04:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 04:30:03] Checking for budgets to activate...
+[2025-12-17 04:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 04:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 04:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 04:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 04:30:03] Execution time: 14.58 ms
+[2025-12-17 04:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 03:45:03] === Budget Update Cron Job Started ===
+[2025-12-17 03:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 03:45:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 04:45:03] Loaded: config.php
+[2025-12-17 04:45:03] Loaded: database.php (Database class included)
+[2025-12-17 04:45:03] Loaded: Budget.php
+[2025-12-17 04:45:03] Initializing Budget class...
+[2025-12-17 04:45:03] Budget class initialized successfully
+[2025-12-17 04:45:03] Database connection verified
+[2025-12-17 04:45:03] Current MySQL date: 2025-12-17 2025-12-17 04:45:03
+[2025-12-17 04:45:03] Checking for budgets to expire...
+[2025-12-17 04:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 04:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 04:45:03] Checking for budgets to activate...
+[2025-12-17 04:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 04:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 04:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 04:45:03] Summary: Expired=0, Activated=0
+[2025-12-17 04:45:03] Execution time: 12.97 ms
+[2025-12-17 04:45:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 04:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 04:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 04:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 05:00:03] Loaded: config.php
+[2025-12-17 05:00:03] Loaded: database.php (Database class included)
+[2025-12-17 05:00:03] Loaded: Budget.php
+[2025-12-17 05:00:03] Initializing Budget class...
+[2025-12-17 05:00:03] Budget class initialized successfully
+[2025-12-17 05:00:03] Database connection verified
+[2025-12-17 05:00:03] Current MySQL date: 2025-12-17 2025-12-17 05:00:03
+[2025-12-17 05:00:03] Checking for budgets to expire...
+[2025-12-17 05:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 05:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 05:00:03] Checking for budgets to activate...
+[2025-12-17 05:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 05:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 05:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 05:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 05:00:03] Execution time: 21.15 ms
+[2025-12-17 05:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 04:15:08] === Budget Update Cron Job Started ===
+[2025-12-17 04:15:08] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 04:15:08] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 05:15:08] Loaded: config.php
+[2025-12-17 05:15:08] Loaded: database.php (Database class included)
+[2025-12-17 05:15:08] Loaded: Budget.php
+[2025-12-17 05:15:08] Initializing Budget class...
+[2025-12-17 05:15:08] Budget class initialized successfully
+[2025-12-17 05:15:08] Database connection verified
+[2025-12-17 05:15:08] Current MySQL date: 2025-12-17 2025-12-17 05:15:08
+[2025-12-17 05:15:08] Checking for budgets to expire...
+[2025-12-17 05:15:08] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 05:15:08] No budgets expired (all active budgets are still valid)
+[2025-12-17 05:15:08] Checking for budgets to activate...
+[2025-12-17 05:15:08] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 05:15:08] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 05:15:08] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 05:15:08] Summary: Expired=0, Activated=0
+[2025-12-17 05:15:08] Execution time: 499.36 ms
+[2025-12-17 05:15:08] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 04:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 04:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 04:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 05:30:03] Loaded: config.php
+[2025-12-17 05:30:03] Loaded: database.php (Database class included)
+[2025-12-17 05:30:03] Loaded: Budget.php
+[2025-12-17 05:30:03] Initializing Budget class...
+[2025-12-17 05:30:03] Budget class initialized successfully
+[2025-12-17 05:30:03] Database connection verified
+[2025-12-17 05:30:03] Current MySQL date: 2025-12-17 2025-12-17 05:30:03
+[2025-12-17 05:30:03] Checking for budgets to expire...
+[2025-12-17 05:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 05:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 05:30:03] Checking for budgets to activate...
+[2025-12-17 05:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 05:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 05:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 05:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 05:30:03] Execution time: 13.72 ms
+[2025-12-17 05:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 04:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 04:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 04:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 05:45:02] Loaded: config.php
+[2025-12-17 05:45:02] Loaded: database.php (Database class included)
+[2025-12-17 05:45:02] Loaded: Budget.php
+[2025-12-17 05:45:02] Initializing Budget class...
+[2025-12-17 05:45:02] Budget class initialized successfully
+[2025-12-17 05:45:02] Database connection verified
+[2025-12-17 05:45:02] Current MySQL date: 2025-12-17 2025-12-17 05:45:02
+[2025-12-17 05:45:02] Checking for budgets to expire...
+[2025-12-17 05:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 05:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 05:45:02] Checking for budgets to activate...
+[2025-12-17 05:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 05:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 05:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 05:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 05:45:02] Execution time: 11.83 ms
+[2025-12-17 05:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 05:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 05:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 05:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 06:00:03] Loaded: config.php
+[2025-12-17 06:00:03] Loaded: database.php (Database class included)
+[2025-12-17 06:00:03] Loaded: Budget.php
+[2025-12-17 06:00:03] Initializing Budget class...
+[2025-12-17 06:00:03] Budget class initialized successfully
+[2025-12-17 06:00:03] Database connection verified
+[2025-12-17 06:00:03] Current MySQL date: 2025-12-17 2025-12-17 06:00:03
+[2025-12-17 06:00:03] Checking for budgets to expire...
+[2025-12-17 06:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 06:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 06:00:03] Checking for budgets to activate...
+[2025-12-17 06:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 06:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 06:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 06:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 06:00:03] Execution time: 14.96 ms
+[2025-12-17 06:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 05:15:02] === Budget Update Cron Job Started ===
+[2025-12-17 05:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 05:15:05] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 06:15:06] Loaded: config.php
+[2025-12-17 06:15:06] Loaded: database.php (Database class included)
+[2025-12-17 06:15:06] Loaded: Budget.php
+[2025-12-17 06:15:06] Initializing Budget class...
+[2025-12-17 06:15:06] Budget class initialized successfully
+[2025-12-17 06:15:06] Database connection verified
+[2025-12-17 06:15:06] Current MySQL date: 2025-12-17 2025-12-17 06:15:06
+[2025-12-17 06:15:06] Checking for budgets to expire...
+[2025-12-17 06:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 06:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-17 06:15:06] Checking for budgets to activate...
+[2025-12-17 06:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 06:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 06:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 06:15:06] Summary: Expired=0, Activated=0
+[2025-12-17 06:15:06] Execution time: 3281.32 ms
+[2025-12-17 06:15:06] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 05:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 05:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 05:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 06:30:03] Loaded: config.php
+[2025-12-17 06:30:03] Loaded: database.php (Database class included)
+[2025-12-17 06:30:03] Loaded: Budget.php
+[2025-12-17 06:30:03] Initializing Budget class...
+[2025-12-17 06:30:03] Budget class initialized successfully
+[2025-12-17 06:30:03] Database connection verified
+[2025-12-17 06:30:03] Current MySQL date: 2025-12-17 2025-12-17 06:30:03
+[2025-12-17 06:30:03] Checking for budgets to expire...
+[2025-12-17 06:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 06:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 06:30:03] Checking for budgets to activate...
+[2025-12-17 06:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 06:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 06:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 06:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 06:30:03] Execution time: 15.93 ms
+[2025-12-17 06:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 05:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 05:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 05:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 06:45:02] Loaded: config.php
+[2025-12-17 06:45:02] Loaded: database.php (Database class included)
+[2025-12-17 06:45:02] Loaded: Budget.php
+[2025-12-17 06:45:02] Initializing Budget class...
+[2025-12-17 06:45:02] Budget class initialized successfully
+[2025-12-17 06:45:02] Database connection verified
+[2025-12-17 06:45:02] Current MySQL date: 2025-12-17 2025-12-17 06:45:02
+[2025-12-17 06:45:02] Checking for budgets to expire...
+[2025-12-17 06:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 06:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 06:45:02] Checking for budgets to activate...
+[2025-12-17 06:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 06:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 06:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 06:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 06:45:02] Execution time: 13.43 ms
+[2025-12-17 06:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 06:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 06:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 06:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 07:00:03] Loaded: config.php
+[2025-12-17 07:00:03] Loaded: database.php (Database class included)
+[2025-12-17 07:00:03] Loaded: Budget.php
+[2025-12-17 07:00:03] Initializing Budget class...
+[2025-12-17 07:00:03] Budget class initialized successfully
+[2025-12-17 07:00:03] Database connection verified
+[2025-12-17 07:00:03] Current MySQL date: 2025-12-17 2025-12-17 07:00:03
+[2025-12-17 07:00:03] Checking for budgets to expire...
+[2025-12-17 07:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 07:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 07:00:03] Checking for budgets to activate...
+[2025-12-17 07:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 07:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 07:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 07:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 07:00:03] Execution time: 15.51 ms
+[2025-12-17 07:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 06:15:06] === Budget Update Cron Job Started ===
+[2025-12-17 06:15:08] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 06:15:08] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 07:15:09] Loaded: config.php
+[2025-12-17 07:15:09] Loaded: database.php (Database class included)
+[2025-12-17 07:15:09] Loaded: Budget.php
+[2025-12-17 07:15:09] Initializing Budget class...
+[2025-12-17 07:15:09] Budget class initialized successfully
+[2025-12-17 07:15:09] Database connection verified
+[2025-12-17 07:15:09] Current MySQL date: 2025-12-17 2025-12-17 07:15:09
+[2025-12-17 07:15:09] Checking for budgets to expire...
+[2025-12-17 07:15:09] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 07:15:09] No budgets expired (all active budgets are still valid)
+[2025-12-17 07:15:09] Checking for budgets to activate...
+[2025-12-17 07:15:09] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 07:15:09] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 07:15:09] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 07:15:09] Summary: Expired=0, Activated=0
+[2025-12-17 07:15:09] Execution time: 2557.32 ms
+[2025-12-17 07:15:09] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 06:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 06:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 06:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 07:30:02] Loaded: config.php
+[2025-12-17 07:30:02] Loaded: database.php (Database class included)
+[2025-12-17 07:30:02] Loaded: Budget.php
+[2025-12-17 07:30:02] Initializing Budget class...
+[2025-12-17 07:30:02] Budget class initialized successfully
+[2025-12-17 07:30:02] Database connection verified
+[2025-12-17 07:30:02] Current MySQL date: 2025-12-17 2025-12-17 07:30:02
+[2025-12-17 07:30:02] Checking for budgets to expire...
+[2025-12-17 07:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 07:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 07:30:02] Checking for budgets to activate...
+[2025-12-17 07:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 07:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 07:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 07:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 07:30:02] Execution time: 14.01 ms
+[2025-12-17 07:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 06:45:03] === Budget Update Cron Job Started ===
+[2025-12-17 06:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 06:45:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 07:45:03] Loaded: config.php
+[2025-12-17 07:45:03] Loaded: database.php (Database class included)
+[2025-12-17 07:45:03] Loaded: Budget.php
+[2025-12-17 07:45:03] Initializing Budget class...
+[2025-12-17 07:45:03] Budget class initialized successfully
+[2025-12-17 07:45:03] Database connection verified
+[2025-12-17 07:45:03] Current MySQL date: 2025-12-17 2025-12-17 07:45:03
+[2025-12-17 07:45:03] Checking for budgets to expire...
+[2025-12-17 07:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 07:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 07:45:03] Checking for budgets to activate...
+[2025-12-17 07:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 07:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 07:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 07:45:03] Summary: Expired=0, Activated=0
+[2025-12-17 07:45:03] Execution time: 12.04 ms
+[2025-12-17 07:45:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 07:00:02] === Budget Update Cron Job Started ===
+[2025-12-17 07:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 07:00:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 08:00:02] Loaded: config.php
+[2025-12-17 08:00:02] Loaded: database.php (Database class included)
+[2025-12-17 08:00:02] Loaded: Budget.php
+[2025-12-17 08:00:02] Initializing Budget class...
+[2025-12-17 08:00:02] Budget class initialized successfully
+[2025-12-17 08:00:02] Database connection verified
+[2025-12-17 08:00:02] Current MySQL date: 2025-12-17 2025-12-17 08:00:02
+[2025-12-17 08:00:02] Checking for budgets to expire...
+[2025-12-17 08:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 08:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 08:00:02] Checking for budgets to activate...
+[2025-12-17 08:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 08:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 08:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 08:00:02] Summary: Expired=0, Activated=0
+[2025-12-17 08:00:02] Execution time: 13.73 ms
+[2025-12-17 08:00:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 07:15:02] === Budget Update Cron Job Started ===
+[2025-12-17 07:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 07:15:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 08:15:02] Loaded: config.php
+[2025-12-17 08:15:02] Loaded: database.php (Database class included)
+[2025-12-17 08:15:02] Loaded: Budget.php
+[2025-12-17 08:15:02] Initializing Budget class...
+[2025-12-17 08:15:02] Budget class initialized successfully
+[2025-12-17 08:15:02] Database connection verified
+[2025-12-17 08:15:02] Current MySQL date: 2025-12-17 2025-12-17 08:15:02
+[2025-12-17 08:15:02] Checking for budgets to expire...
+[2025-12-17 08:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 08:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 08:15:02] Checking for budgets to activate...
+[2025-12-17 08:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 08:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 08:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 08:15:02] Summary: Expired=0, Activated=0
+[2025-12-17 08:15:02] Execution time: 21.21 ms
+[2025-12-17 08:15:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 07:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 07:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 07:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 08:30:02] Loaded: config.php
+[2025-12-17 08:30:02] Loaded: database.php (Database class included)
+[2025-12-17 08:30:02] Loaded: Budget.php
+[2025-12-17 08:30:02] Initializing Budget class...
+[2025-12-17 08:30:02] Budget class initialized successfully
+[2025-12-17 08:30:02] Database connection verified
+[2025-12-17 08:30:02] Current MySQL date: 2025-12-17 2025-12-17 08:30:02
+[2025-12-17 08:30:02] Checking for budgets to expire...
+[2025-12-17 08:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 08:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 08:30:02] Checking for budgets to activate...
+[2025-12-17 08:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 08:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 08:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 08:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 08:30:02] Execution time: 13.34 ms
+[2025-12-17 08:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 07:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 07:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 07:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 08:45:02] Loaded: config.php
+[2025-12-17 08:45:02] Loaded: database.php (Database class included)
+[2025-12-17 08:45:02] Loaded: Budget.php
+[2025-12-17 08:45:02] Initializing Budget class...
+[2025-12-17 08:45:02] Budget class initialized successfully
+[2025-12-17 08:45:02] Database connection verified
+[2025-12-17 08:45:02] Current MySQL date: 2025-12-17 2025-12-17 08:45:02
+[2025-12-17 08:45:02] Checking for budgets to expire...
+[2025-12-17 08:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 08:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 08:45:02] Checking for budgets to activate...
+[2025-12-17 08:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 08:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 08:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 08:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 08:45:02] Execution time: 12.53 ms
+[2025-12-17 08:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 08:00:02] === Budget Update Cron Job Started ===
+[2025-12-17 08:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 08:00:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 09:00:02] Loaded: config.php
+[2025-12-17 09:00:02] Loaded: database.php (Database class included)
+[2025-12-17 09:00:02] Loaded: Budget.php
+[2025-12-17 09:00:02] Initializing Budget class...
+[2025-12-17 09:00:02] Budget class initialized successfully
+[2025-12-17 09:00:02] Database connection verified
+[2025-12-17 09:00:02] Current MySQL date: 2025-12-17 2025-12-17 09:00:02
+[2025-12-17 09:00:02] Checking for budgets to expire...
+[2025-12-17 09:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 09:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 09:00:02] Checking for budgets to activate...
+[2025-12-17 09:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 09:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 09:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 09:00:02] Summary: Expired=0, Activated=0
+[2025-12-17 09:00:02] Execution time: 17.04 ms
+[2025-12-17 09:00:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 08:15:04] === Budget Update Cron Job Started ===
+[2025-12-17 08:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 08:15:05] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 09:15:06] Loaded: config.php
+[2025-12-17 09:15:06] Loaded: database.php (Database class included)
+[2025-12-17 09:15:06] Loaded: Budget.php
+[2025-12-17 09:15:06] Initializing Budget class...
+[2025-12-17 09:15:06] Budget class initialized successfully
+[2025-12-17 09:15:06] Database connection verified
+[2025-12-17 09:15:06] Current MySQL date: 2025-12-17 2025-12-17 09:15:06
+[2025-12-17 09:15:06] Checking for budgets to expire...
+[2025-12-17 09:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 09:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-17 09:15:06] Checking for budgets to activate...
+[2025-12-17 09:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 09:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 09:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 09:15:06] Summary: Expired=0, Activated=0
+[2025-12-17 09:15:06] Execution time: 1617.87 ms
+[2025-12-17 09:15:06] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 08:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 08:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 08:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 09:30:02] Loaded: config.php
+[2025-12-17 09:30:02] Loaded: database.php (Database class included)
+[2025-12-17 09:30:02] Loaded: Budget.php
+[2025-12-17 09:30:02] Initializing Budget class...
+[2025-12-17 09:30:02] Budget class initialized successfully
+[2025-12-17 09:30:02] Database connection verified
+[2025-12-17 09:30:02] Current MySQL date: 2025-12-17 2025-12-17 09:30:02
+[2025-12-17 09:30:02] Checking for budgets to expire...
+[2025-12-17 09:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 09:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 09:30:02] Checking for budgets to activate...
+[2025-12-17 09:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 09:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 09:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 09:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 09:30:02] Execution time: 14.76 ms
+[2025-12-17 09:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 08:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 08:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 08:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 09:45:02] Loaded: config.php
+[2025-12-17 09:45:02] Loaded: database.php (Database class included)
+[2025-12-17 09:45:02] Loaded: Budget.php
+[2025-12-17 09:45:02] Initializing Budget class...
+[2025-12-17 09:45:02] Budget class initialized successfully
+[2025-12-17 09:45:02] Database connection verified
+[2025-12-17 09:45:02] Current MySQL date: 2025-12-17 2025-12-17 09:45:02
+[2025-12-17 09:45:02] Checking for budgets to expire...
+[2025-12-17 09:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 09:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 09:45:02] Checking for budgets to activate...
+[2025-12-17 09:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 09:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 09:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 09:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 09:45:02] Execution time: 13.76 ms
+[2025-12-17 09:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 09:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 09:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 09:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 10:00:03] Loaded: config.php
+[2025-12-17 10:00:03] Loaded: database.php (Database class included)
+[2025-12-17 10:00:03] Loaded: Budget.php
+[2025-12-17 10:00:03] Initializing Budget class...
+[2025-12-17 10:00:03] Budget class initialized successfully
+[2025-12-17 10:00:03] Database connection verified
+[2025-12-17 10:00:03] Current MySQL date: 2025-12-17 2025-12-17 10:00:03
+[2025-12-17 10:00:03] Checking for budgets to expire...
+[2025-12-17 10:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 10:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 10:00:03] Checking for budgets to activate...
+[2025-12-17 10:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 10:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 10:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 10:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 10:00:03] Execution time: 16.88 ms
+[2025-12-17 10:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 09:15:07] === Budget Update Cron Job Started ===
+[2025-12-17 09:15:07] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 09:15:07] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 10:15:07] Loaded: config.php
+[2025-12-17 10:15:07] Loaded: database.php (Database class included)
+[2025-12-17 10:15:07] Loaded: Budget.php
+[2025-12-17 10:15:07] Initializing Budget class...
+[2025-12-17 10:15:07] Budget class initialized successfully
+[2025-12-17 10:15:07] Database connection verified
+[2025-12-17 10:15:07] Current MySQL date: 2025-12-17 2025-12-17 10:15:07
+[2025-12-17 10:15:07] Checking for budgets to expire...
+[2025-12-17 10:15:07] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 10:15:07] No budgets expired (all active budgets are still valid)
+[2025-12-17 10:15:07] Checking for budgets to activate...
+[2025-12-17 10:15:07] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 10:15:07] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 10:15:07] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 10:15:07] Summary: Expired=0, Activated=0
+[2025-12-17 10:15:07] Execution time: 486.48 ms
+[2025-12-17 10:15:07] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 09:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 09:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 09:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 10:30:02] Loaded: config.php
+[2025-12-17 10:30:02] Loaded: database.php (Database class included)
+[2025-12-17 10:30:02] Loaded: Budget.php
+[2025-12-17 10:30:02] Initializing Budget class...
+[2025-12-17 10:30:02] Budget class initialized successfully
+[2025-12-17 10:30:02] Database connection verified
+[2025-12-17 10:30:02] Current MySQL date: 2025-12-17 2025-12-17 10:30:02
+[2025-12-17 10:30:02] Checking for budgets to expire...
+[2025-12-17 10:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 10:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 10:30:02] Checking for budgets to activate...
+[2025-12-17 10:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 10:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 10:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 10:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 10:30:02] Execution time: 14.06 ms
+[2025-12-17 10:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 09:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 09:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 09:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 10:45:02] Loaded: config.php
+[2025-12-17 10:45:02] Loaded: database.php (Database class included)
+[2025-12-17 10:45:02] Loaded: Budget.php
+[2025-12-17 10:45:02] Initializing Budget class...
+[2025-12-17 10:45:02] Budget class initialized successfully
+[2025-12-17 10:45:02] Database connection verified
+[2025-12-17 10:45:02] Current MySQL date: 2025-12-17 2025-12-17 10:45:02
+[2025-12-17 10:45:02] Checking for budgets to expire...
+[2025-12-17 10:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 10:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 10:45:02] Checking for budgets to activate...
+[2025-12-17 10:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 10:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 10:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 10:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 10:45:02] Execution time: 10.82 ms
+[2025-12-17 10:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 10:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 10:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 10:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 11:00:03] Loaded: config.php
+[2025-12-17 11:00:03] Loaded: database.php (Database class included)
+[2025-12-17 11:00:03] Loaded: Budget.php
+[2025-12-17 11:00:03] Initializing Budget class...
+[2025-12-17 11:00:03] Budget class initialized successfully
+[2025-12-17 11:00:03] Database connection verified
+[2025-12-17 11:00:03] Current MySQL date: 2025-12-17 2025-12-17 11:00:03
+[2025-12-17 11:00:03] Checking for budgets to expire...
+[2025-12-17 11:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 11:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 11:00:03] Checking for budgets to activate...
+[2025-12-17 11:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 11:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 11:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 11:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 11:00:03] Execution time: 13.01 ms
+[2025-12-17 11:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 10:15:05] === Budget Update Cron Job Started ===
+[2025-12-17 10:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 10:15:05] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 11:15:05] Loaded: config.php
+[2025-12-17 11:15:05] Loaded: database.php (Database class included)
+[2025-12-17 11:15:05] Loaded: Budget.php
+[2025-12-17 11:15:05] Initializing Budget class...
+[2025-12-17 11:15:05] Budget class initialized successfully
+[2025-12-17 11:15:05] Database connection verified
+[2025-12-17 11:15:05] Current MySQL date: 2025-12-17 2025-12-17 11:15:05
+[2025-12-17 11:15:05] Checking for budgets to expire...
+[2025-12-17 11:15:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 11:15:05] No budgets expired (all active budgets are still valid)
+[2025-12-17 11:15:05] Checking for budgets to activate...
+[2025-12-17 11:15:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 11:15:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 11:15:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 11:15:05] Summary: Expired=0, Activated=0
+[2025-12-17 11:15:05] Execution time: 1218.04 ms
+[2025-12-17 11:15:05] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 10:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 10:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 10:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 11:30:02] Loaded: config.php
+[2025-12-17 11:30:02] Loaded: database.php (Database class included)
+[2025-12-17 11:30:02] Loaded: Budget.php
+[2025-12-17 11:30:02] Initializing Budget class...
+[2025-12-17 11:30:02] Budget class initialized successfully
+[2025-12-17 11:30:02] Database connection verified
+[2025-12-17 11:30:02] Current MySQL date: 2025-12-17 2025-12-17 11:30:02
+[2025-12-17 11:30:02] Checking for budgets to expire...
+[2025-12-17 11:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 11:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 11:30:02] Checking for budgets to activate...
+[2025-12-17 11:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 11:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 11:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 11:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 11:30:02] Execution time: 115.09 ms
+[2025-12-17 11:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 10:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 10:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 10:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 11:45:02] Loaded: config.php
+[2025-12-17 11:45:02] Loaded: database.php (Database class included)
+[2025-12-17 11:45:02] Loaded: Budget.php
+[2025-12-17 11:45:02] Initializing Budget class...
+[2025-12-17 11:45:02] Budget class initialized successfully
+[2025-12-17 11:45:02] Database connection verified
+[2025-12-17 11:45:02] Current MySQL date: 2025-12-17 2025-12-17 11:45:02
+[2025-12-17 11:45:02] Checking for budgets to expire...
+[2025-12-17 11:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 11:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 11:45:02] Checking for budgets to activate...
+[2025-12-17 11:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 11:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 11:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 11:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 11:45:02] Execution time: 14.06 ms
+[2025-12-17 11:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 11:00:08] === Budget Update Cron Job Started ===
+[2025-12-17 11:00:09] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 11:00:09] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 12:00:09] Loaded: config.php
+[2025-12-17 12:00:09] Loaded: database.php (Database class included)
+[2025-12-17 12:00:09] Loaded: Budget.php
+[2025-12-17 12:00:09] Initializing Budget class...
+[2025-12-17 12:00:09] Budget class initialized successfully
+[2025-12-17 12:00:09] Database connection verified
+[2025-12-17 12:00:09] Current MySQL date: 2025-12-17 2025-12-17 12:00:09
+[2025-12-17 12:00:09] Checking for budgets to expire...
+[2025-12-17 12:00:09] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 12:00:09] No budgets expired (all active budgets are still valid)
+[2025-12-17 12:00:09] Checking for budgets to activate...
+[2025-12-17 12:00:09] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 12:00:09] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 12:00:09] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 12:00:09] Summary: Expired=0, Activated=0
+[2025-12-17 12:00:09] Execution time: 731.76 ms
+[2025-12-17 12:00:09] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 11:15:04] === Budget Update Cron Job Started ===
+[2025-12-17 11:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 11:15:05] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 12:15:05] Loaded: config.php
+[2025-12-17 12:15:05] Loaded: database.php (Database class included)
+[2025-12-17 12:15:05] Loaded: Budget.php
+[2025-12-17 12:15:05] Initializing Budget class...
+[2025-12-17 12:15:05] Budget class initialized successfully
+[2025-12-17 12:15:05] Database connection verified
+[2025-12-17 12:15:05] Current MySQL date: 2025-12-17 2025-12-17 12:15:05
+[2025-12-17 12:15:05] Checking for budgets to expire...
+[2025-12-17 12:15:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 12:15:05] No budgets expired (all active budgets are still valid)
+[2025-12-17 12:15:05] Checking for budgets to activate...
+[2025-12-17 12:15:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 12:15:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 12:15:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 12:15:05] Summary: Expired=0, Activated=0
+[2025-12-17 12:15:05] Execution time: 597.86 ms
+[2025-12-17 12:15:05] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 11:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 11:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 11:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 12:30:03] Loaded: config.php
+[2025-12-17 12:30:03] Loaded: database.php (Database class included)
+[2025-12-17 12:30:03] Loaded: Budget.php
+[2025-12-17 12:30:03] Initializing Budget class...
+[2025-12-17 12:30:03] Budget class initialized successfully
+[2025-12-17 12:30:03] Database connection verified
+[2025-12-17 12:30:03] Current MySQL date: 2025-12-17 2025-12-17 12:30:03
+[2025-12-17 12:30:03] Checking for budgets to expire...
+[2025-12-17 12:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 12:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 12:30:03] Checking for budgets to activate...
+[2025-12-17 12:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 12:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 12:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 12:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 12:30:03] Execution time: 14.3 ms
+[2025-12-17 12:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 11:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 11:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 11:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 12:45:02] Loaded: config.php
+[2025-12-17 12:45:02] Loaded: database.php (Database class included)
+[2025-12-17 12:45:02] Loaded: Budget.php
+[2025-12-17 12:45:02] Initializing Budget class...
+[2025-12-17 12:45:02] Budget class initialized successfully
+[2025-12-17 12:45:02] Database connection verified
+[2025-12-17 12:45:02] Current MySQL date: 2025-12-17 2025-12-17 12:45:02
+[2025-12-17 12:45:02] Checking for budgets to expire...
+[2025-12-17 12:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 12:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 12:45:02] Checking for budgets to activate...
+[2025-12-17 12:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 12:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 12:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 12:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 12:45:02] Execution time: 11.83 ms
+[2025-12-17 12:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 12:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 12:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 12:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 13:00:03] Loaded: config.php
+[2025-12-17 13:00:03] Loaded: database.php (Database class included)
+[2025-12-17 13:00:03] Loaded: Budget.php
+[2025-12-17 13:00:03] Initializing Budget class...
+[2025-12-17 13:00:03] Budget class initialized successfully
+[2025-12-17 13:00:03] Database connection verified
+[2025-12-17 13:00:03] Current MySQL date: 2025-12-17 2025-12-17 13:00:03
+[2025-12-17 13:00:03] Checking for budgets to expire...
+[2025-12-17 13:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 13:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 13:00:03] Checking for budgets to activate...
+[2025-12-17 13:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 13:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 13:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 13:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 13:00:03] Execution time: 14.32 ms
+[2025-12-17 13:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 12:15:08] === Budget Update Cron Job Started ===
+[2025-12-17 12:15:09] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 12:15:09] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 13:15:09] Loaded: config.php
+[2025-12-17 13:15:09] Loaded: database.php (Database class included)
+[2025-12-17 13:15:09] Loaded: Budget.php
+[2025-12-17 13:15:09] Initializing Budget class...
+[2025-12-17 13:15:09] Budget class initialized successfully
+[2025-12-17 13:15:09] Database connection verified
+[2025-12-17 13:15:09] Current MySQL date: 2025-12-17 2025-12-17 13:15:09
+[2025-12-17 13:15:09] Checking for budgets to expire...
+[2025-12-17 13:15:09] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 13:15:09] No budgets expired (all active budgets are still valid)
+[2025-12-17 13:15:09] Checking for budgets to activate...
+[2025-12-17 13:15:09] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 13:15:09] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 13:15:09] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 13:15:09] Summary: Expired=0, Activated=0
+[2025-12-17 13:15:09] Execution time: 476.17 ms
+[2025-12-17 13:15:09] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 12:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 12:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 12:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 13:30:02] Loaded: config.php
+[2025-12-17 13:30:02] Loaded: database.php (Database class included)
+[2025-12-17 13:30:02] Loaded: Budget.php
+[2025-12-17 13:30:02] Initializing Budget class...
+[2025-12-17 13:30:02] Budget class initialized successfully
+[2025-12-17 13:30:02] Database connection verified
+[2025-12-17 13:30:02] Current MySQL date: 2025-12-17 2025-12-17 13:30:02
+[2025-12-17 13:30:02] Checking for budgets to expire...
+[2025-12-17 13:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 13:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 13:30:02] Checking for budgets to activate...
+[2025-12-17 13:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 13:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 13:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 13:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 13:30:02] Execution time: 16.28 ms
+[2025-12-17 13:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 12:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 12:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 12:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 13:45:02] Loaded: config.php
+[2025-12-17 13:45:02] Loaded: database.php (Database class included)
+[2025-12-17 13:45:02] Loaded: Budget.php
+[2025-12-17 13:45:02] Initializing Budget class...
+[2025-12-17 13:45:02] Budget class initialized successfully
+[2025-12-17 13:45:02] Database connection verified
+[2025-12-17 13:45:02] Current MySQL date: 2025-12-17 2025-12-17 13:45:02
+[2025-12-17 13:45:02] Checking for budgets to expire...
+[2025-12-17 13:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 13:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 13:45:02] Checking for budgets to activate...
+[2025-12-17 13:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 13:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 13:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 13:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 13:45:02] Execution time: 13.09 ms
+[2025-12-17 13:45:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 13:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 13:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 13:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 14:00:03] Loaded: config.php
+[2025-12-17 14:00:03] Loaded: database.php (Database class included)
+[2025-12-17 14:00:03] Loaded: Budget.php
+[2025-12-17 14:00:03] Initializing Budget class...
+[2025-12-17 14:00:03] Budget class initialized successfully
+[2025-12-17 14:00:03] Database connection verified
+[2025-12-17 14:00:03] Current MySQL date: 2025-12-17 2025-12-17 14:00:03
+[2025-12-17 14:00:03] Checking for budgets to expire...
+[2025-12-17 14:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 14:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 14:00:03] Checking for budgets to activate...
+[2025-12-17 14:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 14:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 14:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 14:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 14:00:03] Execution time: 116.33 ms
+[2025-12-17 14:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 13:15:02] === Budget Update Cron Job Started ===
+[2025-12-17 13:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 13:15:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 14:15:02] Loaded: config.php
+[2025-12-17 14:15:02] Loaded: database.php (Database class included)
+[2025-12-17 14:15:02] Loaded: Budget.php
+[2025-12-17 14:15:02] Initializing Budget class...
+[2025-12-17 14:15:02] Budget class initialized successfully
+[2025-12-17 14:15:02] Database connection verified
+[2025-12-17 14:15:02] Current MySQL date: 2025-12-17 2025-12-17 14:15:02
+[2025-12-17 14:15:02] Checking for budgets to expire...
+[2025-12-17 14:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 14:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 14:15:02] Checking for budgets to activate...
+[2025-12-17 14:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 14:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 14:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 14:15:02] Summary: Expired=0, Activated=0
+[2025-12-17 14:15:02] Execution time: 318.74 ms
+[2025-12-17 14:15:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 13:30:02] === Budget Update Cron Job Started ===
+[2025-12-17 13:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 13:30:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 14:30:02] Loaded: config.php
+[2025-12-17 14:30:02] Loaded: database.php (Database class included)
+[2025-12-17 14:30:02] Loaded: Budget.php
+[2025-12-17 14:30:02] Initializing Budget class...
+[2025-12-17 14:30:02] Budget class initialized successfully
+[2025-12-17 14:30:02] Database connection verified
+[2025-12-17 14:30:02] Current MySQL date: 2025-12-17 2025-12-17 14:30:02
+[2025-12-17 14:30:02] Checking for budgets to expire...
+[2025-12-17 14:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 14:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 14:30:02] Checking for budgets to activate...
+[2025-12-17 14:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 14:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 14:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 14:30:02] Summary: Expired=0, Activated=0
+[2025-12-17 14:30:02] Execution time: 27.83 ms
+[2025-12-17 14:30:02] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 13:45:03] === Budget Update Cron Job Started ===
+[2025-12-17 13:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 13:45:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 14:45:03] Loaded: config.php
+[2025-12-17 14:45:03] Loaded: database.php (Database class included)
+[2025-12-17 14:45:03] Loaded: Budget.php
+[2025-12-17 14:45:03] Initializing Budget class...
+[2025-12-17 14:45:03] Budget class initialized successfully
+[2025-12-17 14:45:03] Database connection verified
+[2025-12-17 14:45:03] Current MySQL date: 2025-12-17 2025-12-17 14:45:03
+[2025-12-17 14:45:03] Checking for budgets to expire...
+[2025-12-17 14:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 14:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 14:45:03] Checking for budgets to activate...
+[2025-12-17 14:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 14:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 14:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 14:45:03] Summary: Expired=0, Activated=0
+[2025-12-17 14:45:03] Execution time: 19.17 ms
+[2025-12-17 14:45:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 14:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 14:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 14:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 15:00:03] Loaded: config.php
+[2025-12-17 15:00:03] Loaded: database.php (Database class included)
+[2025-12-17 15:00:03] Loaded: Budget.php
+[2025-12-17 15:00:03] Initializing Budget class...
+[2025-12-17 15:00:03] Budget class initialized successfully
+[2025-12-17 15:00:03] Database connection verified
+[2025-12-17 15:00:03] Current MySQL date: 2025-12-17 2025-12-17 15:00:03
+[2025-12-17 15:00:03] Checking for budgets to expire...
+[2025-12-17 15:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 15:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 15:00:03] Checking for budgets to activate...
+[2025-12-17 15:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 15:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 15:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 15:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 15:00:03] Execution time: 86.77 ms
+[2025-12-17 15:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 14:15:10] === Budget Update Cron Job Started ===
+[2025-12-17 14:15:10] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 14:15:10] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 15:15:11] Loaded: config.php
+[2025-12-17 15:15:11] Loaded: database.php (Database class included)
+[2025-12-17 15:15:11] Loaded: Budget.php
+[2025-12-17 15:15:11] Initializing Budget class...
+[2025-12-17 15:15:11] Budget class initialized successfully
+[2025-12-17 15:15:11] Database connection verified
+[2025-12-17 15:15:11] Current MySQL date: 2025-12-17 2025-12-17 15:15:11
+[2025-12-17 15:15:11] Checking for budgets to expire...
+[2025-12-17 15:15:11] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 15:15:11] No budgets expired (all active budgets are still valid)
+[2025-12-17 15:15:11] Checking for budgets to activate...
+[2025-12-17 15:15:11] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 15:15:11] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 15:15:11] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 15:15:11] Summary: Expired=0, Activated=0
+[2025-12-17 15:15:11] Execution time: 3042.18 ms
+[2025-12-17 15:15:11] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 14:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 14:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 14:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 15:30:03] Loaded: config.php
+[2025-12-17 15:30:03] Loaded: database.php (Database class included)
+[2025-12-17 15:30:03] Loaded: Budget.php
+[2025-12-17 15:30:03] Initializing Budget class...
+[2025-12-17 15:30:03] Budget class initialized successfully
+[2025-12-17 15:30:03] Database connection verified
+[2025-12-17 15:30:03] Current MySQL date: 2025-12-17 2025-12-17 15:30:03
+[2025-12-17 15:30:03] Checking for budgets to expire...
+[2025-12-17 15:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 15:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 15:30:03] Checking for budgets to activate...
+[2025-12-17 15:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 15:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 15:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 15:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 15:30:03] Execution time: 17.53 ms
+[2025-12-17 15:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 14:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 14:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 14:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 15:45:03] Loaded: config.php
+[2025-12-17 15:45:03] Loaded: database.php (Database class included)
+[2025-12-17 15:45:03] Loaded: Budget.php
+[2025-12-17 15:45:03] Initializing Budget class...
+[2025-12-17 15:45:03] Budget class initialized successfully
+[2025-12-17 15:45:03] Database connection verified
+[2025-12-17 15:45:03] Current MySQL date: 2025-12-17 2025-12-17 15:45:03
+[2025-12-17 15:45:03] Checking for budgets to expire...
+[2025-12-17 15:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 15:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 15:45:03] Checking for budgets to activate...
+[2025-12-17 15:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 15:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 15:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 15:45:03] Summary: Expired=0, Activated=0
+[2025-12-17 15:45:03] Execution time: 19.48 ms
+[2025-12-17 15:45:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 15:00:03] === Budget Update Cron Job Started ===
+[2025-12-17 15:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 15:00:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 16:00:03] Loaded: config.php
+[2025-12-17 16:00:03] Loaded: database.php (Database class included)
+[2025-12-17 16:00:03] Loaded: Budget.php
+[2025-12-17 16:00:03] Initializing Budget class...
+[2025-12-17 16:00:03] Budget class initialized successfully
+[2025-12-17 16:00:03] Database connection verified
+[2025-12-17 16:00:03] Current MySQL date: 2025-12-17 2025-12-17 16:00:03
+[2025-12-17 16:00:03] Checking for budgets to expire...
+[2025-12-17 16:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 16:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 16:00:03] Checking for budgets to activate...
+[2025-12-17 16:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 16:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 16:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 16:00:03] Summary: Expired=0, Activated=0
+[2025-12-17 16:00:03] Execution time: 380.43 ms
+[2025-12-17 16:00:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 15:15:09] === Budget Update Cron Job Started ===
+[2025-12-17 15:15:10] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 15:15:10] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 16:15:10] Loaded: config.php
+[2025-12-17 16:15:10] Loaded: database.php (Database class included)
+[2025-12-17 16:15:10] Loaded: Budget.php
+[2025-12-17 16:15:10] Initializing Budget class...
+[2025-12-17 16:15:10] Budget class initialized successfully
+[2025-12-17 16:15:10] Database connection verified
+[2025-12-17 16:15:10] Current MySQL date: 2025-12-17 2025-12-17 16:15:10
+[2025-12-17 16:15:10] Checking for budgets to expire...
+[2025-12-17 16:15:10] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 16:15:10] No budgets expired (all active budgets are still valid)
+[2025-12-17 16:15:10] Checking for budgets to activate...
+[2025-12-17 16:15:10] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 16:15:10] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 16:15:10] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 16:15:10] Summary: Expired=0, Activated=0
+[2025-12-17 16:15:10] Execution time: 3631.7 ms
+[2025-12-17 16:15:10] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 15:30:03] === Budget Update Cron Job Started ===
+[2025-12-17 15:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 15:30:03] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 16:30:03] Loaded: config.php
+[2025-12-17 16:30:03] Loaded: database.php (Database class included)
+[2025-12-17 16:30:03] Loaded: Budget.php
+[2025-12-17 16:30:03] Initializing Budget class...
+[2025-12-17 16:30:03] Budget class initialized successfully
+[2025-12-17 16:30:03] Database connection verified
+[2025-12-17 16:30:03] Current MySQL date: 2025-12-17 2025-12-17 16:30:03
+[2025-12-17 16:30:03] Checking for budgets to expire...
+[2025-12-17 16:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 16:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-17 16:30:03] Checking for budgets to activate...
+[2025-12-17 16:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 16:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 16:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 16:30:03] Summary: Expired=0, Activated=0
+[2025-12-17 16:30:03] Execution time: 16.54 ms
+[2025-12-17 16:30:03] Memory used: 1.09 MB
+X-Powered-By: PHP/8.3.26
+Content-type: text/html; charset=UTF-8
+
+[2025-12-17 15:45:02] === Budget Update Cron Job Started ===
+[2025-12-17 15:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-17 15:45:02] All required files verified successfully
+<br />
+<b>Warning</b>:  Constant ROOT_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>24</b><br />
+<br />
+<b>Warning</b>:  Constant CONFIG_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>25</b><br />
+<br />
+<b>Warning</b>:  Constant CLASSES_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>26</b><br />
+<br />
+<b>Warning</b>:  Constant LOGS_PATH already defined in <b>/home2/gateweyc/public_html/request.gatewey.com.ng/config/config.php</b> on line <b>30</b><br />
+[2025-12-17 16:45:02] Loaded: config.php
+[2025-12-17 16:45:02] Loaded: database.php (Database class included)
+[2025-12-17 16:45:02] Loaded: Budget.php
+[2025-12-17 16:45:02] Initializing Budget class...
+[2025-12-17 16:45:02] Budget class initialized successfully
+[2025-12-17 16:45:02] Database connection verified
+[2025-12-17 16:45:02] Current MySQL date: 2025-12-17 2025-12-17 16:45:02
+[2025-12-17 16:45:02] Checking for budgets to expire...
+[2025-12-17 16:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-17 16:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-17 16:45:02] Checking for budgets to activate...
+[2025-12-17 16:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-17 16:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-17 16:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-17 16:45:02] Summary: Expired=0, Activated=0
+[2025-12-17 16:45:02] Execution time: 15.39 ms
+[2025-12-17 16:45:02] Memory used: 1.09 MB

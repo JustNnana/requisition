@@ -2,10 +2,13 @@
 
 /**
  * GateWey Requisition Management System
- * Requisition Class
+ * Requisition Class - UPDATED WITH EMAIL NOTIFICATION ON RESUBMIT
  * 
  * File: classes/Requisition.php
  * Purpose: Handle all requisition-related operations including CRUD, workflow, and validation
+ * 
+ * UPDATES:
+ * - Added email notification when rejected requisition is resubmitted
  */
 
 class Requisition
@@ -58,7 +61,7 @@ $params = [
     Session::getUserDepartmentId(),
     $data['purpose'],
     $data['description'] ?? null,
-    $data['category_id'] ?? null,  // ✅ ADD THIS
+    $data['category_id'] ?? null,
     $data['total_amount'],
     $status,
     $currentApproverId,
@@ -154,7 +157,7 @@ $sql = "UPDATE requisitions
 $params = [
     $data['purpose'],
     $data['description'] ?? null,
-    $data['category_id'] ?? null,  // ✅ ADD THIS
+    $data['category_id'] ?? null,
     $data['total_amount'],
     $newStatus,
     $currentApproverId,
@@ -182,6 +185,16 @@ $params = [
             }
 
             $this->db->commit();
+
+            // ✅ Send email notification when resubmitting (not draft)
+            if (!$data['is_draft']) {
+                try {
+                    Notification::send(NOTIF_REQUISITION_SUBMITTED, $requisitionId);
+                } catch (Exception $e) {
+                    error_log("Resubmission email notification failed: " . $e->getMessage());
+                    // Don't block the resubmit if email fails
+                }
+            }
 
             return [
                 'success' => true,

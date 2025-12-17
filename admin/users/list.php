@@ -163,7 +163,7 @@ $pageTitle = 'User Management';
     background-size: 16px 12px;
     padding-right: 2.5rem;
     cursor: pointer;
-    background-color:#1C252E;
+    background-color:var(--bg-primary);
     color:var(--text-secondary);
 }
 

@@ -669,10 +669,10 @@ $pageTitle = 'Managing Director Dashboard';
                 
                 <!-- Left: Text -->
                 <div style="flex: 1;">
-                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: var(--text-primary);">
                         Action Required
                     </h5>
-                    <p style="margin: 0; opacity: 0.9; color: white;">
+                    <p style="margin: 0; opacity: 0.9; color: var(--text-primary);">
                         You have <strong><?php echo $stats['pending_my_approval']; ?></strong> 
                         requisition<?php echo $stats['pending_my_approval'] > 1 ? 's' : ''; ?> awaiting your approval.
                     </p>
@@ -817,31 +817,50 @@ if ($departmentId) {
                     </div>
                 </div>
                 
-                <!-- Progress Bar -->
-                <div style="background: var(--bg-subtle); border-radius: var(--border-radius-full); height: 28px; margin-bottom: var(--spacing-2); border: 1px solid var(--border-color); position: relative; overflow: hidden;">
-                    <div style="background: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; 
-                                height: 100%; 
-                                width: <?php echo min($utilizationPercentage, 100); ?>%; 
-                                transition: width 0.3s ease;
-                                box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
-                    </div>
-                    <div style="position: absolute; 
-                                top: 0; 
-                                left: 0; 
-                                right: 0; 
-                                bottom: 0; 
-                                display: flex; 
-                                align-items: center; 
-                                justify-content: center; 
-                                color: <?php echo $utilizationPercentage > 50 ? 'white' : 'var(--text-primary)'; ?>; 
-                                font-weight: var(--font-weight-bold); 
-                                font-size: var(--font-size-sm);
-                                pointer-events: none;">
-                        <?php echo number_format($utilizationPercentage, 1); ?>% Used
-                    </div>
-                </div>
+<!-- Progress Bar -->
+<div style="background: var(--bg-subtle); border-radius: var(--border-radius-full); height: 28px; margin-bottom: var(--spacing-2); border: 1px solid var(--border-color); position: relative; overflow: hidden;">
+    <div style="background: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; 
+                height: 100%; 
+                width: <?php echo min($utilizationPercentage, 100); ?>%; 
+                transition: width 0.3s ease;
+                box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+    </div>
+    <div style="position: absolute; 
+                top: 0; 
+                left: 0; 
+                right: 0; 
+                bottom: 0; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                color: <?php echo $utilizationPercentage > 50 ? 'white' : 'var(--text-primary)'; ?>; 
+                font-weight: var(--font-weight-bold); 
+                font-size: var(--font-size-sm);
+                pointer-events: none;">
+        <?php echo number_format($utilizationPercentage, 1); ?>% Used
+    </div>
+</div>
                 
                 <div style="display: flex; gap: var(--spacing-4); font-size: var(--font-size-sm); flex-wrap: wrap;">
+                    <span style="color: var(--text-secondary);">
+                        <i class="fa-solid fa-users"></i> Original Budget: ₦ <strong><?php echo number_format($budgetInfo['original_budget'], 2); ?></strong>
+                    </span>
+                    
+<?php
+$budgetDiff = $budgetInfo['budget_amount'] - $budgetInfo['original_budget'];
+if ($budgetDiff != 0):
+    $absDiff = abs($budgetDiff);
+    if ($budgetDiff > 0):
+?>
+        <span style="color: var(--success);">
+            <i class="fa-solid fa-circle-plus"></i> Added Supplements: +₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php else: ?>
+        <span style="color: var(--warning);">
+            <i class="fa-solid fa-circle-minus"></i> Budget Reduction: -₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php endif; ?>
+<?php endif; ?>
                     <span style="color: var(--text-secondary);">
                         <i class="fas fa-chart-line"></i> Active Allocations: <strong><?php echo $budgetInfo['active_allocations']; ?></strong>
                     </span>
@@ -1292,11 +1311,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: chartConfig.colors.text + '10',
-                            titleColor: chartConfig.colors.text,
-                            bodyColor: chartConfig.colors.text,
-                            borderColor: chartConfig.colors.border,
-                            borderWidth: 1,
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)',  // ✅ Black background
+    titleColor: '#ffffff',                   // ✅ White text
+    bodyColor: '#ffffff',                    // ✅ White text
+    borderColor: chartConfig.colors.border,
+    borderWidth: 1,
                             cornerRadius: 8,
                             padding: 12,
                             titleFont: {
@@ -1362,22 +1381,29 @@ document.addEventListener('DOMContentLoaded', function() {
     <?php endif; ?>
 
     // Update chart when theme changes
-    document.addEventListener('themeChanged', function(event) {
-        console.log('ðŸŽ¨ Updating MD charts for theme:', event.detail.theme);
+document.addEventListener('themeChanged', function(event) {
+    console.log('🎨 Updating MD charts for theme:', event.detail.theme);
+    const newConfig = getDasherChartConfig();
 
-        const newConfig = getDasherChartConfig();
+    if (organizationTrendChart) {
+        // Line & fill
+        organizationTrendChart.data.datasets[0].borderColor = newConfig.colors.primary;
+        organizationTrendChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '20';
+        organizationTrendChart.data.datasets[0].pointBackgroundColor = newConfig.colors.primary;
 
-        // Update organization trend chart
-        if (organizationTrendChart) {
-            organizationTrendChart.data.datasets[0].borderColor = newConfig.colors.primary;
-            organizationTrendChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '20';
-            organizationTrendChart.data.datasets[0].pointBackgroundColor = newConfig.colors.primary;
-            organizationTrendChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
-            organizationTrendChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
-            organizationTrendChart.options.scales.y.grid.color = newConfig.colors.border + '40';
-            organizationTrendChart.update('none');
-        }
-    });
+        // Ticks
+        organizationTrendChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
+        organizationTrendChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
+
+        // Grid
+        organizationTrendChart.options.scales.y.grid.color = newConfig.colors.border + '40';
+
+        // Tooltip border (optional but nice)
+        organizationTrendChart.options.plugins.tooltip.borderColor = newConfig.colors.border;
+
+        organizationTrendChart.update('none');
+    }
+});
 
     console.log('âœ… Managing Director Dashboard initialized successfully');
 });

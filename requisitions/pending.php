@@ -624,7 +624,7 @@ $pageTitle = 'Pending Approvals';
                                 </td>
                                 <td>
                                     <div class="user-info">
-                                        <div class="user-avatar-sm">
+                                        <div class="user-avatar">
                                             <?php 
                                             $initials = strtoupper(
                                                 substr($req['requester_first_name'], 0, 1) . 

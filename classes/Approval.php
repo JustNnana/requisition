@@ -154,7 +154,7 @@ if ($shouldCheckBudget) {
         }
         
         // Check if this is the "Budget" category
-        if ($category && strtolower(trim($category['category_name'])) === 'budget') {
+        if ($category) {
             error_log("This IS a budget category requisition");
             
             // Check if Budget class exists
@@ -369,8 +369,16 @@ if ($shouldCheckBudget) {
                 ]
             );
             
-            // Commit transaction
+// Commit transaction
             $this->db->commit();
+            
+            // ✅ SEND EMAIL NOTIFICATION
+            try {
+                Notification::send(NOTIF_REQUISITION_APPROVED, $requisitionId);
+            } catch (Exception $e) {
+                error_log("Email notification failed: " . $e->getMessage());
+                // Don't block the flow if email fails
+            }
             
             return [
                 'success' => true,
@@ -473,7 +481,7 @@ if ($shouldCheckBudget) {
                 );
                 
                 // If this is a "Budget" category requisition
-                if ($category && strtolower(trim($category['category_name'])) === 'budget') {
+                if ($category) {
                     // Check if budget was allocated (Line Manager had approved)
                     $allocation = $this->budgetModel->getAllocationByRequisition($requisitionId);
                     
@@ -553,8 +561,16 @@ if ($shouldCheckBudget) {
                 ]
             );
             
-            // Commit transaction
+// Commit transaction
             $this->db->commit();
+            
+            // ✅ SEND EMAIL NOTIFICATION
+            try {
+                Notification::send(NOTIF_REQUISITION_REJECTED, $requisitionId);
+            } catch (Exception $e) {
+                error_log("Email notification failed: " . $e->getMessage());
+                // Don't block the flow if email fails
+            }
             
             return [
                 'success' => true,

@@ -15,7 +15,7 @@ define('APP_ENV', 'development'); // development | production
 define('APP_DEBUG', true); // Set to false in production
 
 // Application Details
-define('APP_NAME', 'GateWey Requisition Management');
+define('APP_NAME', 'Kadick Finance');
 define('APP_VERSION', '3.0.0');
 define('APP_URL', 'https://request.gatewey.com.ng');
 define('BASE_URL', 'https://request.gatewey.com.ng');
@@ -29,6 +29,8 @@ define('HELPERS_PATH', ROOT_PATH . '/helpers');
 define('UPLOADS_PATH', ROOT_PATH . '/uploads');
 define('LOGS_PATH', ROOT_PATH . '/logs');
 define('ASSETS_PATH', ROOT_PATH . '/assets');
+require_once ROOT_PATH . '/vendor/autoload.php';
+
 
 // Upload Directories
 define('INVOICES_DIR', UPLOADS_PATH . '/invoices');
@@ -42,7 +44,7 @@ define('JS_URL', ASSETS_URL . '/js');
 define('IMAGES_URL', ASSETS_URL . '/images');
 
 // Session Configuration
-define('SESSION_NAME', 'gatewey_requisition_session');
+define('SESSION_NAME', 'kadick_finance');
 define('SESSION_LIFETIME', 7200); // 2 hours in seconds
 define('SESSION_PATH', '/');
 define('SESSION_DOMAIN', ''); // Set domain for production
@@ -74,7 +76,7 @@ define('DATETIME_FORMAT', 'd/m/Y H:i:s');
 date_default_timezone_set(APP_TIMEZONE);
 
 // Email Settings (Basic - detailed in email.php)
-define('EMAIL_FROM_NAME', 'GateWey Requisitions');
+define('EMAIL_FROM_NAME', 'Kadick Finance');
 define('EMAIL_FROM_ADDRESS', 'noreply@gatewey.com');
 
 // Requisition Settings

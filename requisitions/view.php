@@ -155,22 +155,22 @@ function getPreviewType($filename)
 
     .section-icon.primary {
         background: rgba(var(--primary-rgb), 0.1);
-        color: var(--primary);
+        /*color: var(--primary);*/
     }
 
     .section-icon.success {
         background: rgba(var(--success-rgb), 0.1);
-        color: var(--success);
+        /*color: var(--success);*/
     }
 
     .section-icon.info {
         background: rgba(var(--info-rgb), 0.1);
-        color: var(--info);
+        /*color: var(--info);*/
     }
 
     .section-icon.warning {
         background: rgba(var(--warning-rgb), 0.1);
-        color: var(--warning);
+        /*color: var(--warning);*/
     }
 
     .section-title {
@@ -692,7 +692,7 @@ function getPreviewType($filename)
     }
 
     .sidebar-card-header i {
-        color: var(--primary);
+        /*color: var(--primary);*/
         font-size: var(--font-size-lg);
     }
 
@@ -792,7 +792,6 @@ function getPreviewType($filename)
     }
 
     .quick-action-btn:hover {
-        border-color: var(--primary);
         background: var(--bg-hover);
         transform: translateX(4px);
     }
@@ -849,10 +848,10 @@ function getPreviewType($filename)
         padding: var(--spacing-4);
         background: var(--bg-subtle);
         border-bottom: 1px solid var(--border-color);
+        background: var(--bg-primary) !important;
     }
 
     .modal-header.bg-success {
-        background: var(--success);
         color: white;
         border-bottom-color: var(--success);
     }
@@ -874,6 +873,7 @@ function getPreviewType($filename)
 
     .modal-body {
         padding: var(--spacing-5);
+        background-color: var(--bg-input);
     }
 
     .modal-footer {
@@ -1012,6 +1012,51 @@ function getPreviewType($filename)
             white-space: nowrap;
         }
     }
+        /* Force text wrapping in Approval History timeline items */
+    .timeline-content {
+        word-wrap: break-word;          /* Older browsers */
+        overflow-wrap: break-word;      /* Modern standard */
+        word-break: break-word;         /* Break long words if absolutely needed */
+        hyphens: auto;                  /* Optional: nicer breaks with hyphens */
+    }
+
+    .timeline-header,
+    .timeline-role,
+    .timeline-comment,
+    .timeline-time {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* Specifically target long names or roles */
+    .timeline-header strong,
+    .timeline-role {
+        white-space: normal;            /* Override any nowrap */
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    /* Keep the APPROVED/REJECTED badge from stretching */
+    .timeline-header .badge {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    /* Allow the header to wrap on very small screens or long content */
+    .timeline-header {
+        flex-wrap: wrap;
+        gap: var(--spacing-2);
+    }
+
+    /* For extremely long unbreakable comments (e.g., pasted code/URLs), add horizontal scroll */
+    .timeline-comment {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    .btnspacer{
+        margin-right:5px;
+    }
 </style>
 
 
@@ -1089,7 +1134,7 @@ function getPreviewType($filename)
                     <button type="button" class="btn btn-danger" onclick="showRejectModal()">
                         <i class="fas fa-times-circle me-2"></i>Reject
                     </button>
-                    <button type="button" class="btn btn-light btn-outline-primary" onclick="showApproveModal()">
+                    <button type="button" class="btn btn-light btn-success" onclick="showApproveModal()">
                         <i class="fas fa-check-circle me-2"></i>Approve
                     </button>
                 </div>
@@ -1538,7 +1583,7 @@ function getPreviewType($filename)
                     </div>
 
                     <div class="d-flex gap-2 justify-content-end mt-4">
-                        <button type="button" class="btn btn-secondary" onclick="closeApproveModal()">
+                        <button type="button" class="btn btn-secondary btnspacer" onclick="closeApproveModal()">
                             Cancel
                         </button>
                         <button type="submit" class="btn btn-success">
@@ -1578,7 +1623,7 @@ function getPreviewType($filename)
                     </div>
 
                     <div class="d-flex gap-2 justify-content-end mt-4">
-                        <button type="button" class="btn btn-secondary" onclick="closeRejectModal()">
+                        <button type="button" class="btn btn-secondary btnspacer" onclick="closeRejectModal()">
                             Cancel
                         </button>
                         <button type="submit" class="btn btn-danger">

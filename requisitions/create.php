@@ -196,7 +196,7 @@ $pageTitle = 'Create Requisition';
         height: 48px;
         border-radius: var(--border-radius);
         background: rgba(var(--primary-rgb), 0.1);
-        color: var(--primary);
+        /*color: var(--primary);*/
         display: flex;
         align-items: center;
         justify-content: center;
@@ -393,12 +393,12 @@ $pageTitle = 'Create Requisition';
 
     .form-section-icon.primary {
         background: rgba(var(--primary-rgb), 0.1);
-        color: var(--primary);
+        /*color: var(--primary);*/
     }
 
     .form-section-icon.success {
         background: rgba(var(--success-rgb), 0.1);
-        color: var(--success);
+        /*color: var(--success);*/
     }
 
     .form-section-icon.info {
@@ -457,7 +457,7 @@ $pageTitle = 'Create Requisition';
     }
 
     .form-control:focus {
-        border-color: var(--primary);
+        border-color: var(--bg-hover);
         outline: none;
         box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
     }
@@ -503,8 +503,9 @@ $pageTitle = 'Create Requisition';
     }
 
     .item-row:hover {
-        border-color: var(--primary);
+        border-color: var(--bg-hover);
         box-shadow: var(--shadow-sm);
+        background:none !important;
     }
 
     .item-number {
@@ -756,11 +757,11 @@ $pageTitle = 'Create Requisition';
     .btn-outline-primary {
         background: transparent;
         color: var(--primary);
-        border-color: var(--primary);
+        /*border-color: var(--primary);*/
     }
 
     .btn-outline-primary:hover {
-        background: var(--primary);
+        /*background: var(--primary);*/
         color: white;
     }
 
@@ -905,10 +906,40 @@ $pageTitle = 'Create Requisition';
         </div>
     </div>
 </div>
+<!-- Error/Success Messages -->
+<?php if (Session::hasFlash('error')): ?>
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="alert-content">
+            <div class="alert-title">Error</div>
+            <div class="alert-message"><?php echo Session::getFlash('error'); ?></div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if (Session::hasFlash('success')): ?>
+    <div class="alert alert-success" style="background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.2); color: #22c55e;">
+        <i class="fas fa-check-circle"></i>
+        <div class="alert-content">
+            <div class="alert-title">Success</div>
+            <div class="alert-message"><?php echo Session::getFlash('success'); ?></div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if (Session::hasFlash('warning')): ?>
+    <div class="alert alert-warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="alert-content">
+            <div class="alert-title">Warning</div>
+            <div class="alert-message"><?php echo Session::getFlash('warning'); ?></div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <!-- Budget Availability Card (Only shows when category = "Budget") -->
 <?php if ($showBudgetCheck && $hasBudget): ?>
-<div class="budget-availability-card" id="budgetCard" style="display: none;">
+<div class="budget-availability-card" id="budgetCard">
     <div class="budget-card-header">
         <div class="budget-card-icon">
             <i class="fas fa-wallet"></i>
@@ -977,24 +1008,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (purposeSelect && budgetCard) {
         purposeSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const categoryName = selectedOption.getAttribute('data-category-name') || '';
-            
-            // Show budget card if category is "Budget"
-            if (categoryName.toLowerCase() === 'budget') {
+            // Budget card always visible when any category is selected
+            if (this.value) {
                 budgetCard.style.display = 'block';
             } else {
                 budgetCard.style.display = 'none';
             }
         });
         
-        // Check on page load in case category is pre-selected
+        // Show on page load if category pre-selected
         if (purposeSelect.value) {
-            const selectedOption = purposeSelect.options[purposeSelect.selectedIndex];
-            const categoryName = selectedOption.getAttribute('data-category-name') || '';
-            if (categoryName.toLowerCase() === 'budget') {
-                budgetCard.style.display = 'block';
-            }
+            budgetCard.style.display = 'block';
         }
     }
 });

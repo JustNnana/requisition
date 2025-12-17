@@ -108,3 +108,27 @@ Stack trace:
                     (budget_id, requisition_id, amount, allocation_type, allocated_at, notes)
                     VALUES (?, ?, ?, 'allocated', NOW(), ?)
 [10-Dec-2025 02:28:22 Africa/Lagos] Allocate budget error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`gateweyc_requisition`.`budget_allocations`, CONSTRAINT `budget_allocations_ibfk_2` FOREIGN KEY (`requisition_id`) REFERENCES `requisitions` (`id`) ON DELETE CASCADE)
+[11-Dec-2025 08:34:49 Africa/Lagos] Database connection established successfully
+[11-Dec-2025 08:34:49 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:34:49 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:34:49 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:34:49 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:34:49 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:34:49 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:34:49 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:23 Africa/Lagos] Database connection established successfully
+[11-Dec-2025 08:36:23 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:23 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:23 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:23 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:23 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:23 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:23 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:36 Africa/Lagos] Database connection established successfully
+[11-Dec-2025 08:36:36 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:36 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:36 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:36 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:36 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:36 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170
+[11-Dec-2025 08:36:36 Africa/Lagos] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/gateweyc/public_html/request.gatewey.com.ng/test.php on line 170

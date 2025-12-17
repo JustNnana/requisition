@@ -284,7 +284,7 @@ if ($hour < 12) {
             width: 36px;
             height: 36px;
             border-radius: var(--border-radius-full);
-            background: linear-gradient(135deg, var(--primary), var(--primary-600));
+            background: linear-gradient(135deg, #EC3338, var(--danger-600));
             color: white;
             display: flex;
             align-items: center;
@@ -379,11 +379,11 @@ if ($hour < 12) {
 
         .dropdown-item:hover {
             background-color: var(--bg-hover);
-            color: var(--primary);
+            color: var(--text-primary);
         }
 
         .dropdown-item.text-danger:hover {
-            color: var(--danger);
+            color: var(--text-primary) !important;
         }
 
         .dropdown-header {
@@ -606,9 +606,9 @@ if ($hour < 12) {
             <!-- Logo and Brand -->
             <a href="<?php echo BASE_URL; ?>/dashboard/index.php" class="navbar-brand">
                 <!-- Light mode logo -->
-                <img src="<?php echo BASE_URL; ?>/assets/images/icons/logo.png" alt="GateWey Logo" class="logo-img logo-light">
+                <img src="<?php echo BASE_URL; ?>/assets/images/icons/kadick-logo-white.png" alt="GateWey Logo" class="logo-img logo-light">
                 <!-- Dark mode logo -->
-                <img src="<?php echo BASE_URL; ?>/assets/images/icons/logo-dark.png" alt="GateWey Logo" class="logo-img logo-dark">
+                <img src="<?php echo BASE_URL; ?>/assets/images/icons/kadick-logo-black.png" alt="GateWey Logo" class="logo-img logo-dark">
                 <span class="d-none d-sm-inline">GateWey</span>
             </a>
         </div>

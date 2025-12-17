@@ -13,10 +13,11 @@ if (!defined('APP_ACCESS')) {
     die('Direct access not permitted');
 }
 
-// Get current user data from Session class (FIXED)
+// Get current user data from Session class
 $userRoleId = Session::getUserRoleId() ?? 0;
 $userFullName = Session::getUserFullName() ?? 'User';
 $userEmail = Session::getUserEmail() ?? '';
+$departmentId = isset($_SESSION['department_id']) ? $_SESSION['department_id'] : null; // For Line Manager budget access
 
 // Generate initials from full name
 $nameParts = explode(' ', $userFullName);
@@ -137,15 +138,15 @@ $pendingReceiptsCount = 0;
     }
 
     .sidebar-link.active {
-        background-color: var(--primary-light);
-        color: var(--primary);
-        border-right: 3px solid var(--primary);
+        background-color: var(--kadickred-light);
+        color: var(--text-primary);
+        border-right: 3px solid var(--border-input-focus);
         font-weight: var(--font-weight-semibold);
     }
 
     .sidebar-link.active:hover {
-        background-color: var(--primary-light);
-        color: var(--primary);
+        background-color: var(--kadickred-light);
+        color: var(--text-primary);
     }
 
     /* Sidebar Icons */
@@ -299,11 +300,11 @@ $pendingReceiptsCount = 0;
     }
 
     .sidebar::-webkit-scrollbar-track {
-        background: var(--bg-secondary);
+        background: var(--bg-primary);
     }
 
     .sidebar::-webkit-scrollbar-thumb {
-        background: var(--border-color);
+        background: var(--bg-hover);
         border-radius: var(--border-radius-xl);
     }
 
@@ -318,12 +319,12 @@ $pendingReceiptsCount = 0;
 
     /* Focus States for Accessibility */
     .sidebar-link:focus {
-        outline: 2px solid var(--primary);
+        outline: 2px solid var(--border-input-focus);
         outline-offset: -2px;
     }
 
     .sidebar-link:focus-visible {
-        outline: 2px solid var(--primary);
+        outline: 2px solid var(--border-input-focus);
         outline-offset: -2px;
     }
 
@@ -398,6 +399,7 @@ $pendingReceiptsCount = 0;
                 </div>
                 <span class="sidebar-text">Departments</span>
             </a>
+
             <div class="sidebar-category">
                 <span class="sidebar-category-text">SYSTEM</span>
             </div>
@@ -422,9 +424,6 @@ $pendingReceiptsCount = 0;
                 </div>
                 <span class="sidebar-text">Database Backup</span>
             </a>
-
-
-
 
             <a href="<?php echo BASE_URL; ?>/admin/audit-log.php" class="sidebar-link <?php echo isActive('audit-log.php'); ?>">
                 <div class="sidebar-icon">
@@ -463,9 +462,28 @@ $pendingReceiptsCount = 0;
                 <?php endif; ?>
             </a>
 
-            <div class="sidebar-category">
-                <span class="sidebar-category-text">REPORTS</span>
-            </div>
+            <!-- BUDGET MANAGEMENT SECTION -->
+    <div class="sidebar-category">
+        <span class="sidebar-category-text">BUDGET MANAGEMENT</span>
+    </div>
+
+    <a href="<?php echo BASE_URL; ?>/finance/budget/index.php" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
+        <div class="sidebar-icon">
+            <i class="fas fa-list"></i>
+        </div>
+        <span class="sidebar-text">All Budgets</span>
+    </a>
+
+    <a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('budget-reports.php', 'budget'); ?>">
+        <div class="sidebar-icon">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <span class="sidebar-text">Budget Reports</span>
+    </a>
+
+    <div class="sidebar-category">
+        <span class="sidebar-category-text">REPORTS</span>
+    </div>
 
             <a href="<?php echo BASE_URL; ?>/reports/organization.php" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
                 <div class="sidebar-icon">
@@ -517,6 +535,32 @@ $pendingReceiptsCount = 0;
                 <?php endif; ?>
             </a>
 
+            <!-- BUDGET MANAGEMENT SECTION -->
+            <div class="sidebar-category">
+                <span class="sidebar-category-text">BUDGET MANAGEMENT</span>
+            </div>
+
+            <a href="<?php echo BASE_URL; ?>/finance/budget/index.php" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <span class="sidebar-text">All Budgets</span>
+            </a>
+
+            <a href="<?php echo BASE_URL; ?>/finance/budget/set-budget.php" class="sidebar-link <?php echo isActive('set-budget.php', 'budget'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <span class="sidebar-text">Set Department Budget</span>
+            </a>
+
+            <a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('budget-reports.php', 'budget'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <span class="sidebar-text">Budget Reports</span>
+            </a>
+
             <div class="sidebar-category">
                 <span class="sidebar-category-text">REPORTS</span>
             </div>
@@ -560,7 +604,7 @@ $pendingReceiptsCount = 0;
                     <div class="sidebar-badge sidebar-badge-warning"><?php echo $pendingReceiptsCount; ?></div>
                 <?php endif; ?>
             </a>
-<!-- NEW SECTION - Organization Reports -->
+
             <div class="sidebar-category">
                 <span class="sidebar-category-text">REPORTS</span>
             </div>
@@ -571,6 +615,7 @@ $pendingReceiptsCount = 0;
                 </div>
                 <span class="sidebar-text">Organization Reports</span>
             </a>
+
         <?php elseif ($userRoleId == ROLE_LINE_MANAGER): ?>
             <!-- Line Manager Menu -->
             <div class="sidebar-category">
@@ -600,6 +645,23 @@ $pendingReceiptsCount = 0;
                     <div class="sidebar-badge sidebar-badge-warning sidebar-badge-pulse"><?php echo $pendingApprovalsCount; ?></div>
                 <?php endif; ?>
             </a>
+
+            <!-- DEPARTMENT BUDGET SECTION -->
+            <?php if ($departmentId): ?>
+                <div class="sidebar-category">
+                    <span class="sidebar-category-text">BUDGET</span>
+                </div>
+
+                <a href="<?php echo BASE_URL; ?>/dashboard/department-budget.php" class="sidebar-link <?php echo isActive('department-budget.php', 'dashboard'); ?>">
+                    <div class="sidebar-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <span class="sidebar-text">Department Budget</span>
+                    <div id="budget-mini-indicator" class="sidebar-badge sidebar-badge-info" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </a>
+            <?php endif; ?>
 
             <div class="sidebar-category">
                 <span class="sidebar-category-text">REPORTS</span>
@@ -665,14 +727,7 @@ $pendingReceiptsCount = 0;
             <span class="sidebar-text">Help & Support</span>
         </a>
     </div>
-    <!-- <?php if (can_user_raise_requisition()): ?>
-        <li class="nav-item <?php echo isActive('requisitions', 'requisitions'); ?>">
-            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="nav-link">
-                <i class="fas fa-file-alt"></i>
-                <span>My Requisitions</span>
-            </a>
-        </li>
-    <?php endif; ?> -->
+
     <!-- Sidebar Footer -->
     <div class="sidebar-footer">
         <div class="sidebar-footer-content">
@@ -832,6 +887,40 @@ $pendingReceiptsCount = 0;
 
         // Initial load after 2 seconds
         setTimeout(updateRequisitionCounts, 2000);
+
+        // ===== BUDGET STATUS INDICATOR (Line Managers Only) =====
+        <?php if ($userRoleId == ROLE_LINE_MANAGER && $departmentId): ?>
+        const budgetIndicator = document.getElementById('budget-mini-indicator');
+        
+        if (budgetIndicator) {
+            // Fetch budget status
+            fetch('<?php echo BASE_URL; ?>/get-department-budget.php?department_id=<?php echo $departmentId; ?>')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.has_budget) {
+                        const budgetData = data.data;
+                        let badgeClass = 'sidebar-badge-success';
+                        
+                        if (budgetData.utilization_percentage >= 90) {
+                            badgeClass = 'sidebar-badge-danger';
+                        } else if (budgetData.utilization_percentage >= 70) {
+                            badgeClass = 'sidebar-badge-warning';
+                        }
+                        
+                        budgetIndicator.className = `sidebar-badge ${badgeClass}`;
+                        budgetIndicator.innerHTML = `${budgetData.utilization_percentage}%`;
+                        budgetIndicator.style.display = 'flex';
+                        budgetIndicator.title = `Available: ${budgetData.available_amount_formatted}`;
+                    } else {
+                        budgetIndicator.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Budget fetch error:', error);
+                    budgetIndicator.style.display = 'none';
+                });
+        }
+        <?php endif; ?>
 
         // ===== KEYBOARD SHORTCUTS =====
         document.addEventListener('keydown', function(e) {

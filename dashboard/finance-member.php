@@ -621,10 +621,10 @@ $pageTitle = 'Finance Member Dashboard';
                 
                 <!-- Left: Text -->
                 <div style="flex: 1;">
-                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: var(--text-primary);">
                         Action Required
                     </h5>
-                    <p style="margin: 0; opacity: 0.9; color: white;">
+                    <p style="margin: 0; opacity: 0.9; color: var(--text-primary);">
                         You have <strong><?php echo $stats['pending_payment']; ?></strong> 
                         requisition<?php echo $stats['pending_payment'] > 1 ? 's' : ''; ?> ready for payment processing.
                     </p>
@@ -1043,11 +1043,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: chartConfig.colors.text + '10',
-                            titleColor: chartConfig.colors.text,
-                            bodyColor: chartConfig.colors.text,
-                            borderColor: chartConfig.colors.border,
-                            borderWidth: 1,
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)',  // ✅ Black background
+    titleColor: '#ffffff',                   // ✅ White text
+    bodyColor: '#ffffff',                    // ✅ White text
+    borderColor: chartConfig.colors.border,
+    borderWidth: 1,
                             cornerRadius: 8,
                             padding: 12,
                             titleFont: {

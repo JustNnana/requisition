@@ -5,9 +5,9 @@
  * Edit Requisition Page - Dasher UI Enhanced (Fully Recoded)
  * 
  * File: requisitions/edit.php
- * Purpose: Edit draft or rejected requisitions
+ * Purpose: Edit draft or rejected requisitions with budget checking
  * 
- * UPDATED: Complete Dasher UI redesign with modern layout and styling
+ * UPDATED: Added budget checking functionality for all categories
  */
 
 // Define access level
@@ -55,6 +55,33 @@ if (!can_user_edit_requisition($reqData)) {
     exit;
 }
 
+// ============================================
+// BUDGET CHECK FUNCTIONALITY
+// ============================================
+// Check if user has department and active budget
+$userDepartmentId = Session::getUserDepartmentId();
+$userRoleId = Session::getUserRoleId();
+$hasBudget = false;
+$budgetInfo = null;
+$showBudgetCheck = false;
+
+// Check budget for Team Members, Line Managers, AND Managing Directors in departments
+if ($userDepartmentId && in_array($userRoleId, [ROLE_TEAM_MEMBER, ROLE_LINE_MANAGER, ROLE_MANAGING_DIRECTOR])) {
+    $budgetModel = new Budget();
+    $budgetInfo = $budgetModel->getBudgetStats($userDepartmentId);
+    
+    if ($budgetInfo) {
+        $hasBudget = true;
+        $showBudgetCheck = true;
+    }
+}
+
+// Only Finance roles bypass budget checks (Finance Manager and Finance Member)
+$bypassBudget = in_array($userRoleId, [ROLE_FINANCE_MANAGER, ROLE_FINANCE_MEMBER]);
+// ============================================
+// END BUDGET CHECK FUNCTIONALITY
+// ============================================
+
 // Page title
 $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 ?>
@@ -63,6 +90,295 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 
 <!-- Dasher UI Enhanced Styles -->
 <style>
+    /* Content Header */
+    .content-header {
+        margin-bottom: var(--spacing-6);
+    }
+
+    .content-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-1) 0;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2);
+    }
+
+    .content-description {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        margin: 0;
+    }
+
+    /* Alert Messages */
+    .alert {
+        display: flex;
+        align-items: flex-start;
+        padding: var(--spacing-4);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        margin-bottom: var(--spacing-4);
+        gap: var(--spacing-3);
+    }
+
+    .alert-warning {
+        background: rgba(var(--warning-rgb), 0.1);
+        border-color: rgba(var(--warning-rgb), 0.2);
+        color: var(--warning);
+    }
+
+    .alert-danger {
+        background: rgba(var(--danger-rgb), 0.1);
+        border-color: rgba(var(--danger-rgb), 0.2);
+        color: var(--danger);
+    }
+
+    .alert i {
+        font-size: var(--font-size-lg);
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .alert-content {
+        flex: 1;
+    }
+
+    .alert-title {
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-1);
+    }
+
+    .alert-message {
+        font-size: var(--font-size-sm);
+    }
+
+    /* Workflow Info Alert */
+    .workflow-info-alert {
+        border: 1px solid var(--info);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-5);
+        background: rgba(var(--info-rgb), 0.1);
+        color: var(--info);
+        margin-bottom: var(--spacing-5);
+    }
+
+    .workflow-info-content {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--spacing-4);
+    }
+
+    .workflow-info-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .workflow-info-text {
+        flex: 1;
+    }
+
+    .workflow-info-text h5 {
+        margin: 0 0 var(--spacing-2) 0;
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+    }
+
+    .workflow-info-text p {
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    /* Budget Card */
+    .budget-availability-card {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-lg);
+        margin-bottom: var(--spacing-5);
+        overflow: hidden;
+    }
+
+    .budget-card-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+        padding: var(--spacing-4);
+        background: var(--bg-subtle);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .budget-card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--border-radius);
+        background: rgba(var(--primary-rgb), 0.1);
+        /*color: var(--primary);*/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-xl);
+    }
+
+    .budget-card-title h5 {
+        margin: 0 0 var(--spacing-1) 0;
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+    }
+
+    .budget-card-title p {
+        margin: 0;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+    }
+
+    .budget-card-body {
+        padding: var(--spacing-5);
+    }
+
+    .budget-stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-4);
+        margin-bottom: var(--spacing-4);
+    }
+
+    .budget-stat-item {
+        text-align: center;
+        padding: var(--spacing-4);
+        background: var(--bg-subtle);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+    }
+
+    .budget-stat-item label {
+        display: block;
+        font-size: var(--font-size-xs);
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: var(--spacing-2);
+        font-weight: var(--font-weight-medium);
+    }
+
+    .budget-stat-value {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+    }
+
+    .text-warning {
+        color: var(--warning) !important;
+    }
+
+    .text-success {
+        color: var(--success) !important;
+    }
+
+    .budget-check-container {
+        padding-top: var(--spacing-4);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .budget-check-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-3);
+        padding: var(--spacing-3);
+        background: var(--bg-subtle);
+        border-radius: var(--border-radius);
+    }
+
+    .budget-check-label {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-secondary);
+    }
+
+    .budget-check-amount {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--primary);
+    }
+
+    .budget-status-indicator {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+        padding: var(--spacing-4);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        background: var(--bg-subtle);
+    }
+
+    .budget-status-indicator.success {
+        background: rgba(var(--success-rgb), 0.1);
+        border-color: var(--success);
+    }
+
+    .budget-status-indicator.warning {
+        background: rgba(var(--warning-rgb), 0.1);
+        border-color: var(--warning);
+    }
+
+    .budget-status-indicator.danger {
+        background: rgba(var(--danger-rgb), 0.1);
+        border-color: var(--danger);
+    }
+
+    .budget-status-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--border-radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-xl);
+        flex-shrink: 0;
+    }
+
+    .budget-status-indicator.success .budget-status-icon {
+        background: var(--success);
+        color: white;
+    }
+
+    .budget-status-indicator.warning .budget-status-icon {
+        background: var(--warning);
+        color: white;
+    }
+
+    .budget-status-indicator.danger .budget-status-icon {
+        background: var(--danger);
+        color: white;
+    }
+
+    .budget-status-text {
+        flex: 1;
+    }
+
+    .budget-status-text strong {
+        display: block;
+        margin-bottom: var(--spacing-1);
+        color: var(--text-primary);
+    }
+
+    .budget-status-text p {
+        margin: 0;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+    }
+
+    .budget-remaining {
+        margin-top: var(--spacing-3);
+        padding: var(--spacing-3);
+        background: var(--bg-subtle);
+        border-radius: var(--border-radius);
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+    }
+
     /* Form Section Card */
     .form-section-card {
         background: transparent;
@@ -70,18 +386,13 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         border-radius: var(--border-radius-lg);
         margin-bottom: var(--spacing-5);
         overflow: hidden;
-        transition: var(--theme-transition);
-    }
-
-    .form-section-card:hover {
-        box-shadow: var(--shadow-sm);
     }
 
     .form-section-header {
         display: flex;
         align-items: flex-start;
         gap: var(--spacing-4);
-        padding: var(--spacing-5);
+        padding: var(--spacing-4);
         background: var(--bg-subtle);
         border-bottom: 1px solid var(--border-color);
     }
@@ -99,12 +410,12 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 
     .form-section-icon.primary {
         background: rgba(var(--primary-rgb), 0.1);
-        color: var(--primary);
+        /*color: var(--primary);*/
     }
 
     .form-section-icon.success {
         background: rgba(var(--success-rgb), 0.1);
-        color: var(--success);
+        /*color: var(--success);*/
     }
 
     .form-section-icon.info {
@@ -133,43 +444,6 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         padding: var(--spacing-5);
     }
 
-    /* Rejection Alert */
-    .rejection-alert {
-        border: solid 1px var(--danger);
-        border-radius: var(--border-radius-lg);
-        padding: var(--spacing-5);
-        color: white;
-        margin-bottom: var(--spacing-5);
-    }
-
-    .rejection-alert-content {
-        display: flex;
-        align-items: start;
-        gap: var(--spacing-4);
-    }
-
-    .rejection-alert-icon {
-        font-size: 2rem;
-        flex-shrink: 0;
-        margin-top: var(--spacing-1);
-    }
-
-    .rejection-alert-text h5 {
-        margin: 0 0 var(--spacing-2) 0;
-        font-weight: var(--font-weight-semibold);
-    }
-
-    .rejection-alert-text p {
-        margin: 0;
-        opacity: 0.9;
-    }
-
-    .rejection-metadata {
-        margin-top: var(--spacing-2);
-        opacity: 0.8;
-        font-size: var(--font-size-sm);
-    }
-
     /* Form Controls */
     .form-group {
         margin-bottom: var(--spacing-4);
@@ -190,8 +464,8 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 
     .form-control {
         width: 100%;
-        padding: var(--spacing-3) var(--spacing-4);
-        font-size: var(--font-size-base);
+        padding: var(--spacing-3);
+        font-size: var(--font-size-sm);
         background: var(--bg-input);
         border: 1px solid var(--border-color);
         border-radius: var(--border-radius);
@@ -200,22 +474,30 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
     }
 
     .form-control:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
-        outline: none;
+        border-color: var(--bg-hover);
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
     }
 
-    .form-control:disabled,
-    .form-control:read-only {
-        background: var(--bg-subtle);
-        color: var(--text-muted);
-        cursor: not-allowed;
+    select.form-control {
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right var(--spacing-3) center;
+        background-size: 16px 12px;
+        padding-right: var(--spacing-8);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
     }
 
     .form-text {
         font-size: var(--font-size-xs);
         color: var(--text-secondary);
         margin-top: var(--spacing-2);
+        display: block;
     }
 
     /* Items Container */
@@ -234,12 +516,13 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         background: var(--bg-subtle);
         border: 1px solid var(--border-color);
         border-radius: var(--border-radius);
-        transition: var(--transition-fast);
+        transition: var(--theme-transition);
     }
 
     .item-row:hover {
-        border-color: var(--primary);
+        border-color: var(--bg-hover);
         box-shadow: var(--shadow-sm);
+        background:none !important;
     }
 
     .item-number {
@@ -268,7 +551,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         padding: var(--spacing-2) var(--spacing-3);
         border-radius: var(--border-radius);
         cursor: pointer;
-        transition: var(--transition-fast);
+        transition: var(--theme-transition);
         font-size: var(--font-size-sm);
         height: 44px;
         margin-top: 28px;
@@ -278,7 +561,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
     }
 
     .remove-item-btn:hover {
-        background: var(--danger-dark);
+        background: #dc2626;
         transform: scale(1.05);
     }
 
@@ -289,11 +572,12 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         padding: var(--spacing-3) var(--spacing-4);
         border-radius: var(--border-radius);
         cursor: pointer;
-        transition: var(--transition-fast);
-        font-weight: var(--font-weight-semibold);
+        transition: var(--theme-transition);
+        font-weight: var(--font-weight-medium);
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-2);
+        font-size: var(--font-size-sm);
     }
 
     .add-item-btn:hover {
@@ -306,7 +590,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
     .total-section {
         background: var(--bg-subtle);
         padding: var(--spacing-5);
-        border-radius: var(--border-radius);
+        border-radius: var(--border-radius-lg);
         margin-top: var(--spacing-5);
         border: 2px solid var(--border-color);
     }
@@ -318,13 +602,14 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
     }
 
     .total-section-label h4 {
-        margin: 0;
+        margin: 0 0 var(--spacing-1) 0;
         color: var(--text-primary);
         font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
     }
 
     .total-section-label p {
-        margin: var(--spacing-1) 0 0 0;
+        margin: 0;
         color: var(--text-muted);
         font-size: var(--font-size-sm);
     }
@@ -342,8 +627,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         padding: var(--spacing-6);
         text-align: center;
         cursor: pointer;
-        transition: var(--transition-fast);
-        margin-top: var(--spacing-3);
+        transition: var(--theme-transition);
     }
 
     .file-upload-area:hover {
@@ -363,14 +647,14 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
     }
 
     .file-upload-text {
-        margin: 0;
+        margin: 0 0 var(--spacing-2) 0;
         color: var(--text-primary);
         font-weight: var(--font-weight-semibold);
         font-size: var(--font-size-base);
     }
 
     .file-upload-hint {
-        margin: var(--spacing-2) 0 0 0;
+        margin: 0;
         color: var(--text-muted);
         font-size: var(--font-size-sm);
     }
@@ -389,7 +673,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         border: 1px solid var(--border-color);
         border-radius: var(--border-radius);
         margin-bottom: var(--spacing-3);
-        transition: var(--transition-fast);
+        transition: var(--theme-transition);
     }
 
     .uploaded-file:hover {
@@ -427,6 +711,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         font-weight: var(--font-weight-semibold);
         color: var(--text-primary);
         margin: 0 0 var(--spacing-1) 0;
+        font-size: var(--font-size-sm);
     }
 
     .file-meta {
@@ -449,20 +734,123 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         border-top: 1px solid var(--border-color);
     }
 
-    /* Mobile Optimizations */
+    /* Button Styles */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2);
+        padding: var(--spacing-3) var(--spacing-4);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        border-radius: var(--border-radius);
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: var(--theme-transition);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+
+    .btn-secondary {
+        background: var(--bg-subtle);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        background: var(--border-color);
+    }
+
+    .btn-outline-primary {
+        background: transparent;
+        color: var(--primary);
+        /*border-color: var(--primary);*/
+    }
+
+    .btn-outline-primary:hover {
+        /*background: var(--primary);*/
+        color: white;
+    }
+
+    .btn-danger {
+        background: var(--danger);
+        color: white;
+        border-color: var(--danger);
+    }
+
+    .btn-danger:hover {
+        background: #dc2626;
+        border-color: #dc2626;
+    }
+
+    .btn-sm {
+        padding: var(--spacing-2) var(--spacing-3);
+        font-size: var(--font-size-xs);
+    }
+
+    /* Utility Classes */
+    .d-flex {
+        display: flex;
+    }
+
+    .justify-content-between {
+        justify-content: space-between;
+    }
+
+    .align-items-start {
+        align-items: flex-start;
+    }
+
+    .me-2 {
+        margin-right: var(--spacing-2);
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
+        .content-header .d-flex {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: var(--spacing-3);
+        }
+
+        .content-actions {
+            width: 100%;
+        }
+
+        .content-actions .btn {
+            width: 100%;
+        }
+
+        .budget-stats-row {
+            grid-template-columns: 1fr;
+        }
+
+        .budget-check-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-2);
+        }
+
+        .workflow-info-content {
+            flex-direction: column;
+        }
+
         .form-section-header {
             padding: var(--spacing-4);
         }
 
         .form-section-body {
             padding: var(--spacing-4);
-        }
-
-        .form-section-icon {
-            width: 40px;
-            height: 40px;
-            font-size: var(--font-size-lg);
         }
 
         .item-row {
@@ -514,21 +902,9 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         .file-actions .btn {
             flex: 1;
         }
-
-        .content-actions {
-            display: flex !important;
-            justify-content: flex-end !important;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            white-space: nowrap !important;
-        }
-
-        .content-actions .btn {
-            flex: 0 1 auto !important;
-            white-space: nowrap;
-        }
     }
 </style>
+
 <!-- Content Header -->
 <div class="content-header">
     <div class="d-flex justify-content-between align-items-start">
@@ -537,22 +913,6 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
                 <i class="fas fa-edit me-2"></i>
                 Edit Requisition <?php echo htmlspecialchars($reqData['requisition_number']); ?>
             </h1>
-            <!-- <nav class="content-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="<?php echo BASE_URL; ?>dashboard/" class="breadcrumb-link">Dashboard</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="list.php" class="breadcrumb-link">Requisitions</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="view.php?id=<?php echo $requisitionId; ?>" class="breadcrumb-link">
-                                <?php echo htmlspecialchars($reqData['requisition_number']); ?>
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item active">Edit</li>
-                    </ol>
-                </nav> -->
             <p class="content-description">Update your requisition details and resubmit for approval</p>
         </div>
         <div class="content-actions">
@@ -563,7 +923,36 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         </div>
     </div>
 </div>
+<!-- Error/Success Messages -->
+<?php if (Session::hasFlash('error')): ?>
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="alert-content">
+            <div class="alert-title">Error</div>
+            <div class="alert-message"><?php echo Session::getFlash('error'); ?></div>
+        </div>
+    </div>
+<?php endif; ?>
 
+<?php if (Session::hasFlash('success')): ?>
+    <div class="alert alert-success" style="background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.2); color: #22c55e;">
+        <i class="fas fa-check-circle"></i>
+        <div class="alert-content">
+            <div class="alert-title">Success</div>
+            <div class="alert-message"><?php echo Session::getFlash('success'); ?></div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if (Session::hasFlash('warning')): ?>
+    <div class="alert alert-warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="alert-content">
+            <div class="alert-title">Warning</div>
+            <div class="alert-message"><?php echo Session::getFlash('warning'); ?></div>
+        </div>
+    </div>
+<?php endif; ?>
 <!-- Rejection Alert -->
 <?php if ($reqData['status'] == STATUS_REJECTED && $reqData['rejection_reason']): ?>
     <div class="rejection-alert">
@@ -581,6 +970,82 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
             </div>
         </div>
     </div>
+<?php endif; ?>
+
+<!-- Budget Availability Card -->
+<?php if ($showBudgetCheck && $hasBudget): ?>
+<div class="budget-availability-card" id="budgetCard">
+    <div class="budget-card-header">
+        <div class="budget-card-icon">
+            <i class="fas fa-wallet"></i>
+        </div>
+        <div class="budget-card-title">
+            <h5>Department Budget Status</h5>
+            <p><?php echo htmlspecialchars($budgetInfo['department_name']); ?></p>
+        </div>
+    </div>
+    
+    <div class="budget-card-body">
+        <div class="budget-stats-row">
+            <div class="budget-stat-item">
+                <label>Total Budget</label>
+                <div class="budget-stat-value">₦<?php echo number_format((float)$budgetInfo['budget_amount'], 2); ?></div>
+            </div>
+            <div class="budget-stat-item">
+                <label>Allocated</label>
+                <div class="budget-stat-value text-warning">₦<?php echo number_format((float)$budgetInfo['allocated_amount'], 2); ?></div>
+            </div>
+            <div class="budget-stat-item">
+                <label>Available</label>
+                <div class="budget-stat-value text-success" id="availableBudget">
+                    ₦<?php echo number_format((float)$budgetInfo['available_amount'], 2); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="budget-check-container" id="budgetCheckContainer" style="display: none;">
+            <div class="budget-check-header">
+                <span class="budget-check-label">Your Requisition Total:</span>
+                <span class="budget-check-amount" id="requisitionTotal">₦0.00</span>
+            </div>
+            
+            <div class="budget-status-indicator" id="budgetStatus">
+                <div class="budget-status-icon">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <div class="budget-status-text">
+                    <strong>Checking budget availability...</strong>
+                </div>
+            </div>
+
+            <div class="budget-remaining" id="budgetRemaining" style="display: none;">
+                <i class="fas fa-info-circle me-2"></i>
+                <span>Remaining after submission: <strong id="remainingAmount">₦0.00</strong></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Budget Check Warning (Hidden by default) -->
+<div class="alert alert-danger budget-error-alert" id="budgetErrorAlert" style="display: none;">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div class="alert-content">
+        <div class="alert-title">Insufficient Budget</div>
+        <div class="alert-message" id="budgetErrorMessage"></div>
+    </div>
+</div>
+
+<?php elseif ($showBudgetCheck && !$hasBudget): ?>
+<!-- No Budget Warning -->
+<div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div class="alert-content">
+        <div class="alert-title">No Active Budget</div>
+        <div class="alert-message">
+            Your department does not have an active budget set. Please contact the Finance Manager to set up a budget.
+        </div>
+    </div>
+</div>
 <?php endif; ?>
 
 <!-- Requisition Form -->
@@ -602,27 +1067,27 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
             </div>
         </div>
         <div class="form-section-body">
-<!-- Purpose/Category Dropdown -->
-<div class="form-group">
-    <label for="category_id" class="form-label required">Purpose/Category</label>
-    <select
-        id="category_id"
-        name="category_id"
-        class="form-control"
-        required>
-        <option value="">-- Select Purpose --</option>
-        <?php foreach ($categories as $category): ?>
-            <option value="<?php echo $category['id']; ?>"
-                data-name="<?php echo htmlspecialchars($category['category_name']); ?>"
-                <?php echo ($reqData['category_id'] == $category['id']) ? 'selected' : ''; ?>>
-                <?php echo htmlspecialchars($category['category_name']); ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-    <!-- Hidden field to store the category name for display purposes -->
-    <input type="hidden" id="purpose" name="purpose" value="<?php echo htmlspecialchars($reqData['purpose']); ?>">
-    <div class="form-text">Select the category that best describes this requisition.</div>
-</div>
+            <!-- Purpose/Category Dropdown -->
+            <div class="form-group">
+                <label for="category_id" class="form-label required">Purpose/Category</label>
+                <select
+                    id="category_id"
+                    name="category_id"
+                    class="form-control"
+                    required>
+                    <option value="">-- Select Purpose --</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?php echo $category['id']; ?>"
+                            data-name="<?php echo htmlspecialchars($category['category_name']); ?>"
+                            <?php echo ($reqData['category_id'] == $category['id']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($category['category_name']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <!-- Hidden field to store the category name for display purposes -->
+                <input type="hidden" id="purpose" name="purpose" value="<?php echo htmlspecialchars($reqData['purpose']); ?>">
+                <div class="form-text">Select the category that best describes this requisition.</div>
+            </div>
 
             <!-- Additional Description (Optional) -->
             <div class="form-group">
@@ -692,7 +1157,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
                                 type="text"
                                 class="form-control item-subtotal"
                                 readonly
-                                value="<?php echo CURRENCY_SYMBOL . number_format($item['subtotal'], 2); ?>">
+                                value="<?php echo '₦' . number_format($item['subtotal'], 2); ?>">
                             <input type="hidden" name="items[<?php echo $index; ?>][subtotal]" class="item-subtotal-value" value="<?php echo $item['subtotal']; ?>">
                         </div>
                         <div class="item-field">
@@ -801,7 +1266,7 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         <button type="submit" name="save_draft" class="btn btn-outline-primary" onclick="document.getElementById('is_draft').value='1'">
             <i class="fas fa-save me-2"></i>Save as Draft
         </button>
-        <button type="submit" name="submit" class="btn btn-primary">
+        <button type="submit" name="submit" id="submitRequisitionBtn" class="btn btn-primary">
             <i class="fas fa-paper-plane me-2"></i>Resubmit for Approval
         </button>
     </div>
@@ -810,42 +1275,30 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 
 <!-- JavaScript for dynamic items -->
 <script src="<?php echo BASE_URL; ?>/assets/js/requisition.js"></script>
+
+<?php if ($showBudgetCheck && $hasBudget): ?>
+<!-- Budget Check JavaScript -->
 <script>
-    // Set the starting item index for new items
-    window.itemIndex = <?php echo count($reqData['items']); ?>;
-
-    // Calculate initial total
-    if (typeof calculateGrandTotal === 'function') {
-        calculateGrandTotal();
-    }
-
-    // Add confirmation for navigation
-    window.addEventListener('beforeunload', function(e) {
-        const form = document.getElementById('requisitionForm');
-        if (form && form.dataset.changed === 'true') {
-            e.preventDefault();
-            e.returnValue = '';
-        }
-    });
-
-    // Track form changes
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('requisitionForm');
-        const inputs = form.querySelectorAll('input, textarea, select');
-
-        inputs.forEach(input => {
-            input.addEventListener('change', function() {
-                form.dataset.changed = 'true';
-            });
-        });
-
-        // Remove change tracking on submit
-        form.addEventListener('submit', function() {
-            form.dataset.changed = 'false';
-        });
-    });
+// Pass budget data to JavaScript
+window.BUDGET_CONFIG = {
+    departmentId: <?php echo $userDepartmentId; ?>,
+    hasBudget: <?php echo $hasBudget ? 'true' : 'false'; ?>,
+    availableAmount: <?php echo (float)$budgetInfo['available_amount']; ?>,
+    checkUrl: '<?php echo BASE_URL; ?>api/check-budget.php'
+};
 </script>
+<script src="<?php echo BASE_URL; ?>assets/js/requisition-budget.js"></script>
+<?php endif; ?>
+
 <script>
+// Set the starting item index for new items
+window.itemIndex = <?php echo count($reqData['items']); ?>;
+
+// Calculate initial total
+if (typeof calculateGrandTotal === 'function') {
+    calculateGrandTotal();
+}
+
 // Sync the hidden purpose field when category dropdown changes
 document.addEventListener('DOMContentLoaded', function() {
     const categorySelect = document.getElementById('category_id');
@@ -867,6 +1320,32 @@ document.addEventListener('DOMContentLoaded', function() {
             purposeHidden.value = selectedOption.getAttribute('data-name') || selectedOption.text;
         }
     }
+});
+
+// Add confirmation for navigation
+window.addEventListener('beforeunload', function(e) {
+    const form = document.getElementById('requisitionForm');
+    if (form && form.dataset.changed === 'true') {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+});
+
+// Track form changes
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('requisitionForm');
+    const inputs = form.querySelectorAll('input, textarea, select');
+
+    inputs.forEach(input => {
+        input.addEventListener('change', function() {
+            form.dataset.changed = 'true';
+        });
+    });
+
+    // Remove change tracking on submit
+    form.addEventListener('submit', function() {
+        form.dataset.changed = 'false';
+    });
 });
 </script>
 

@@ -338,7 +338,6 @@ $pageTitle = 'Audit Log';
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: var(--primary);
     color: white;
     display: flex;
     align-items: center;
@@ -545,17 +544,17 @@ $pageTitle = 'Audit Log';
   <div class="d-flex justify-content-between align-items-start">
     <div>
       <h1 class="content-title">Audit Log</h1>
-      <nav class="content-breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="<?php echo BASE_URL; ?>/" class="breadcrumb-link">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item">
-            <a href="index.php">Admin</a>
-          </li>
-          <li class="breadcrumb-item active">Audit Log</li>
-        </ol>
-      </nav>
+      <!--<nav class="content-breadcrumb">-->
+      <!--  <ol class="breadcrumb">-->
+      <!--    <li class="breadcrumb-item">-->
+      <!--      <a href="<?php echo BASE_URL; ?>/" class="breadcrumb-link">Dashboard</a>-->
+      <!--    </li>-->
+      <!--    <li class="breadcrumb-item">-->
+      <!--      <a href="index.php">Admin</a>-->
+      <!--    </li>-->
+      <!--    <li class="breadcrumb-item active">Audit Log</li>-->
+      <!--  </ol>-->
+      <!--</nav>-->
     </div>
     <div class="content-actions">
       <button type="button" class="btn btn-success" onclick="exportToExcel()">

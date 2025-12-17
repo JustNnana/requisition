@@ -630,10 +630,10 @@ $pageTitle = 'Finance Manager Dashboard';
                 
                 <!-- Left: Text -->
                 <div style="flex: 1;">
-                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">
+                    <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: var(--text-primary);">
                         Action Required
                     </h5>
-                    <p style="margin: 0; opacity: 0.9; color: white;">
+                    <p style="margin: 0; opacity: 0.9; color: var(--text-primary);">
                         You have <strong><?php echo $stats['pending_review']; ?></strong> 
                         requisition<?php echo $stats['pending_review'] > 1 ? 's' : ''; ?> awaiting your review.
                     </p>
@@ -1251,12 +1251,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                         },
                         tooltip: {
-                            backgroundColor: chartConfig.colors.text + '10',
-                            titleColor: chartConfig.colors.text,
-                            bodyColor: chartConfig.colors.text,
-                            borderColor: chartConfig.colors.border,
-                            borderWidth: 1,
-                            cornerRadius: 8,
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)',  // ✅ Black background
+                                titleColor: '#ffffff',                   // ✅ White text
+                                bodyColor: '#ffffff',                    // ✅ White text
+                                borderColor: chartConfig.colors.border,
+                                borderWidth: 1,
+                                cornerRadius: 8,
                             padding: 12,
                             titleFont: {
                                 family: chartConfig.font.family,
@@ -1368,24 +1368,40 @@ document.addEventListener('DOMContentLoaded', function() {
     <?php endif; ?>
 
     // Update chart when theme changes
-    document.addEventListener('themeChanged', function(event) {
-        console.log('ðŸŽ¨ Updating Finance Manager charts for theme:', event.detail.theme);
+document.addEventListener('themeChanged', function(event) {
+    console.log('🎨 Updating Finance Manager charts for theme:', event.detail.theme);
+    const newConfig = getDasherChartConfig();
 
-        const newConfig = getDasherChartConfig();
+    if (paymentTrendsChart) {
+        // Update bar colors
+        paymentTrendsChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '40';
+        paymentTrendsChart.data.datasets[0].borderColor = newConfig.colors.primary;
+        paymentTrendsChart.data.datasets[1].backgroundColor = newConfig.colors.success + '40';
+        paymentTrendsChart.data.datasets[1].borderColor = newConfig.colors.success;
 
-        // Update payment trends chart
-        if (paymentTrendsChart) {
-            paymentTrendsChart.data.datasets[0].backgroundColor = newConfig.colors.primary + '40';
-            paymentTrendsChart.data.datasets[0].borderColor = newConfig.colors.primary;
-            paymentTrendsChart.data.datasets[1].backgroundColor = newConfig.colors.success + '40';
-            paymentTrendsChart.data.datasets[1].borderColor = newConfig.colors.success;
-            paymentTrendsChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
-            paymentTrendsChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
-            paymentTrendsChart.options.scales.y.grid.color = newConfig.colors.border + '40';
-            paymentTrendsChart.options.scales.y1.ticks.color = newConfig.colors.textSecondary;
-            paymentTrendsChart.update('none');
-        }
-    });
+        // Update ticks
+        paymentTrendsChart.options.scales.x.ticks.color = newConfig.colors.textSecondary;
+        paymentTrendsChart.options.scales.y.ticks.color = newConfig.colors.textSecondary;
+        paymentTrendsChart.options.scales.y1.ticks.color = newConfig.colors.textSecondary;
+
+        // Update grid
+        paymentTrendsChart.options.scales.y.grid.color = newConfig.colors.border + '40';
+
+        // === ADD THESE MISSING LINES ===
+        // Legend text color
+        paymentTrendsChart.options.plugins.legend.labels.color = newConfig.colors.text;
+
+        // Axis titles
+        paymentTrendsChart.options.scales.y.title.color = newConfig.colors.text;
+        paymentTrendsChart.options.scales.y1.title.color = newConfig.colors.text;
+
+        // Tooltip border (for consistency)
+        paymentTrendsChart.options.plugins.tooltip.borderColor = newConfig.colors.border;
+
+        // Apply changes
+        paymentTrendsChart.update('none');
+    }
+});
 
     console.log('âœ… Finance Manager Dashboard initialized successfully');
 });

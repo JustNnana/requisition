@@ -599,17 +599,17 @@ $pageTitle = 'Add New User';
     <div class="d-flex justify-content-between align-items-start">
         <div>
             <h1 class="content-title">Create New User</h1>
-            <nav class="content-breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="../../dashboard/">Dashboard</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="list.php">Users</a>
-                    </li>
-                    <li class="breadcrumb-item active">Create User</li>
-                </ol>
-            </nav>
+            <!--<nav class="content-breadcrumb">-->
+            <!--    <ol class="breadcrumb">-->
+            <!--        <li class="breadcrumb-item">-->
+            <!--            <a href="../../dashboard/">Dashboard</a>-->
+            <!--        </li>-->
+            <!--        <li class="breadcrumb-item">-->
+            <!--            <a href="list.php">Users</a>-->
+            <!--        </li>-->
+            <!--        <li class="breadcrumb-item active">Create User</li>-->
+            <!--    </ol>-->
+            <!--</nav>-->
         </div>
         <div class="content-actions">
             <a href="list.php" class="btn btn-secondary">

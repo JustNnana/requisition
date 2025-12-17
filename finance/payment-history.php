@@ -47,7 +47,8 @@ $history = $payment->getPaymentHistory($filters, $page, 15);
 
 // Get statistics
 $stats = $payment->getPaymentStatistics($filters);
-
+// Get pending receipts (all requisitions)
+$pendingReceipts = $payment->getPendingReceipts(true);
 // Get departments for filter
 $department = new Department();
 $departments = $department->getAll(true);
@@ -703,7 +704,7 @@ $pageTitle = 'Payment History';
         </div>
         <div class="stat-content">
             <p class="stat-label">Receipts Pending</p>
-            <p class="stat-value"><?php echo number_format($stats['paid_count'] ?? 0); ?></p>
+            <p class="stat-value"><?php echo count($pendingReceipts); ?></p>
         </div>
     </div>
 </div>

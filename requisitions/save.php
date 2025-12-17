@@ -6,7 +6,7 @@
  * File: requisitions/save.php
  * Purpose: POST handler for creating and updating requisitions
  * 
- * UPDATED: Added category_id support for budget tracking
+ * UPDATED: Added budget validation check before submission
  */
 
 // Define access level
@@ -141,6 +141,62 @@ if (abs($formData['total_amount'] - $totalAmount) > 0.01) {
     $errors[] = 'Total amount mismatch. Please refresh and try again.';
 }
 
+// ============================================
+// BUDGET VALIDATION CHECK
+// ============================================
+// Only check budget if NOT a draft AND user is subject to budget rules
+if (!$isDraft) {
+    $userDepartmentId = Session::getUserDepartmentId();
+    $userRoleId = Session::getUserRoleId();
+    
+    // Finance roles bypass budget checks
+    $bypassBudget = in_array($userRoleId, [ROLE_FINANCE_MANAGER, ROLE_FINANCE_MEMBER]);
+    
+    // Check budget for users with departments (Team Members, Line Managers, Managing Directors)
+    if (!$bypassBudget && $userDepartmentId) {
+        $checkBudget = in_array($userRoleId, [ROLE_TEAM_MEMBER, ROLE_LINE_MANAGER, ROLE_MANAGING_DIRECTOR]);
+        
+        if ($checkBudget) {
+            try {
+                $budgetModel = new Budget();
+                $budgetInfo = $budgetModel->getBudgetStats($userDepartmentId);
+                
+                if ($budgetInfo && $budgetInfo['status'] === 'active') {
+                    $availableBudget = (float)$budgetInfo['available_amount'];
+                    $requestedAmount = (float)$formData['total_amount'];
+                    
+                    // For editing, add back the original amount to available budget
+                    if ($action === 'edit' && $requisitionId) {
+                        $existingReq = $requisition->getById($requisitionId);
+                        if ($existingReq && $existingReq['status'] !== STATUS_APPROVED) {
+                            $originalAmount = (float)$existingReq['total_amount'];
+                            $availableBudget += $originalAmount;
+                        }
+                    }
+                    
+                    // Check if requested amount exceeds available budget
+                    if ($requestedAmount > $availableBudget) {
+                        $errors[] = sprintf(
+                            'Budget Exceeded: This requisition (₦%s) exceeds your department\'s available budget (₦%s). Please reduce the amount or contact your Finance Manager.',
+                            number_format($requestedAmount, 2),
+                            number_format($availableBudget, 2)
+                        );
+                    }
+                } elseif ($budgetInfo && $budgetInfo['status'] === 'expired') {
+                    $errors[] = 'Department Budget Expired: Your department\'s budget period has ended. Please contact your Finance Manager.';
+                } elseif (!$budgetInfo) {
+                    $errors[] = 'No Budget Configured: Your department does not have an active budget. Please contact your Finance Manager.';
+                }
+            } catch (Exception $e) {
+                error_log("Budget validation error: " . $e->getMessage());
+            }
+        }
+    }
+}
+// ============================================
+// END BUDGET VALIDATION
+// ============================================
+
 // If there are validation errors, redirect back
 if (!empty($errors)) {
     Session::setFlash('error', implode('<br>', $errors));
@@ -161,7 +217,7 @@ if ($action == 'create') {
     if ($result['success']) {
         $newRequisitionId = $result['requisition_id'];
         
-        // Handle file uploads
+// Handle file uploads
         if (isset($_FILES['attachments']) && !empty($_FILES['attachments']['name'][0])) {
             $uploadedCount = 0;
             $fileErrors = [];
@@ -198,6 +254,16 @@ if ($action == 'create') {
             
             if (!empty($fileErrors)) {
                 $result['message'] .= " However, some files failed: " . implode(', ', $fileErrors);
+            }
+        }
+        
+        // ✅ SEND EMAIL NOTIFICATION (ONLY if not a draft)
+        if (!$isDraft) {
+            try {
+                Notification::send(NOTIF_REQUISITION_SUBMITTED, $newRequisitionId);
+            } catch (Exception $e) {
+                error_log("Email notification failed: " . $e->getMessage());
+                // Don't block the flow if email fails
             }
         }
         

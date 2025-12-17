@@ -5,6 +5,10 @@
  * 
  * File: finance/budget/index.php
  * Purpose: List all department budgets with status filtering
+ * 
+ * ✅ UPDATED: Smart filtering for expired budgets
+ * - Only shows expired budgets in "Action Required" if department has NO active/upcoming budget
+ * - Moves other expired budgets to separate "Expired Budgets" archive section
  */
 
 define('APP_ACCESS', true);
@@ -18,8 +22,17 @@ Session::start();
 require_once __DIR__ . '/../../middleware/auth-check.php';
 require_once __DIR__ . '/../../middleware/role-check.php';
 
-// Only Finance Manager can access
-checkRole(ROLE_FINANCE_MANAGER);
+// Finance Manager and Managing Director can access (MD gets read-only)
+$userRole = Session::getUserRoleId();
+if ($userRole != ROLE_FINANCE_MANAGER && $userRole != ROLE_MANAGING_DIRECTOR) {
+    Session::setFlash('error', 'Access denied. This page is only accessible to Finance Manager and Managing Director.');
+    redirect(BASE_URL . '/dashboard/index.php');
+    exit;
+}
+
+// Check if user is Finance Manager (full access) or MD (read-only)
+$isFinanceManager = (Session::getUserRoleId() == ROLE_FINANCE_MANAGER);
+$isManagingDirector = (Session::getUserRoleId() == ROLE_MANAGING_DIRECTOR);
 
 $budget = new Budget();
 $department = new Department();
@@ -34,16 +47,31 @@ $filterDepartment = isset($_GET['department']) ? (int)$_GET['department'] : 0;
 // Get all budgets
 $allBudgets = $budget->getAllBudgets();
 
-// Filter budgets based on criteria
+// ✅ CRITICAL: Create lookup from ALL budgets BEFORE filtering
+// This ensures we can see active/upcoming budgets even when filtering by "expired"
+$departmentsWithActiveBudget = [];
+foreach ($allBudgets as $bud) {
+    if ($bud['status'] === 'active' || $bud['status'] === 'upcoming') {
+        $departmentsWithActiveBudget[$bud['department_id']] = true;
+    }
+}
+
+// NOW filter budgets for display (after building the lookup)
 $filteredBudgets = array_filter($allBudgets, function($b) use ($filterStatus, $filterDepartment) {
     $statusMatch = ($filterStatus === 'all' || $b['status'] === $filterStatus);
     $deptMatch = ($filterDepartment === 0 || $b['department_id'] == $filterDepartment);
     return $statusMatch && $deptMatch;
 });
 
-// Separate budgets by status for display sections
-$expiredBudgets = array_filter($filteredBudgets, function($b) {
-    return $b['status'] === 'expired';
+// ✅ UPDATED: Separate expired budgets into two categories
+$expiredBudgetsNeedingAction = array_filter($filteredBudgets, function($b) use ($departmentsWithActiveBudget) {
+    // Only show expired budgets where department has NO active/upcoming budget
+    return $b['status'] === 'expired' && !isset($departmentsWithActiveBudget[$b['department_id']]);
+});
+
+$expiredBudgetsArchived = array_filter($filteredBudgets, function($b) use ($departmentsWithActiveBudget) {
+    // Expired budgets where department HAS active/upcoming budget (archived)
+    return $b['status'] === 'expired' && isset($departmentsWithActiveBudget[$b['department_id']]);
 });
 
 $expiringSoonBudgets = array_filter($filteredBudgets, function($b) {
@@ -297,63 +325,55 @@ $pageTitle = 'Budget Management';
     }
 
     /* Filter Section */
-.filter-section {
-    background: var(--bg-subtle);
-    padding: var(--spacing-4);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--spacing-5);
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: var(--spacing-4);
-    align-items: end;
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2);
-}
-
-.filter-label {
-    display: block;
-    font-weight: var(--font-weight-medium);
-    color: var(--text-primary);
-    font-size: var(--font-size-sm);
-    margin: 0;
-}
-
-.filter-select {
-    width: 100%;
-    padding: var(--spacing-3);
-    font-size: var(--font-size-sm);
-    background: var(--bg-input);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--text-primary);
-    transition: var(--theme-transition);
-    height: 42px; /* Match button height */
-}
-
-.filter-select:focus {
-    border-color: var(--primary);
-    outline: none;
-}
-
-/* Make Reset button match input height */
-.filter-section .btn {
-    height: 42px;
-    padding: 0 var(--spacing-4);
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
     .filter-section {
-        grid-template-columns: 1fr;
+        background: var(--bg-subtle);
+        padding: var(--spacing-4);
+        border-radius: var(--border-radius);
+        margin-bottom: var(--spacing-5);
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: var(--spacing-4);
+        align-items: end;
     }
-}
+
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+
+    .filter-label {
+        display: block;
+        font-weight: var(--font-weight-medium);
+        color: var(--text-primary);
+        font-size: var(--font-size-sm);
+        margin: 0;
+    }
+
+    .filter-select {
+        width: 100%;
+        padding: var(--spacing-3);
+        font-size: var(--font-size-sm);
+        background: var(--bg-input);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        color: var(--text-primary);
+        transition: var(--theme-transition);
+        height: 42px;
+    }
+
+    .filter-select:focus {
+        border-color: var(--primary);
+        outline: none;
+    }
+
+    .filter-section .btn {
+        height: 42px;
+        padding: 0 var(--spacing-4);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2);
+    }
 
     /* Action Buttons */
     .action-buttons {
@@ -364,6 +384,24 @@ $pageTitle = 'Budget Management';
     .btn-sm {
         padding: var(--spacing-2) var(--spacing-3);
         font-size: var(--font-size-xs);
+    }
+
+    /* Read-Only Notice */
+    .read-only-notice {
+        background: rgba(var(--info-rgb), 0.1);
+        border: 1px solid rgba(var(--info-rgb), 0.2);
+        border-radius: var(--border-radius);
+        padding: var(--spacing-3) var(--spacing-4);
+        margin-bottom: var(--spacing-5);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+        color: var(--info);
+    }
+
+    .read-only-notice i {
+        font-size: var(--font-size-lg);
+        flex-shrink: 0;
     }
 
     /* Empty State */
@@ -426,48 +464,6 @@ $pageTitle = 'Budget Management';
         flex: 1;
     }
 
-    /* Breadcrumb */
-    .content-breadcrumb {
-        margin-top: var(--spacing-2);
-    }
-
-    .breadcrumb {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        gap: var(--spacing-1);
-        align-items: center;
-    }
-
-    .breadcrumb-item {
-        display: flex;
-        align-items: center;
-        font-size: var(--font-size-sm);
-        color: var(--text-secondary);
-    }
-
-    .breadcrumb-item a {
-        color: var(--primary);
-        text-decoration: none;
-        transition: var(--theme-transition);
-    }
-
-    .breadcrumb-item a:hover {
-        color: var(--primary-dark);
-        text-decoration: underline;
-    }
-
-    .breadcrumb-item.active {
-        color: var(--text-primary);
-    }
-
-    .breadcrumb-item + .breadcrumb-item::before {
-        content: "/";
-        margin: 0 var(--spacing-2);
-        color: var(--text-muted);
-    }
-
     /* Content Header */
     .content-header {
         margin-bottom: var(--spacing-6);
@@ -499,6 +495,10 @@ $pageTitle = 'Budget Management';
             width: 100%;
             margin-top: var(--spacing-3);
         }
+
+        .filter-section {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 
@@ -507,26 +507,27 @@ $pageTitle = 'Budget Management';
     <div class="d-flex justify-content-between align-items-start flex-wrap">
         <div>
             <h1 class="content-title">Budget Management</h1>
-            <!--<nav class="content-breadcrumb">-->
-            <!--    <ol class="breadcrumb">-->
-            <!--        <li class="breadcrumb-item">-->
-            <!--            <a href="../../dashboard/">Dashboard</a>-->
-            <!--        </li>-->
-            <!--        <li class="breadcrumb-item">-->
-            <!--            <a href="../">Finance</a>-->
-            <!--        </li>-->
-            <!--        <li class="breadcrumb-item active">Budget Management</li>-->
-            <!--    </ol>-->
-            <!--</nav>-->
         </div>
+        <?php if ($isFinanceManager): ?>
         <div class="content-actions">
             <a href="set-budget.php" class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Set New Budget</span>
             </a>
         </div>
+        <?php endif; ?>
     </div>
 </div>
+
+<!-- Read-Only Notice for MD -->
+<?php if ($isManagingDirector): ?>
+<div class="read-only-notice">
+    <i class="fas fa-info-circle"></i>
+    <div>
+        <strong>Read-Only Access:</strong> You're viewing budget information in read-only mode. Contact the Finance Manager to make changes.
+    </div>
+</div>
+<?php endif; ?>
 
 <!-- Alert Messages -->
 <?php if ($successMessage): ?>
@@ -579,15 +580,15 @@ $pageTitle = 'Budget Management';
     </div>
 </div>
 
-<!-- ACTION REQUIRED - Expired Budgets -->
-<?php if (!empty($expiredBudgets)): ?>
+<!-- ✅ UPDATED: ACTION REQUIRED - Only Expired Budgets WITHOUT Active/Upcoming Budgets -->
+<?php if (!empty($expiredBudgetsNeedingAction)): ?>
 <div class="action-required-section">
     <div class="action-required-header">
         <div class="action-required-icon">
             <i class="fas fa-exclamation-triangle"></i>
         </div>
         <h2 class="action-required-title">Action Required - Expired Budgets</h2>
-        <span class="action-required-count"><?php echo count($expiredBudgets); ?></span>
+        <span class="action-required-count"><?php echo count($expiredBudgetsNeedingAction); ?></span>
     </div>
     
     <div class="table-responsive">
@@ -598,11 +599,13 @@ $pageTitle = 'Budget Management';
                     <th>Expired Date</th>
                     <th>Budget Amount</th>
                     <th>Final Utilization</th>
+                    <?php if ($isFinanceManager): ?>
                     <th class="text-right">Action</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($expiredBudgets as $bud): ?>
+                <?php foreach ($expiredBudgetsNeedingAction as $bud): ?>
                 <tr>
                     <td>
                         <strong><?php echo htmlspecialchars($bud['department_name']); ?></strong><br>
@@ -622,12 +625,14 @@ $pageTitle = 'Budget Management';
                             <div class="progress-text"><?php echo number_format($percent, 1); ?>%</div>
                         </div>
                     </td>
+                    <?php if ($isFinanceManager): ?>
                     <td class="text-right">
                         <a href="set-budget.php?department=<?php echo $bud['department_id']; ?>" class="btn btn-sm btn-danger">
                             <i class="fas fa-plus"></i>
                             Set New Budget
                         </a>
                     </td>
+                    <?php endif; ?>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -694,10 +699,12 @@ $pageTitle = 'Budget Management';
                                 <i class="fas fa-eye"></i>
                                 View
                             </a>
+                            <?php if ($isFinanceManager): ?>
                             <a href="set-budget.php?department=<?php echo $bud['department_id']; ?>" class="btn btn-sm btn-warning">
                                 <i class="fas fa-sync-alt"></i>
                                 Renew
                             </a>
+                            <?php endif; ?>
                         </div>
                     </td>
                 </tr>
@@ -773,10 +780,12 @@ $pageTitle = 'Budget Management';
                                 <i class="fas fa-eye"></i>
                                 View
                             </a>
+                            <?php if ($isFinanceManager): ?>
                             <a href="edit-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-secondary">
                                 <i class="fas fa-edit"></i>
                                 Edit
                             </a>
+                            <?php endif; ?>
                         </div>
                     </td>
                 </tr>
@@ -839,11 +848,82 @@ $pageTitle = 'Budget Management';
                                 <i class="fas fa-eye"></i>
                                 View
                             </a>
+                            <?php if ($isFinanceManager): ?>
                             <a href="edit-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-secondary">
                                 <i class="fas fa-edit"></i>
                                 Edit
                             </a>
+                            <?php endif; ?>
                         </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php endif; ?>
+
+<!-- ✅ NEW: EXPIRED BUDGETS (Archived - Department has new budget) -->
+<?php if (!empty($expiredBudgetsArchived)): ?>
+<div class="budget-section">
+    <div class="budget-section-header">
+        <h3 class="budget-section-title">
+            <i class="fas fa-archive" style="color: var(--bg-hover);"></i>
+            Expired Budgets
+            <span class="budget-count-badge" style="background: var(--bg-hover);"><?php echo count($expiredBudgetsArchived); ?></span>
+        </h3>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="enhanced-table">
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>Period</th>
+                    <th>Budget Amount</th>
+                    <th>Final Utilization</th>
+                    <th>Status</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($expiredBudgetsArchived as $bud): ?>
+                <tr>
+                    <td>
+                        <strong><?php echo htmlspecialchars($bud['department_name']); ?></strong><br>
+                        <small class="text-muted"><?php echo htmlspecialchars($bud['department_code']); ?></small>
+                    </td>
+                    <td>
+                        <small>
+                            <?php echo date('M d, Y', strtotime($bud['start_date'])); ?><br>
+                            to <?php echo date('M d, Y', strtotime($bud['end_date'])); ?>
+                        </small>
+                    </td>
+                    <td><strong>₦<?php echo number_format($bud['budget_amount'], 2); ?></strong></td>
+                    <td>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <?php 
+                                $percent = $bud['utilization_percentage'];
+                                $progressClass = $percent >= 75 ? 'high' : ($percent >= 50 ? 'medium' : 'low');
+                                ?>
+                                <div class="progress-fill <?php echo $progressClass; ?>" style="width: <?php echo min($percent, 100); ?>%"></div>
+                            </div>
+                            <div class="progress-text"><?php echo number_format($percent, 1); ?>%</div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="status-badge status-expired">
+                            <i class="fas fa-times-circle"></i>
+                            Expired
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <a href="view-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-eye"></i>
+                            View
+                        </a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -865,10 +945,13 @@ $pageTitle = 'Budget Management';
             <?php if ($filterStatus !== 'all' || $filterDepartment !== 0): ?>
                 No budgets match your current filters. Try adjusting your search criteria.
             <?php else: ?>
-                No department budgets have been set yet. Click "Set New Budget" to create one.
+                No department budgets have been set yet.
+                <?php if ($isFinanceManager): ?>
+                    Click "Set New Budget" to create one.
+                <?php endif; ?>
             <?php endif; ?>
         </p>
-        <?php if ($filterStatus === 'all' && $filterDepartment === 0): ?>
+        <?php if ($filterStatus === 'all' && $filterDepartment === 0 && $isFinanceManager): ?>
             <a href="set-budget.php" class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 <span>Set First Budget</span>
@@ -903,6 +986,18 @@ function resetFilters() {
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Budget Management Index initialized');
+    
+    <?php if ($isManagingDirector): ?>
+    console.log('📖 Budget page loaded in read-only mode for Managing Director');
+    <?php endif; ?>
+    
+    // ✅ Log smart filtering stats
+    console.log('📊 Budget Statistics:');
+    console.log('  - Active: <?php echo count($activeBudgets); ?>');
+    console.log('  - Upcoming: <?php echo count($upcomingBudgets); ?>');
+    console.log('  - Expired (Action Required): <?php echo count($expiredBudgetsNeedingAction); ?>');
+    console.log('  - Expired (Archived): <?php echo count($expiredBudgetsArchived); ?>');
+    console.log('  - Expiring Soon: <?php echo count($expiringSoonBudgets); ?>');
 });
 </script>
 

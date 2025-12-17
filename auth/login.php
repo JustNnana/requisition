@@ -98,7 +98,7 @@ $pageTitle = 'Login';
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #00a76f 0%, #008865 100%);
+            background: var(--bg-primary);
             padding: 20px;
         }
         
@@ -127,16 +127,22 @@ $pageTitle = 'Login';
         }
         
         .login-header {
-            background: linear-gradient(135deg, #00a76f 0%, #008865 100%);
+            background: linear-gradient(135deg, #EC3338 0%, #ec3339bd 100%);
             padding: 40px 30px;
             text-align: center;
             color: white;
         }
+        /* Logo styling */
+        .logo-img {
+            height: 40px;
+            width: auto;
+            transition: var(--transition-normal);
+        }
         
         .login-logo {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.2);
+            width: 90px;
+            height: 90px;
+            background: #ffffff;
             border-radius: var(--border-radius-full);
             display: flex;
             align-items: center;
@@ -215,7 +221,7 @@ $pageTitle = 'Login';
         }
         
         .form-label i {
-            color: var(--primary);
+            color: var(--bg-hover);
         }
         
         .input-group {
@@ -238,12 +244,12 @@ $pageTitle = 'Login';
         }
         
         .input-group .form-control:focus + i {
-            color: var(--primary);
+            color: var(--bg-hover);
         }
         
         .password-toggle {
             position: absolute;
-            right: 15px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
@@ -255,7 +261,7 @@ $pageTitle = 'Login';
         }
         
         .password-toggle:hover {
-            color: var(--primary);
+            color: var(--bg-hover);
         }
         
         .form-options {
@@ -269,6 +275,7 @@ $pageTitle = 'Login';
             display: flex;
             align-items: center;
             gap: var(--spacing-2);
+            display:none;
         }
         
         .checkbox-wrapper input[type="checkbox"] {
@@ -286,6 +293,7 @@ $pageTitle = 'Login';
         }
         
         .forgot-link {
+            display: none;
             font-size: var(--font-size-sm);
             color: var(--primary);
             text-decoration: none;
@@ -303,10 +311,11 @@ $pageTitle = 'Login';
             font-size: var(--font-size-base);
             font-weight: var(--font-weight-semibold);
             border-radius: var(--border-radius);
-            background: linear-gradient(135deg, #00a76f 0%, #008865 100%);
+            background: linear-gradient(135deg, #EC3338 0%, #ec3339bd 100%);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            border-color: transparent !important;
         }
         
         .btn-login::before {
@@ -322,7 +331,7 @@ $pageTitle = 'Login';
         
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 167, 111, 0.3);
+            box-shadow: 0 8px 20px #EC33384d;
         }
         
         .btn-login:hover::before {
@@ -357,8 +366,8 @@ $pageTitle = 'Login';
             height: 45px;
             border-radius: var(--border-radius-full);
             background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -368,7 +377,7 @@ $pageTitle = 'Login';
         }
         
         .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--bg-hover);
             transform: rotate(15deg) scale(1.1);
         }
         
@@ -413,6 +422,7 @@ $pageTitle = 'Login';
                 gap: var(--spacing-3);
             }
         }
+        
     </style>
 </head>
 <body>
@@ -428,10 +438,10 @@ $pageTitle = 'Login';
             <!-- Login Header -->
             <div class="login-header">
                 <div class="login-logo">
-                    <i class="fas fa-file-invoice"></i>
+                    <img src="<?php echo BASE_URL; ?>/assets/images/icons/kadick-logo.png" alt="Kadick Logo" class="logo-img logo-light">
                 </div>
                 <h1>Welcome Back</h1>
-                <p>Login to your GateWey account</p>
+                <p>Login to your Kadick account</p>
             </div>
             
 <!-- Login Body -->
@@ -533,7 +543,7 @@ $pageTitle = 'Login';
             
             <!-- Login Footer -->
             <div class="login-footer">
-                <p>&copy; <?php echo date('Y'); ?> GateWey Technologies. All rights reserved.</p>
+                <p>&copy; <?php echo date('Y'); ?> Kadick Finance. All rights reserved.</p>
             </div>
         </div>
     </div>

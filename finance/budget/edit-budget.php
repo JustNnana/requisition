@@ -925,6 +925,43 @@ $pageTitle = 'Edit Budget';
                 </div>
             </div>
         </div>
+
+        <!-- ✅ NEW: Budget Breakdown Card -->
+        <?php if ($budgetData['has_supplement']): ?>
+        <div class="stats-card" style="margin-top: var(--spacing-4);">
+            <div class="stats-header">
+                <i class="fas fa-chart-line stats-icon" style="color: var(--success);"></i>
+                <h3 class="stats-title">Budget Breakdown</h3>
+            </div>
+            <div class="stats-content">
+                <div class="stat-item">
+                    <span class="stat-label">
+                        <i class="fas fa-money-bill"></i> Original Budget
+                    </span>
+                    <div class="stat-value">₦<?php echo number_format($budgetData['original_budget'], 2); ?></div>
+                    <div class="stat-subtext">Initial budget amount</div>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-label" style="color: var(--success);">
+                        <i class="fas fa-plus-circle"></i> Supplements Added
+                    </span>
+                    <div class="stat-value" style="color: var(--success);">+₦<?php echo number_format($budgetData['total_supplements'], 2); ?></div>
+                    <div class="stat-subtext">Previous increases</div>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-label">
+                        <i class="fas fa-wallet"></i> Current Total
+                    </span>
+                    <div class="stat-value">₦<?php echo number_format($budgetData['budget_amount'], 2); ?></div>
+                    <div class="stat-subtext">Original + Supplements</div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
     </div>
 </div>
 
