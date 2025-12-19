@@ -36,10 +36,7 @@ if (!$requisitionId) {
 $requisition = new Requisition();
 $categoryModel = new RequisitionCategory();
 
-// Load active categories from database
-$categories = $categoryModel->getAllActive();
-
-// Get requisition data
+// Get requisition data FIRST
 $reqData = $requisition->getById($requisitionId);
 
 if (!$reqData) {
@@ -53,6 +50,29 @@ if (!can_user_edit_requisition($reqData)) {
     Session::setFlash('error', 'You cannot edit this requisition.');
     header('Location: view.php?id=' . $requisitionId);
     exit;
+}
+
+// Load active parent categories
+$parentCategories = $categoryModel->getParentCategories(true);
+
+// Get parent and child info for pre-selection
+$currentCategoryId = $reqData['category_id'] ?? null;
+$selectedParentId = null;
+$selectedChildId = null;
+
+if ($currentCategoryId) {
+    $currentCategory = $categoryModel->getById($currentCategoryId);
+    if ($currentCategory) {
+        if ($currentCategory['parent_id']) {
+            // Current category is a child
+            $selectedParentId = $currentCategory['parent_id'];
+            $selectedChildId = $currentCategory['id'];
+        } else {
+            // Current category is a parent (no children system before)
+            $selectedParentId = $currentCategory['id'];
+            // Child will be empty
+        }
+    }
 }
 
 // ============================================
@@ -1068,26 +1088,48 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
         </div>
         <div class="form-section-body">
             <!-- Purpose/Category Dropdown -->
-            <div class="form-group">
-                <label for="category_id" class="form-label required">Purpose/Category</label>
-                <select
-                    id="category_id"
-                    name="category_id"
-                    class="form-control"
-                    required>
-                    <option value="">-- Select Purpose --</option>
-                    <?php foreach ($categories as $category): ?>
-                        <option value="<?php echo $category['id']; ?>"
-                            data-name="<?php echo htmlspecialchars($category['category_name']); ?>"
-                            <?php echo ($reqData['category_id'] == $category['id']) ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($category['category_name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <!-- Hidden field to store the category name for display purposes -->
-                <input type="hidden" id="purpose" name="purpose" value="<?php echo htmlspecialchars($reqData['purpose']); ?>">
-                <div class="form-text">Select the category that best describes this requisition.</div>
-            </div>
+            <!-- Parent Category Dropdown -->
+<div class="form-group">
+    <label for="parent_category" class="form-label required">Parent Category</label>
+    <select 
+        id="parent_category" 
+        name="parent_category_id" 
+        class="form-control" 
+        required
+    >
+        <option value="">-- Select Parent Category --</option>
+        <?php foreach ($parentCategories as $parent): ?>
+            <option 
+                value="<?php echo $parent['id']; ?>" 
+                data-category-name="<?php echo htmlspecialchars($parent['category_name']); ?>"
+                <?php echo ($selectedParentId == $parent['id']) ? 'selected' : ''; ?>
+            >
+                <?php echo htmlspecialchars($parent['category_name']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <div class="form-text">Select the main category for this requisition.</div>
+</div>
+
+<!-- Child Category Dropdown -->
+<div class="form-group" id="child_category_wrapper" style="<?php echo $selectedParentId ? 'display: block;' : 'display: none;'; ?>">
+    <label for="child_category" class="form-label required">Child Category</label>
+    <select 
+        id="child_category" 
+        name="category_id" 
+        class="form-control"
+        <?php if ($selectedChildId): ?>data-preselected="<?php echo $selectedChildId; ?>"<?php endif; ?>
+    >
+        <option value="">-- Select Child Category --</option>
+    </select>
+    <div class="form-text">Select the specific subcategory.</div>
+    <span id="child_loading" style="display: none; color: var(--text-muted); font-size: var(--font-size-xs);">
+        <i class="fas fa-spinner fa-spin"></i> Loading options...
+    </span>
+</div>
+
+<div id="no_children_message" style="display: none;"></div>
+<input type="hidden" id="category_name_display" name="purpose" value="<?php echo htmlspecialchars($reqData['purpose']); ?>">
 
             <!-- Additional Description (Optional) -->
             <div class="form-group">
@@ -1275,7 +1317,11 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 
 <!-- JavaScript for dynamic items -->
 <script src="<?php echo BASE_URL; ?>/assets/js/requisition.js"></script>
-
+<!-- Category Cascade JavaScript -->
+<script>
+const BASE_URL = '<?php echo BASE_URL; ?>';
+</script>
+<script src="<?php echo BASE_URL; ?>/assets/js/category-cascade.js"></script>
 <?php if ($showBudgetCheck && $hasBudget): ?>
 <!-- Budget Check JavaScript -->
 <script>
@@ -1300,27 +1346,27 @@ if (typeof calculateGrandTotal === 'function') {
 }
 
 // Sync the hidden purpose field when category dropdown changes
-document.addEventListener('DOMContentLoaded', function() {
-    const categorySelect = document.getElementById('category_id');
-    const purposeHidden = document.getElementById('purpose');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const categorySelect = document.getElementById('category_id');
+//     const purposeHidden = document.getElementById('purpose');
     
-    if (categorySelect && purposeHidden) {
-        categorySelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            if (selectedOption && selectedOption.value) {
-                purposeHidden.value = selectedOption.getAttribute('data-name') || selectedOption.text;
-            } else {
-                purposeHidden.value = '';
-            }
-        });
+//     if (categorySelect && purposeHidden) {
+//         categorySelect.addEventListener('change', function() {
+//             const selectedOption = this.options[this.selectedIndex];
+//             if (selectedOption && selectedOption.value) {
+//                 purposeHidden.value = selectedOption.getAttribute('data-name') || selectedOption.text;
+//             } else {
+//                 purposeHidden.value = '';
+//             }
+//         });
         
-        // Initialize purpose on page load
-        if (categorySelect.value) {
-            const selectedOption = categorySelect.options[categorySelect.selectedIndex];
-            purposeHidden.value = selectedOption.getAttribute('data-name') || selectedOption.text;
-        }
-    }
-});
+//         // Initialize purpose on page load
+//         if (categorySelect.value) {
+//             const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+//             purposeHidden.value = selectedOption.getAttribute('data-name') || selectedOption.text;
+//         }
+//     }
+// });
 
 // Add confirmation for navigation
 window.addEventListener('beforeunload', function(e) {

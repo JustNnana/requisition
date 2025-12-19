@@ -1347,3 +1347,232 @@ Stack trace:
 [17-Dec-2025 11:18:43 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
 [17-Dec-2025 11:18:43 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
 [17-Dec-2025 11:18:43 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[18-Dec-2025 17:44:49 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:44:49 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[18-Dec-2025 17:44:49 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[18-Dec-2025 17:44:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 17:44:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 17:44:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 17:44:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 17:44:49 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[18-Dec-2025 17:45:16 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:45:16 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[18-Dec-2025 17:45:16 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[18-Dec-2025 17:45:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 17:45:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 17:45:16 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 17:45:16 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 17:45:16 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[18-Dec-2025 17:45:38 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:45:38 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[18-Dec-2025 17:45:38 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[18-Dec-2025 17:45:38 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 17:45:38 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 17:45:38 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 17:45:38 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 17:45:38 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[18-Dec-2025 17:45:46 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:45:46 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[18-Dec-2025 17:45:46 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[18-Dec-2025 17:45:46 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 17:45:46 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 17:45:46 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 17:45:46 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 17:45:46 Africa/Lagos] Navbar Debug - Role ID: 6 | Role Name: Team Member
+[18-Dec-2025 17:47:49 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:47:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 17:47:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 17:47:49 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 17:47:49 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 17:47:49 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[18-Dec-2025 17:55:33 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:55:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 17:55:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 17:55:33 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 17:55:33 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 17:55:33 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[18-Dec-2025 17:55:36 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:56:12 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:57:39 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 17:57:39 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 17:57:39 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 17:57:39 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 17:57:39 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 17:57:39 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[18-Dec-2025 17:57:42 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:00:21 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:00:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 18:00:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 18:00:21 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 18:00:21 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 18:00:21 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[18-Dec-2025 18:00:23 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:00:40 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:00:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 18:00:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 18:00:40 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 18:00:40 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 18:00:40 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[18-Dec-2025 18:00:42 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:03:53 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:03:53 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list' | SQL: SELECT r.*, 
+               u.first_name as requester_first_name, 
+               u.last_name as requester_last_name,
+               u.email as requester_email,
+               
+               -- Department info
+               d.name as department_name,
+               d.code as department_code,
+               
+               -- Category info (parent/child support)
+               cat.id as selected_category_id,
+               cat.category_name as selected_category_name,
+               cat.parent_id as selected_category_parent_id,
+               parent_cat.id as parent_category_id,
+               parent_cat.category_name as parent_category_name
+               
+        FROM requisitions r
+        INNER JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON u.department_id = d.id
+        LEFT JOIN requisition_categories cat ON r.category_id = cat.id
+        LEFT JOIN requisition_categories parent_cat ON cat.parent_id = parent_cat.id
+        WHERE u.department_id = ? AND r.status != 'draft' ORDER BY r.created_at DESC LIMIT 10 OFFSET 0
+[18-Dec-2025 18:03:53 Africa/Lagos] Generate department report error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list'
+[18-Dec-2025 18:03:57 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:03:57 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list' | SQL: SELECT r.*, 
+               u.first_name as requester_first_name, 
+               u.last_name as requester_last_name,
+               u.email as requester_email,
+               
+               -- Department info
+               d.name as department_name,
+               d.code as department_code,
+               
+               -- Category info (parent/child support)
+               cat.id as selected_category_id,
+               cat.category_name as selected_category_name,
+               cat.parent_id as selected_category_parent_id,
+               parent_cat.id as parent_category_id,
+               parent_cat.category_name as parent_category_name
+               
+        FROM requisitions r
+        INNER JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON u.department_id = d.id
+        LEFT JOIN requisition_categories cat ON r.category_id = cat.id
+        LEFT JOIN requisition_categories parent_cat ON cat.parent_id = parent_cat.id
+        WHERE u.department_id = ? AND r.status != 'draft' ORDER BY r.created_at DESC LIMIT 10 OFFSET 0
+[18-Dec-2025 18:03:57 Africa/Lagos] Generate department report error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list'
+[18-Dec-2025 18:04:01 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:04:01 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list' | SQL: SELECT r.*, 
+               u.first_name as requester_first_name, 
+               u.last_name as requester_last_name,
+               u.email as requester_email,
+               
+               -- Department info
+               d.name as department_name,
+               d.code as department_code,
+               
+               -- Category info (parent/child support)
+               cat.id as selected_category_id,
+               cat.category_name as selected_category_name,
+               cat.parent_id as selected_category_parent_id,
+               parent_cat.id as parent_category_id,
+               parent_cat.category_name as parent_category_name
+               
+        FROM requisitions r
+        INNER JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON u.department_id = d.id
+        LEFT JOIN requisition_categories cat ON r.category_id = cat.id
+        LEFT JOIN requisition_categories parent_cat ON cat.parent_id = parent_cat.id
+        WHERE u.department_id = ? AND r.status != 'draft' ORDER BY r.created_at DESC LIMIT 10 OFFSET 0
+[18-Dec-2025 18:04:01 Africa/Lagos] Generate department report error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list'
+[18-Dec-2025 18:09:46 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:09:46 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list' | SQL: SELECT r.*, 
+               u.first_name as requester_first_name, 
+               u.last_name as requester_last_name,
+               u.email as requester_email,
+               
+               -- Department info
+               d.name as department_name,
+               d.code as department_code,
+               
+               -- Category info (parent/child support)
+               cat.id as selected_category_id,
+               cat.category_name as selected_category_name,
+               cat.parent_id as selected_category_parent_id,
+               parent_cat.id as parent_category_id,
+               parent_cat.category_name as parent_category_name
+               
+        FROM requisitions r
+        INNER JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON u.department_id = d.id
+        LEFT JOIN requisition_categories cat ON r.category_id = cat.id
+        LEFT JOIN requisition_categories parent_cat ON cat.parent_id = parent_cat.id
+        WHERE u.department_id = ? AND r.status != 'draft' ORDER BY r.created_at DESC LIMIT 10 OFFSET 0
+[18-Dec-2025 18:09:46 Africa/Lagos] Generate department report error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list'
+[18-Dec-2025 18:09:49 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:09:49 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list' | SQL: SELECT r.*, 
+               u.first_name as requester_first_name, 
+               u.last_name as requester_last_name,
+               u.email as requester_email,
+               
+               -- Department info
+               d.name as department_name,
+               d.code as department_code,
+               
+               -- Category info (parent/child support)
+               cat.id as selected_category_id,
+               cat.category_name as selected_category_name,
+               cat.parent_id as selected_category_parent_id,
+               parent_cat.id as parent_category_id,
+               parent_cat.category_name as parent_category_name
+               
+        FROM requisitions r
+        INNER JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON u.department_id = d.id
+        LEFT JOIN requisition_categories cat ON r.category_id = cat.id
+        LEFT JOIN requisition_categories parent_cat ON cat.parent_id = parent_cat.id
+        WHERE u.department_id = ? AND r.status != 'draft' ORDER BY r.created_at DESC LIMIT 10 OFFSET 0
+[18-Dec-2025 18:09:49 Africa/Lagos] Generate department report error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.name' in 'field list'
+[18-Dec-2025 18:10:03 Africa/Lagos] Database connection established successfully
+[18-Dec-2025 18:10:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[18-Dec-2025 18:10:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[18-Dec-2025 18:10:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[18-Dec-2025 18:10:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[18-Dec-2025 18:10:03 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager

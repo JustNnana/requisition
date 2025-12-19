@@ -600,6 +600,52 @@ $params = [
         }
     }
 
+/**
+ * Add this method to the Requisition class if it doesn't exist
+ * Location: classes/Requisition.php
+ * 
+ * This method counts total requisitions for a specific user
+ */
+
+/**
+ * Count requisitions by user ID
+ * 
+ * @param int $userId User ID
+ * @param array $filters Optional filters (status, etc.)
+ * @return int Count of requisitions
+ */
+public function countByUser($userId, $filters = [])
+{
+    try {
+        $whereClauses = ["r.user_id = ?"];
+        $params = [$userId];
+        
+        // Optional status filter
+        if (!empty($filters['status'])) {
+            $whereClauses[] = "r.status = ?";
+            $params[] = $filters['status'];
+        }
+        
+        // Don't count drafts unless specifically requested
+        if (!isset($filters['include_drafts']) || !$filters['include_drafts']) {
+            $whereClauses[] = "r.is_draft = 0";
+        }
+        
+        $whereSQL = 'WHERE ' . implode(' AND ', $whereClauses);
+        
+        $sql = "SELECT COUNT(*) as total 
+                FROM requisitions r
+                $whereSQL";
+        
+        $result = $this->db->fetchOne($sql, $params);
+        
+        return (int)($result['total'] ?? 0);
+        
+    } catch (Exception $e) {
+        error_log("Count requisitions by user error: " . $e->getMessage());
+        return 0;
+    }
+}
     /**
      * Get statistics for dashboard
      * 

@@ -55,7 +55,7 @@ $requisition = new Requisition();
 $categoryModel = new RequisitionCategory();
 
 // Load active categories from database
-$categories = $categoryModel->getAllActive();
+$parentCategories = $categoryModel->getParentCategories(true);
 
 // Initialize variables
 $errors = [];
@@ -1077,29 +1077,49 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="form-section-body">
             <!-- Purpose/Category Dropdown -->
-            <div class="form-group">
-                <label for="purpose" class="form-label required">Purpose/Category</label>
-                <select 
-                    id="purpose" 
-                    name="category_id" 
-                    class="form-control" 
-                    required
-                    data-category-name=""
-                >
-                    <option value="">-- Select Purpose --</option>
-                    <?php foreach ($categories as $category): ?>
-                        <option 
-                            value="<?php echo $category['id']; ?>" 
-                            data-category-name="<?php echo htmlspecialchars($category['category_name']); ?>"
-                            <?php echo ($formData['purpose'] == $category['category_name']) ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($category['category_name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <!-- Hidden field to store category name for display -->
-                <input type="hidden" id="category_name" name="purpose" value="">
-                <div class="form-text">Select the category that best describes this requisition.</div>
-            </div>
+<!-- Parent Category Dropdown -->
+<div class="form-group">
+    <label for="parent_category" class="form-label required">Parent Category</label>
+    <select 
+        id="parent_category" 
+        name="parent_category_id" 
+        class="form-control" 
+        required
+    >
+        <option value="">-- Select Parent Category --</option>
+        <?php foreach ($parentCategories as $parent): ?>
+            <option 
+                value="<?php echo $parent['id']; ?>" 
+                data-category-name="<?php echo htmlspecialchars($parent['category_name']); ?>"
+            >
+                <?php echo htmlspecialchars($parent['category_name']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <div class="form-text">Select the main category for this requisition.</div>
+</div>
+
+<!-- Child Category Dropdown (Hidden until parent selected) -->
+<div class="form-group" id="child_category_wrapper" style="display: none;">
+    <label for="child_category" class="form-label required">Child Category</label>
+    <select 
+        id="child_category" 
+        name="category_id" 
+        class="form-control"
+    >
+        <option value="">-- Select Child Category --</option>
+    </select>
+    <div class="form-text">Select the specific subcategory.</div>
+    <span id="child_loading" style="display: none; color: var(--text-muted); font-size: var(--font-size-xs);">
+        <i class="fas fa-spinner fa-spin"></i> Loading options...
+    </span>
+</div>
+
+<!-- Message when parent has no children -->
+<div id="no_children_message" style="display: none;"></div>
+
+<!-- Hidden field to store final category name for display -->
+<input type="hidden" id="category_name_display" name="purpose" value="">
             
             <!-- Additional Description (Optional) -->
             <div class="form-group">
@@ -1256,6 +1276,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- JavaScript for dynamic items -->
 <script src="<?php echo BASE_URL; ?>/assets/js/requisition.js"></script>
+<!-- Category Cascade JavaScript -->
+<script>
+// Define BASE_URL for category cascade script
+const BASE_URL = '<?php echo BASE_URL; ?>';
+</script>
+<script src="<?php echo BASE_URL; ?>/assets/js/category-cascade.js"></script>
 
 <?php if ($showBudgetCheck && $hasBudget): ?>
 <!-- Budget Check JavaScript -->

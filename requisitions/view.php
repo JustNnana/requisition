@@ -1286,10 +1286,34 @@ function getPreviewType($filename)
                     <?php endif; ?>
                 </div>
 
-                <div class="purpose-display">
-                    <label>Purpose/Category</label>
-                    <p><?php echo htmlspecialchars($reqData['purpose']); ?></p>
-                </div>
+                <?php
+// Get full category hierarchy for display
+$categoryDisplay = htmlspecialchars($reqData['purpose']); // Default fallback
+if (!empty($reqData['category_id'])) {
+    $categoryModel = new RequisitionCategory();
+    $currentCategory = $categoryModel->getById($reqData['category_id']);
+    
+    if ($currentCategory) {
+        if ($currentCategory['parent_id']) {
+            // This is a child category - show parent > child
+            $parentCategory = $categoryModel->getById($currentCategory['parent_id']);
+            if ($parentCategory) {
+                $categoryDisplay = htmlspecialchars($parentCategory['category_name']) . ' <i class="fas fa-chevron-right" style="font-size: 0.8em; color: var(--text-muted); margin: 0 var(--spacing-2);"></i> ' . htmlspecialchars($currentCategory['category_name']);
+            } else {
+                // Parent not found, just show child
+                $categoryDisplay = htmlspecialchars($currentCategory['category_name']);
+            }
+        } else {
+            // This is a parent category (no children)
+            $categoryDisplay = htmlspecialchars($currentCategory['category_name']);
+        }
+    }
+}
+?>
+<div class="purpose-display">
+    <label>Purpose/Category</label>
+    <p><?php echo $categoryDisplay; ?></p>
+</div>
 
                 <?php if (!empty($reqData['description'])): ?>
                     <div class="purpose-display" style="margin-top: var(--spacing-3);">

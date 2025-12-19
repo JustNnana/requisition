@@ -1,12 +1,12 @@
 <?php
 /**
  * GateWey Requisition Management System
- * Save Requisition Handler
+ * Save Requisition Handler - FIXED
  * 
  * File: requisitions/save.php
  * Purpose: POST handler for creating and updating requisitions
  * 
- * UPDATED: Added budget validation check before submission
+ * FIXED: Changed STATUS_APPROVED to proper status check
  */
 
 // Define access level
@@ -60,7 +60,7 @@ $isDraft = isset($_POST['is_draft']) && $_POST['is_draft'] == '1';
 $formData = [
     'purpose' => Sanitizer::string($_POST['purpose'] ?? ''),
     'description' => Sanitizer::string($_POST['description'] ?? ''),
-    'category_id' => !empty($_POST['category_id']) ? Sanitizer::int($_POST['category_id']) : null, // ✅ ADDED
+    'category_id' => !empty($_POST['category_id']) ? Sanitizer::int($_POST['category_id']) : null,
     'total_amount' => Sanitizer::float($_POST['total_amount'] ?? '0'),
     'is_draft' => $isDraft,
     'items' => []
@@ -165,10 +165,16 @@ if (!$isDraft) {
                     $availableBudget = (float)$budgetInfo['available_amount'];
                     $requestedAmount = (float)$formData['total_amount'];
                     
-                    // For editing, add back the original amount to available budget
+                    // ✅ FIXED: For editing, add back the original amount to available budget
+                    // Only if budget hasn't been allocated yet (not approved for payment, paid, or completed)
                     if ($action === 'edit' && $requisitionId) {
                         $existingReq = $requisition->getById($requisitionId);
-                        if ($existingReq && $existingReq['status'] !== STATUS_APPROVED) {
+                        // Budget is NOT allocated if status is: draft, rejected, or any pending status
+                        if ($existingReq && !in_array($existingReq['status'], [
+                            STATUS_APPROVED_FOR_PAYMENT, 
+                            STATUS_PAID, 
+                            STATUS_COMPLETED
+                        ])) {
                             $originalAmount = (float)$existingReq['total_amount'];
                             $availableBudget += $originalAmount;
                         }
@@ -217,7 +223,7 @@ if ($action == 'create') {
     if ($result['success']) {
         $newRequisitionId = $result['requisition_id'];
         
-// Handle file uploads
+        // Handle file uploads
         if (isset($_FILES['attachments']) && !empty($_FILES['attachments']['name'][0])) {
             $uploadedCount = 0;
             $fileErrors = [];
@@ -257,7 +263,7 @@ if ($action == 'create') {
             }
         }
         
-        // ✅ SEND EMAIL NOTIFICATION (ONLY if not a draft)
+        // Send email notification (only if not a draft)
         if (!$isDraft) {
             try {
                 Notification::send(NOTIF_REQUISITION_SUBMITTED, $newRequisitionId);
