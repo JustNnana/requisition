@@ -695,7 +695,7 @@ $pageTitle = 'Budget Management';
                     </td>
                     <td class="text-right">
                         <div class="action-buttons">
-                            <a href="view-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-primary">
+                            <a href="<?php echo build_encrypted_url('view-budget.php', $bud['id']); ?>" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-eye"></i>
                                 View
                             </a>
@@ -776,12 +776,12 @@ $pageTitle = 'Budget Management';
                     </td>
                     <td class="text-right">
                         <div class="action-buttons">
-                            <a href="view-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-primary">
+                            <a href="<?php echo build_encrypted_url('view-budget.php', $bud['id']); ?>" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-eye"></i>
                                 View
                             </a>
                             <?php if ($isFinanceManager): ?>
-                            <a href="edit-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-secondary">
+                            <a href="<?php echo build_encrypted_url('edit-budget.php', $bud['id']); ?>" class="btn btn-sm btn-outline-secondary">
                                 <i class="fas fa-edit"></i>
                                 Edit
                             </a>
@@ -844,12 +844,12 @@ $pageTitle = 'Budget Management';
                     </td>
                     <td class="text-right">
                         <div class="action-buttons">
-                            <a href="view-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-primary">
+                            <a href="<?php echo build_encrypted_url('view-budget.php', $bud['id']); ?>" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-eye"></i>
                                 View
                             </a>
                             <?php if ($isFinanceManager): ?>
-                            <a href="edit-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-secondary">
+                            <a href="<?php echo build_encrypted_url('edit-budget.php', $bud['id']); ?>" class="btn btn-sm btn-outline-secondary">
                                 <i class="fas fa-edit"></i>
                                 Edit
                             </a>
@@ -920,7 +920,7 @@ $pageTitle = 'Budget Management';
                         </span>
                     </td>
                     <td class="text-right">
-                        <a href="view-budget.php?id=<?php echo $bud['id']; ?>" class="btn btn-sm btn-outline-secondary">
+                        <a href="<?php echo build_encrypted_url('view-budget.php', $bud['id']); ?>" class="btn btn-sm btn-outline-secondary">
                             <i class="fas fa-eye"></i>
                             View
                         </a>

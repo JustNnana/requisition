@@ -741,11 +741,11 @@ $budgetInfo = $budgetModel->getBudgetStats($departmentId);
     $isLowBudget = $utilizationPercentage > 75;
     $isCritical = $utilizationPercentage > 90;
     ?>
-    <div style="border: 1px solid <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; 
-                border-radius: var(--border-radius); 
-                padding: var(--spacing-5); 
-                margin-bottom: var(--spacing-6); 
-                background: rgba(<?php echo $isCritical ? 'var(--danger-rgb)' : ($isLowBudget ? 'var(--warning-rgb)' : 'var(--success-rgb)'); ?>, 0.05);">
+    <div style="border: 1px solid <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>;
+                border-radius: var(--border-radius);
+                padding: var(--spacing-5);
+                margin-bottom: var(--spacing-6);
+                background: <?php echo $isCritical ? 'rgba(var(--danger-rgb), 0.05)' : ($isLowBudget ? 'rgba(var(--warning-rgb), 0.05)' : 'rgba(var(--success-rgb), 0.05)'); ?>;">
         <div class="d-flex align-items-start gap-3">
             <i class="fas fa-wallet" style="font-size: 2rem; color: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>; flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
             
@@ -927,7 +927,7 @@ if ($budgetDiff != 0):
             </div>
         </div>
         <div style="margin-top: var(--spacing-3);">
-            <a href="<?php echo BASE_URL; ?>/users/?department=<?php echo $departmentId; ?>" class="btn btn-sm btn-outline-success">View Team</a>
+            <a href="<?php echo BASE_URL; ?>/dashboard/team-members.php" class="btn btn-sm btn-outline-success">View Team</a>
         </div>
     </div>
 </div>
