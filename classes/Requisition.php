@@ -366,7 +366,76 @@ $params = [
             ];
         }
     }
-
+/**
+ * Get pending requisitions for a specific approver based on their role
+ * 
+ * @param int $userId User ID of the approver
+ * @return array List of pending requisitions
+ */
+public function getPendingForApprover($userId)
+{
+    try {
+        // Get user information
+        $sql = "SELECT role_id, department_id FROM users WHERE id = ?";
+        $user = $this->db->fetchOne($sql, [$userId]);
+        
+        if (!$user) {
+            return [];
+        }
+        
+        $roleId = $user['role_id'];
+        $departmentId = $user['department_id'];
+        
+        // Build query based on role
+        $baseSql = "SELECT r.*, 
+                           CONCAT(u.first_name, ' ', u.last_name) as requester_name,
+                           u.email as requester_email,
+                           d.department_name
+                    FROM requisitions r
+                    INNER JOIN users u ON r.user_id = u.id
+                    INNER JOIN departments d ON r.department_id = d.id
+                    WHERE ";
+        
+        $params = [];
+        
+        switch ($roleId) {
+            case ROLE_LINE_MANAGER:
+                // Line managers see requisitions from their department team members
+                if (!$departmentId) {
+                    return [];
+                }
+                $baseSql .= "r.status = ? 
+                             AND r.department_id = ? 
+                             AND r.user_id != ?";
+                $params = [STATUS_PENDING_LINE_MANAGER, $departmentId, $userId];
+                break;
+                
+            case ROLE_MANAGING_DIRECTOR:
+                // MD sees all requisitions pending MD approval
+                $baseSql .= "r.status = ?";
+                $params = [STATUS_PENDING_MD];
+                break;
+                
+            case ROLE_FINANCE_MANAGER:
+                // Finance Manager sees all requisitions pending finance manager approval
+                $baseSql .= "r.status = ?";
+                $params = [STATUS_PENDING_FINANCE_MANAGER];
+                break;
+                
+            default:
+                // Other roles don't have pending approvals to review
+                return [];
+        }
+        
+        $baseSql .= " ORDER BY r.created_at DESC";
+        
+        return $this->db->fetchAll($baseSql, $params);
+        
+    } catch (Exception $e) {
+        error_log("Error in getPendingForApprover: " . $e->getMessage());
+        return [];
+    }
+}
     /**
      * Cancel a requisition (only allowed when rejected or draft)
      * 

@@ -399,7 +399,12 @@ $pendingReceiptsCount = 0;
                 </div>
                 <span class="sidebar-text">Departments</span>
             </a>
-
+<a href="<?php echo BASE_URL; ?>/admin/categories/manage.php" class="sidebar-link <?php echo isActive('manage.php', 'categories'); ?>">
+    <div class="sidebar-icon">
+        <i class="fas fa-tags"></i>
+    </div>
+    <span class="sidebar-text">Categories</span>
+</a>
             <div class="sidebar-category">
                 <span class="sidebar-category-text">SYSTEM</span>
             </div>

@@ -38,14 +38,16 @@ class Report {
             $userId = Session::getUserId();
             
             // Base query
-            $sql = "SELECT r.*,
-                           d.department_name,
-                           d.department_code,
-                           rc.category_name
-                    FROM requisitions r
-                    LEFT JOIN departments d ON r.department_id = d.id
-                    LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
-                    WHERE r.user_id = ?";
+           $sql = "SELECT r.*,
+               d.department_name,
+               d.department_code,
+               rc.category_name,
+               parent.category_name as parent_category_name
+        FROM requisitions r
+        LEFT JOIN departments d ON r.department_id = d.id
+        LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
+        LEFT JOIN requisition_categories parent ON rc.parent_id = parent.id
+        WHERE r.user_id = ?";
             
             $params = [$userId];
             
@@ -892,13 +894,19 @@ class Report {
             }
             
             // Build base query
-            $sql = "SELECT r.*, 
-                           u.first_name as requester_first_name, 
-                           u.last_name as requester_last_name,
-                           u.email as requester_email
-                    FROM requisitions r
-                    INNER JOIN users u ON r.user_id = u.id
-                    WHERE u.department_id = ?";
+$sql = "SELECT r.*, 
+               u.first_name as requester_first_name, 
+               u.last_name as requester_last_name,
+               u.email as requester_email,
+               d.department_name,
+               rc.category_name,
+               parent.category_name as parent_category_name
+        FROM requisitions r
+        INNER JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON r.department_id = d.id
+        LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
+        LEFT JOIN requisition_categories parent ON rc.parent_id = parent.id
+        WHERE u.department_id = ?";
             
             $params = [$departmentId];
             
@@ -1710,16 +1718,20 @@ class Report {
             }
             
             // Base query
-            $sql = "SELECT r.*,
-                           u.first_name as requester_first_name,
-                           u.last_name as requester_last_name,
-                           u.email as requester_email,
-                           d.department_name,
-                           d.department_code
-                    FROM requisitions r
-                    JOIN users u ON r.user_id = u.id
-                    LEFT JOIN departments d ON r.department_id = d.id
-                    WHERE 1=1";
+$sql = "SELECT r.*,
+               u.first_name as requester_first_name,
+               u.last_name as requester_last_name,
+               u.email as requester_email,
+               d.department_name,
+               d.department_code,
+               rc.category_name,
+               parent.category_name as parent_category_name
+        FROM requisitions r
+        JOIN users u ON r.user_id = u.id
+        LEFT JOIN departments d ON r.department_id = d.id
+        LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
+        LEFT JOIN requisition_categories parent ON rc.parent_id = parent.id
+        WHERE 1=1";
             
             $params = [];
             

@@ -879,9 +879,9 @@ $pageTitle = 'Edit User';
                         <div class="password-action-title">Reset User Password</div>
                         <div class="password-action-text">Click the button below to change the user's password securely.</div>
                     </div>
-                    <a href="change-password.php?id=<?php echo $userId; ?>" class="btn btn-warning">
-                        <i class="fas fa-key"></i> Change Password
-                    </a>
+                    <a href="change-password.php?id=<?php echo $userData['id']; ?>" class="btn btn-warning">
+    <i class="fas fa-key"></i> Change Password
+</a>
                 </div>
             </div>
         </div>

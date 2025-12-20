@@ -1101,13 +1101,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Child Category Dropdown (Hidden until parent selected) -->
 <div class="form-group" id="child_category_wrapper" style="display: none;">
-    <label for="child_category" class="form-label required">Child Category</label>
+    <label for="child_category" class="form-label required">Subcategory</label>
     <select 
         id="child_category" 
         name="category_id" 
         class="form-control"
     >
-        <option value="">-- Select Child Category --</option>
+        <option value="">-- Select Subcategory --</option>
     </select>
     <div class="form-text">Select the specific subcategory.</div>
     <span id="child_loading" style="display: none; color: var(--text-muted); font-size: var(--font-size-xs);">

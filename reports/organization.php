@@ -34,7 +34,7 @@ if (!is_managing_director() && !is_finance_manager() && !is_finance_member()) {
 $report = new Report();
 $department = new Department();
 $user = new User();
-$db = Database::getInstance();
+
 
 // Get filters from request
 $filters = [
@@ -44,6 +44,7 @@ $filters = [
     'status' => Sanitizer::string($_GET['status'] ?? ''),
     'department_id' => Sanitizer::int($_GET['department_id'] ?? 0),
     'user_id' => Sanitizer::int($_GET['user_id'] ?? 0),
+    'parent_category_id' => Sanitizer::int($_GET['parent_category_id'] ?? 0),
     'category' => Sanitizer::string($_GET['category'] ?? ''),
     'search' => Sanitizer::string($_GET['search'] ?? ''),
     'interval' => Sanitizer::string($_GET['interval'] ?? 'daily')
@@ -77,9 +78,23 @@ $allUsers = [];
 if (!empty($filters['department_id'])) {
     $allUsers = $user->getByDepartment($filters['department_id']);
 }
+// Get parent categories and subcategories for filter
+$db = Database::getInstance();
+$categoryModel = new RequisitionCategory();
 
-// Get categories for filter
-$categories = $db->fetchAll("SELECT category_name FROM requisition_categories WHERE is_active = 1 ORDER BY display_order");
+// Get all parent categories (categories with no parent)
+$parentCategories = $db->fetchAll(
+    "SELECT id, category_name, category_code 
+     FROM requisition_categories 
+     WHERE parent_id IS NULL AND is_active = 1 
+     ORDER BY display_order, category_name"
+);
+
+// Get subcategories if parent is selected
+$subcategories = [];
+if (!empty($filters['parent_category_id'])) {
+    $subcategories = $categoryModel->getChildCategories($filters['parent_category_id'], true);
+}
 
 // Check for flash messages
 $successMessage = Session::getFlash('success');
@@ -580,18 +595,34 @@ $pageTitle = 'Organization Reports';
             </div>
 
             <!-- Category -->
-            <div class="filter-group">
-                <label class="filter-label">Category</label>
-                <select name="category" class="filter-select">
-                    <option value="">All Categories</option>
-                    <?php foreach ($categories as $cat): ?>
-                        <option value="<?php echo htmlspecialchars($cat['category_name']); ?>" 
-                                <?php echo ($filters['category'] === $cat['category_name']) ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($cat['category_name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+<!-- Parent Category Filter -->
+<div class="filter-group">
+    <label for="parent_category_id" class="filter-label">Parent Category</label>
+    <select class="filter-select" id="parent_category_id" name="parent_category_id">
+        <option value="">All Parent Categories</option>
+        <?php foreach ($parentCategories as $parent): ?>
+            <option value="<?php echo $parent['id']; ?>" 
+                    <?php echo ($filters['parent_category_id'] == $parent['id']) ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($parent['category_name']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
+<!-- Subcategory Filter (dynamically populated) -->
+<div class="filter-group" id="subcategoryGroup" 
+     style="display: <?php echo !empty($filters['parent_category_id']) ? 'flex' : 'none'; ?>;">
+    <label for="category" class="filter-label">Subcategory</label>
+    <select class="filter-select" id="category" name="category">
+        <option value="">All Subcategories</option>
+        <?php foreach ($subcategories as $sub): ?>
+            <option value="<?php echo htmlspecialchars($sub['category_name']); ?>" 
+                    <?php echo ($filters['category'] === $sub['category_name']) ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($sub['category_name']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
 
             <!-- Interval -->
             <div class="filter-group">
@@ -1265,6 +1296,89 @@ document.getElementById('departmentSelect').addEventListener('change', function(
         const form = this.closest('form');
         const params = new URLSearchParams(new FormData(form));
         window.location.href = '?' + params.toString();
+    }
+});
+// Parent Category Change Handler - Load Subcategories
+document.getElementById('parent_category_id').addEventListener('change', function() {
+    const parentId = this.value;
+    const subcategoryGroup = document.getElementById('subcategoryGroup');
+    const subcategorySelect = document.getElementById('category');
+    
+    if (parentId) {
+        // Show subcategory dropdown
+        subcategoryGroup.style.display = 'flex';
+        
+        // Fetch subcategories via AJAX
+        fetch(`<?php echo BASE_URL; ?>/api/get-child-categories.php?parent_id=${parentId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Clear existing options
+                    subcategorySelect.innerHTML = '<option value="">All Subcategories</option>';
+                    
+                    // Add new options from children array
+                    data.children.forEach(child => {
+                        const option = document.createElement('option');
+                        option.value = child.category_name;
+                        option.textContent = child.category_name;
+                        subcategorySelect.appendChild(option);
+                    });
+                    
+                    console.log(`✅ Loaded ${data.count} subcategories for parent: ${data.parent.name}`);
+                } else {
+                    console.error('Error fetching subcategories:', data.error);
+                    alert('Error loading subcategories: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching subcategories:', error);
+                alert('Error loading subcategories. Please try again.');
+            });
+    } else {
+        // Hide subcategory dropdown
+        subcategoryGroup.style.display = 'none';
+        subcategorySelect.innerHTML = '<option value="">All Subcategories</option>';
+    }
+});// Parent Category Change Handler - Load Subcategories
+document.getElementById('parent_category_id').addEventListener('change', function() {
+    const parentId = this.value;
+    const subcategoryGroup = document.getElementById('subcategoryGroup');
+    const subcategorySelect = document.getElementById('category');
+    
+    if (parentId) {
+        // Show subcategory dropdown
+        subcategoryGroup.style.display = 'flex';
+        
+        // Fetch subcategories via AJAX
+        fetch(`<?php echo BASE_URL; ?>/api/get-child-categories.php?parent_id=${parentId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Clear existing options
+                    subcategorySelect.innerHTML = '<option value="">All Subcategories</option>';
+                    
+                    // Add new options from children array
+                    data.children.forEach(child => {
+                        const option = document.createElement('option');
+                        option.value = child.category_name;
+                        option.textContent = child.category_name;
+                        subcategorySelect.appendChild(option);
+                    });
+                    
+                    console.log(`✅ Loaded ${data.count} subcategories for parent: ${data.parent.name}`);
+                } else {
+                    console.error('Error fetching subcategories:', data.error);
+                    alert('Error loading subcategories: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching subcategories:', error);
+                alert('Error loading subcategories. Please try again.');
+            });
+    } else {
+        // Hide subcategory dropdown
+        subcategoryGroup.style.display = 'none';
+        subcategorySelect.innerHTML = '<option value="">All Subcategories</option>';
     }
 });
 </script>

@@ -1113,14 +1113,14 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 
 <!-- Child Category Dropdown -->
 <div class="form-group" id="child_category_wrapper" style="<?php echo $selectedParentId ? 'display: block;' : 'display: none;'; ?>">
-    <label for="child_category" class="form-label required">Child Category</label>
+    <label for="child_category" class="form-label required">Subcategory</label>
     <select 
         id="child_category" 
         name="category_id" 
         class="form-control"
         <?php if ($selectedChildId): ?>data-preselected="<?php echo $selectedChildId; ?>"<?php endif; ?>
     >
-        <option value="">-- Select Child Category --</option>
+        <option value="">-- Select Subcategory --</option>
     </select>
     <div class="form-text">Select the specific subcategory.</div>
     <span id="child_loading" style="display: none; color: var(--text-muted); font-size: var(--font-size-xs);">

@@ -681,7 +681,7 @@ $pageTitle = 'Change Password';
             </nav>
         </div>
         <div class="content-actions">
-            <a href="edit.php?id=<?php echo $userId; ?>" class="btn btn-secondary">
+            <a href="edit.php?id=<?php echo $userData['id']; ?>" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i>
                 <span>Back to User</span>
             </a>
@@ -714,7 +714,7 @@ $pageTitle = 'Change Password';
             <div class="alert-title">Success!</div>
             <div class="alert-message"><?php echo htmlspecialchars($success); ?></div>
             <div class="alert-actions">
-                <a href="edit.php?id=<?php echo $userId; ?>" class="btn btn-sm btn-primary">Back to User Profile</a>
+                <a href="edit.php?id=<?php echo $userData['id']; ?>" class="btn btn-sm btn-primary">Back to User Profile</a>
                 <a href="list.php" class="btn btn-sm btn-outline-primary">View All Users</a>
             </div>
         </div>
@@ -837,7 +837,7 @@ $pageTitle = 'Change Password';
                         <i class="fas fa-key"></i>
                         <span>Change Password</span>
                     </button>
-                    <a href="edit.php?id=<?php echo $userId; ?>" class="btn btn-secondary btn-lg">
+                    <a href="edit.php?id=<?php echo $userData['id']; ?>" class="btn btn-secondary btn-lg">
                         <i class="fas fa-times"></i>
                         <span>Cancel</span>
                     </a>
