@@ -604,7 +604,7 @@ if ($hour < 12) {
             </button>
 
             <!-- Logo and Brand -->
-            <a href="<?php echo BASE_URL; ?>/dashboard/index.php" class="navbar-brand">
+            <a href="<?php echo BASE_URL; ?>/dashboard/" class="navbar-brand">
                 <!-- Light mode logo -->
                 <img src="<?php echo BASE_URL; ?>/assets/images/icons/kadick-logo-white.png" alt="GateWey Logo" class="logo-img logo-light">
                 <!-- Dark mode logo -->
@@ -688,7 +688,7 @@ if ($hour < 12) {
                         <small style="color: var(--text-secondary);"><?php echo htmlspecialchars($userEmail); ?></small>
                     </div>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo BASE_URL; ?>#">
+                    <a class="dropdown-item" href="<?php echo BASE_URL; ?>/profile/">
                         <i class="fas fa-user"></i> My Profile
                     </a>
                     <!-- <a class="dropdown-item" href="<?php echo BASE_URL; ?>/profile/settings.php">
@@ -706,15 +706,15 @@ if ($hour < 12) {
     <!-- Mobile Bottom Navigation -->
     <div class="mobile-bottom-nav d-lg-none">
         <div class="mobile-nav-items">
-            <a href="<?php echo BASE_URL; ?>/dashboard/index.php" class="mobile-nav-item <?php echo ($currentDir === 'dashboard') ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/dashboard/" class="mobile-nav-item <?php echo ($currentDir === 'dashboard') ? 'active' : ''; ?>">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
-            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="mobile-nav-item <?php echo ($currentDir === 'requisitions') ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list" class="mobile-nav-item <?php echo ($currentDir === 'requisitions') ? 'active' : ''; ?>">
                 <i class="fas fa-file-alt"></i>
                 <span>Requisitions</span>
             </a>
-            <a href="<?php echo BASE_URL; ?>/reports/generate.php" class="mobile-nav-item <?php echo ($currentDir === 'reports') ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/reports/generate" class="mobile-nav-item <?php echo ($currentDir === 'reports') ? 'active' : ''; ?>">
                 <i class="fas fa-chart-bar"></i>
                 <span>Reports</span>
             </a>
@@ -1090,4 +1090,4 @@ if ($hour < 12) {
         <?php include __DIR__ . '/navbar.php'; ?>
 
         <!-- Main Content Area -->
-        <main class="content">
+        <main class="content"></main>

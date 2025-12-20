@@ -790,8 +790,8 @@ $expiredBudgets = $db->fetchAll($sql);
                                 <span style="margin-left: var(--spacing-3);">Used: <?php echo number_format($utilizationPercentage, 1); ?>%</span>
                             </div>
                         </div>
-                        <a href="<?php echo BASE_URL; ?>/finance/budget/view-budget.php?id=<?php echo $budget['id']; ?>" 
-                           class="btn btn-warning btn-sm" 
+                        <a href="<?php echo build_encrypted_url(BASE_URL . '/finance/budget/view-budget.php', $budget['id']); ?>"
+                           class="btn btn-warning btn-sm"
                            style="white-space: nowrap; margin-left: var(--spacing-3);">
                             <i class="fas fa-eye me-2"></i>View Details
                         </a>

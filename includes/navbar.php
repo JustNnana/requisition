@@ -373,7 +373,7 @@ $pendingReceiptsCount = 0;
 <aside class="sidebar" id="mainSidebar">
     <div class="sidebar-content">
         <!-- Dashboard Menu Item (common for all roles) -->
-        <a href="<?php echo BASE_URL; ?>/dashboard/index.php" class="sidebar-link <?php echo isActive('index.php', 'dashboard'); ?>">
+        <a href="<?php echo BASE_URL; ?>/dashboard/index" class="sidebar-link <?php echo isActive('index.php', 'dashboard'); ?>">
             <div class="sidebar-icon">
                 <i class="fas fa-tachometer-alt"></i>
             </div>
@@ -386,20 +386,20 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">ADMINISTRATION</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/admin/users/list.php" class="sidebar-link <?php echo isActive('', 'users'); ?>">
+            <a href="<?php echo BASE_URL; ?>/admin/users/list" class="sidebar-link <?php echo isActive('', 'users'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-users"></i>
                 </div>
                 <span class="sidebar-text">User Management</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/admin/departments/list.php" class="sidebar-link <?php echo isActive('', 'departments'); ?>">
+            <a href="<?php echo BASE_URL; ?>/admin/departments/list" class="sidebar-link <?php echo isActive('', 'departments'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-building"></i>
                 </div>
                 <span class="sidebar-text">Departments</span>
             </a>
-<a href="<?php echo BASE_URL; ?>/admin/categories/manage.php" class="sidebar-link <?php echo isActive('manage.php', 'categories'); ?>">
+<a href="<?php echo BASE_URL; ?>/admin/categories/manage" class="sidebar-link <?php echo isActive('manage.php', 'categories'); ?>">
     <div class="sidebar-icon">
         <i class="fas fa-tags"></i>
     </div>
@@ -409,28 +409,28 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">SYSTEM</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/admin/settings/general.php" class="sidebar-link <?php echo isActive('general.php', 'settings'); ?>">
+            <a href="<?php echo BASE_URL; ?>/admin/settings/general" class="sidebar-link <?php echo isActive('general.php', 'settings'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-cog"></i>
                 </div>
                 <span class="sidebar-text">General Settings</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/admin/settings/email.php" class="sidebar-link <?php echo isActive('email.php', 'settings'); ?>">
+            <a href="<?php echo BASE_URL; ?>/admin/settings/email" class="sidebar-link <?php echo isActive('email.php', 'settings'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <span class="sidebar-text">Email Settings</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/admin/settings/backup.php" class="sidebar-link <?php echo isActive('backup.php', 'settings'); ?>">
+            <a href="<?php echo BASE_URL; ?>/admin/settings/backup" class="sidebar-link <?php echo isActive('backup.php', 'settings'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-database"></i>
                 </div>
                 <span class="sidebar-text">Database Backup</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/admin/audit-log.php" class="sidebar-link <?php echo isActive('audit-log.php'); ?>">
+            <a href="<?php echo BASE_URL; ?>/admin/audit-log" class="sidebar-link <?php echo isActive('audit-log.php'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-history"></i>
                 </div>
@@ -443,21 +443,21 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">REQUISITIONS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="sidebar-link <?php echo isActive('create.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/create" class="sidebar-link <?php echo isActive('create.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-plus-circle"></i>
                 </div>
                 <span class="sidebar-text">New Requisition</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="sidebar-link <?php echo isActive('list.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list" class="sidebar-link <?php echo isActive('list.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-file-alt"></i>
                 </div>
                 <span class="sidebar-text">My Requisitions</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/pending.php" class="sidebar-link <?php echo isActive('pending.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/pending" class="sidebar-link <?php echo isActive('pending.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-clock"></i>
                 </div>
@@ -472,14 +472,14 @@ $pendingReceiptsCount = 0;
         <span class="sidebar-category-text">BUDGET MANAGEMENT</span>
     </div>
 
-    <a href="<?php echo BASE_URL; ?>/finance/budget/index.php" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
+    <a href="<?php echo BASE_URL; ?>/finance/budget/index" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
         <div class="sidebar-icon">
             <i class="fas fa-list"></i>
         </div>
         <span class="sidebar-text">All Budgets</span>
     </a>
 
-    <a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('budget-reports.php', 'budget'); ?>">
+    <a href="<?php echo BASE_URL; ?>/finance/budget/reports" class="sidebar-link <?php echo isActive('reports.php', 'budget'); ?>">
         <div class="sidebar-icon">
             <i class="fas fa-chart-bar"></i>
         </div>
@@ -490,7 +490,7 @@ $pendingReceiptsCount = 0;
         <span class="sidebar-category-text">REPORTS</span>
     </div>
 
-            <a href="<?php echo BASE_URL; ?>/reports/organization.php" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
+            <a href="<?php echo BASE_URL; ?>/reports/organization" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-chart-bar"></i>
                 </div>
@@ -503,7 +503,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">FINANCE</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/finance/review-queue.php" class="sidebar-link <?php echo isActive('review-queue.php', 'finance'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/review-queue" class="sidebar-link <?php echo isActive('review-queue.php', 'finance'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-search-dollar"></i>
                 </div>
@@ -513,7 +513,7 @@ $pendingReceiptsCount = 0;
                 <?php endif; ?>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/finance/pending-payment.php" class="sidebar-link <?php echo isActive('pending-payment.php', 'finance'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/pending-payment" class="sidebar-link <?php echo isActive('pending-payment.php', 'finance'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-hourglass-half"></i>
                 </div>
@@ -523,14 +523,14 @@ $pendingReceiptsCount = 0;
                 <?php endif; ?>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/finance/payment-history.php" class="sidebar-link <?php echo isActive('payment-history.php', 'finance'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/payment-history" class="sidebar-link <?php echo isActive('payment-history.php', 'finance'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-history"></i>
                 </div>
                 <span class="sidebar-text">Payment History</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/finance/pending-receipts.php" class="sidebar-link <?php echo isActive('pending-receipts.php', 'finance'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/pending-receipts" class="sidebar-link <?php echo isActive('pending-receipts.php', 'finance'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-receipt"></i>
                 </div>
@@ -545,21 +545,21 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">BUDGET MANAGEMENT</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/finance/budget/index.php" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/budget/index" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-list"></i>
                 </div>
                 <span class="sidebar-text">All Budgets</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/finance/budget/set-budget.php" class="sidebar-link <?php echo isActive('set-budget.php', 'budget'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/budget/set-budget" class="sidebar-link <?php echo isActive('set-budget.php', 'budget'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-plus-circle"></i>
                 </div>
                 <span class="sidebar-text">Set Department Budget</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('budget-reports.php', 'budget'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/budget/reports" class="sidebar-link <?php echo isActive('reports.php', 'budget'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-chart-bar"></i>
                 </div>
@@ -570,7 +570,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">REPORTS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/reports/organization.php" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
+            <a href="<?php echo BASE_URL; ?>/reports/organization" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-chart-bar"></i>
                 </div>
@@ -583,7 +583,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">PAYMENTS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/finance/pending-payment.php" class="sidebar-link <?php echo isActive('pending-payment.php', 'finance'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/pending-payment" class="sidebar-link <?php echo isActive('pending-payment.php', 'finance'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-money-check-alt"></i>
                 </div>
@@ -593,14 +593,14 @@ $pendingReceiptsCount = 0;
                 <?php endif; ?>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/finance/payment-history.php" class="sidebar-link <?php echo isActive('payment-history.php', 'finance'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/payment-history" class="sidebar-link <?php echo isActive('payment-history.php', 'finance'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-history"></i>
                 </div>
                 <span class="sidebar-text">Payment History</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/finance/pending-receipts.php" class="sidebar-link <?php echo isActive('pending-receipts.php', 'finance'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/pending-receipts" class="sidebar-link <?php echo isActive('pending-receipts.php', 'finance'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-receipt"></i>
                 </div>
@@ -614,7 +614,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">REPORTS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/reports/organization.php" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
+            <a href="<?php echo BASE_URL; ?>/reports/organization" class="sidebar-link <?php echo isActive('organization.php', 'reports'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-chart-bar"></i>
                 </div>
@@ -627,21 +627,21 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">REQUISITIONS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="sidebar-link <?php echo isActive('create.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/create" class="sidebar-link <?php echo isActive('create.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-plus-circle"></i>
                 </div>
                 <span class="sidebar-text">New Requisition</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="sidebar-link <?php echo isActive('list.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list" class="sidebar-link <?php echo isActive('list.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-file-alt"></i>
                 </div>
                 <span class="sidebar-text">My Requisitions</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/pending.php" class="sidebar-link <?php echo isActive('pending.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/pending" class="sidebar-link <?php echo isActive('pending.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-clock"></i>
                 </div>
@@ -657,7 +657,7 @@ $pendingReceiptsCount = 0;
                     <span class="sidebar-category-text">BUDGET</span>
                 </div>
 
-                <a href="<?php echo BASE_URL; ?>/dashboard/department-budget.php" class="sidebar-link <?php echo isActive('department-budget.php', 'dashboard'); ?>">
+                <a href="<?php echo BASE_URL; ?>/dashboard/department-budget" class="sidebar-link <?php echo isActive('department-budget.php', 'dashboard'); ?>">
                     <div class="sidebar-icon">
                         <i class="fas fa-wallet"></i>
                     </div>
@@ -672,7 +672,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">REPORTS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/reports/department.php" class="sidebar-link <?php echo isActive('department.php', 'reports'); ?>">
+            <a href="<?php echo BASE_URL; ?>/reports/department" class="sidebar-link <?php echo isActive('department.php', 'reports'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
@@ -685,14 +685,14 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">REQUISITIONS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/create.php" class="sidebar-link <?php echo isActive('create.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/create" class="sidebar-link <?php echo isActive('create.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-plus-circle"></i>
                 </div>
                 <span class="sidebar-text">New Requisition</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/requisitions/list.php" class="sidebar-link <?php echo isActive('list.php', 'requisitions'); ?>">
+            <a href="<?php echo BASE_URL; ?>/requisitions/list" class="sidebar-link <?php echo isActive('list.php', 'requisitions'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-file-alt"></i>
                 </div>
@@ -703,7 +703,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">REPORTS</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/reports/personal.php" class="sidebar-link <?php echo isActive('personal.php', 'reports'); ?>">
+            <a href="<?php echo BASE_URL; ?>/reports/personal" class="sidebar-link <?php echo isActive('personal.php', 'reports'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-file-invoice"></i>
                 </div>
@@ -717,7 +717,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">ACCOUNT</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/profile/index.php" class="sidebar-link <?php echo isActive('index.php', 'profile'); ?>">
+            <a href="<?php echo BASE_URL; ?>/profile/index" class="sidebar-link <?php echo isActive('index.php', 'profile'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-user-circle"></i>
                 </div>
@@ -745,7 +745,7 @@ $pendingReceiptsCount = 0;
 <!-- Enhanced JavaScript for Dasher UI Sidebar -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🎨 Initializing Dasher UI sidebar for Requisition System...');
+        console.log('ðŸŽ¨ Initializing Dasher UI sidebar for Requisition System...');
 
         // ===== MOBILE SIDEBAR FUNCTIONALITY =====
         const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -771,7 +771,7 @@ $pendingReceiptsCount = 0;
                         sidebarToggle.setAttribute('aria-expanded', 'false');
                     }
 
-                    console.log('📱 Sidebar:', isMobileOpen ? 'OPEN' : 'CLOSED');
+                    console.log('ðŸ“± Sidebar:', isMobileOpen ? 'OPEN' : 'CLOSED');
                 }
             }
 
@@ -933,19 +933,19 @@ $pendingReceiptsCount = 0;
                 switch (e.key) {
                     case 'n':
                         e.preventDefault();
-                        window.location.href = '<?php echo BASE_URL; ?>/requisitions/create.php';
+                        window.location.href = '<?php echo BASE_URL; ?>/requisitions/create';
                         break;
                     case 'r':
                         e.preventDefault();
-                        window.location.href = '<?php echo BASE_URL; ?>/requisitions/list.php';
+                        window.location.href = '<?php echo BASE_URL; ?>/requisitions/list';
                         break;
                     case 'p':
                         e.preventDefault();
-                        window.location.href = '<?php echo BASE_URL; ?>/requisitions/pending.php';
+                        window.location.href = '<?php echo BASE_URL; ?>/requisitions/pending';
                         break;
                     case 'd':
                         e.preventDefault();
-                        window.location.href = '<?php echo BASE_URL; ?>/dashboard/index.php';
+                        window.location.href = '<?php echo BASE_URL; ?>/dashboard/index';
                         break;
                 }
             }
@@ -965,7 +965,7 @@ $pendingReceiptsCount = 0;
             });
         });
 
-        console.log('✅ Dasher UI sidebar initialized successfully');
+        console.log('âœ… Dasher UI sidebar initialized successfully');
     });
 
     // Export functions for external use

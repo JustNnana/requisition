@@ -94,7 +94,7 @@ ob_start();
 </div>
 
 <div class="button-container">
-    <a href="<?php echo $appUrl; ?>/requisitions/upload-receipt.php?id=<?php echo $requisition['id']; ?>" class="button" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+    <a href="<?php echo build_encrypted_url($appUrl . '/requisitions/upload-receipt.php', $requisition['id']); ?>" class="button" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
         Upload Receipt Now →
     </a>
 </div>

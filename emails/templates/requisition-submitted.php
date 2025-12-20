@@ -73,7 +73,7 @@ ob_start();
     </div>
     
     <div class="button-container">
-        <a href="<?php echo $appUrl; ?>/requisitions/view.php?id=<?php echo $requisition['id']; ?>" class="button">
+        <a href="<?php echo build_encrypted_url($appUrl . '/requisitions/view.php', $requisition['id']); ?>" class="button">
             Review Requisition →
         </a>
     </div>
@@ -123,7 +123,7 @@ ob_start();
     </div>
     
     <div class="button-container">
-        <a href="<?php echo $appUrl; ?>/requisitions/view.php?id=<?php echo $requisition['id']; ?>" class="button">
+        <a href="<?php echo build_encrypted_url($appUrl . '/requisitions/view.php', $requisition['id']); ?>" class="button">
             View Requisition →
         </a>
     </div>
