@@ -803,11 +803,11 @@ $pageTitle = 'My Requisitions';
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="view.php?id=<?php echo $req['id']; ?>" class="btn btn-sm btn-ghost" title="View">
+                                        <a href="<?php echo build_encrypted_url('view.php', $req['id']); ?>" class="btn btn-sm btn-ghost" title="View">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                         <?php if ($req['is_draft'] || $req['status'] == STATUS_REJECTED): ?>
-                                            <a href="edit.php?id=<?php echo $req['id']; ?>" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="<?php echo build_encrypted_url('edit.php', $req['id']); ?>" class="btn btn-sm btn-primary" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                         <?php endif; ?>

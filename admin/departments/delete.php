@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../middleware/role-check.php';
 checkRole(ROLE_SUPER_ADMIN);
 
 $department = new Department();
-$departmentId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$departmentId = get_encrypted_id();
 
 if (!$departmentId) {
     Session::setFlash('error', 'Invalid department ID.');

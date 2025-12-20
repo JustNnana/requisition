@@ -843,7 +843,7 @@ $pageTitle = 'Finance Member Dashboard';
                                 </span>
                             </td>
                             <td class="text-end">
-                                <a href="<?php echo BASE_URL; ?>/finance/process-payment.php?id=<?php echo $req['id']; ?>" 
+                                <a href="<?php echo build_encrypted_url(BASE_URL . '/finance/process-payment.php', $req['id']); ?>"
                                    class="btn btn-sm btn-success" title="Process Payment">
                                     <i class="fas fa-money-check-alt me-1"></i>Process
                                 </a>
@@ -897,7 +897,7 @@ $pageTitle = 'Finance Member Dashboard';
                                 </span>
                             </td>
                             <td class="text-end">
-                                <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
+                                <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $req['id']); ?>"
                                    class="btn btn-sm btn-ghost" title="View Details">
                                     <i class="fas fa-eye"></i>
                                 </a>
@@ -966,7 +966,7 @@ $pageTitle = 'Finance Member Dashboard';
                                 <?php endif; ?>
                             </td>
                             <td class="text-end">
-                                <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
+                                <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $req['id']); ?>"
                                    class="btn btn-sm btn-ghost" title="View Details">
                                     <i class="fas fa-eye"></i>
                                 </a>

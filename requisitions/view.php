@@ -24,10 +24,10 @@ require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
 
-// Get requisition ID
-$requisitionId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get requisition ID (decrypt from URL)
+$requisitionId = get_encrypted_id();
 
-if (!$requisitionId) {
+if ($requisitionId === false || $requisitionId <= 0) {
     Session::setFlash('error', 'Invalid requisition ID.');
     header('Location: list.php');
     exit;
@@ -1090,7 +1090,7 @@ function getPreviewType($filename)
                 <span>Back to List</span>
             </a>
             <?php if ($canEdit): ?>
-                <a href="edit.php?id=<?php echo $reqData['id']; ?>" class="btn btn-primary">
+                <a href="<?php echo build_encrypted_url('edit.php', $reqData['id']); ?>" class="btn btn-primary">
                     <i class="fas fa-edit me-2"></i>
                     <span>Edit</span>
                 </a>
@@ -1174,7 +1174,7 @@ function getPreviewType($filename)
 
                 <!-- Right: Button - always at the far end -->
                 <div style="flex-shrink: 0;">
-                    <a href="upload-receipt.php?id=<?php echo $reqData['id']; ?>"
+                    <a href="<?php echo build_encrypted_url('upload-receipt.php', $reqData['id']); ?>"
                         class="btn btn-success"
                         style="white-space: nowrap; font-weight: 600; padding: 0.65rem 1.25rem;">
                         <i class="fas fa-cloud-upload-alt me-2"></i>
@@ -1415,11 +1415,11 @@ if (!empty($reqData['category_id'])) {
                             <div class="document-actions">
                                 <?php if (isPreviewable($doc['file_name'])): ?>
                                     <button type="button" class="btn btn-sm btn-secondary"
-                                        onclick="previewFile('<?php echo $doc['id']; ?>', '<?php echo htmlspecialchars($doc['file_name'], ENT_QUOTES); ?>', '<?php echo getPreviewType($doc['file_name']); ?>')">
+                                        onclick="previewFile('<?php echo encrypt_id($doc['id']); ?>', '<?php echo htmlspecialchars($doc['file_name'], ENT_QUOTES); ?>', '<?php echo getPreviewType($doc['file_name']); ?>')">
                                         <i class="fas fa-eye me-1"></i>Preview
                                     </button>
                                 <?php endif; ?>
-                                <a href="../api/download-file.php?id=<?php echo $doc['id']; ?>" class="btn btn-sm btn-primary" target="_blank">
+                                <a href="<?php echo build_encrypted_url('../api/download-file.php', $doc['id']); ?>" class="btn btn-sm btn-primary" target="_blank">
                                     <i class="fas fa-download me-1"></i>Download
                                 </a>
                             </div>
@@ -1479,7 +1479,7 @@ if (!empty($reqData['category_id'])) {
                         <span>All Requisitions</span>
                     </a>
                     <?php if ($canEdit): ?>
-                        <a href="edit.php?id=<?php echo $reqData['id']; ?>" class="quick-action-btn">
+                        <a href="<?php echo build_encrypted_url('edit.php', $reqData['id']); ?>" class="quick-action-btn">
                             <i class="fas fa-edit"></i>
                             <span>Edit Requisition</span>
                         </a>
@@ -1731,7 +1731,7 @@ if (!empty($reqData['category_id'])) {
             }
         },
 
-        previewFile(fileId, fileName, type) {
+        previewFile(encryptedFileId, fileName, type) {
             const modal = document.getElementById('previewModal');
             const content = document.getElementById('previewContent');
             const fileNameEl = document.getElementById('previewFileName');
@@ -1740,8 +1740,8 @@ if (!empty($reqData['category_id'])) {
             // Set file name
             fileNameEl.textContent = fileName;
 
-            // Set download link
-            downloadBtn.href = '../api/download-file.php?id=' + fileId;
+            // Set download link (encrypted ID already provided)
+            downloadBtn.href = '../api/download-file.php?id=' + encodeURIComponent(encryptedFileId);
 
             // Show modal
             modal.style.display = 'flex';
@@ -1749,8 +1749,8 @@ if (!empty($reqData['category_id'])) {
             // Show loading
             content.innerHTML = '<div class="preview-spinner"><i class="fas fa-spinner fa-spin"></i><p>Loading preview...</p></div>';
 
-            // Build preview URL
-            const previewUrl = '../api/download-file.php?id=' + fileId;
+            // Build preview URL (encrypted ID already provided)
+            const previewUrl = '../api/download-file.php?id=' + encodeURIComponent(encryptedFileId);
 
             // Load content based on type
             if (type === 'image') {

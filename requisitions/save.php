@@ -33,7 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Verify CSRF token
 if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
     Session::setFlash('error', 'Invalid security token. Please try again.');
-    header('Location: ' . ($_POST['action'] == 'edit' ? 'edit.php?id=' . ($_POST['requisition_id'] ?? '') : 'create.php'));
+    $redirectUrl = ($_POST['action'] == 'edit' && !empty($_POST['requisition_id']))
+        ? build_encrypted_url('edit.php', Sanitizer::int($_POST['requisition_id']))
+        : 'create.php';
+    header('Location: ' . $redirectUrl);
     exit;
 }
 
@@ -53,7 +56,7 @@ $errors = [];
 
 // Sanitize and validate input
 $action = Sanitizer::string($_POST['action'] ?? 'create');
-$requisitionId = isset($_POST['requisition_id']) ? Sanitizer::int($_POST['requisition_id']) : null;
+$requisitionId = isset($_POST['requisition_id']) ? get_encrypted_id('requisition_id', 'POST') : null;
 $isDraft = isset($_POST['is_draft']) && $_POST['is_draft'] == '1';
 
 // Capture form data with category_id
@@ -206,9 +209,9 @@ if (!$isDraft) {
 // If there are validation errors, redirect back
 if (!empty($errors)) {
     Session::setFlash('error', implode('<br>', $errors));
-    
+
     if ($action == 'edit' && $requisitionId) {
-        header('Location: edit.php?id=' . $requisitionId);
+        header('Location: ' . build_encrypted_url('edit.php', $requisitionId));
     } else {
         header('Location: create.php');
     }
@@ -274,12 +277,12 @@ if ($action == 'create') {
         }
         
         Session::setFlash('success', $result['message']);
-        
+
         // Redirect based on whether it's a draft or submitted
         if ($isDraft) {
-            header('Location: edit.php?id=' . $newRequisitionId);
+            header('Location: ' . build_encrypted_url('edit.php', $newRequisitionId));
         } else {
-            header('Location: view.php?id=' . $newRequisitionId);
+            header('Location: ' . build_encrypted_url('view.php', $newRequisitionId));
         }
     } else {
         Session::setFlash('error', $result['message']);
@@ -336,16 +339,16 @@ if ($action == 'create') {
         }
         
         Session::setFlash('success', $result['message']);
-        
+
         // Redirect based on whether it's a draft or submitted
         if ($isDraft) {
-            header('Location: edit.php?id=' . $requisitionId);
+            header('Location: ' . build_encrypted_url('edit.php', $requisitionId));
         } else {
-            header('Location: view.php?id=' . $requisitionId);
+            header('Location: ' . build_encrypted_url('view.php', $requisitionId));
         }
     } else {
         Session::setFlash('error', $result['message']);
-        header('Location: edit.php?id=' . $requisitionId);
+        header('Location: ' . build_encrypted_url('edit.php', $requisitionId));
     }
     
 } else {

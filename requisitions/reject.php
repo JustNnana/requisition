@@ -45,7 +45,7 @@ if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
 }
 
 // Get and sanitize input
-$requisitionId = Sanitizer::int($_POST['requisition_id'] ?? 0);
+$requisitionId = get_encrypted_id('requisition_id', 'POST');
 $reason = Sanitizer::string($_POST['reason'] ?? '');
 
 // Validate requisition ID
@@ -63,7 +63,7 @@ $validator->setRules(['reason' => 'required|min:10']);
 if (!$validator->validate()) {
     $errors = $validator->getErrors();
     Session::setFlash('error', $errors['reason'][0] ?? 'Rejection reason is required (minimum 10 characters).');
-    header('Location: view.php?id=' . $requisitionId);
+    header('Location: ' . build_encrypted_url('view.php', $requisitionId));
     exit;
 }
 

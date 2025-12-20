@@ -22,7 +22,7 @@ require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
 // Get requisition ID
-$requisitionId = Sanitizer::int($_GET['id'] ?? 0);
+$requisitionId = get_encrypted_id();
 
 if (!$requisitionId) {
     Session::setFlash('error', 'Invalid requisition ID.');
@@ -69,7 +69,7 @@ if (is_line_manager() && $req['department_id'] == Session::getUserDepartmentId()
 
 if (!$canView) {
     Session::setFlash('error', 'You do not have permission to view this receipt.');
-    header('Location: view.php?id=' . $requisitionId);
+    header('Location: ' . build_encrypted_url('view.php', $requisitionId));
     exit;
 }
 
@@ -78,7 +78,7 @@ $receipt = $payment->getReceipt($requisitionId);
 
 if (!$receipt) {
     Session::setFlash('error', 'No receipt has been uploaded for this requisition.');
-    header('Location: view.php?id=' . $requisitionId);
+    header('Location: ' . build_encrypted_url('view.php', $requisitionId));
     exit;
 }
 
@@ -106,7 +106,7 @@ $pageTitle = 'View Receipt - ' . $req['requisition_number'];
             <p class="content-subtitle">Receipt for Requisition <?php echo htmlspecialchars($req['requisition_number']); ?></p>
         </div>
         <div class="d-flex gap-2">
-            <a href="view.php?id=<?php echo $requisitionId; ?>" class="btn btn-ghost">
+            <a href="<?php echo build_encrypted_url('view.php', $requisitionId); ?>" class="btn btn-ghost">
                 <i class="fas fa-arrow-left"></i> Back to Requisition
             </a>
             <?php if (is_finance_manager() || is_finance_member()): ?>
@@ -270,8 +270,8 @@ $pageTitle = 'View Receipt - ' . $req['requisition_number'];
                 <?php if ($invoice): ?>
                     <div class="info-group">
                         <label>Invoice/Proof of Payment:</label>
-                        <a href="../api/download-file.php?id=<?php echo $invoice['id']; ?>" 
-                           class="btn btn-sm btn-outline-primary" 
+                        <a href="<?php echo build_encrypted_url('../api/download-file.php', $invoice['id']); ?>"
+                           class="btn btn-sm btn-outline-primary"
                            target="_blank">
                             <i class="fas fa-file-invoice"></i> View Invoice
                         </a>
@@ -313,12 +313,12 @@ $pageTitle = 'View Receipt - ' . $req['requisition_number'];
                     
                     <!-- Receipt Action Buttons -->
                     <div class="d-flex gap-2">
-                        <a href="../api/download-file.php?id=<?php echo $receipt['id']; ?>" 
-                           class="btn btn-primary flex-1" 
+                        <a href="<?php echo build_encrypted_url('../api/download-file.php', $receipt['id']); ?>"
+                           class="btn btn-primary flex-1"
                            target="_blank">
                             <i class="fas fa-eye"></i> View Receipt
                         </a>
-                        <a href="../api/download-file.php?id=<?php echo $receipt['id']; ?>&download=1" 
+                        <a href="<?php echo build_encrypted_url('../api/download-file.php', $receipt['id'], 'id', ['download' => '1']); ?>"
                            class="btn btn-outline-primary">
                             <i class="fas fa-download"></i> Download
                         </a>

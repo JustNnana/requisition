@@ -704,8 +704,8 @@ $pageTitle = 'Pending Receipts';
                                 </td>
                                 <td class="text-center">
                                     <div class="table-actions">
-                                        <a href="../requisitions/view.php?id=<?php echo $req['id']; ?>" 
-                                           class="btn btn-sm btn-ghost" 
+                                        <a href="<?php echo build_encrypted_url('../requisitions/view.php', $req['id']); ?>"
+                                           class="btn btn-sm btn-ghost"
                                            title="View Details">
                                             <i class="fas fa-eye"></i>
                                         </a>

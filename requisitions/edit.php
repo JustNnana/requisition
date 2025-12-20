@@ -23,10 +23,10 @@ Session::start();
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
 
-// Get requisition ID
-$requisitionId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get requisition ID (decrypt from URL)
+$requisitionId = get_encrypted_id();
 
-if (!$requisitionId) {
+if ($requisitionId === false || $requisitionId <= 0) {
     Session::setFlash('error', 'Invalid requisition ID.');
     header('Location: list.php');
     exit;
@@ -48,7 +48,7 @@ if (!$reqData) {
 // Check if user can edit
 if (!can_user_edit_requisition($reqData)) {
     Session::setFlash('error', 'You cannot edit this requisition.');
-    header('Location: view.php?id=' . $requisitionId);
+    header('Location: ' . build_encrypted_url('view.php', $requisitionId));
     exit;
 }
 

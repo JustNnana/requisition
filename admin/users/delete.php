@@ -32,8 +32,8 @@ checkRole(ROLE_SUPER_ADMIN);
 // Initialize objects
 $user = new User();
 
-// Get user ID from query string
-$userId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get user ID from query string (encrypted)
+$userId = get_encrypted_id();
 
 if (!$userId) {
     Session::setFlash('error', 'Invalid user ID.');
@@ -127,7 +127,7 @@ $pageTitle = 'Delete User';
                 
                 <div class="d-flex justify-content-end gap-2">
                     <a href="list.php" class="btn btn-ghost">Cancel</a>
-                    <a href="delete.php?id=<?php echo $userId; ?>&confirm=yes" class="btn btn-danger">
+                    <a href="<?php echo build_encrypted_url('delete.php', $userId, 'id', ['confirm' => 'yes']); ?>" class="btn btn-danger">
                         <i class="fas fa-trash"></i> Yes, Delete User
                     </a>
                 </div>

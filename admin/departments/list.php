@@ -371,13 +371,13 @@ $pageTitle = 'Department Management';
                                 </td>
                                 <td class="text-end">
                                     <div class="table-actions">
-                                        <a href="edit.php?id=<?php echo $dept['id']; ?>" 
-                                           class="btn btn-sm btn-ghost" 
+                                        <a href="<?php echo build_encrypted_url('edit.php', $dept['id']); ?>"
+                                           class="btn btn-sm btn-ghost"
                                            title="Edit Department">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="delete.php?id=<?php echo $dept['id']; ?>" 
-                                           class="btn btn-sm btn-ghost text-danger" 
+                                        <a href="<?php echo build_encrypted_url('delete.php', $dept['id']); ?>"
+                                           class="btn btn-sm btn-ghost text-danger"
                                            title="Delete Department"
                                            data-confirm-delete="Are you sure you want to delete this department? This will also delete all associated users and requisitions.">
                                             <i class="fas fa-trash"></i>

@@ -22,8 +22,8 @@ require_once __DIR__ . '/../../middleware/role-check.php';
 // Only Finance Manager can access
 checkRole(ROLE_FINANCE_MANAGER);
 
-// Get budget ID
-$budgetId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get budget ID (encrypted)
+$budgetId = get_encrypted_id();
 
 if (!$budgetId) {
     Session::setFlash('error', 'Invalid budget ID.');
@@ -773,7 +773,7 @@ function getUtilizationColor($percentage) {
                 <span>Back to List</span>
             </a>
             <?php if ($budgetData['status'] === 'active' || $budgetData['status'] === 'upcoming'): ?>
-                <a href="edit-budget.php?id=<?php echo $budgetData['id']; ?>" class="btn btn-primary">
+                <a href="<?php echo build_encrypted_url('edit-budget.php', $budgetData['id']); ?>" class="btn btn-primary">
                     <i class="fas fa-edit me-2"></i>
                     <span>Edit Budget</span>
                 </a>
@@ -1010,7 +1010,7 @@ function getUtilizationColor($percentage) {
                                     <tr>
                                         <td><?php echo format_date($allocation['allocated_at'], 'M d, Y'); ?></td>
                                         <td>
-                                            <a href="../../requisitions/view.php?id=<?php echo $allocation['requisition_id']; ?>" 
+                                            <a href="<?php echo build_encrypted_url('../../requisitions/view.php', $allocation['requisition_id']); ?>"
                                                class="req-link">
                                                 <?php echo htmlspecialchars($allocation['requisition_number']); ?>
                                             </a>
@@ -1098,7 +1098,7 @@ function getUtilizationColor($percentage) {
                         <span>All Budgets</span>
                     </a>
                     <?php if ($budgetData['status'] === 'active' || $budgetData['status'] === 'upcoming'): ?>
-                        <a href="edit-budget.php?id=<?php echo $budgetData['id']; ?>" class="quick-action-btn">
+                        <a href="<?php echo build_encrypted_url('edit-budget.php', $budgetData['id']); ?>" class="quick-action-btn">
                             <i class="fas fa-edit"></i>
                             <span>Edit This Budget</span>
                         </a>
@@ -1135,7 +1135,7 @@ function getUtilizationColor($percentage) {
                                 </div>
                                 <div class="timeline-content">
                                     <div class="timeline-header">
-                                        <a href="../../requisitions/view.php?id=<?php echo $allocation['requisition_id']; ?>" 
+                                        <a href="<?php echo build_encrypted_url('../../requisitions/view.php', $allocation['requisition_id']); ?>"
                                            class="req-link">
                                             <?php echo htmlspecialchars($allocation['requisition_number']); ?>
                                         </a>

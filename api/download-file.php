@@ -20,10 +20,10 @@ Session::start();
 require_once __DIR__ . '/../middleware/auth-check.php';
 require_once __DIR__ . '/../helpers/permissions.php';
 
-// Get document ID
-$documentId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get document ID (decrypt from URL)
+$documentId = get_encrypted_id();
 
-if (!$documentId) {
+if ($documentId === false || $documentId <= 0) {
     http_response_code(400);
     die('Invalid document ID.');
 }

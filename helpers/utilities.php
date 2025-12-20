@@ -250,14 +250,14 @@ function get_days_difference($date1, $date2 = null) {
 
 /**
  * Get time ago in human-readable format
- * 
+ *
  * @param string $datetime Datetime string
  * @return string Time ago (e.g., "2 hours ago")
  */
 function time_ago($datetime) {
     $timestamp = strtotime($datetime);
     $difference = time() - $timestamp;
-    
+
     $periods = [
         'year' => 31536000,
         'month' => 2592000,
@@ -267,15 +267,59 @@ function time_ago($datetime) {
         'minute' => 60,
         'second' => 1
     ];
-    
+
     foreach ($periods as $key => $value) {
         $count = floor($difference / $value);
-        
+
         if ($count > 0) {
             $plural = ($count > 1) ? 's' : '';
             return $count . ' ' . $key . $plural . ' ago';
         }
     }
-    
+
     return 'just now';
+}
+
+/**
+ * Encrypt an ID for use in URLs
+ *
+ * @param int|string $id The ID to encrypt
+ * @return string URL-safe encrypted string
+ */
+function encrypt_id($id) {
+    return UrlEncryption::encryptId($id);
+}
+
+/**
+ * Decrypt an ID from URL
+ *
+ * @param string $encryptedId The encrypted ID from URL
+ * @return int|false The original ID or false on failure
+ */
+function decrypt_id($encryptedId) {
+    return UrlEncryption::decryptId($encryptedId);
+}
+
+/**
+ * Build a URL with encrypted ID parameter
+ *
+ * @param string $baseUrl The base URL
+ * @param int|string $id The ID to encrypt
+ * @param string $paramName The parameter name (default: 'id')
+ * @param array $additionalParams Additional query parameters
+ * @return string Complete URL with encrypted ID
+ */
+function build_encrypted_url($baseUrl, $id, $paramName = 'id', $additionalParams = []) {
+    return UrlEncryption::buildUrl($baseUrl, $id, $paramName, $additionalParams);
+}
+
+/**
+ * Get decrypted ID from current request
+ *
+ * @param string $paramName The parameter name (default: 'id')
+ * @param string $method Request method (default: 'GET')
+ * @return int|false The decrypted ID or false on failure
+ */
+function get_encrypted_id($paramName = 'id', $method = 'GET') {
+    return UrlEncryption::getIdFromRequest($paramName, $method);
 }

@@ -29,8 +29,8 @@ checkRole(ROLE_SUPER_ADMIN);
 $user = new User();
 $db = Database::getInstance();
 
-// Get user ID from query string
-$userId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get user ID from query string (encrypted)
+$userId = get_encrypted_id();
 
 if (!$userId) {
     Session::setFlash('error', 'Invalid user ID.');
@@ -674,14 +674,14 @@ $pageTitle = 'Change Password';
                         <a href="list.php">Users</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="edit.php?id=<?php echo $userId; ?>">Edit User</a>
+                        <a href="<?php echo build_encrypted_url('edit.php', $userId); ?>">Edit User</a>
                     </li>
                     <li class="breadcrumb-item active">Change Password</li>
                 </ol>
             </nav>
         </div>
         <div class="content-actions">
-            <a href="edit.php?id=<?php echo $userData['id']; ?>" class="btn btn-secondary">
+            <a href="<?php echo build_encrypted_url('edit.php', $userData['id']); ?>" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i>
                 <span>Back to User</span>
             </a>
@@ -714,7 +714,7 @@ $pageTitle = 'Change Password';
             <div class="alert-title">Success!</div>
             <div class="alert-message"><?php echo htmlspecialchars($success); ?></div>
             <div class="alert-actions">
-                <a href="edit.php?id=<?php echo $userData['id']; ?>" class="btn btn-sm btn-primary">Back to User Profile</a>
+                <a href="<?php echo build_encrypted_url('edit.php', $userData['id']); ?>" class="btn btn-sm btn-primary">Back to User Profile</a>
                 <a href="list.php" class="btn btn-sm btn-outline-primary">View All Users</a>
             </div>
         </div>
@@ -837,7 +837,7 @@ $pageTitle = 'Change Password';
                         <i class="fas fa-key"></i>
                         <span>Change Password</span>
                     </button>
-                    <a href="edit.php?id=<?php echo $userData['id']; ?>" class="btn btn-secondary btn-lg">
+                    <a href="<?php echo build_encrypted_url('edit.php', $userData['id']); ?>" class="btn btn-secondary btn-lg">
                         <i class="fas fa-times"></i>
                         <span>Cancel</span>
                     </a>

@@ -971,8 +971,8 @@ $pageTitle = 'Review Queue - Finance Manager';
                                 </td>
                                 <td class="text-center">
                                     <div class="table-actions">
-                                        <a href="../requisitions/view.php?id=<?php echo $req['id']; ?>" 
-                                           class="btn btn-sm btn-primary" 
+                                        <a href="<?php echo build_encrypted_url('../requisitions/view.php', $req['id']); ?>"
+                                           class="btn btn-sm btn-primary"
                                            title="Review & Approve">
                                             <i class="fas fa-clipboard-check"></i>
                                             <span>Review</span>

@@ -30,8 +30,8 @@ $user = new User();
 $department = new Department();
 $db = Database::getInstance();
 
-// Get user ID from query string
-$userId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get user ID from query string (encrypted)
+$userId = get_encrypted_id();
 
 if (!$userId) {
     Session::setFlash('error', 'Invalid user ID.');
@@ -879,7 +879,7 @@ $pageTitle = 'Edit User';
                         <div class="password-action-title">Reset User Password</div>
                         <div class="password-action-text">Click the button below to change the user's password securely.</div>
                     </div>
-                    <a href="change-password.php?id=<?php echo $userData['id']; ?>" class="btn btn-warning">
+                    <a href="<?php echo build_encrypted_url('change-password.php', $userData['id']); ?>" class="btn btn-warning">
     <i class="fas fa-key"></i> Change Password
 </a>
                 </div>

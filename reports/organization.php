@@ -916,7 +916,7 @@ $pageTitle = 'Organization Reports';
                                 </td>
                                 <td><?php echo get_status_indicator($req['status']); ?></td>
                                 <td class="text-end">
-                                    <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" 
+                                    <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $req['id']); ?>"
                                        class="btn btn-sm btn-ghost"
                                        title="View Details">
                                         <i class="fas fa-eye"></i>

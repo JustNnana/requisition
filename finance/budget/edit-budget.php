@@ -22,7 +22,7 @@ require_once __DIR__ . '/../../middleware/role-check.php';
 checkRole(ROLE_FINANCE_MANAGER);
 
 $budgetModel = new Budget();
-$budgetId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$budgetId = get_encrypted_id();
 
 if (!$budgetId) {
     Session::setFlash('error', 'Invalid budget ID.');
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if ($result['success']) {
                 Session::setFlash('success', $result['message']);
-                header('Location: view-budget.php?id=' . $budgetId);
+                header('Location: ' . build_encrypted_url('view-budget.php', $budgetId));
                 exit;
             } else {
                 $errors[] = $result['message'];
@@ -656,7 +656,7 @@ $pageTitle = 'Edit Budget';
             <!--</nav>-->
         </div>
         <div class="content-actions">
-            <a href="view-budget.php?id=<?php echo $budgetId; ?>" class="btn btn-secondary">
+            <a href="<?php echo build_encrypted_url('view-budget.php', $budgetId); ?>" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i>
                 <span>Back to Details</span>
             </a>
@@ -878,7 +878,7 @@ $pageTitle = 'Edit Budget';
                         <i class="fas fa-save"></i>
                         <span>Update Budget</span>
                     </button>
-                    <a href="view-budget.php?id=<?php echo $budgetId; ?>" class="btn btn-secondary btn-lg">
+                    <a href="<?php echo build_encrypted_url('view-budget.php', $budgetId); ?>" class="btn btn-secondary btn-lg">
                         <i class="fas fa-times"></i>
                         <span>Cancel</span>
                     </a>

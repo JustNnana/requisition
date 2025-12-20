@@ -676,8 +676,8 @@ $pageTitle = 'Pending Approvals';
                                 </td>
                                 <td class="text-center">
                                     <div class="table-actions">
-                                        <a href="view.php?id=<?php echo $req['id']; ?>" 
-                                           class="btn btn-sm btn-primary" 
+                                        <a href="<?php echo build_encrypted_url('view.php', $req['id']); ?>"
+                                           class="btn btn-sm btn-primary"
                                            title="Review & Approve/Reject">
                                             <i class="fas fa-eye"></i>
                                             <span>Review</span>

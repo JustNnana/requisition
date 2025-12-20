@@ -640,7 +640,7 @@ $pageTitle = 'Dashboard';
                                 <strong><?php echo htmlspecialchars($action['requisition_number']); ?></strong> -
                                 <?php echo htmlspecialchars(substr($action['purpose'], 0, 50)) . (strlen($action['purpose']) > 50 ? '...' : ''); ?>
                             </div>
-                            <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $action['id']; ?>" class="btn btn-danger">
+                            <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $action['id']); ?>" class="btn btn-danger">
                                 <i class="fas fa-eye me-2"></i>View & Edit
                             </a>
                         </div>
@@ -686,7 +686,7 @@ $needsReceipt = $db->fetchAll($sql, [$userId, STATUS_PAID]);
                                     Paid: <?php echo format_date($req['payment_date']); ?>
                                 </span>
                             </div>
-                            <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>" class="btn btn-info" style="white-space: nowrap; margin-left: var(--spacing-3);">
+                            <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $req['id']); ?>" class="btn btn-info" style="white-space: nowrap; margin-left: var(--spacing-3);">
                                 <i class="fas fa-upload me-2"></i>Upload Receipt
                             </a>
                         </div>
@@ -1056,7 +1056,7 @@ if ($budgetDiff != 0):
                                 ?>
                             </td>
                             <td class="text-end">
-                                <a href="<?php echo BASE_URL; ?>/requisitions/view.php?id=<?php echo $req['id']; ?>"
+                                <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $req['id']); ?>"
                                     class="btn btn-sm btn-ghost" title="View Details">
                                     <i class="fas fa-eye"></i>
                                 </a>

@@ -737,17 +737,17 @@ $pageTitle = 'Pending Payments';
                                     <div class="table-actions">
                                         <?php if ($canProcessPayments): ?>
                                             <!-- Finance Member: Can Process Payment -->
-                                            <a href="process-payment.php?id=<?php echo $req['id']; ?>" 
-                                               class="btn btn-sm btn-success" 
+                                            <a href="<?php echo build_encrypted_url('process-payment.php', $req['id']); ?>"
+                                               class="btn btn-sm btn-success"
                                                title="Process Payment">
                                                 <i class="fas fa-money-bill-wave"></i>
                                                 <span>Process</span>
                                             </a>
                                         <?php endif; ?>
-                                        
+
                                         <!-- Both roles can view details -->
-                                        <a href="../requisitions/view.php?id=<?php echo $req['id']; ?>" 
-                                           class="btn btn-sm btn-ghost" 
+                                        <a href="<?php echo build_encrypted_url('../requisitions/view.php', $req['id']); ?>"
+                                           class="btn btn-sm btn-ghost"
                                            title="View Details">
                                             <i class="fas fa-eye"></i>
                                             <span>View</span>

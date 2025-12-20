@@ -521,7 +521,7 @@ $pageTitle = 'User Management';
                                 </td>
                                 <td class="text-end">
                                     <div class="table-actions">
-                                        <a href="edit.php?id=<?php echo $userData['id']; ?>"
+                                        <a href="<?php echo build_encrypted_url('edit.php', $userData['id']); ?>"
                                             class="btn btn-sm btn-ghost"
                                             title="Edit User">
                                             <i class="fas fa-edit"></i>
@@ -530,7 +530,7 @@ $pageTitle = 'User Management';
                                         $currentUser = Session::get('user');
                                         if ($userData['id'] != ($currentUser['id'] ?? 0)):
                                         ?>
-                                            <a href="delete.php?id=<?php echo $userData['id']; ?>"
+                                            <a href="<?php echo build_encrypted_url('delete.php', $userData['id']); ?>"
                                                 class="btn btn-sm btn-ghost text-danger"
                                                 title="Delete User"
                                                 onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">

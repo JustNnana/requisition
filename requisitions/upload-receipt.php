@@ -24,7 +24,7 @@ require_once __DIR__ . '/../helpers/permissions.php';
 require_once __DIR__ . '/../helpers/status-indicator.php';
 
 // Get requisition ID
-$requisitionId = Sanitizer::int($_GET['id'] ?? 0);
+$requisitionId = get_encrypted_id();
 
 if (!$requisitionId) {
     Session::setFlash('error', 'Invalid requisition ID.');
@@ -55,7 +55,7 @@ if ($req['user_id'] != Session::getUserId()) {
 // Verify status is paid
 if ($req['status'] !== STATUS_PAID) {
     Session::setFlash('error', 'Receipt can only be uploaded after payment has been processed.');
-    header('Location: view.php?id=' . $requisitionId);
+    header('Location: ' . build_encrypted_url('view.php', $requisitionId));
     exit;
 }
 
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result['success']) {
         Session::setFlash('success', $result['message']);
         Session::setFlash('info', 'All approvers have been notified of receipt submission.');
-        header('Location: view.php?id=' . $requisitionId);
+        header('Location: ' . build_encrypted_url('view.php', $requisitionId));
         exit;
     } else {
         $errorMessage = $result['message'];
@@ -589,7 +589,7 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
             <p class="content-subtitle">Submit receipt after receiving goods/services</p>
         </div>
         <div class="d-flex gap-2">
-            <a href="view.php?id=<?php echo $requisitionId; ?>" class="btn btn-ghost">
+            <a href="<?php echo build_encrypted_url('view.php', $requisitionId); ?>" class="btn btn-ghost">
                 <i class="fas fa-arrow-left"></i>
                 <span>Back to Requisition</span>
             </a>
@@ -726,8 +726,8 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                             <br>
                             <small class="text-muted"><?php echo format_file_size($invoice['file_size']); ?></small>
                         </div>
-                        <a href="../api/download-file.php?id=<?php echo $invoice['id']; ?>" 
-                           class="btn btn-primary" 
+                        <a href="<?php echo build_encrypted_url('../api/download-file.php', $invoice['id']); ?>"
+                           class="btn btn-primary"
                            target="_blank">
                             <i class="fas fa-download"></i>
                             <span>View Invoice</span>
@@ -812,7 +812,7 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                             <i class="fas fa-upload"></i>
                             <span>Upload Receipt</span>
                         </button>
-                        <a href="view.php?id=<?php echo $requisitionId; ?>" class="btn btn-ghost btn-lg btn-block">
+                        <a href="<?php echo build_encrypted_url('view.php', $requisitionId); ?>" class="btn btn-ghost btn-lg btn-block">
                             <i class="fas fa-times"></i>
                             <span>Cancel</span>
                         </a>

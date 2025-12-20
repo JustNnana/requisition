@@ -62,6 +62,10 @@ define('PASSWORD_REQUIRE_UPPERCASE', true);
 define('MAX_LOGIN_ATTEMPTS', 5);
 define('LOGIN_LOCKOUT_TIME', 900); // 15 minutes
 
+// URL Encryption Key (Generate a new random key for production!)
+// To generate a new key: openssl rand -base64 32
+define('ENCRYPTION_KEY', 'your-secret-encryption-key-change-this-in-production-2024');
+
 // Pagination Settings
 define('RECORDS_PER_PAGE', 20);
 define('PAGINATION_RANGE', 5);

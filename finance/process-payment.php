@@ -28,8 +28,8 @@ if (!is_finance_member()) {
     exit;
 }
 
-// Get requisition ID
-$requisitionId = Sanitizer::int($_GET['id'] ?? 0);
+// Get requisition ID (encrypted)
+$requisitionId = get_encrypted_id();
 
 if (!$requisitionId) {
     Session::setFlash('error', 'Invalid requisition ID.');
