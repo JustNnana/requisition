@@ -33,30 +33,27 @@ class AuditLog {
             // Get client info
             $ipAddress = $this->getClientIp();
             $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-            
-            // Convert metadata to JSON
-            $metadataJson = !empty($metadata) ? json_encode($metadata) : null;
-            
+
+            // Note: Metadata parameter is kept for compatibility but not stored in current schema
+
             // Insert audit log entry
             $sql = "INSERT INTO audit_log (
-                        user_id, 
-                        requisition_id, 
-                        action_type, 
-                        description, 
-                        ip_address, 
-                        user_agent, 
-                        metadata,
+                        user_id,
+                        requisition_id,
+                        action,
+                        description,
+                        ip_address,
+                        user_agent,
                         created_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
-            
+                    ) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+
             $params = [
                 $userId,
                 $requisitionId,
                 $actionType,
                 $description,
                 $ipAddress,
-                $userAgent,
-                $metadataJson
+                $userAgent
             ];
             
             $this->db->execute($sql, $params);
@@ -189,7 +186,7 @@ class AuditLog {
             
             // Apply filters
             if (!empty($filters['action_type'])) {
-                $where[] = "a.action_type = ?";
+                $where[] = "a.action = ?";
                 $params[] = $filters['action_type'];
             }
             
@@ -254,13 +251,13 @@ class AuditLog {
                 $params[] = $filters['user_id'];
             }
             
-            $sql = "SELECT 
+            $sql = "SELECT
                         COUNT(*) as total_actions,
                         COUNT(DISTINCT user_id) as unique_users,
                         COUNT(DISTINCT requisition_id) as unique_requisitions,
-                        COUNT(CASE WHEN action_type LIKE '%login%' THEN 1 END) as login_actions,
-                        COUNT(CASE WHEN action_type LIKE '%requisition%' THEN 1 END) as requisition_actions,
-                        COUNT(CASE WHEN action_type LIKE '%approval%' THEN 1 END) as approval_actions
+                        COUNT(CASE WHEN action LIKE '%login%' THEN 1 END) as login_actions,
+                        COUNT(CASE WHEN action LIKE '%requisition%' THEN 1 END) as requisition_actions,
+                        COUNT(CASE WHEN action LIKE '%approval%' THEN 1 END) as approval_actions
                     FROM audit_log
                     WHERE " . implode(' AND ', $where);
             
@@ -281,16 +278,16 @@ class AuditLog {
      */
     public function getByActionType($actionType, $limit = 50) {
         try {
-            $sql = "SELECT a.*, 
+            $sql = "SELECT a.*,
                            u.first_name, u.last_name, u.email,
                            r.requisition_number
                     FROM audit_log a
                     LEFT JOIN users u ON a.user_id = u.id
                     LEFT JOIN requisitions r ON a.requisition_id = r.id
-                    WHERE a.action_type = ?
+                    WHERE a.action = ?
                     ORDER BY a.created_at DESC
                     LIMIT ?";
-            
+
             return $this->db->fetchAll($sql, [$actionType, $limit]);
             
         } catch (Exception $e) {
@@ -424,7 +421,7 @@ class AuditLog {
                     trim(($entry['first_name'] ?? '') . ' ' . ($entry['last_name'] ?? '')),
                     $entry['email'] ?? '',
                     $entry['role_name'] ?? '',
-                    $entry['action_type'],
+                    $entry['action'],
                     $entry['description'],
                     $entry['requisition_number'] ?? 'N/A',
                     $entry['ip_address']

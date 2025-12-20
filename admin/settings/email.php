@@ -120,16 +120,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             
                             // Log successful test
                             if (ENABLE_AUDIT_LOG) {
-                                $logSql = "INSERT INTO audit_log (user_id, action_type, action_description, ip_address, created_at)
-                                           VALUES (?, ?, ?, ?, NOW())";
-                                $logParams = [
-                                    Session::getUserId(),
-                                    AUDIT_EMAIL_SENT,
-                                    "Email configuration test sent to {$testEmail}",
-                                    LOG_IP_ADDRESS ? ($_SERVER['REMOTE_ADDR'] ?? '') : null
-                                ];
-                                
-                                $db->execute($logSql, $logParams);
+                                try {
+                                    $logSql = "INSERT INTO audit_log (user_id, action, description, ip_address, created_at)
+                                               VALUES (?, ?, ?, ?, NOW())";
+                                    $logParams = [
+                                        Session::getUserId(),
+                                        'email_test',
+                                        "Email configuration test sent to {$testEmail}",
+                                        $_SERVER['REMOTE_ADDR'] ?? ''
+                                    ];
+
+                                    $db->execute($logSql, $logParams);
+                                } catch (Exception $e) {
+                                    error_log("Audit log error: " . $e->getMessage());
+                                }
                             }
                         } else {
                             $errors[] = 'Failed to send test email. Please check your SMTP configuration and server mail settings.';
