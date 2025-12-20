@@ -54,10 +54,10 @@ if (!$departmentId || $amount <= 0) {
 
 // Verify user has access to this department
 $userDepartmentId = Session::getUserDepartmentId();
-$userRole = Session::getUserRole();
+$userRoleId = Session::getUserRoleId();
 
 // Managing Director and Finance roles can check any department
-$canCheckAnyDepartment = in_array($userRole, [ROLE_MANAGING_DIRECTOR, ROLE_FINANCE_MANAGER, ROLE_FINANCE_MEMBER]);
+$canCheckAnyDepartment = in_array($userRoleId, [ROLE_MANAGING_DIRECTOR, ROLE_FINANCE_MANAGER, ROLE_FINANCE_MEMBER]);
 
 if (!$canCheckAnyDepartment && $departmentId != $userDepartmentId) {
     http_response_code(403);
