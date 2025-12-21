@@ -472,7 +472,7 @@ $pendingReceiptsCount = 0;
         <span class="sidebar-category-text">BUDGET MANAGEMENT</span>
     </div>
 
-    <a href="<?php echo BASE_URL; ?>/finance/budget/index" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
+    <a href="<?php echo BASE_URL; ?>/finance/budget/" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
         <div class="sidebar-icon">
             <i class="fas fa-list"></i>
         </div>
@@ -545,7 +545,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">BUDGET MANAGEMENT</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/finance/budget/index" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
+            <a href="<?php echo BASE_URL; ?>/finance/budget/" class="sidebar-link <?php echo isActive('index.php', 'budget'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-list"></i>
                 </div>
@@ -717,7 +717,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-category-text">ACCOUNT</span>
             </div>
 
-            <a href="<?php echo BASE_URL; ?>/profile/index" class="sidebar-link <?php echo isActive('index.php', 'profile'); ?>">
+            <a href="<?php echo BASE_URL; ?>/profile/" class="sidebar-link <?php echo isActive('index.php', 'profile'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-user-circle"></i>
                 </div>
@@ -725,12 +725,12 @@ $pendingReceiptsCount = 0;
             </a>
         <?php endif; ?>
 
-        <a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('index.php', 'help'); ?>">
-            <div class="sidebar-icon">
-                <i class="fas fa-question-circle"></i>
-            </div>
-            <span class="sidebar-text">Help & Support</span>
-        </a>
+        <!--<a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('index.php', 'help'); ?>">-->
+        <!--    <div class="sidebar-icon">-->
+        <!--        <i class="fas fa-question-circle"></i>-->
+        <!--    </div>-->
+        <!--    <span class="sidebar-text">Help & Support</span>-->
+        <!--</a>-->
     </div>
 
     <!-- Sidebar Footer -->
@@ -745,7 +745,7 @@ $pendingReceiptsCount = 0;
 <!-- Enhanced JavaScript for Dasher UI Sidebar -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('ðŸŽ¨ Initializing Dasher UI sidebar for Requisition System...');
+        console.log('🎨 Initializing Dasher UI sidebar for Requisition System...');
 
         // ===== MOBILE SIDEBAR FUNCTIONALITY =====
         const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -771,7 +771,7 @@ $pendingReceiptsCount = 0;
                         sidebarToggle.setAttribute('aria-expanded', 'false');
                     }
 
-                    console.log('ðŸ“± Sidebar:', isMobileOpen ? 'OPEN' : 'CLOSED');
+                    console.log('📱 Sidebar:', isMobileOpen ? 'OPEN' : 'CLOSED');
                 }
             }
 
@@ -965,7 +965,7 @@ $pendingReceiptsCount = 0;
             });
         });
 
-        console.log('âœ… Dasher UI sidebar initialized successfully');
+        console.log('✅ Dasher UI sidebar initialized successfully');
     });
 
     // Export functions for external use

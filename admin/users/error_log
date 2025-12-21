@@ -1366,3 +1366,11 @@
 [19-Dec-2025 16:46:43 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
 [19-Dec-2025 16:46:43 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
 [19-Dec-2025 16:46:43 Africa/Lagos] Navbar Debug - Role ID: 1 | Role Name: Super Admin
+[20-Dec-2025 09:48:04 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 09:48:14 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 14:07:06 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 14:07:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 14:07:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 14:07:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 14:07:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 14:07:06 Africa/Lagos] Navbar Debug - Role ID: 1 | Role Name: Super Admin

@@ -93,82 +93,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         if (empty($errors)) {
-            // Attempt to update config.php file
-            $updateSuccess = false;
-            $updateError = '';
-
-            try {
-                // Check if config file is writable
-                if (!is_writable($configFilePath)) {
-                    throw new Exception("Configuration file is not writable. Please check file permissions.");
-                }
-
-                // Read the current config file
-                $configContent = file_get_contents($configFilePath);
-                if ($configContent === false) {
-                    throw new Exception("Unable to read configuration file.");
-                }
-
-                // Create backup before modifying
-                $backupPath = $configFilePath . '.backup.' . date('Y-m-d_H-i-s');
-                if (!copy($configFilePath, $backupPath)) {
-                    throw new Exception("Unable to create backup of configuration file.");
-                }
-
-                // Update configuration values using regex
-                $patterns = [
-                    'APP_NAME' => "/define\('APP_NAME',\s*'[^']*'\);/",
-                    'APP_TIMEZONE' => "/define\('APP_TIMEZONE',\s*'[^']*'\);/",
-                    'RECORDS_PER_PAGE' => "/define\('RECORDS_PER_PAGE',\s*\d+\);/",
-                    'PASSWORD_MIN_LENGTH' => "/define\('PASSWORD_MIN_LENGTH',\s*\d+\);/",
-                    'MAX_LOGIN_ATTEMPTS' => "/define\('MAX_LOGIN_ATTEMPTS',\s*\d+\);/",
-                    'LOGIN_LOCKOUT_TIME' => "/define\('LOGIN_LOCKOUT_TIME',\s*\d+\);/",
-                    'ENABLE_AUDIT_LOG' => "/define\('ENABLE_AUDIT_LOG',\s*(true|false)\);/",
-                    'ENABLE_EMAIL_NOTIFICATIONS' => "/define\('ENABLE_EMAIL_NOTIFICATIONS',\s*(true|false)\);/"
-                ];
-
-                $replacements = [
-                    'APP_NAME' => "define('APP_NAME', '" . addslashes($newSettings['app_name']) . "');",
-                    'APP_TIMEZONE' => "define('APP_TIMEZONE', '" . addslashes($newSettings['app_timezone']) . "');",
-                    'RECORDS_PER_PAGE' => "define('RECORDS_PER_PAGE', " . $newSettings['records_per_page'] . ");",
-                    'PASSWORD_MIN_LENGTH' => "define('PASSWORD_MIN_LENGTH', " . $newSettings['password_min_length'] . ");",
-                    'MAX_LOGIN_ATTEMPTS' => "define('MAX_LOGIN_ATTEMPTS', " . $newSettings['max_login_attempts'] . ");",
-                    'LOGIN_LOCKOUT_TIME' => "define('LOGIN_LOCKOUT_TIME', " . $newSettings['login_lockout_time'] . ");",
-                    'ENABLE_AUDIT_LOG' => "define('ENABLE_AUDIT_LOG', " . ($newSettings['enable_audit_log'] ? 'true' : 'false') . ");",
-                    'ENABLE_EMAIL_NOTIFICATIONS' => "define('ENABLE_EMAIL_NOTIFICATIONS', " . ($newSettings['enable_email_notifications'] ? 'true' : 'false') . ");"
-                ];
-
-                // Apply all replacements
-                foreach ($patterns as $key => $pattern) {
-                    $configContent = preg_replace($pattern, $replacements[$key], $configContent);
-                }
-
-                // Write the updated config file
-                if (file_put_contents($configFilePath, $configContent) === false) {
-                    throw new Exception("Unable to write to configuration file.");
-                }
-
-                $updateSuccess = true;
-
-            } catch (Exception $e) {
-                $updateError = $e->getMessage();
-                error_log("Config update error: " . $e->getMessage());
-
-                // If backup exists, try to restore
-                if (isset($backupPath) && file_exists($backupPath)) {
-                    copy($backupPath, $configFilePath);
-                }
-            }
-
             // Log the settings change
             if (ENABLE_AUDIT_LOG) {
                 try {
-                    $logSql = "INSERT INTO audit_log (user_id, action, description, ip_address, created_at)
-                               VALUES (?, ?, ?, ?, NOW())";
+                    $logSql = "INSERT INTO audit_log (user_id, action, entity_type, entity_id, ip_address, created_at)
+                               VALUES (?, ?, ?, ?, ?, NOW())";
                     $logParams = [
                         Session::getUserId(),
-                        'settings_update',
-                        $updateSuccess ? 'General settings updated successfully' : 'General settings validation failed: ' . $updateError,
+                        'update',
+                        'settings',
+                        0,
                         $_SERVER['REMOTE_ADDR'] ?? ''
                     ];
 
@@ -179,11 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            if ($updateSuccess) {
-                $success = 'Settings updated successfully! The changes have been saved to the configuration file. Please note: Some settings may require a page refresh to take full effect.';
-            } else {
-                $errors[] = "Settings were validated but could not be saved: " . $updateError;
-            }
+            $success = 'Settings validated successfully. Note: To apply these changes, you need to update the config/config.php file manually or implement a dynamic configuration system.';
         }
     }
 }
@@ -1000,8 +930,8 @@ $pageTitle = 'General Settings';
                 <!-- Form Actions -->
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary btn-lg">
-                        <i class="fas fa-save"></i>
-                        <span>Save Settings</span>
+                        <i class="fas fa-check"></i>
+                        <span>Validate Settings</span>
                     </button>
                     <a href="../index.php" class="btn btn-secondary btn-lg">
                         <i class="fas fa-times"></i>

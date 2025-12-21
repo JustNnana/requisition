@@ -3183,3 +3183,151 @@ Stack trace:
 [19-Dec-2025 21:28:08 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
 [19-Dec-2025 21:28:08 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
 [19-Dec-2025 21:28:12 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 09:33:06 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 09:33:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 09:33:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 09:33:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 09:33:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 09:33:06 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[20-Dec-2025 09:33:06 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 09:33:06 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 09:33:06 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 09:33:11 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 09:35:03 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 09:35:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 09:35:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 09:35:03 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 09:35:03 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 09:35:03 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[20-Dec-2025 09:35:03 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 09:35:03 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 09:35:03 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:50:23 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 10:50:23 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 10:50:23 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 10:50:23 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 10:50:23 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 10:50:23 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[20-Dec-2025 10:50:23 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:50:23 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:50:23 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:52:13 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 10:52:13 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 10:52:13 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 10:52:13 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 10:52:13 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 10:52:13 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[20-Dec-2025 10:52:13 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:52:13 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:52:13 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:52:30 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 10:52:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 10:52:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 10:52:30 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 10:52:30 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 10:52:30 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[20-Dec-2025 10:52:30 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:52:30 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:52:30 Africa/Lagos] PHP Warning:  Undefined array key "user_id" in /home2/gateweyc/public_html/request.gatewey.com.ng/reports/department.php on line 653
+[20-Dec-2025 10:52:35 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 10:52:51 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 10:52:51 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[20-Dec-2025 10:52:51 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[20-Dec-2025 10:52:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 10:52:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 10:52:51 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 10:52:51 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 10:52:51 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[20-Dec-2025 10:52:57 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 10:52:57 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[20-Dec-2025 10:52:57 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[20-Dec-2025 13:06:54 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 13:07:10 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 13:36:13 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 13:36:13 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[20-Dec-2025 13:36:13 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[20-Dec-2025 13:36:13 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 13:36:13 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 13:36:13 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 13:36:13 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 13:36:13 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[20-Dec-2025 13:36:44 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 13:36:44 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[20-Dec-2025 13:36:44 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[20-Dec-2025 13:36:44 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 13:36:44 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 13:36:44 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 13:36:44 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 13:36:44 Africa/Lagos] Navbar Debug - Role ID: 3 | Role Name: Finance Manager
+[20-Dec-2025 13:44:06 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 13:44:06 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[20-Dec-2025 13:44:06 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[20-Dec-2025 13:44:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[20-Dec-2025 13:44:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[20-Dec-2025 13:44:06 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[20-Dec-2025 13:44:06 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[20-Dec-2025 13:44:06 Africa/Lagos] Navbar Debug - Role ID: 2 | Role Name: Managing Director
+[20-Dec-2025 13:44:34 Africa/Lagos] Database connection established successfully
+[20-Dec-2025 13:44:34 Africa/Lagos] Query Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list' | SQL: INSERT INTO audit_log (
+                        user_id, 
+                        requisition_id, 
+                        action_type, 
+                        description, 
+                        ip_address, 
+                        user_agent, 
+                        metadata,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+[20-Dec-2025 13:44:34 Africa/Lagos] Audit log error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action_type' in 'field list'
+[21-Dec-2025 10:09:54 Africa/Lagos] Database connection established successfully
+[21-Dec-2025 10:09:54 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 634
+[21-Dec-2025 10:09:54 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 642
+[21-Dec-2025 10:09:54 Africa/Lagos] PHP Warning:  Undefined variable $notificationCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 660
+[21-Dec-2025 10:09:54 Africa/Lagos] PHP Warning:  Undefined variable $messageCount in /home2/gateweyc/public_html/request.gatewey.com.ng/includes/header.php on line 668
+[21-Dec-2025 10:09:54 Africa/Lagos] Navbar Debug - Role ID: 5 | Role Name: Line Manager
+[21-Dec-2025 21:43:56 Africa/Lagos] Database connection established successfully

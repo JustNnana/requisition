@@ -1090,4 +1090,4 @@ if ($hour < 12) {
         <?php include __DIR__ . '/navbar.php'; ?>
 
         <!-- Main Content Area -->
-        <main class="content"></main>
+        <main class="content">

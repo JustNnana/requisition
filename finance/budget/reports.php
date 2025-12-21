@@ -689,7 +689,7 @@ function getMonthlyTrends($db, $departmentId, $year, $quarter = 0) {
         <!-- Monthly Trends Chart -->
         <div class="chart-container">
             <div class="chart-header">
-                <h3 class="chart-title">Monthly Spending Trends</h3>
+                <h3 class="chart-title">Monthly Spending Trends-</h3>
                 <p class="chart-subtitle">Comparing monthly allocation patterns</p>
             </div>
             <canvas id="monthlyTrendsChart" style="max-height: 300px;"></canvas>
@@ -698,7 +698,7 @@ function getMonthlyTrends($db, $departmentId, $year, $quarter = 0) {
         <!-- Category Breakdown Chart -->
         <div class="chart-container">
             <div class="chart-header">
-                <h3 class="chart-title">Category Distribution</h3>
+                <h3 class="chart-title">Category Distribution-</h3>
                 <p class="chart-subtitle"><?php echo $year1; ?> vs <?php echo $year2; ?> spending by category</p>
             </div>
             <canvas id="categoryChart" style="max-height: 300px;"></canvas>

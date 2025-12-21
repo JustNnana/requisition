@@ -7391,3 +7391,2923 @@
 [2025-12-20 08:15:05] Summary: Expired=0, Activated=0
 [2025-12-20 08:15:05] Execution time: 3150.79 ms
 [2025-12-20 08:15:05] Memory used: 1.09 MB
+[2025-12-20 08:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 08:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 08:45:02] All required files verified successfully
+[2025-12-20 09:45:02] Loaded: config.php
+[2025-12-20 09:45:02] Loaded: database.php (Database class included)
+[2025-12-20 09:45:02] Loaded: Budget.php
+[2025-12-20 09:45:02] Initializing Budget class...
+[2025-12-20 09:45:02] Budget class initialized successfully
+[2025-12-20 09:45:02] Database connection verified
+[2025-12-20 09:45:02] Current MySQL date: 2025-12-20 2025-12-20 09:45:02
+[2025-12-20 09:45:02] Checking for budgets to expire...
+[2025-12-20 09:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 09:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 09:45:02] Checking for budgets to activate...
+[2025-12-20 09:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 09:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 09:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 09:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 09:45:02] Execution time: 13.5 ms
+[2025-12-20 09:45:02] Memory used: 1.1 MB
+[2025-12-20 09:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 09:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 09:00:03] All required files verified successfully
+[2025-12-20 10:00:03] Loaded: config.php
+[2025-12-20 10:00:03] Loaded: database.php (Database class included)
+[2025-12-20 10:00:03] Loaded: Budget.php
+[2025-12-20 10:00:03] Initializing Budget class...
+[2025-12-20 10:00:03] Budget class initialized successfully
+[2025-12-20 10:00:03] Database connection verified
+[2025-12-20 10:00:03] Current MySQL date: 2025-12-20 2025-12-20 10:00:03
+[2025-12-20 10:00:03] Checking for budgets to expire...
+[2025-12-20 10:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 10:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 10:00:03] Checking for budgets to activate...
+[2025-12-20 10:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 10:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 10:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 10:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 10:00:03] Execution time: 230.08 ms
+[2025-12-20 10:00:03] Memory used: 1.1 MB
+[2025-12-20 09:15:03] === Budget Update Cron Job Started ===
+[2025-12-20 09:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 09:15:03] All required files verified successfully
+[2025-12-20 10:15:03] Loaded: config.php
+[2025-12-20 10:15:03] Loaded: database.php (Database class included)
+[2025-12-20 10:15:03] Loaded: Budget.php
+[2025-12-20 10:15:03] Initializing Budget class...
+[2025-12-20 10:15:03] Budget class initialized successfully
+[2025-12-20 10:15:03] Database connection verified
+[2025-12-20 10:15:03] Current MySQL date: 2025-12-20 2025-12-20 10:15:03
+[2025-12-20 10:15:03] Checking for budgets to expire...
+[2025-12-20 10:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 10:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 10:15:03] Checking for budgets to activate...
+[2025-12-20 10:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 10:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 10:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 10:15:03] Summary: Expired=0, Activated=0
+[2025-12-20 10:15:03] Execution time: 495.48 ms
+[2025-12-20 10:15:03] Memory used: 1.1 MB
+[2025-12-20 09:30:02] === Budget Update Cron Job Started ===
+[2025-12-20 09:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 09:30:02] All required files verified successfully
+[2025-12-20 10:30:02] Loaded: config.php
+[2025-12-20 10:30:02] Loaded: database.php (Database class included)
+[2025-12-20 10:30:02] Loaded: Budget.php
+[2025-12-20 10:30:02] Initializing Budget class...
+[2025-12-20 10:30:02] Budget class initialized successfully
+[2025-12-20 10:30:02] Database connection verified
+[2025-12-20 10:30:02] Current MySQL date: 2025-12-20 2025-12-20 10:30:02
+[2025-12-20 10:30:02] Checking for budgets to expire...
+[2025-12-20 10:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 10:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 10:30:02] Checking for budgets to activate...
+[2025-12-20 10:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 10:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 10:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 10:30:02] Summary: Expired=0, Activated=0
+[2025-12-20 10:30:02] Execution time: 22.03 ms
+[2025-12-20 10:30:02] Memory used: 1.1 MB
+[2025-12-20 09:45:03] === Budget Update Cron Job Started ===
+[2025-12-20 09:45:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 09:45:06] All required files verified successfully
+[2025-12-20 10:45:06] Loaded: config.php
+[2025-12-20 10:45:06] Loaded: database.php (Database class included)
+[2025-12-20 10:45:06] Loaded: Budget.php
+[2025-12-20 10:45:06] Initializing Budget class...
+[2025-12-20 10:45:06] Budget class initialized successfully
+[2025-12-20 10:45:06] Database connection verified
+[2025-12-20 10:45:06] Current MySQL date: 2025-12-20 2025-12-20 10:45:06
+[2025-12-20 10:45:06] Checking for budgets to expire...
+[2025-12-20 10:45:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 10:45:06] No budgets expired (all active budgets are still valid)
+[2025-12-20 10:45:06] Checking for budgets to activate...
+[2025-12-20 10:45:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 10:45:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 10:45:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 10:45:06] Summary: Expired=0, Activated=0
+[2025-12-20 10:45:06] Execution time: 2783.98 ms
+[2025-12-20 10:45:06] Memory used: 1.1 MB
+[2025-12-20 10:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 10:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 10:00:03] All required files verified successfully
+[2025-12-20 11:00:03] Loaded: config.php
+[2025-12-20 11:00:03] Loaded: database.php (Database class included)
+[2025-12-20 11:00:03] Loaded: Budget.php
+[2025-12-20 11:00:03] Initializing Budget class...
+[2025-12-20 11:00:03] Budget class initialized successfully
+[2025-12-20 11:00:03] Database connection verified
+[2025-12-20 11:00:03] Current MySQL date: 2025-12-20 2025-12-20 11:00:03
+[2025-12-20 11:00:03] Checking for budgets to expire...
+[2025-12-20 11:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 11:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 11:00:03] Checking for budgets to activate...
+[2025-12-20 11:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 11:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 11:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 11:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 11:00:03] Execution time: 14.7 ms
+[2025-12-20 11:00:03] Memory used: 1.1 MB
+[2025-12-20 10:15:06] === Budget Update Cron Job Started ===
+[2025-12-20 10:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 10:15:06] All required files verified successfully
+[2025-12-20 11:15:07] Loaded: config.php
+[2025-12-20 11:15:07] Loaded: database.php (Database class included)
+[2025-12-20 11:15:07] Loaded: Budget.php
+[2025-12-20 11:15:07] Initializing Budget class...
+[2025-12-20 11:15:07] Budget class initialized successfully
+[2025-12-20 11:15:07] Database connection verified
+[2025-12-20 11:15:07] Current MySQL date: 2025-12-20 2025-12-20 11:15:07
+[2025-12-20 11:15:07] Checking for budgets to expire...
+[2025-12-20 11:15:07] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 11:15:07] No budgets expired (all active budgets are still valid)
+[2025-12-20 11:15:07] Checking for budgets to activate...
+[2025-12-20 11:15:07] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 11:15:07] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 11:15:07] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 11:15:07] Summary: Expired=0, Activated=0
+[2025-12-20 11:15:07] Execution time: 592.19 ms
+[2025-12-20 11:15:07] Memory used: 1.1 MB
+[2025-12-20 10:30:02] === Budget Update Cron Job Started ===
+[2025-12-20 10:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 10:30:02] All required files verified successfully
+[2025-12-20 11:30:02] Loaded: config.php
+[2025-12-20 11:30:02] Loaded: database.php (Database class included)
+[2025-12-20 11:30:02] Loaded: Budget.php
+[2025-12-20 11:30:02] Initializing Budget class...
+[2025-12-20 11:30:02] Budget class initialized successfully
+[2025-12-20 11:30:02] Database connection verified
+[2025-12-20 11:30:02] Current MySQL date: 2025-12-20 2025-12-20 11:30:02
+[2025-12-20 11:30:02] Checking for budgets to expire...
+[2025-12-20 11:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 11:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 11:30:02] Checking for budgets to activate...
+[2025-12-20 11:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 11:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 11:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 11:30:02] Summary: Expired=0, Activated=0
+[2025-12-20 11:30:02] Execution time: 14.35 ms
+[2025-12-20 11:30:02] Memory used: 1.1 MB
+[2025-12-20 10:45:03] === Budget Update Cron Job Started ===
+[2025-12-20 10:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 10:45:03] All required files verified successfully
+[2025-12-20 11:45:03] Loaded: config.php
+[2025-12-20 11:45:03] Loaded: database.php (Database class included)
+[2025-12-20 11:45:03] Loaded: Budget.php
+[2025-12-20 11:45:03] Initializing Budget class...
+[2025-12-20 11:45:03] Budget class initialized successfully
+[2025-12-20 11:45:03] Database connection verified
+[2025-12-20 11:45:03] Current MySQL date: 2025-12-20 2025-12-20 11:45:03
+[2025-12-20 11:45:03] Checking for budgets to expire...
+[2025-12-20 11:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 11:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 11:45:03] Checking for budgets to activate...
+[2025-12-20 11:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 11:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 11:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 11:45:03] Summary: Expired=0, Activated=0
+[2025-12-20 11:45:03] Execution time: 620.91 ms
+[2025-12-20 11:45:03] Memory used: 1.1 MB
+[2025-12-20 11:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 11:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 11:00:03] All required files verified successfully
+[2025-12-20 12:00:03] Loaded: config.php
+[2025-12-20 12:00:03] Loaded: database.php (Database class included)
+[2025-12-20 12:00:03] Loaded: Budget.php
+[2025-12-20 12:00:03] Initializing Budget class...
+[2025-12-20 12:00:03] Budget class initialized successfully
+[2025-12-20 12:00:03] Database connection verified
+[2025-12-20 12:00:03] Current MySQL date: 2025-12-20 2025-12-20 12:00:03
+[2025-12-20 12:00:03] Checking for budgets to expire...
+[2025-12-20 12:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 12:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 12:00:03] Checking for budgets to activate...
+[2025-12-20 12:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 12:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 12:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 12:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 12:00:03] Execution time: 19.91 ms
+[2025-12-20 12:00:03] Memory used: 1.1 MB
+[2025-12-20 11:15:04] === Budget Update Cron Job Started ===
+[2025-12-20 11:15:04] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 11:15:04] All required files verified successfully
+[2025-12-20 12:15:04] Loaded: config.php
+[2025-12-20 12:15:04] Loaded: database.php (Database class included)
+[2025-12-20 12:15:04] Loaded: Budget.php
+[2025-12-20 12:15:04] Initializing Budget class...
+[2025-12-20 12:15:04] Budget class initialized successfully
+[2025-12-20 12:15:04] Database connection verified
+[2025-12-20 12:15:04] Current MySQL date: 2025-12-20 2025-12-20 12:15:04
+[2025-12-20 12:15:05] Checking for budgets to expire...
+[2025-12-20 12:15:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 12:15:05] No budgets expired (all active budgets are still valid)
+[2025-12-20 12:15:05] Checking for budgets to activate...
+[2025-12-20 12:15:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 12:15:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 12:15:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 12:15:05] Summary: Expired=0, Activated=0
+[2025-12-20 12:15:05] Execution time: 728.92 ms
+[2025-12-20 12:15:05] Memory used: 1.1 MB
+[2025-12-20 11:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 11:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 11:30:03] All required files verified successfully
+[2025-12-20 12:30:03] Loaded: config.php
+[2025-12-20 12:30:03] Loaded: database.php (Database class included)
+[2025-12-20 12:30:03] Loaded: Budget.php
+[2025-12-20 12:30:03] Initializing Budget class...
+[2025-12-20 12:30:03] Budget class initialized successfully
+[2025-12-20 12:30:03] Database connection verified
+[2025-12-20 12:30:03] Current MySQL date: 2025-12-20 2025-12-20 12:30:03
+[2025-12-20 12:30:03] Checking for budgets to expire...
+[2025-12-20 12:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 12:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 12:30:03] Checking for budgets to activate...
+[2025-12-20 12:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 12:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 12:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 12:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 12:30:03] Execution time: 15.91 ms
+[2025-12-20 12:30:03] Memory used: 1.1 MB
+[2025-12-20 11:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 11:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 11:45:02] All required files verified successfully
+[2025-12-20 12:45:02] Loaded: config.php
+[2025-12-20 12:45:02] Loaded: database.php (Database class included)
+[2025-12-20 12:45:02] Loaded: Budget.php
+[2025-12-20 12:45:02] Initializing Budget class...
+[2025-12-20 12:45:02] Budget class initialized successfully
+[2025-12-20 12:45:02] Database connection verified
+[2025-12-20 12:45:02] Current MySQL date: 2025-12-20 2025-12-20 12:45:02
+[2025-12-20 12:45:02] Checking for budgets to expire...
+[2025-12-20 12:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 12:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 12:45:02] Checking for budgets to activate...
+[2025-12-20 12:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 12:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 12:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 12:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 12:45:02] Execution time: 15.97 ms
+[2025-12-20 12:45:02] Memory used: 1.1 MB
+[2025-12-20 12:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 12:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 12:00:03] All required files verified successfully
+[2025-12-20 13:00:03] Loaded: config.php
+[2025-12-20 13:00:03] Loaded: database.php (Database class included)
+[2025-12-20 13:00:03] Loaded: Budget.php
+[2025-12-20 13:00:03] Initializing Budget class...
+[2025-12-20 13:00:03] Budget class initialized successfully
+[2025-12-20 13:00:03] Database connection verified
+[2025-12-20 13:00:03] Current MySQL date: 2025-12-20 2025-12-20 13:00:03
+[2025-12-20 13:00:03] Checking for budgets to expire...
+[2025-12-20 13:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 13:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 13:00:03] Checking for budgets to activate...
+[2025-12-20 13:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 13:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 13:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 13:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 13:00:03] Execution time: 14.11 ms
+[2025-12-20 13:00:03] Memory used: 1.1 MB
+[2025-12-20 12:15:02] === Budget Update Cron Job Started ===
+[2025-12-20 12:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 12:15:02] All required files verified successfully
+[2025-12-20 13:15:02] Loaded: config.php
+[2025-12-20 13:15:02] Loaded: database.php (Database class included)
+[2025-12-20 13:15:02] Loaded: Budget.php
+[2025-12-20 13:15:02] Initializing Budget class...
+[2025-12-20 13:15:02] Budget class initialized successfully
+[2025-12-20 13:15:02] Database connection verified
+[2025-12-20 13:15:02] Current MySQL date: 2025-12-20 2025-12-20 13:15:02
+[2025-12-20 13:15:02] Checking for budgets to expire...
+[2025-12-20 13:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 13:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 13:15:02] Checking for budgets to activate...
+[2025-12-20 13:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 13:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 13:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 13:15:02] Summary: Expired=0, Activated=0
+[2025-12-20 13:15:02] Execution time: 12.49 ms
+[2025-12-20 13:15:02] Memory used: 1.1 MB
+[2025-12-20 12:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 12:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 12:30:03] All required files verified successfully
+[2025-12-20 13:30:03] Loaded: config.php
+[2025-12-20 13:30:03] Loaded: database.php (Database class included)
+[2025-12-20 13:30:03] Loaded: Budget.php
+[2025-12-20 13:30:03] Initializing Budget class...
+[2025-12-20 13:30:03] Budget class initialized successfully
+[2025-12-20 13:30:03] Database connection verified
+[2025-12-20 13:30:03] Current MySQL date: 2025-12-20 2025-12-20 13:30:03
+[2025-12-20 13:30:03] Checking for budgets to expire...
+[2025-12-20 13:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 13:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 13:30:03] Checking for budgets to activate...
+[2025-12-20 13:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 13:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 13:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 13:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 13:30:03] Execution time: 14.35 ms
+[2025-12-20 13:30:03] Memory used: 1.1 MB
+[2025-12-20 12:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 12:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 12:45:02] All required files verified successfully
+[2025-12-20 13:45:02] Loaded: config.php
+[2025-12-20 13:45:02] Loaded: database.php (Database class included)
+[2025-12-20 13:45:02] Loaded: Budget.php
+[2025-12-20 13:45:02] Initializing Budget class...
+[2025-12-20 13:45:02] Budget class initialized successfully
+[2025-12-20 13:45:02] Database connection verified
+[2025-12-20 13:45:02] Current MySQL date: 2025-12-20 2025-12-20 13:45:02
+[2025-12-20 13:45:02] Checking for budgets to expire...
+[2025-12-20 13:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 13:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 13:45:02] Checking for budgets to activate...
+[2025-12-20 13:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 13:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 13:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 13:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 13:45:02] Execution time: 34.66 ms
+[2025-12-20 13:45:02] Memory used: 1.1 MB
+[2025-12-20 13:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 13:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 13:00:03] All required files verified successfully
+[2025-12-20 14:00:03] Loaded: config.php
+[2025-12-20 14:00:03] Loaded: database.php (Database class included)
+[2025-12-20 14:00:03] Loaded: Budget.php
+[2025-12-20 14:00:03] Initializing Budget class...
+[2025-12-20 14:00:03] Budget class initialized successfully
+[2025-12-20 14:00:03] Database connection verified
+[2025-12-20 14:00:03] Current MySQL date: 2025-12-20 2025-12-20 14:00:03
+[2025-12-20 14:00:03] Checking for budgets to expire...
+[2025-12-20 14:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 14:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 14:00:03] Checking for budgets to activate...
+[2025-12-20 14:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 14:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 14:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 14:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 14:00:03] Execution time: 18.99 ms
+[2025-12-20 14:00:03] Memory used: 1.1 MB
+[2025-12-20 13:15:07] === Budget Update Cron Job Started ===
+[2025-12-20 13:15:07] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 13:15:07] All required files verified successfully
+[2025-12-20 14:15:08] Loaded: config.php
+[2025-12-20 14:15:08] Loaded: database.php (Database class included)
+[2025-12-20 14:15:08] Loaded: Budget.php
+[2025-12-20 14:15:08] Initializing Budget class...
+[2025-12-20 14:15:08] Budget class initialized successfully
+[2025-12-20 14:15:08] Database connection verified
+[2025-12-20 14:15:08] Current MySQL date: 2025-12-20 2025-12-20 14:15:08
+[2025-12-20 14:15:08] Checking for budgets to expire...
+[2025-12-20 14:15:08] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 14:15:08] No budgets expired (all active budgets are still valid)
+[2025-12-20 14:15:08] Checking for budgets to activate...
+[2025-12-20 14:15:08] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 14:15:08] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 14:15:08] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 14:15:08] Summary: Expired=0, Activated=0
+[2025-12-20 14:15:08] Execution time: 6067.09 ms
+[2025-12-20 14:15:08] Memory used: 1.1 MB
+[2025-12-20 13:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 13:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 13:30:03] All required files verified successfully
+[2025-12-20 14:30:03] Loaded: config.php
+[2025-12-20 14:30:03] Loaded: database.php (Database class included)
+[2025-12-20 14:30:03] Loaded: Budget.php
+[2025-12-20 14:30:03] Initializing Budget class...
+[2025-12-20 14:30:03] Budget class initialized successfully
+[2025-12-20 14:30:03] Database connection verified
+[2025-12-20 14:30:03] Current MySQL date: 2025-12-20 2025-12-20 14:30:03
+[2025-12-20 14:30:03] Checking for budgets to expire...
+[2025-12-20 14:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 14:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 14:30:03] Checking for budgets to activate...
+[2025-12-20 14:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 14:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 14:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 14:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 14:30:03] Execution time: 18.42 ms
+[2025-12-20 14:30:03] Memory used: 1.1 MB
+[2025-12-20 13:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 13:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 13:45:02] All required files verified successfully
+[2025-12-20 14:45:02] Loaded: config.php
+[2025-12-20 14:45:02] Loaded: database.php (Database class included)
+[2025-12-20 14:45:02] Loaded: Budget.php
+[2025-12-20 14:45:02] Initializing Budget class...
+[2025-12-20 14:45:02] Budget class initialized successfully
+[2025-12-20 14:45:02] Database connection verified
+[2025-12-20 14:45:02] Current MySQL date: 2025-12-20 2025-12-20 14:45:02
+[2025-12-20 14:45:02] Checking for budgets to expire...
+[2025-12-20 14:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 14:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 14:45:02] Checking for budgets to activate...
+[2025-12-20 14:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 14:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 14:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 14:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 14:45:02] Execution time: 13.06 ms
+[2025-12-20 14:45:02] Memory used: 1.1 MB
+[2025-12-20 14:00:02] === Budget Update Cron Job Started ===
+[2025-12-20 14:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 14:00:02] All required files verified successfully
+[2025-12-20 15:00:02] Loaded: config.php
+[2025-12-20 15:00:02] Loaded: database.php (Database class included)
+[2025-12-20 15:00:02] Loaded: Budget.php
+[2025-12-20 15:00:02] Initializing Budget class...
+[2025-12-20 15:00:02] Budget class initialized successfully
+[2025-12-20 15:00:02] Database connection verified
+[2025-12-20 15:00:02] Current MySQL date: 2025-12-20 2025-12-20 15:00:02
+[2025-12-20 15:00:02] Checking for budgets to expire...
+[2025-12-20 15:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 15:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 15:00:02] Checking for budgets to activate...
+[2025-12-20 15:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 15:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 15:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 15:00:02] Summary: Expired=0, Activated=0
+[2025-12-20 15:00:02] Execution time: 15.85 ms
+[2025-12-20 15:00:02] Memory used: 1.1 MB
+[2025-12-20 14:15:06] === Budget Update Cron Job Started ===
+[2025-12-20 14:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 14:15:06] All required files verified successfully
+[2025-12-20 15:15:07] Loaded: config.php
+[2025-12-20 15:15:07] Loaded: database.php (Database class included)
+[2025-12-20 15:15:07] Loaded: Budget.php
+[2025-12-20 15:15:07] Initializing Budget class...
+[2025-12-20 15:15:07] Budget class initialized successfully
+[2025-12-20 15:15:07] Database connection verified
+[2025-12-20 15:15:07] Current MySQL date: 2025-12-20 2025-12-20 15:15:07
+[2025-12-20 15:15:07] Checking for budgets to expire...
+[2025-12-20 15:15:07] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 15:15:07] No budgets expired (all active budgets are still valid)
+[2025-12-20 15:15:07] Checking for budgets to activate...
+[2025-12-20 15:15:07] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 15:15:07] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 15:15:07] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 15:15:07] Summary: Expired=0, Activated=0
+[2025-12-20 15:15:07] Execution time: 681.05 ms
+[2025-12-20 15:15:07] Memory used: 1.1 MB
+[2025-12-20 14:30:02] === Budget Update Cron Job Started ===
+[2025-12-20 14:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 14:30:02] All required files verified successfully
+[2025-12-20 15:30:03] Loaded: config.php
+[2025-12-20 15:30:03] Loaded: database.php (Database class included)
+[2025-12-20 15:30:03] Loaded: Budget.php
+[2025-12-20 15:30:03] Initializing Budget class...
+[2025-12-20 15:30:03] Budget class initialized successfully
+[2025-12-20 15:30:03] Database connection verified
+[2025-12-20 15:30:03] Current MySQL date: 2025-12-20 2025-12-20 15:30:03
+[2025-12-20 15:30:03] Checking for budgets to expire...
+[2025-12-20 15:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 15:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 15:30:03] Checking for budgets to activate...
+[2025-12-20 15:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 15:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 15:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 15:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 15:30:03] Execution time: 175.74 ms
+[2025-12-20 15:30:03] Memory used: 1.1 MB
+[2025-12-20 14:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 14:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 14:45:02] All required files verified successfully
+[2025-12-20 15:45:02] Loaded: config.php
+[2025-12-20 15:45:02] Loaded: database.php (Database class included)
+[2025-12-20 15:45:02] Loaded: Budget.php
+[2025-12-20 15:45:02] Initializing Budget class...
+[2025-12-20 15:45:02] Budget class initialized successfully
+[2025-12-20 15:45:02] Database connection verified
+[2025-12-20 15:45:02] Current MySQL date: 2025-12-20 2025-12-20 15:45:02
+[2025-12-20 15:45:02] Checking for budgets to expire...
+[2025-12-20 15:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 15:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 15:45:02] Checking for budgets to activate...
+[2025-12-20 15:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 15:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 15:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 15:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 15:45:02] Execution time: 16.19 ms
+[2025-12-20 15:45:02] Memory used: 1.1 MB
+[2025-12-20 15:00:02] === Budget Update Cron Job Started ===
+[2025-12-20 15:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 15:00:02] All required files verified successfully
+[2025-12-20 16:00:02] Loaded: config.php
+[2025-12-20 16:00:02] Loaded: database.php (Database class included)
+[2025-12-20 16:00:02] Loaded: Budget.php
+[2025-12-20 16:00:02] Initializing Budget class...
+[2025-12-20 16:00:02] Budget class initialized successfully
+[2025-12-20 16:00:02] Database connection verified
+[2025-12-20 16:00:02] Current MySQL date: 2025-12-20 2025-12-20 16:00:02
+[2025-12-20 16:00:02] Checking for budgets to expire...
+[2025-12-20 16:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 16:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 16:00:02] Checking for budgets to activate...
+[2025-12-20 16:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 16:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 16:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 16:00:02] Summary: Expired=0, Activated=0
+[2025-12-20 16:00:02] Execution time: 23.85 ms
+[2025-12-20 16:00:02] Memory used: 1.1 MB
+[2025-12-20 15:15:03] === Budget Update Cron Job Started ===
+[2025-12-20 15:15:08] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 15:15:09] All required files verified successfully
+[2025-12-20 16:15:09] Loaded: config.php
+[2025-12-20 16:15:09] Loaded: database.php (Database class included)
+[2025-12-20 16:15:09] Loaded: Budget.php
+[2025-12-20 16:15:09] Initializing Budget class...
+[2025-12-20 16:15:09] Budget class initialized successfully
+[2025-12-20 16:15:09] Database connection verified
+[2025-12-20 16:15:09] Current MySQL date: 2025-12-20 2025-12-20 16:15:09
+[2025-12-20 16:15:09] Checking for budgets to expire...
+[2025-12-20 16:15:09] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 16:15:09] No budgets expired (all active budgets are still valid)
+[2025-12-20 16:15:09] Checking for budgets to activate...
+[2025-12-20 16:15:09] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 16:15:09] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 16:15:09] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 16:15:09] Summary: Expired=0, Activated=0
+[2025-12-20 16:15:09] Execution time: 5787.47 ms
+[2025-12-20 16:15:09] Memory used: 1.1 MB
+[2025-12-20 15:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 15:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 15:30:03] All required files verified successfully
+[2025-12-20 16:30:03] Loaded: config.php
+[2025-12-20 16:30:03] Loaded: database.php (Database class included)
+[2025-12-20 16:30:03] Loaded: Budget.php
+[2025-12-20 16:30:03] Initializing Budget class...
+[2025-12-20 16:30:03] Budget class initialized successfully
+[2025-12-20 16:30:03] Database connection verified
+[2025-12-20 16:30:03] Current MySQL date: 2025-12-20 2025-12-20 16:30:03
+[2025-12-20 16:30:03] Checking for budgets to expire...
+[2025-12-20 16:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 16:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 16:30:03] Checking for budgets to activate...
+[2025-12-20 16:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 16:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 16:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 16:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 16:30:03] Execution time: 16.4 ms
+[2025-12-20 16:30:03] Memory used: 1.1 MB
+[2025-12-20 15:45:03] === Budget Update Cron Job Started ===
+[2025-12-20 15:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 15:45:03] All required files verified successfully
+[2025-12-20 16:45:03] Loaded: config.php
+[2025-12-20 16:45:03] Loaded: database.php (Database class included)
+[2025-12-20 16:45:03] Loaded: Budget.php
+[2025-12-20 16:45:03] Initializing Budget class...
+[2025-12-20 16:45:03] Budget class initialized successfully
+[2025-12-20 16:45:03] Database connection verified
+[2025-12-20 16:45:03] Current MySQL date: 2025-12-20 2025-12-20 16:45:03
+[2025-12-20 16:45:03] Checking for budgets to expire...
+[2025-12-20 16:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 16:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 16:45:03] Checking for budgets to activate...
+[2025-12-20 16:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 16:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 16:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 16:45:03] Summary: Expired=0, Activated=0
+[2025-12-20 16:45:03] Execution time: 14.29 ms
+[2025-12-20 16:45:03] Memory used: 1.1 MB
+[2025-12-20 16:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 16:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 16:00:03] All required files verified successfully
+[2025-12-20 17:00:03] Loaded: config.php
+[2025-12-20 17:00:03] Loaded: database.php (Database class included)
+[2025-12-20 17:00:03] Loaded: Budget.php
+[2025-12-20 17:00:03] Initializing Budget class...
+[2025-12-20 17:00:03] Budget class initialized successfully
+[2025-12-20 17:00:03] Database connection verified
+[2025-12-20 17:00:03] Current MySQL date: 2025-12-20 2025-12-20 17:00:03
+[2025-12-20 17:00:03] Checking for budgets to expire...
+[2025-12-20 17:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 17:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 17:00:03] Checking for budgets to activate...
+[2025-12-20 17:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 17:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 17:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 17:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 17:00:03] Execution time: 17.76 ms
+[2025-12-20 17:00:03] Memory used: 1.1 MB
+[2025-12-20 16:15:03] === Budget Update Cron Job Started ===
+[2025-12-20 16:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 16:15:06] All required files verified successfully
+[2025-12-20 17:15:06] Loaded: config.php
+[2025-12-20 17:15:06] Loaded: database.php (Database class included)
+[2025-12-20 17:15:06] Loaded: Budget.php
+[2025-12-20 17:15:06] Initializing Budget class...
+[2025-12-20 17:15:06] Budget class initialized successfully
+[2025-12-20 17:15:06] Database connection verified
+[2025-12-20 17:15:06] Current MySQL date: 2025-12-20 2025-12-20 17:15:06
+[2025-12-20 17:15:06] Checking for budgets to expire...
+[2025-12-20 17:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 17:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-20 17:15:06] Checking for budgets to activate...
+[2025-12-20 17:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 17:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 17:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 17:15:06] Summary: Expired=0, Activated=0
+[2025-12-20 17:15:06] Execution time: 2863.79 ms
+[2025-12-20 17:15:06] Memory used: 1.1 MB
+[2025-12-20 16:30:04] === Budget Update Cron Job Started ===
+[2025-12-20 16:30:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 16:30:05] All required files verified successfully
+[2025-12-20 17:30:05] Loaded: config.php
+[2025-12-20 17:30:05] Loaded: database.php (Database class included)
+[2025-12-20 17:30:05] Loaded: Budget.php
+[2025-12-20 17:30:05] Initializing Budget class...
+[2025-12-20 17:30:05] Budget class initialized successfully
+[2025-12-20 17:30:05] Database connection verified
+[2025-12-20 17:30:05] Current MySQL date: 2025-12-20 2025-12-20 17:30:05
+[2025-12-20 17:30:05] Checking for budgets to expire...
+[2025-12-20 17:30:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 17:30:05] No budgets expired (all active budgets are still valid)
+[2025-12-20 17:30:05] Checking for budgets to activate...
+[2025-12-20 17:30:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 17:30:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 17:30:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 17:30:05] Summary: Expired=0, Activated=0
+[2025-12-20 17:30:05] Execution time: 1809.05 ms
+[2025-12-20 17:30:05] Memory used: 1.1 MB
+[2025-12-20 16:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 16:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 16:45:02] All required files verified successfully
+[2025-12-20 17:45:02] Loaded: config.php
+[2025-12-20 17:45:02] Loaded: database.php (Database class included)
+[2025-12-20 17:45:02] Loaded: Budget.php
+[2025-12-20 17:45:02] Initializing Budget class...
+[2025-12-20 17:45:02] Budget class initialized successfully
+[2025-12-20 17:45:02] Database connection verified
+[2025-12-20 17:45:02] Current MySQL date: 2025-12-20 2025-12-20 17:45:02
+[2025-12-20 17:45:02] Checking for budgets to expire...
+[2025-12-20 17:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 17:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 17:45:02] Checking for budgets to activate...
+[2025-12-20 17:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 17:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 17:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 17:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 17:45:02] Execution time: 90.65 ms
+[2025-12-20 17:45:02] Memory used: 1.1 MB
+[2025-12-20 17:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 17:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 17:00:03] All required files verified successfully
+[2025-12-20 18:00:03] Loaded: config.php
+[2025-12-20 18:00:03] Loaded: database.php (Database class included)
+[2025-12-20 18:00:03] Loaded: Budget.php
+[2025-12-20 18:00:03] Initializing Budget class...
+[2025-12-20 18:00:03] Budget class initialized successfully
+[2025-12-20 18:00:03] Database connection verified
+[2025-12-20 18:00:03] Current MySQL date: 2025-12-20 2025-12-20 18:00:03
+[2025-12-20 18:00:03] Checking for budgets to expire...
+[2025-12-20 18:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 18:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 18:00:03] Checking for budgets to activate...
+[2025-12-20 18:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 18:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 18:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 18:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 18:00:03] Execution time: 13.94 ms
+[2025-12-20 18:00:03] Memory used: 1.1 MB
+[2025-12-20 17:15:05] === Budget Update Cron Job Started ===
+[2025-12-20 17:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 17:15:05] All required files verified successfully
+[2025-12-20 18:15:05] Loaded: config.php
+[2025-12-20 18:15:05] Loaded: database.php (Database class included)
+[2025-12-20 18:15:05] Loaded: Budget.php
+[2025-12-20 18:15:05] Initializing Budget class...
+[2025-12-20 18:15:05] Budget class initialized successfully
+[2025-12-20 18:15:05] Database connection verified
+[2025-12-20 18:15:05] Current MySQL date: 2025-12-20 2025-12-20 18:15:05
+[2025-12-20 18:15:05] Checking for budgets to expire...
+[2025-12-20 18:15:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 18:15:05] No budgets expired (all active budgets are still valid)
+[2025-12-20 18:15:05] Checking for budgets to activate...
+[2025-12-20 18:15:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 18:15:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 18:15:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 18:15:05] Summary: Expired=0, Activated=0
+[2025-12-20 18:15:05] Execution time: 343.28 ms
+[2025-12-20 18:15:05] Memory used: 1.1 MB
+[2025-12-20 17:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 17:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 17:30:03] All required files verified successfully
+[2025-12-20 18:30:03] Loaded: config.php
+[2025-12-20 18:30:03] Loaded: database.php (Database class included)
+[2025-12-20 18:30:03] Loaded: Budget.php
+[2025-12-20 18:30:03] Initializing Budget class...
+[2025-12-20 18:30:03] Budget class initialized successfully
+[2025-12-20 18:30:03] Database connection verified
+[2025-12-20 18:30:03] Current MySQL date: 2025-12-20 2025-12-20 18:30:03
+[2025-12-20 18:30:03] Checking for budgets to expire...
+[2025-12-20 18:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 18:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 18:30:03] Checking for budgets to activate...
+[2025-12-20 18:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 18:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 18:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 18:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 18:30:03] Execution time: 16.01 ms
+[2025-12-20 18:30:03] Memory used: 1.1 MB
+[2025-12-20 17:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 17:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 17:45:02] All required files verified successfully
+[2025-12-20 18:45:02] Loaded: config.php
+[2025-12-20 18:45:02] Loaded: database.php (Database class included)
+[2025-12-20 18:45:02] Loaded: Budget.php
+[2025-12-20 18:45:02] Initializing Budget class...
+[2025-12-20 18:45:02] Budget class initialized successfully
+[2025-12-20 18:45:02] Database connection verified
+[2025-12-20 18:45:02] Current MySQL date: 2025-12-20 2025-12-20 18:45:02
+[2025-12-20 18:45:02] Checking for budgets to expire...
+[2025-12-20 18:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 18:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 18:45:02] Checking for budgets to activate...
+[2025-12-20 18:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 18:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 18:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 18:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 18:45:02] Execution time: 20.27 ms
+[2025-12-20 18:45:02] Memory used: 1.1 MB
+[2025-12-20 18:00:02] === Budget Update Cron Job Started ===
+[2025-12-20 18:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 18:00:02] All required files verified successfully
+[2025-12-20 19:00:02] Loaded: config.php
+[2025-12-20 19:00:02] Loaded: database.php (Database class included)
+[2025-12-20 19:00:02] Loaded: Budget.php
+[2025-12-20 19:00:02] Initializing Budget class...
+[2025-12-20 19:00:02] Budget class initialized successfully
+[2025-12-20 19:00:02] Database connection verified
+[2025-12-20 19:00:02] Current MySQL date: 2025-12-20 2025-12-20 19:00:02
+[2025-12-20 19:00:02] Checking for budgets to expire...
+[2025-12-20 19:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 19:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 19:00:02] Checking for budgets to activate...
+[2025-12-20 19:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 19:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 19:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 19:00:02] Summary: Expired=0, Activated=0
+[2025-12-20 19:00:02] Execution time: 13.37 ms
+[2025-12-20 19:00:02] Memory used: 1.1 MB
+[2025-12-20 18:15:04] === Budget Update Cron Job Started ===
+[2025-12-20 18:15:04] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 18:15:04] All required files verified successfully
+[2025-12-20 19:15:04] Loaded: config.php
+[2025-12-20 19:15:04] Loaded: database.php (Database class included)
+[2025-12-20 19:15:04] Loaded: Budget.php
+[2025-12-20 19:15:04] Initializing Budget class...
+[2025-12-20 19:15:04] Budget class initialized successfully
+[2025-12-20 19:15:04] Database connection verified
+[2025-12-20 19:15:04] Current MySQL date: 2025-12-20 2025-12-20 19:15:04
+[2025-12-20 19:15:04] Checking for budgets to expire...
+[2025-12-20 19:15:04] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 19:15:04] No budgets expired (all active budgets are still valid)
+[2025-12-20 19:15:04] Checking for budgets to activate...
+[2025-12-20 19:15:04] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 19:15:04] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 19:15:04] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 19:15:04] Summary: Expired=0, Activated=0
+[2025-12-20 19:15:04] Execution time: 72.59 ms
+[2025-12-20 19:15:04] Memory used: 1.1 MB
+[2025-12-20 18:30:02] === Budget Update Cron Job Started ===
+[2025-12-20 18:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 18:30:02] All required files verified successfully
+[2025-12-20 19:30:02] Loaded: config.php
+[2025-12-20 19:30:02] Loaded: database.php (Database class included)
+[2025-12-20 19:30:02] Loaded: Budget.php
+[2025-12-20 19:30:02] Initializing Budget class...
+[2025-12-20 19:30:02] Budget class initialized successfully
+[2025-12-20 19:30:02] Database connection verified
+[2025-12-20 19:30:02] Current MySQL date: 2025-12-20 2025-12-20 19:30:02
+[2025-12-20 19:30:02] Checking for budgets to expire...
+[2025-12-20 19:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 19:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 19:30:02] Checking for budgets to activate...
+[2025-12-20 19:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 19:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 19:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 19:30:02] Summary: Expired=0, Activated=0
+[2025-12-20 19:30:02] Execution time: 15.81 ms
+[2025-12-20 19:30:02] Memory used: 1.1 MB
+[2025-12-20 18:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 18:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 18:45:02] All required files verified successfully
+[2025-12-20 19:45:02] Loaded: config.php
+[2025-12-20 19:45:02] Loaded: database.php (Database class included)
+[2025-12-20 19:45:02] Loaded: Budget.php
+[2025-12-20 19:45:02] Initializing Budget class...
+[2025-12-20 19:45:02] Budget class initialized successfully
+[2025-12-20 19:45:02] Database connection verified
+[2025-12-20 19:45:02] Current MySQL date: 2025-12-20 2025-12-20 19:45:02
+[2025-12-20 19:45:02] Checking for budgets to expire...
+[2025-12-20 19:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 19:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 19:45:02] Checking for budgets to activate...
+[2025-12-20 19:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 19:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 19:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 19:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 19:45:02] Execution time: 15.72 ms
+[2025-12-20 19:45:02] Memory used: 1.1 MB
+[2025-12-20 19:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 19:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 19:00:03] All required files verified successfully
+[2025-12-20 20:00:03] Loaded: config.php
+[2025-12-20 20:00:03] Loaded: database.php (Database class included)
+[2025-12-20 20:00:03] Loaded: Budget.php
+[2025-12-20 20:00:03] Initializing Budget class...
+[2025-12-20 20:00:03] Budget class initialized successfully
+[2025-12-20 20:00:03] Database connection verified
+[2025-12-20 20:00:03] Current MySQL date: 2025-12-20 2025-12-20 20:00:03
+[2025-12-20 20:00:03] Checking for budgets to expire...
+[2025-12-20 20:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 20:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 20:00:03] Checking for budgets to activate...
+[2025-12-20 20:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 20:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 20:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 20:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 20:00:03] Execution time: 48.38 ms
+[2025-12-20 20:00:03] Memory used: 1.1 MB
+[2025-12-20 19:15:03] === Budget Update Cron Job Started ===
+[2025-12-20 19:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 19:15:03] All required files verified successfully
+[2025-12-20 20:15:03] Loaded: config.php
+[2025-12-20 20:15:03] Loaded: database.php (Database class included)
+[2025-12-20 20:15:03] Loaded: Budget.php
+[2025-12-20 20:15:03] Initializing Budget class...
+[2025-12-20 20:15:03] Budget class initialized successfully
+[2025-12-20 20:15:03] Database connection verified
+[2025-12-20 20:15:03] Current MySQL date: 2025-12-20 2025-12-20 20:15:03
+[2025-12-20 20:15:03] Checking for budgets to expire...
+[2025-12-20 20:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 20:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 20:15:03] Checking for budgets to activate...
+[2025-12-20 20:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 20:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 20:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 20:15:03] Summary: Expired=0, Activated=0
+[2025-12-20 20:15:03] Execution time: 21.75 ms
+[2025-12-20 20:15:03] Memory used: 1.1 MB
+[2025-12-20 19:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 19:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 19:30:03] All required files verified successfully
+[2025-12-20 20:30:03] Loaded: config.php
+[2025-12-20 20:30:03] Loaded: database.php (Database class included)
+[2025-12-20 20:30:03] Loaded: Budget.php
+[2025-12-20 20:30:03] Initializing Budget class...
+[2025-12-20 20:30:03] Budget class initialized successfully
+[2025-12-20 20:30:03] Database connection verified
+[2025-12-20 20:30:03] Current MySQL date: 2025-12-20 2025-12-20 20:30:03
+[2025-12-20 20:30:03] Checking for budgets to expire...
+[2025-12-20 20:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 20:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 20:30:03] Checking for budgets to activate...
+[2025-12-20 20:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 20:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 20:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 20:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 20:30:03] Execution time: 14.34 ms
+[2025-12-20 20:30:03] Memory used: 1.1 MB
+[2025-12-20 19:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 19:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 19:45:02] All required files verified successfully
+[2025-12-20 20:45:02] Loaded: config.php
+[2025-12-20 20:45:02] Loaded: database.php (Database class included)
+[2025-12-20 20:45:02] Loaded: Budget.php
+[2025-12-20 20:45:02] Initializing Budget class...
+[2025-12-20 20:45:02] Budget class initialized successfully
+[2025-12-20 20:45:02] Database connection verified
+[2025-12-20 20:45:02] Current MySQL date: 2025-12-20 2025-12-20 20:45:02
+[2025-12-20 20:45:02] Checking for budgets to expire...
+[2025-12-20 20:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 20:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 20:45:02] Checking for budgets to activate...
+[2025-12-20 20:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 20:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 20:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 20:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 20:45:02] Execution time: 12.91 ms
+[2025-12-20 20:45:02] Memory used: 1.1 MB
+[2025-12-20 20:00:02] === Budget Update Cron Job Started ===
+[2025-12-20 20:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 20:00:02] All required files verified successfully
+[2025-12-20 21:00:02] Loaded: config.php
+[2025-12-20 21:00:02] Loaded: database.php (Database class included)
+[2025-12-20 21:00:02] Loaded: Budget.php
+[2025-12-20 21:00:02] Initializing Budget class...
+[2025-12-20 21:00:02] Budget class initialized successfully
+[2025-12-20 21:00:02] Database connection verified
+[2025-12-20 21:00:02] Current MySQL date: 2025-12-20 2025-12-20 21:00:02
+[2025-12-20 21:00:02] Checking for budgets to expire...
+[2025-12-20 21:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 21:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 21:00:02] Checking for budgets to activate...
+[2025-12-20 21:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 21:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 21:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 21:00:02] Summary: Expired=0, Activated=0
+[2025-12-20 21:00:02] Execution time: 14.4 ms
+[2025-12-20 21:00:02] Memory used: 1.1 MB
+[2025-12-20 20:15:04] === Budget Update Cron Job Started ===
+[2025-12-20 20:15:04] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 20:15:04] All required files verified successfully
+[2025-12-20 21:15:04] Loaded: config.php
+[2025-12-20 21:15:04] Loaded: database.php (Database class included)
+[2025-12-20 21:15:04] Loaded: Budget.php
+[2025-12-20 21:15:04] Initializing Budget class...
+[2025-12-20 21:15:04] Budget class initialized successfully
+[2025-12-20 21:15:04] Database connection verified
+[2025-12-20 21:15:04] Current MySQL date: 2025-12-20 2025-12-20 21:15:04
+[2025-12-20 21:15:04] Checking for budgets to expire...
+[2025-12-20 21:15:04] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 21:15:04] No budgets expired (all active budgets are still valid)
+[2025-12-20 21:15:04] Checking for budgets to activate...
+[2025-12-20 21:15:04] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 21:15:04] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 21:15:04] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 21:15:04] Summary: Expired=0, Activated=0
+[2025-12-20 21:15:04] Execution time: 418.7 ms
+[2025-12-20 21:15:04] Memory used: 1.1 MB
+[2025-12-20 20:30:02] === Budget Update Cron Job Started ===
+[2025-12-20 20:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 20:30:02] All required files verified successfully
+[2025-12-20 21:30:02] Loaded: config.php
+[2025-12-20 21:30:02] Loaded: database.php (Database class included)
+[2025-12-20 21:30:02] Loaded: Budget.php
+[2025-12-20 21:30:02] Initializing Budget class...
+[2025-12-20 21:30:02] Budget class initialized successfully
+[2025-12-20 21:30:02] Database connection verified
+[2025-12-20 21:30:02] Current MySQL date: 2025-12-20 2025-12-20 21:30:02
+[2025-12-20 21:30:02] Checking for budgets to expire...
+[2025-12-20 21:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 21:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 21:30:02] Checking for budgets to activate...
+[2025-12-20 21:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 21:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 21:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 21:30:02] Summary: Expired=0, Activated=0
+[2025-12-20 21:30:02] Execution time: 18.24 ms
+[2025-12-20 21:30:02] Memory used: 1.1 MB
+[2025-12-20 20:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 20:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 20:45:02] All required files verified successfully
+[2025-12-20 21:45:02] Loaded: config.php
+[2025-12-20 21:45:02] Loaded: database.php (Database class included)
+[2025-12-20 21:45:02] Loaded: Budget.php
+[2025-12-20 21:45:02] Initializing Budget class...
+[2025-12-20 21:45:02] Budget class initialized successfully
+[2025-12-20 21:45:02] Database connection verified
+[2025-12-20 21:45:02] Current MySQL date: 2025-12-20 2025-12-20 21:45:02
+[2025-12-20 21:45:02] Checking for budgets to expire...
+[2025-12-20 21:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 21:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 21:45:02] Checking for budgets to activate...
+[2025-12-20 21:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 21:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 21:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 21:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 21:45:02] Execution time: 19.05 ms
+[2025-12-20 21:45:02] Memory used: 1.1 MB
+[2025-12-20 21:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 21:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 21:00:03] All required files verified successfully
+[2025-12-20 22:00:03] Loaded: config.php
+[2025-12-20 22:00:03] Loaded: database.php (Database class included)
+[2025-12-20 22:00:03] Loaded: Budget.php
+[2025-12-20 22:00:03] Initializing Budget class...
+[2025-12-20 22:00:03] Budget class initialized successfully
+[2025-12-20 22:00:03] Database connection verified
+[2025-12-20 22:00:03] Current MySQL date: 2025-12-20 2025-12-20 22:00:03
+[2025-12-20 22:00:03] Checking for budgets to expire...
+[2025-12-20 22:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 22:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 22:00:03] Checking for budgets to activate...
+[2025-12-20 22:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 22:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 22:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 22:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 22:00:03] Execution time: 18.38 ms
+[2025-12-20 22:00:03] Memory used: 1.1 MB
+[2025-12-20 21:15:02] === Budget Update Cron Job Started ===
+[2025-12-20 21:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 21:15:06] All required files verified successfully
+[2025-12-20 22:15:06] Loaded: config.php
+[2025-12-20 22:15:06] Loaded: database.php (Database class included)
+[2025-12-20 22:15:06] Loaded: Budget.php
+[2025-12-20 22:15:06] Initializing Budget class...
+[2025-12-20 22:15:06] Budget class initialized successfully
+[2025-12-20 22:15:06] Database connection verified
+[2025-12-20 22:15:06] Current MySQL date: 2025-12-20 2025-12-20 22:15:06
+[2025-12-20 22:15:06] Checking for budgets to expire...
+[2025-12-20 22:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 22:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-20 22:15:06] Checking for budgets to activate...
+[2025-12-20 22:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 22:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 22:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 22:15:06] Summary: Expired=0, Activated=0
+[2025-12-20 22:15:06] Execution time: 3290.8 ms
+[2025-12-20 22:15:06] Memory used: 1.1 MB
+[2025-12-20 21:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 21:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 21:30:03] All required files verified successfully
+[2025-12-20 22:30:03] Loaded: config.php
+[2025-12-20 22:30:03] Loaded: database.php (Database class included)
+[2025-12-20 22:30:03] Loaded: Budget.php
+[2025-12-20 22:30:03] Initializing Budget class...
+[2025-12-20 22:30:03] Budget class initialized successfully
+[2025-12-20 22:30:03] Database connection verified
+[2025-12-20 22:30:03] Current MySQL date: 2025-12-20 2025-12-20 22:30:03
+[2025-12-20 22:30:03] Checking for budgets to expire...
+[2025-12-20 22:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 22:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 22:30:03] Checking for budgets to activate...
+[2025-12-20 22:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 22:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 22:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 22:30:03] Summary: Expired=0, Activated=0
+[2025-12-20 22:30:03] Execution time: 59.41 ms
+[2025-12-20 22:30:03] Memory used: 1.1 MB
+[2025-12-20 21:45:03] === Budget Update Cron Job Started ===
+[2025-12-20 21:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 21:45:03] All required files verified successfully
+[2025-12-20 22:45:03] Loaded: config.php
+[2025-12-20 22:45:03] Loaded: database.php (Database class included)
+[2025-12-20 22:45:03] Loaded: Budget.php
+[2025-12-20 22:45:03] Initializing Budget class...
+[2025-12-20 22:45:03] Budget class initialized successfully
+[2025-12-20 22:45:03] Database connection verified
+[2025-12-20 22:45:03] Current MySQL date: 2025-12-20 2025-12-20 22:45:03
+[2025-12-20 22:45:03] Checking for budgets to expire...
+[2025-12-20 22:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 22:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 22:45:03] Checking for budgets to activate...
+[2025-12-20 22:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 22:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 22:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 22:45:03] Summary: Expired=0, Activated=0
+[2025-12-20 22:45:03] Execution time: 13.83 ms
+[2025-12-20 22:45:03] Memory used: 1.1 MB
+[2025-12-20 22:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 22:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 22:00:03] All required files verified successfully
+[2025-12-20 23:00:03] Loaded: config.php
+[2025-12-20 23:00:03] Loaded: database.php (Database class included)
+[2025-12-20 23:00:03] Loaded: Budget.php
+[2025-12-20 23:00:03] Initializing Budget class...
+[2025-12-20 23:00:03] Budget class initialized successfully
+[2025-12-20 23:00:03] Database connection verified
+[2025-12-20 23:00:03] Current MySQL date: 2025-12-20 2025-12-20 23:00:03
+[2025-12-20 23:00:03] Checking for budgets to expire...
+[2025-12-20 23:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 23:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-20 23:00:03] Checking for budgets to activate...
+[2025-12-20 23:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 23:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 23:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 23:00:03] Summary: Expired=0, Activated=0
+[2025-12-20 23:00:03] Execution time: 14.83 ms
+[2025-12-20 23:00:03] Memory used: 1.1 MB
+[2025-12-20 22:15:05] === Budget Update Cron Job Started ===
+[2025-12-20 22:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 22:15:06] All required files verified successfully
+[2025-12-20 23:15:07] Loaded: config.php
+[2025-12-20 23:15:07] Loaded: database.php (Database class included)
+[2025-12-20 23:15:07] Loaded: Budget.php
+[2025-12-20 23:15:07] Initializing Budget class...
+[2025-12-20 23:15:07] Budget class initialized successfully
+[2025-12-20 23:15:07] Database connection verified
+[2025-12-20 23:15:07] Current MySQL date: 2025-12-20 2025-12-20 23:15:07
+[2025-12-20 23:15:07] Checking for budgets to expire...
+[2025-12-20 23:15:07] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 23:15:07] No budgets expired (all active budgets are still valid)
+[2025-12-20 23:15:07] Checking for budgets to activate...
+[2025-12-20 23:15:07] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 23:15:07] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 23:15:07] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 23:15:07] Summary: Expired=0, Activated=0
+[2025-12-20 23:15:07] Execution time: 2329.95 ms
+[2025-12-20 23:15:07] Memory used: 1.1 MB
+[2025-12-20 22:30:02] === Budget Update Cron Job Started ===
+[2025-12-20 22:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 22:30:02] All required files verified successfully
+[2025-12-20 23:30:02] Loaded: config.php
+[2025-12-20 23:30:02] Loaded: database.php (Database class included)
+[2025-12-20 23:30:02] Loaded: Budget.php
+[2025-12-20 23:30:02] Initializing Budget class...
+[2025-12-20 23:30:02] Budget class initialized successfully
+[2025-12-20 23:30:02] Database connection verified
+[2025-12-20 23:30:02] Current MySQL date: 2025-12-20 2025-12-20 23:30:02
+[2025-12-20 23:30:02] Checking for budgets to expire...
+[2025-12-20 23:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 23:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 23:30:02] Checking for budgets to activate...
+[2025-12-20 23:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 23:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 23:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 23:30:02] Summary: Expired=0, Activated=0
+[2025-12-20 23:30:02] Execution time: 14.34 ms
+[2025-12-20 23:30:02] Memory used: 1.1 MB
+[2025-12-20 22:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 22:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 22:45:02] All required files verified successfully
+[2025-12-20 23:45:02] Loaded: config.php
+[2025-12-20 23:45:02] Loaded: database.php (Database class included)
+[2025-12-20 23:45:02] Loaded: Budget.php
+[2025-12-20 23:45:02] Initializing Budget class...
+[2025-12-20 23:45:02] Budget class initialized successfully
+[2025-12-20 23:45:02] Database connection verified
+[2025-12-20 23:45:02] Current MySQL date: 2025-12-20 2025-12-20 23:45:02
+[2025-12-20 23:45:02] Checking for budgets to expire...
+[2025-12-20 23:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-20 23:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-20 23:45:02] Checking for budgets to activate...
+[2025-12-20 23:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-20 23:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-20 23:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-20 23:45:02] Summary: Expired=0, Activated=0
+[2025-12-20 23:45:02] Execution time: 12.69 ms
+[2025-12-20 23:45:02] Memory used: 1.1 MB
+[2025-12-20 23:00:03] === Budget Update Cron Job Started ===
+[2025-12-20 23:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 23:00:03] All required files verified successfully
+[2025-12-21 00:00:03] Loaded: config.php
+[2025-12-21 00:00:03] Loaded: database.php (Database class included)
+[2025-12-21 00:00:03] Loaded: Budget.php
+[2025-12-21 00:00:03] Initializing Budget class...
+[2025-12-21 00:00:03] Budget class initialized successfully
+[2025-12-21 00:00:03] Database connection verified
+[2025-12-21 00:00:03] Current MySQL date: 2025-12-21 2025-12-21 00:00:03
+[2025-12-21 00:00:03] Checking for budgets to expire...
+[2025-12-21 00:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 00:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 00:00:03] Checking for budgets to activate...
+[2025-12-21 00:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 00:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 00:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 00:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 00:00:03] Execution time: 18.2 ms
+[2025-12-21 00:00:03] Memory used: 1.1 MB
+[2025-12-20 23:15:05] === Budget Update Cron Job Started ===
+[2025-12-20 23:15:07] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 23:15:07] All required files verified successfully
+[2025-12-21 00:15:07] Loaded: config.php
+[2025-12-21 00:15:07] Loaded: database.php (Database class included)
+[2025-12-21 00:15:07] Loaded: Budget.php
+[2025-12-21 00:15:07] Initializing Budget class...
+[2025-12-21 00:15:07] Budget class initialized successfully
+[2025-12-21 00:15:07] Database connection verified
+[2025-12-21 00:15:07] Current MySQL date: 2025-12-21 2025-12-21 00:15:07
+[2025-12-21 00:15:07] Checking for budgets to expire...
+[2025-12-21 00:15:07] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 00:15:07] No budgets expired (all active budgets are still valid)
+[2025-12-21 00:15:07] Checking for budgets to activate...
+[2025-12-21 00:15:07] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 00:15:07] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 00:15:07] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 00:15:07] Summary: Expired=0, Activated=0
+[2025-12-21 00:15:07] Execution time: 2262.63 ms
+[2025-12-21 00:15:07] Memory used: 1.1 MB
+[2025-12-20 23:30:03] === Budget Update Cron Job Started ===
+[2025-12-20 23:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 23:30:03] All required files verified successfully
+[2025-12-21 00:30:03] Loaded: config.php
+[2025-12-21 00:30:03] Loaded: database.php (Database class included)
+[2025-12-21 00:30:03] Loaded: Budget.php
+[2025-12-21 00:30:03] Initializing Budget class...
+[2025-12-21 00:30:03] Budget class initialized successfully
+[2025-12-21 00:30:03] Database connection verified
+[2025-12-21 00:30:03] Current MySQL date: 2025-12-21 2025-12-21 00:30:03
+[2025-12-21 00:30:03] Checking for budgets to expire...
+[2025-12-21 00:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 00:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 00:30:03] Checking for budgets to activate...
+[2025-12-21 00:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 00:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 00:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 00:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 00:30:03] Execution time: 44.04 ms
+[2025-12-21 00:30:03] Memory used: 1.1 MB
+[2025-12-20 23:45:02] === Budget Update Cron Job Started ===
+[2025-12-20 23:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-20 23:45:02] All required files verified successfully
+[2025-12-21 00:45:02] Loaded: config.php
+[2025-12-21 00:45:02] Loaded: database.php (Database class included)
+[2025-12-21 00:45:02] Loaded: Budget.php
+[2025-12-21 00:45:02] Initializing Budget class...
+[2025-12-21 00:45:02] Budget class initialized successfully
+[2025-12-21 00:45:02] Database connection verified
+[2025-12-21 00:45:02] Current MySQL date: 2025-12-21 2025-12-21 00:45:02
+[2025-12-21 00:45:02] Checking for budgets to expire...
+[2025-12-21 00:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 00:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 00:45:02] Checking for budgets to activate...
+[2025-12-21 00:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 00:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 00:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 00:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 00:45:02] Execution time: 14.96 ms
+[2025-12-21 00:45:02] Memory used: 1.1 MB
+[2025-12-21 00:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 00:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 00:00:03] All required files verified successfully
+[2025-12-21 01:00:03] Loaded: config.php
+[2025-12-21 01:00:03] Loaded: database.php (Database class included)
+[2025-12-21 01:00:03] Loaded: Budget.php
+[2025-12-21 01:00:03] Initializing Budget class...
+[2025-12-21 01:00:03] Budget class initialized successfully
+[2025-12-21 01:00:03] Database connection verified
+[2025-12-21 01:00:03] Current MySQL date: 2025-12-21 2025-12-21 01:00:03
+[2025-12-21 01:00:03] Checking for budgets to expire...
+[2025-12-21 01:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 01:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 01:00:03] Checking for budgets to activate...
+[2025-12-21 01:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 01:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 01:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 01:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 01:00:03] Execution time: 182.5 ms
+[2025-12-21 01:00:03] Memory used: 1.1 MB
+[2025-12-21 00:15:07] === Budget Update Cron Job Started ===
+[2025-12-21 00:15:08] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 00:15:08] All required files verified successfully
+[2025-12-21 01:15:08] Loaded: config.php
+[2025-12-21 01:15:08] Loaded: database.php (Database class included)
+[2025-12-21 01:15:08] Loaded: Budget.php
+[2025-12-21 01:15:08] Initializing Budget class...
+[2025-12-21 01:15:08] Budget class initialized successfully
+[2025-12-21 01:15:08] Database connection verified
+[2025-12-21 01:15:08] Current MySQL date: 2025-12-21 2025-12-21 01:15:08
+[2025-12-21 01:15:08] Checking for budgets to expire...
+[2025-12-21 01:15:08] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 01:15:09] No budgets expired (all active budgets are still valid)
+[2025-12-21 01:15:09] Checking for budgets to activate...
+[2025-12-21 01:15:09] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 01:15:09] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 01:15:09] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 01:15:09] Summary: Expired=0, Activated=0
+[2025-12-21 01:15:09] Execution time: 1809.39 ms
+[2025-12-21 01:15:09] Memory used: 1.1 MB
+[2025-12-21 00:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 00:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 00:30:03] All required files verified successfully
+[2025-12-21 01:30:03] Loaded: config.php
+[2025-12-21 01:30:03] Loaded: database.php (Database class included)
+[2025-12-21 01:30:03] Loaded: Budget.php
+[2025-12-21 01:30:03] Initializing Budget class...
+[2025-12-21 01:30:03] Budget class initialized successfully
+[2025-12-21 01:30:03] Database connection verified
+[2025-12-21 01:30:03] Current MySQL date: 2025-12-21 2025-12-21 01:30:03
+[2025-12-21 01:30:03] Checking for budgets to expire...
+[2025-12-21 01:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 01:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 01:30:03] Checking for budgets to activate...
+[2025-12-21 01:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 01:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 01:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 01:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 01:30:03] Execution time: 14.8 ms
+[2025-12-21 01:30:03] Memory used: 1.1 MB
+[2025-12-21 00:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 00:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 00:45:02] All required files verified successfully
+[2025-12-21 01:45:02] Loaded: config.php
+[2025-12-21 01:45:02] Loaded: database.php (Database class included)
+[2025-12-21 01:45:02] Loaded: Budget.php
+[2025-12-21 01:45:02] Initializing Budget class...
+[2025-12-21 01:45:02] Budget class initialized successfully
+[2025-12-21 01:45:02] Database connection verified
+[2025-12-21 01:45:02] Current MySQL date: 2025-12-21 2025-12-21 01:45:02
+[2025-12-21 01:45:02] Checking for budgets to expire...
+[2025-12-21 01:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 01:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 01:45:02] Checking for budgets to activate...
+[2025-12-21 01:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 01:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 01:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 01:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 01:45:02] Execution time: 14.23 ms
+[2025-12-21 01:45:02] Memory used: 1.1 MB
+[2025-12-21 01:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 01:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 01:00:03] All required files verified successfully
+[2025-12-21 02:00:03] Loaded: config.php
+[2025-12-21 02:00:03] Loaded: database.php (Database class included)
+[2025-12-21 02:00:03] Loaded: Budget.php
+[2025-12-21 02:00:03] Initializing Budget class...
+[2025-12-21 02:00:03] Budget class initialized successfully
+[2025-12-21 02:00:03] Database connection verified
+[2025-12-21 02:00:03] Current MySQL date: 2025-12-21 2025-12-21 02:00:03
+[2025-12-21 02:00:03] Checking for budgets to expire...
+[2025-12-21 02:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 02:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 02:00:03] Checking for budgets to activate...
+[2025-12-21 02:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 02:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 02:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 02:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 02:00:03] Execution time: 14.45 ms
+[2025-12-21 02:00:03] Memory used: 1.1 MB
+[2025-12-21 01:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 01:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 01:15:03] All required files verified successfully
+[2025-12-21 02:15:03] Loaded: config.php
+[2025-12-21 02:15:03] Loaded: database.php (Database class included)
+[2025-12-21 02:15:03] Loaded: Budget.php
+[2025-12-21 02:15:03] Initializing Budget class...
+[2025-12-21 02:15:03] Budget class initialized successfully
+[2025-12-21 02:15:03] Database connection verified
+[2025-12-21 02:15:03] Current MySQL date: 2025-12-21 2025-12-21 02:15:03
+[2025-12-21 02:15:03] Checking for budgets to expire...
+[2025-12-21 02:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 02:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 02:15:03] Checking for budgets to activate...
+[2025-12-21 02:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 02:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 02:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 02:15:03] Summary: Expired=0, Activated=0
+[2025-12-21 02:15:03] Execution time: 841.29 ms
+[2025-12-21 02:15:03] Memory used: 1.1 MB
+[2025-12-21 01:30:02] === Budget Update Cron Job Started ===
+[2025-12-21 01:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 01:30:02] All required files verified successfully
+[2025-12-21 02:30:02] Loaded: config.php
+[2025-12-21 02:30:02] Loaded: database.php (Database class included)
+[2025-12-21 02:30:02] Loaded: Budget.php
+[2025-12-21 02:30:02] Initializing Budget class...
+[2025-12-21 02:30:02] Budget class initialized successfully
+[2025-12-21 02:30:02] Database connection verified
+[2025-12-21 02:30:02] Current MySQL date: 2025-12-21 2025-12-21 02:30:02
+[2025-12-21 02:30:02] Checking for budgets to expire...
+[2025-12-21 02:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 02:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 02:30:02] Checking for budgets to activate...
+[2025-12-21 02:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 02:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 02:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 02:30:02] Summary: Expired=0, Activated=0
+[2025-12-21 02:30:02] Execution time: 14.15 ms
+[2025-12-21 02:30:02] Memory used: 1.1 MB
+[2025-12-21 01:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 01:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 01:45:02] All required files verified successfully
+[2025-12-21 02:45:02] Loaded: config.php
+[2025-12-21 02:45:02] Loaded: database.php (Database class included)
+[2025-12-21 02:45:02] Loaded: Budget.php
+[2025-12-21 02:45:02] Initializing Budget class...
+[2025-12-21 02:45:02] Budget class initialized successfully
+[2025-12-21 02:45:02] Database connection verified
+[2025-12-21 02:45:02] Current MySQL date: 2025-12-21 2025-12-21 02:45:02
+[2025-12-21 02:45:02] Checking for budgets to expire...
+[2025-12-21 02:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 02:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 02:45:02] Checking for budgets to activate...
+[2025-12-21 02:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 02:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 02:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 02:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 02:45:02] Execution time: 14.89 ms
+[2025-12-21 02:45:02] Memory used: 1.1 MB
+[2025-12-21 02:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 02:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 02:00:03] All required files verified successfully
+[2025-12-21 03:00:03] Loaded: config.php
+[2025-12-21 03:00:03] Loaded: database.php (Database class included)
+[2025-12-21 03:00:03] Loaded: Budget.php
+[2025-12-21 03:00:03] Initializing Budget class...
+[2025-12-21 03:00:03] Budget class initialized successfully
+[2025-12-21 03:00:03] Database connection verified
+[2025-12-21 03:00:03] Current MySQL date: 2025-12-21 2025-12-21 03:00:03
+[2025-12-21 03:00:03] Checking for budgets to expire...
+[2025-12-21 03:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 03:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 03:00:03] Checking for budgets to activate...
+[2025-12-21 03:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 03:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 03:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 03:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 03:00:03] Execution time: 19.29 ms
+[2025-12-21 03:00:03] Memory used: 1.1 MB
+[2025-12-21 02:15:07] === Budget Update Cron Job Started ===
+[2025-12-21 02:15:09] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 02:15:09] All required files verified successfully
+[2025-12-21 03:15:10] Loaded: config.php
+[2025-12-21 03:15:10] Loaded: database.php (Database class included)
+[2025-12-21 03:15:10] Loaded: Budget.php
+[2025-12-21 03:15:10] Initializing Budget class...
+[2025-12-21 03:15:10] Budget class initialized successfully
+[2025-12-21 03:15:10] Database connection verified
+[2025-12-21 03:15:10] Current MySQL date: 2025-12-21 2025-12-21 03:15:10
+[2025-12-21 03:15:10] Checking for budgets to expire...
+[2025-12-21 03:15:10] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 03:15:10] No budgets expired (all active budgets are still valid)
+[2025-12-21 03:15:10] Checking for budgets to activate...
+[2025-12-21 03:15:10] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 03:15:10] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 03:15:10] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 03:15:10] Summary: Expired=0, Activated=0
+[2025-12-21 03:15:10] Execution time: 2249.98 ms
+[2025-12-21 03:15:10] Memory used: 1.1 MB
+[2025-12-21 02:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 02:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 02:30:03] All required files verified successfully
+[2025-12-21 03:30:03] Loaded: config.php
+[2025-12-21 03:30:03] Loaded: database.php (Database class included)
+[2025-12-21 03:30:03] Loaded: Budget.php
+[2025-12-21 03:30:03] Initializing Budget class...
+[2025-12-21 03:30:03] Budget class initialized successfully
+[2025-12-21 03:30:03] Database connection verified
+[2025-12-21 03:30:03] Current MySQL date: 2025-12-21 2025-12-21 03:30:03
+[2025-12-21 03:30:03] Checking for budgets to expire...
+[2025-12-21 03:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 03:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 03:30:03] Checking for budgets to activate...
+[2025-12-21 03:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 03:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 03:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 03:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 03:30:03] Execution time: 11.83 ms
+[2025-12-21 03:30:03] Memory used: 1.1 MB
+[2025-12-21 02:45:03] === Budget Update Cron Job Started ===
+[2025-12-21 02:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 02:45:03] All required files verified successfully
+[2025-12-21 03:45:03] Loaded: config.php
+[2025-12-21 03:45:03] Loaded: database.php (Database class included)
+[2025-12-21 03:45:03] Loaded: Budget.php
+[2025-12-21 03:45:03] Initializing Budget class...
+[2025-12-21 03:45:03] Budget class initialized successfully
+[2025-12-21 03:45:03] Database connection verified
+[2025-12-21 03:45:03] Current MySQL date: 2025-12-21 2025-12-21 03:45:03
+[2025-12-21 03:45:03] Checking for budgets to expire...
+[2025-12-21 03:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 03:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 03:45:03] Checking for budgets to activate...
+[2025-12-21 03:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 03:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 03:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 03:45:03] Summary: Expired=0, Activated=0
+[2025-12-21 03:45:03] Execution time: 11.69 ms
+[2025-12-21 03:45:03] Memory used: 1.1 MB
+[2025-12-21 03:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 03:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 03:00:02] All required files verified successfully
+[2025-12-21 04:00:02] Loaded: config.php
+[2025-12-21 04:00:02] Loaded: database.php (Database class included)
+[2025-12-21 04:00:02] Loaded: Budget.php
+[2025-12-21 04:00:02] Initializing Budget class...
+[2025-12-21 04:00:02] Budget class initialized successfully
+[2025-12-21 04:00:02] Database connection verified
+[2025-12-21 04:00:02] Current MySQL date: 2025-12-21 2025-12-21 04:00:02
+[2025-12-21 04:00:02] Checking for budgets to expire...
+[2025-12-21 04:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 04:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 04:00:02] Checking for budgets to activate...
+[2025-12-21 04:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 04:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 04:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 04:00:02] Summary: Expired=0, Activated=0
+[2025-12-21 04:00:02] Execution time: 17.22 ms
+[2025-12-21 04:00:02] Memory used: 1.1 MB
+[2025-12-21 03:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 03:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 03:15:02] All required files verified successfully
+[2025-12-21 04:15:03] Loaded: config.php
+[2025-12-21 04:15:03] Loaded: database.php (Database class included)
+[2025-12-21 04:15:03] Loaded: Budget.php
+[2025-12-21 04:15:03] Initializing Budget class...
+[2025-12-21 04:15:03] Budget class initialized successfully
+[2025-12-21 04:15:03] Database connection verified
+[2025-12-21 04:15:03] Current MySQL date: 2025-12-21 2025-12-21 04:15:03
+[2025-12-21 04:15:03] Checking for budgets to expire...
+[2025-12-21 04:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 04:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 04:15:03] Checking for budgets to activate...
+[2025-12-21 04:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 04:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 04:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 04:15:03] Summary: Expired=0, Activated=0
+[2025-12-21 04:15:03] Execution time: 346.78 ms
+[2025-12-21 04:15:03] Memory used: 1.1 MB
+[2025-12-21 03:30:02] === Budget Update Cron Job Started ===
+[2025-12-21 03:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 03:30:02] All required files verified successfully
+[2025-12-21 04:30:02] Loaded: config.php
+[2025-12-21 04:30:02] Loaded: database.php (Database class included)
+[2025-12-21 04:30:02] Loaded: Budget.php
+[2025-12-21 04:30:02] Initializing Budget class...
+[2025-12-21 04:30:02] Budget class initialized successfully
+[2025-12-21 04:30:02] Database connection verified
+[2025-12-21 04:30:02] Current MySQL date: 2025-12-21 2025-12-21 04:30:02
+[2025-12-21 04:30:02] Checking for budgets to expire...
+[2025-12-21 04:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 04:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 04:30:02] Checking for budgets to activate...
+[2025-12-21 04:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 04:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 04:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 04:30:02] Summary: Expired=0, Activated=0
+[2025-12-21 04:30:02] Execution time: 18.23 ms
+[2025-12-21 04:30:02] Memory used: 1.1 MB
+[2025-12-21 03:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 03:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 03:45:02] All required files verified successfully
+[2025-12-21 04:45:02] Loaded: config.php
+[2025-12-21 04:45:02] Loaded: database.php (Database class included)
+[2025-12-21 04:45:02] Loaded: Budget.php
+[2025-12-21 04:45:02] Initializing Budget class...
+[2025-12-21 04:45:02] Budget class initialized successfully
+[2025-12-21 04:45:02] Database connection verified
+[2025-12-21 04:45:02] Current MySQL date: 2025-12-21 2025-12-21 04:45:02
+[2025-12-21 04:45:02] Checking for budgets to expire...
+[2025-12-21 04:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 04:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 04:45:02] Checking for budgets to activate...
+[2025-12-21 04:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 04:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 04:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 04:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 04:45:02] Execution time: 11.91 ms
+[2025-12-21 04:45:02] Memory used: 1.1 MB
+[2025-12-21 04:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 04:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 04:00:03] All required files verified successfully
+[2025-12-21 05:00:03] Loaded: config.php
+[2025-12-21 05:00:03] Loaded: database.php (Database class included)
+[2025-12-21 05:00:03] Loaded: Budget.php
+[2025-12-21 05:00:03] Initializing Budget class...
+[2025-12-21 05:00:03] Budget class initialized successfully
+[2025-12-21 05:00:03] Database connection verified
+[2025-12-21 05:00:03] Current MySQL date: 2025-12-21 2025-12-21 05:00:03
+[2025-12-21 05:00:03] Checking for budgets to expire...
+[2025-12-21 05:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 05:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 05:00:03] Checking for budgets to activate...
+[2025-12-21 05:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 05:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 05:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 05:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 05:00:03] Execution time: 13.36 ms
+[2025-12-21 05:00:03] Memory used: 1.1 MB
+[2025-12-21 04:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 04:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 04:15:03] All required files verified successfully
+[2025-12-21 05:15:04] Loaded: config.php
+[2025-12-21 05:15:04] Loaded: database.php (Database class included)
+[2025-12-21 05:15:04] Loaded: Budget.php
+[2025-12-21 05:15:04] Initializing Budget class...
+[2025-12-21 05:15:04] Budget class initialized successfully
+[2025-12-21 05:15:04] Database connection verified
+[2025-12-21 05:15:04] Current MySQL date: 2025-12-21 2025-12-21 05:15:04
+[2025-12-21 05:15:04] Checking for budgets to expire...
+[2025-12-21 05:15:04] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 05:15:04] No budgets expired (all active budgets are still valid)
+[2025-12-21 05:15:04] Checking for budgets to activate...
+[2025-12-21 05:15:04] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 05:15:04] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 05:15:04] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 05:15:04] Summary: Expired=0, Activated=0
+[2025-12-21 05:15:04] Execution time: 2042.4 ms
+[2025-12-21 05:15:04] Memory used: 1.1 MB
+[2025-12-21 04:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 04:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 04:30:03] All required files verified successfully
+[2025-12-21 05:30:03] Loaded: config.php
+[2025-12-21 05:30:03] Loaded: database.php (Database class included)
+[2025-12-21 05:30:03] Loaded: Budget.php
+[2025-12-21 05:30:03] Initializing Budget class...
+[2025-12-21 05:30:03] Budget class initialized successfully
+[2025-12-21 05:30:03] Database connection verified
+[2025-12-21 05:30:03] Current MySQL date: 2025-12-21 2025-12-21 05:30:03
+[2025-12-21 05:30:03] Checking for budgets to expire...
+[2025-12-21 05:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 05:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 05:30:03] Checking for budgets to activate...
+[2025-12-21 05:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 05:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 05:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 05:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 05:30:03] Execution time: 18.9 ms
+[2025-12-21 05:30:03] Memory used: 1.1 MB
+[2025-12-21 04:45:03] === Budget Update Cron Job Started ===
+[2025-12-21 04:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 04:45:03] All required files verified successfully
+[2025-12-21 05:45:03] Loaded: config.php
+[2025-12-21 05:45:03] Loaded: database.php (Database class included)
+[2025-12-21 05:45:03] Loaded: Budget.php
+[2025-12-21 05:45:03] Initializing Budget class...
+[2025-12-21 05:45:03] Budget class initialized successfully
+[2025-12-21 05:45:03] Database connection verified
+[2025-12-21 05:45:03] Current MySQL date: 2025-12-21 2025-12-21 05:45:03
+[2025-12-21 05:45:03] Checking for budgets to expire...
+[2025-12-21 05:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 05:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 05:45:03] Checking for budgets to activate...
+[2025-12-21 05:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 05:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 05:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 05:45:03] Summary: Expired=0, Activated=0
+[2025-12-21 05:45:03] Execution time: 14.58 ms
+[2025-12-21 05:45:03] Memory used: 1.1 MB
+[2025-12-21 05:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 05:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 05:00:02] All required files verified successfully
+[2025-12-21 06:00:02] Loaded: config.php
+[2025-12-21 06:00:02] Loaded: database.php (Database class included)
+[2025-12-21 06:00:02] Loaded: Budget.php
+[2025-12-21 06:00:02] Initializing Budget class...
+[2025-12-21 06:00:02] Budget class initialized successfully
+[2025-12-21 06:00:02] Database connection verified
+[2025-12-21 06:00:02] Current MySQL date: 2025-12-21 2025-12-21 06:00:02
+[2025-12-21 06:00:02] Checking for budgets to expire...
+[2025-12-21 06:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 06:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 06:00:02] Checking for budgets to activate...
+[2025-12-21 06:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 06:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 06:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 06:00:02] Summary: Expired=0, Activated=0
+[2025-12-21 06:00:02] Execution time: 14.39 ms
+[2025-12-21 06:00:02] Memory used: 1.1 MB
+[2025-12-21 05:15:03] === Budget Update Cron Job Started ===
+[2025-12-21 05:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 05:15:06] All required files verified successfully
+[2025-12-21 06:15:06] Loaded: config.php
+[2025-12-21 06:15:06] Loaded: database.php (Database class included)
+[2025-12-21 06:15:06] Loaded: Budget.php
+[2025-12-21 06:15:06] Initializing Budget class...
+[2025-12-21 06:15:06] Budget class initialized successfully
+[2025-12-21 06:15:06] Database connection verified
+[2025-12-21 06:15:06] Current MySQL date: 2025-12-21 2025-12-21 06:15:06
+[2025-12-21 06:15:06] Checking for budgets to expire...
+[2025-12-21 06:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 06:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-21 06:15:06] Checking for budgets to activate...
+[2025-12-21 06:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 06:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 06:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 06:15:06] Summary: Expired=0, Activated=0
+[2025-12-21 06:15:06] Execution time: 3631.63 ms
+[2025-12-21 06:15:06] Memory used: 1.1 MB
+[2025-12-21 05:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 05:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 05:30:03] All required files verified successfully
+[2025-12-21 06:30:03] Loaded: config.php
+[2025-12-21 06:30:03] Loaded: database.php (Database class included)
+[2025-12-21 06:30:03] Loaded: Budget.php
+[2025-12-21 06:30:03] Initializing Budget class...
+[2025-12-21 06:30:03] Budget class initialized successfully
+[2025-12-21 06:30:03] Database connection verified
+[2025-12-21 06:30:03] Current MySQL date: 2025-12-21 2025-12-21 06:30:03
+[2025-12-21 06:30:03] Checking for budgets to expire...
+[2025-12-21 06:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 06:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 06:30:03] Checking for budgets to activate...
+[2025-12-21 06:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 06:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 06:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 06:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 06:30:03] Execution time: 17.97 ms
+[2025-12-21 06:30:03] Memory used: 1.1 MB
+[2025-12-21 05:45:03] === Budget Update Cron Job Started ===
+[2025-12-21 05:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 05:45:03] All required files verified successfully
+[2025-12-21 06:45:03] Loaded: config.php
+[2025-12-21 06:45:03] Loaded: database.php (Database class included)
+[2025-12-21 06:45:03] Loaded: Budget.php
+[2025-12-21 06:45:03] Initializing Budget class...
+[2025-12-21 06:45:03] Budget class initialized successfully
+[2025-12-21 06:45:03] Database connection verified
+[2025-12-21 06:45:03] Current MySQL date: 2025-12-21 2025-12-21 06:45:03
+[2025-12-21 06:45:03] Checking for budgets to expire...
+[2025-12-21 06:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 06:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 06:45:03] Checking for budgets to activate...
+[2025-12-21 06:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 06:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 06:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 06:45:03] Summary: Expired=0, Activated=0
+[2025-12-21 06:45:03] Execution time: 12.71 ms
+[2025-12-21 06:45:03] Memory used: 1.1 MB
+[2025-12-21 06:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 06:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 06:00:03] All required files verified successfully
+[2025-12-21 07:00:03] Loaded: config.php
+[2025-12-21 07:00:03] Loaded: database.php (Database class included)
+[2025-12-21 07:00:03] Loaded: Budget.php
+[2025-12-21 07:00:03] Initializing Budget class...
+[2025-12-21 07:00:03] Budget class initialized successfully
+[2025-12-21 07:00:03] Database connection verified
+[2025-12-21 07:00:03] Current MySQL date: 2025-12-21 2025-12-21 07:00:03
+[2025-12-21 07:00:03] Checking for budgets to expire...
+[2025-12-21 07:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 07:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 07:00:03] Checking for budgets to activate...
+[2025-12-21 07:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 07:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 07:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 07:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 07:00:03] Execution time: 13.62 ms
+[2025-12-21 07:00:03] Memory used: 1.1 MB
+[2025-12-21 06:15:10] === Budget Update Cron Job Started ===
+[2025-12-21 06:15:10] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 06:15:11] All required files verified successfully
+[2025-12-21 07:15:11] Loaded: config.php
+[2025-12-21 07:15:11] Loaded: database.php (Database class included)
+[2025-12-21 07:15:11] Loaded: Budget.php
+[2025-12-21 07:15:11] Initializing Budget class...
+[2025-12-21 07:15:11] Budget class initialized successfully
+[2025-12-21 07:15:11] Database connection verified
+[2025-12-21 07:15:11] Current MySQL date: 2025-12-21 2025-12-21 07:15:11
+[2025-12-21 07:15:11] Checking for budgets to expire...
+[2025-12-21 07:15:11] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 07:15:11] No budgets expired (all active budgets are still valid)
+[2025-12-21 07:15:11] Checking for budgets to activate...
+[2025-12-21 07:15:11] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 07:15:11] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 07:15:11] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 07:15:11] Summary: Expired=0, Activated=0
+[2025-12-21 07:15:11] Execution time: 1478.87 ms
+[2025-12-21 07:15:11] Memory used: 1.1 MB
+[2025-12-21 06:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 06:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 06:30:03] All required files verified successfully
+[2025-12-21 07:30:03] Loaded: config.php
+[2025-12-21 07:30:03] Loaded: database.php (Database class included)
+[2025-12-21 07:30:03] Loaded: Budget.php
+[2025-12-21 07:30:03] Initializing Budget class...
+[2025-12-21 07:30:03] Budget class initialized successfully
+[2025-12-21 07:30:03] Database connection verified
+[2025-12-21 07:30:03] Current MySQL date: 2025-12-21 2025-12-21 07:30:03
+[2025-12-21 07:30:03] Checking for budgets to expire...
+[2025-12-21 07:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 07:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 07:30:03] Checking for budgets to activate...
+[2025-12-21 07:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 07:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 07:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 07:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 07:30:03] Execution time: 14.15 ms
+[2025-12-21 07:30:03] Memory used: 1.1 MB
+[2025-12-21 06:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 06:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 06:45:02] All required files verified successfully
+[2025-12-21 07:45:02] Loaded: config.php
+[2025-12-21 07:45:02] Loaded: database.php (Database class included)
+[2025-12-21 07:45:02] Loaded: Budget.php
+[2025-12-21 07:45:02] Initializing Budget class...
+[2025-12-21 07:45:02] Budget class initialized successfully
+[2025-12-21 07:45:02] Database connection verified
+[2025-12-21 07:45:02] Current MySQL date: 2025-12-21 2025-12-21 07:45:02
+[2025-12-21 07:45:02] Checking for budgets to expire...
+[2025-12-21 07:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 07:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 07:45:02] Checking for budgets to activate...
+[2025-12-21 07:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 07:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 07:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 07:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 07:45:02] Execution time: 14.53 ms
+[2025-12-21 07:45:02] Memory used: 1.1 MB
+[2025-12-21 07:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 07:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 07:00:03] All required files verified successfully
+[2025-12-21 08:00:03] Loaded: config.php
+[2025-12-21 08:00:03] Loaded: database.php (Database class included)
+[2025-12-21 08:00:03] Loaded: Budget.php
+[2025-12-21 08:00:03] Initializing Budget class...
+[2025-12-21 08:00:03] Budget class initialized successfully
+[2025-12-21 08:00:03] Database connection verified
+[2025-12-21 08:00:03] Current MySQL date: 2025-12-21 2025-12-21 08:00:03
+[2025-12-21 08:00:03] Checking for budgets to expire...
+[2025-12-21 08:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 08:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 08:00:03] Checking for budgets to activate...
+[2025-12-21 08:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 08:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 08:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 08:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 08:00:03] Execution time: 14.26 ms
+[2025-12-21 08:00:03] Memory used: 1.1 MB
+[2025-12-21 07:15:07] === Budget Update Cron Job Started ===
+[2025-12-21 07:15:08] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 07:15:08] All required files verified successfully
+[2025-12-21 08:15:08] Loaded: config.php
+[2025-12-21 08:15:08] Loaded: database.php (Database class included)
+[2025-12-21 08:15:08] Loaded: Budget.php
+[2025-12-21 08:15:08] Initializing Budget class...
+[2025-12-21 08:15:08] Budget class initialized successfully
+[2025-12-21 08:15:08] Database connection verified
+[2025-12-21 08:15:08] Current MySQL date: 2025-12-21 2025-12-21 08:15:08
+[2025-12-21 08:15:08] Checking for budgets to expire...
+[2025-12-21 08:15:08] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 08:15:08] No budgets expired (all active budgets are still valid)
+[2025-12-21 08:15:08] Checking for budgets to activate...
+[2025-12-21 08:15:08] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 08:15:08] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 08:15:08] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 08:15:08] Summary: Expired=0, Activated=0
+[2025-12-21 08:15:08] Execution time: 730.36 ms
+[2025-12-21 08:15:08] Memory used: 1.1 MB
+[2025-12-21 07:30:02] === Budget Update Cron Job Started ===
+[2025-12-21 07:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 07:30:02] All required files verified successfully
+[2025-12-21 08:30:02] Loaded: config.php
+[2025-12-21 08:30:02] Loaded: database.php (Database class included)
+[2025-12-21 08:30:02] Loaded: Budget.php
+[2025-12-21 08:30:02] Initializing Budget class...
+[2025-12-21 08:30:02] Budget class initialized successfully
+[2025-12-21 08:30:02] Database connection verified
+[2025-12-21 08:30:02] Current MySQL date: 2025-12-21 2025-12-21 08:30:02
+[2025-12-21 08:30:02] Checking for budgets to expire...
+[2025-12-21 08:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 08:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 08:30:02] Checking for budgets to activate...
+[2025-12-21 08:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 08:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 08:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 08:30:02] Summary: Expired=0, Activated=0
+[2025-12-21 08:30:02] Execution time: 14.97 ms
+[2025-12-21 08:30:02] Memory used: 1.1 MB
+[2025-12-21 07:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 07:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 07:45:02] All required files verified successfully
+[2025-12-21 08:45:02] Loaded: config.php
+[2025-12-21 08:45:02] Loaded: database.php (Database class included)
+[2025-12-21 08:45:02] Loaded: Budget.php
+[2025-12-21 08:45:02] Initializing Budget class...
+[2025-12-21 08:45:02] Budget class initialized successfully
+[2025-12-21 08:45:02] Database connection verified
+[2025-12-21 08:45:02] Current MySQL date: 2025-12-21 2025-12-21 08:45:02
+[2025-12-21 08:45:02] Checking for budgets to expire...
+[2025-12-21 08:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 08:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 08:45:02] Checking for budgets to activate...
+[2025-12-21 08:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 08:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 08:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 08:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 08:45:02] Execution time: 14.23 ms
+[2025-12-21 08:45:02] Memory used: 1.1 MB
+[2025-12-21 08:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 08:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 08:00:02] All required files verified successfully
+[2025-12-21 09:00:02] Loaded: config.php
+[2025-12-21 09:00:02] Loaded: database.php (Database class included)
+[2025-12-21 09:00:02] Loaded: Budget.php
+[2025-12-21 09:00:02] Initializing Budget class...
+[2025-12-21 09:00:02] Budget class initialized successfully
+[2025-12-21 09:00:02] Database connection verified
+[2025-12-21 09:00:02] Current MySQL date: 2025-12-21 2025-12-21 09:00:02
+[2025-12-21 09:00:02] Checking for budgets to expire...
+[2025-12-21 09:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 09:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 09:00:02] Checking for budgets to activate...
+[2025-12-21 09:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 09:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 09:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 09:00:02] Summary: Expired=0, Activated=0
+[2025-12-21 09:00:02] Execution time: 15.36 ms
+[2025-12-21 09:00:02] Memory used: 1.1 MB
+[2025-12-21 08:15:04] === Budget Update Cron Job Started ===
+[2025-12-21 08:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 08:15:06] All required files verified successfully
+[2025-12-21 09:15:06] Loaded: config.php
+[2025-12-21 09:15:06] Loaded: database.php (Database class included)
+[2025-12-21 09:15:06] Loaded: Budget.php
+[2025-12-21 09:15:06] Initializing Budget class...
+[2025-12-21 09:15:06] Budget class initialized successfully
+[2025-12-21 09:15:06] Database connection verified
+[2025-12-21 09:15:06] Current MySQL date: 2025-12-21 2025-12-21 09:15:06
+[2025-12-21 09:15:06] Checking for budgets to expire...
+[2025-12-21 09:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 09:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-21 09:15:06] Checking for budgets to activate...
+[2025-12-21 09:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 09:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 09:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 09:15:06] Summary: Expired=0, Activated=0
+[2025-12-21 09:15:06] Execution time: 2365.75 ms
+[2025-12-21 09:15:06] Memory used: 1.1 MB
+[2025-12-21 08:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 08:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 08:30:03] All required files verified successfully
+[2025-12-21 09:30:03] Loaded: config.php
+[2025-12-21 09:30:03] Loaded: database.php (Database class included)
+[2025-12-21 09:30:03] Loaded: Budget.php
+[2025-12-21 09:30:03] Initializing Budget class...
+[2025-12-21 09:30:03] Budget class initialized successfully
+[2025-12-21 09:30:03] Database connection verified
+[2025-12-21 09:30:03] Current MySQL date: 2025-12-21 2025-12-21 09:30:03
+[2025-12-21 09:30:03] Checking for budgets to expire...
+[2025-12-21 09:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 09:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 09:30:03] Checking for budgets to activate...
+[2025-12-21 09:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 09:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 09:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 09:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 09:30:03] Execution time: 14.45 ms
+[2025-12-21 09:30:03] Memory used: 1.1 MB
+[2025-12-21 08:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 08:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 08:45:02] All required files verified successfully
+[2025-12-21 09:45:02] Loaded: config.php
+[2025-12-21 09:45:02] Loaded: database.php (Database class included)
+[2025-12-21 09:45:02] Loaded: Budget.php
+[2025-12-21 09:45:02] Initializing Budget class...
+[2025-12-21 09:45:02] Budget class initialized successfully
+[2025-12-21 09:45:02] Database connection verified
+[2025-12-21 09:45:02] Current MySQL date: 2025-12-21 2025-12-21 09:45:02
+[2025-12-21 09:45:02] Checking for budgets to expire...
+[2025-12-21 09:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 09:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 09:45:02] Checking for budgets to activate...
+[2025-12-21 09:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 09:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 09:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 09:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 09:45:02] Execution time: 14.62 ms
+[2025-12-21 09:45:02] Memory used: 1.1 MB
+[2025-12-21 09:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 09:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 09:00:03] All required files verified successfully
+[2025-12-21 10:00:03] Loaded: config.php
+[2025-12-21 10:00:03] Loaded: database.php (Database class included)
+[2025-12-21 10:00:03] Loaded: Budget.php
+[2025-12-21 10:00:03] Initializing Budget class...
+[2025-12-21 10:00:03] Budget class initialized successfully
+[2025-12-21 10:00:03] Database connection verified
+[2025-12-21 10:00:03] Current MySQL date: 2025-12-21 2025-12-21 10:00:03
+[2025-12-21 10:00:03] Checking for budgets to expire...
+[2025-12-21 10:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 10:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 10:00:03] Checking for budgets to activate...
+[2025-12-21 10:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 10:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 10:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 10:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 10:00:03] Execution time: 121.32 ms
+[2025-12-21 10:00:03] Memory used: 1.1 MB
+[2025-12-21 09:15:03] === Budget Update Cron Job Started ===
+[2025-12-21 09:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 09:15:03] All required files verified successfully
+[2025-12-21 10:15:03] Loaded: config.php
+[2025-12-21 10:15:03] Loaded: database.php (Database class included)
+[2025-12-21 10:15:03] Loaded: Budget.php
+[2025-12-21 10:15:03] Initializing Budget class...
+[2025-12-21 10:15:03] Budget class initialized successfully
+[2025-12-21 10:15:03] Database connection verified
+[2025-12-21 10:15:03] Current MySQL date: 2025-12-21 2025-12-21 10:15:03
+[2025-12-21 10:15:03] Checking for budgets to expire...
+[2025-12-21 10:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 10:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 10:15:03] Checking for budgets to activate...
+[2025-12-21 10:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 10:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 10:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 10:15:03] Summary: Expired=0, Activated=0
+[2025-12-21 10:15:03] Execution time: 11.32 ms
+[2025-12-21 10:15:03] Memory used: 1.1 MB
+[2025-12-21 09:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 09:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 09:30:03] All required files verified successfully
+[2025-12-21 10:30:03] Loaded: config.php
+[2025-12-21 10:30:03] Loaded: database.php (Database class included)
+[2025-12-21 10:30:03] Loaded: Budget.php
+[2025-12-21 10:30:03] Initializing Budget class...
+[2025-12-21 10:30:03] Budget class initialized successfully
+[2025-12-21 10:30:03] Database connection verified
+[2025-12-21 10:30:03] Current MySQL date: 2025-12-21 2025-12-21 10:30:03
+[2025-12-21 10:30:03] Checking for budgets to expire...
+[2025-12-21 10:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 10:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 10:30:03] Checking for budgets to activate...
+[2025-12-21 10:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 10:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 10:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 10:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 10:30:03] Execution time: 19.16 ms
+[2025-12-21 10:30:03] Memory used: 1.1 MB
+[2025-12-21 09:45:03] === Budget Update Cron Job Started ===
+[2025-12-21 09:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 09:45:03] All required files verified successfully
+[2025-12-21 10:45:03] Loaded: config.php
+[2025-12-21 10:45:03] Loaded: database.php (Database class included)
+[2025-12-21 10:45:03] Loaded: Budget.php
+[2025-12-21 10:45:03] Initializing Budget class...
+[2025-12-21 10:45:03] Budget class initialized successfully
+[2025-12-21 10:45:03] Database connection verified
+[2025-12-21 10:45:03] Current MySQL date: 2025-12-21 2025-12-21 10:45:03
+[2025-12-21 10:45:03] Checking for budgets to expire...
+[2025-12-21 10:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 10:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 10:45:03] Checking for budgets to activate...
+[2025-12-21 10:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 10:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 10:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 10:45:03] Summary: Expired=0, Activated=0
+[2025-12-21 10:45:03] Execution time: 13.98 ms
+[2025-12-21 10:45:03] Memory used: 1.1 MB
+[2025-12-21 10:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 10:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 10:00:03] All required files verified successfully
+[2025-12-21 11:00:03] Loaded: config.php
+[2025-12-21 11:00:03] Loaded: database.php (Database class included)
+[2025-12-21 11:00:03] Loaded: Budget.php
+[2025-12-21 11:00:03] Initializing Budget class...
+[2025-12-21 11:00:03] Budget class initialized successfully
+[2025-12-21 11:00:03] Database connection verified
+[2025-12-21 11:00:03] Current MySQL date: 2025-12-21 2025-12-21 11:00:03
+[2025-12-21 11:00:03] Checking for budgets to expire...
+[2025-12-21 11:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 11:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 11:00:03] Checking for budgets to activate...
+[2025-12-21 11:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 11:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 11:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 11:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 11:00:03] Execution time: 15.27 ms
+[2025-12-21 11:00:03] Memory used: 1.1 MB
+[2025-12-21 10:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 10:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 10:15:02] All required files verified successfully
+[2025-12-21 11:15:02] Loaded: config.php
+[2025-12-21 11:15:02] Loaded: database.php (Database class included)
+[2025-12-21 11:15:02] Loaded: Budget.php
+[2025-12-21 11:15:02] Initializing Budget class...
+[2025-12-21 11:15:02] Budget class initialized successfully
+[2025-12-21 11:15:02] Database connection verified
+[2025-12-21 11:15:02] Current MySQL date: 2025-12-21 2025-12-21 11:15:02
+[2025-12-21 11:15:02] Checking for budgets to expire...
+[2025-12-21 11:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 11:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 11:15:02] Checking for budgets to activate...
+[2025-12-21 11:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 11:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 11:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 11:15:02] Summary: Expired=0, Activated=0
+[2025-12-21 11:15:02] Execution time: 18.62 ms
+[2025-12-21 11:15:02] Memory used: 1.1 MB
+[2025-12-21 10:30:02] === Budget Update Cron Job Started ===
+[2025-12-21 10:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 10:30:02] All required files verified successfully
+[2025-12-21 11:30:02] Loaded: config.php
+[2025-12-21 11:30:02] Loaded: database.php (Database class included)
+[2025-12-21 11:30:02] Loaded: Budget.php
+[2025-12-21 11:30:02] Initializing Budget class...
+[2025-12-21 11:30:02] Budget class initialized successfully
+[2025-12-21 11:30:02] Database connection verified
+[2025-12-21 11:30:02] Current MySQL date: 2025-12-21 2025-12-21 11:30:02
+[2025-12-21 11:30:02] Checking for budgets to expire...
+[2025-12-21 11:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 11:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 11:30:02] Checking for budgets to activate...
+[2025-12-21 11:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 11:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 11:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 11:30:02] Summary: Expired=0, Activated=0
+[2025-12-21 11:30:02] Execution time: 14.66 ms
+[2025-12-21 11:30:02] Memory used: 1.1 MB
+[2025-12-21 10:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 10:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 10:45:02] All required files verified successfully
+[2025-12-21 11:45:02] Loaded: config.php
+[2025-12-21 11:45:02] Loaded: database.php (Database class included)
+[2025-12-21 11:45:02] Loaded: Budget.php
+[2025-12-21 11:45:02] Initializing Budget class...
+[2025-12-21 11:45:02] Budget class initialized successfully
+[2025-12-21 11:45:02] Database connection verified
+[2025-12-21 11:45:02] Current MySQL date: 2025-12-21 2025-12-21 11:45:02
+[2025-12-21 11:45:02] Checking for budgets to expire...
+[2025-12-21 11:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 11:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 11:45:02] Checking for budgets to activate...
+[2025-12-21 11:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 11:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 11:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 11:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 11:45:02] Execution time: 136.53 ms
+[2025-12-21 11:45:02] Memory used: 1.1 MB
+[2025-12-21 11:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 11:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 11:00:03] All required files verified successfully
+[2025-12-21 12:00:03] Loaded: config.php
+[2025-12-21 12:00:03] Loaded: database.php (Database class included)
+[2025-12-21 12:00:03] Loaded: Budget.php
+[2025-12-21 12:00:03] Initializing Budget class...
+[2025-12-21 12:00:03] Budget class initialized successfully
+[2025-12-21 12:00:03] Database connection verified
+[2025-12-21 12:00:03] Current MySQL date: 2025-12-21 2025-12-21 12:00:03
+[2025-12-21 12:00:03] Checking for budgets to expire...
+[2025-12-21 12:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 12:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 12:00:03] Checking for budgets to activate...
+[2025-12-21 12:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 12:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 12:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 12:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 12:00:03] Execution time: 95.51 ms
+[2025-12-21 12:00:03] Memory used: 1.1 MB
+[2025-12-21 11:15:08] === Budget Update Cron Job Started ===
+[2025-12-21 11:15:09] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 11:15:09] All required files verified successfully
+[2025-12-21 12:15:09] Loaded: config.php
+[2025-12-21 12:15:09] Loaded: database.php (Database class included)
+[2025-12-21 12:15:09] Loaded: Budget.php
+[2025-12-21 12:15:09] Initializing Budget class...
+[2025-12-21 12:15:09] Budget class initialized successfully
+[2025-12-21 12:15:09] Database connection verified
+[2025-12-21 12:15:09] Current MySQL date: 2025-12-21 2025-12-21 12:15:09
+[2025-12-21 12:15:09] Checking for budgets to expire...
+[2025-12-21 12:15:09] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 12:15:09] No budgets expired (all active budgets are still valid)
+[2025-12-21 12:15:09] Checking for budgets to activate...
+[2025-12-21 12:15:09] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 12:15:09] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 12:15:09] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 12:15:09] Summary: Expired=0, Activated=0
+[2025-12-21 12:15:09] Execution time: 1338.7 ms
+[2025-12-21 12:15:09] Memory used: 1.1 MB
+[2025-12-21 11:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 11:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 11:30:03] All required files verified successfully
+[2025-12-21 12:30:03] Loaded: config.php
+[2025-12-21 12:30:03] Loaded: database.php (Database class included)
+[2025-12-21 12:30:03] Loaded: Budget.php
+[2025-12-21 12:30:03] Initializing Budget class...
+[2025-12-21 12:30:03] Budget class initialized successfully
+[2025-12-21 12:30:03] Database connection verified
+[2025-12-21 12:30:03] Current MySQL date: 2025-12-21 2025-12-21 12:30:03
+[2025-12-21 12:30:03] Checking for budgets to expire...
+[2025-12-21 12:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 12:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 12:30:03] Checking for budgets to activate...
+[2025-12-21 12:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 12:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 12:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 12:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 12:30:03] Execution time: 15.24 ms
+[2025-12-21 12:30:03] Memory used: 1.1 MB
+[2025-12-21 11:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 11:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 11:45:02] All required files verified successfully
+[2025-12-21 12:45:02] Loaded: config.php
+[2025-12-21 12:45:02] Loaded: database.php (Database class included)
+[2025-12-21 12:45:02] Loaded: Budget.php
+[2025-12-21 12:45:02] Initializing Budget class...
+[2025-12-21 12:45:02] Budget class initialized successfully
+[2025-12-21 12:45:02] Database connection verified
+[2025-12-21 12:45:02] Current MySQL date: 2025-12-21 2025-12-21 12:45:02
+[2025-12-21 12:45:02] Checking for budgets to expire...
+[2025-12-21 12:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 12:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 12:45:02] Checking for budgets to activate...
+[2025-12-21 12:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 12:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 12:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 12:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 12:45:02] Execution time: 12.93 ms
+[2025-12-21 12:45:02] Memory used: 1.1 MB
+[2025-12-21 12:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 12:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 12:00:03] All required files verified successfully
+[2025-12-21 13:00:03] Loaded: config.php
+[2025-12-21 13:00:03] Loaded: database.php (Database class included)
+[2025-12-21 13:00:03] Loaded: Budget.php
+[2025-12-21 13:00:03] Initializing Budget class...
+[2025-12-21 13:00:03] Budget class initialized successfully
+[2025-12-21 13:00:03] Database connection verified
+[2025-12-21 13:00:03] Current MySQL date: 2025-12-21 2025-12-21 13:00:03
+[2025-12-21 13:00:03] Checking for budgets to expire...
+[2025-12-21 13:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 13:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 13:00:03] Checking for budgets to activate...
+[2025-12-21 13:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 13:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 13:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 13:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 13:00:03] Execution time: 15.5 ms
+[2025-12-21 13:00:03] Memory used: 1.1 MB
+[2025-12-21 12:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 12:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 12:15:03] All required files verified successfully
+[2025-12-21 13:15:03] Loaded: config.php
+[2025-12-21 13:15:03] Loaded: database.php (Database class included)
+[2025-12-21 13:15:03] Loaded: Budget.php
+[2025-12-21 13:15:03] Initializing Budget class...
+[2025-12-21 13:15:03] Budget class initialized successfully
+[2025-12-21 13:15:03] Database connection verified
+[2025-12-21 13:15:03] Current MySQL date: 2025-12-21 2025-12-21 13:15:03
+[2025-12-21 13:15:03] Checking for budgets to expire...
+[2025-12-21 13:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 13:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 13:15:03] Checking for budgets to activate...
+[2025-12-21 13:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 13:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 13:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 13:15:03] Summary: Expired=0, Activated=0
+[2025-12-21 13:15:03] Execution time: 980.56 ms
+[2025-12-21 13:15:03] Memory used: 1.1 MB
+[2025-12-21 12:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 12:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 12:30:03] All required files verified successfully
+[2025-12-21 13:30:03] Loaded: config.php
+[2025-12-21 13:30:03] Loaded: database.php (Database class included)
+[2025-12-21 13:30:03] Loaded: Budget.php
+[2025-12-21 13:30:03] Initializing Budget class...
+[2025-12-21 13:30:03] Budget class initialized successfully
+[2025-12-21 13:30:03] Database connection verified
+[2025-12-21 13:30:03] Current MySQL date: 2025-12-21 2025-12-21 13:30:03
+[2025-12-21 13:30:03] Checking for budgets to expire...
+[2025-12-21 13:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 13:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 13:30:03] Checking for budgets to activate...
+[2025-12-21 13:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 13:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 13:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 13:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 13:30:03] Execution time: 16.68 ms
+[2025-12-21 13:30:03] Memory used: 1.1 MB
+[2025-12-21 12:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 12:45:04] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 12:45:04] All required files verified successfully
+[2025-12-21 13:45:04] Loaded: config.php
+[2025-12-21 13:45:04] Loaded: database.php (Database class included)
+[2025-12-21 13:45:04] Loaded: Budget.php
+[2025-12-21 13:45:04] Initializing Budget class...
+[2025-12-21 13:45:04] Budget class initialized successfully
+[2025-12-21 13:45:04] Database connection verified
+[2025-12-21 13:45:04] Current MySQL date: 2025-12-21 2025-12-21 13:45:04
+[2025-12-21 13:45:04] Checking for budgets to expire...
+[2025-12-21 13:45:04] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 13:45:04] No budgets expired (all active budgets are still valid)
+[2025-12-21 13:45:04] Checking for budgets to activate...
+[2025-12-21 13:45:04] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 13:45:04] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 13:45:04] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 13:45:04] Summary: Expired=0, Activated=0
+[2025-12-21 13:45:04] Execution time: 2012.23 ms
+[2025-12-21 13:45:04] Memory used: 1.1 MB
+[2025-12-21 13:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 13:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 13:00:03] All required files verified successfully
+[2025-12-21 14:00:03] Loaded: config.php
+[2025-12-21 14:00:03] Loaded: database.php (Database class included)
+[2025-12-21 14:00:03] Loaded: Budget.php
+[2025-12-21 14:00:03] Initializing Budget class...
+[2025-12-21 14:00:03] Budget class initialized successfully
+[2025-12-21 14:00:03] Database connection verified
+[2025-12-21 14:00:03] Current MySQL date: 2025-12-21 2025-12-21 14:00:03
+[2025-12-21 14:00:03] Checking for budgets to expire...
+[2025-12-21 14:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 14:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 14:00:03] Checking for budgets to activate...
+[2025-12-21 14:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 14:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 14:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 14:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 14:00:03] Execution time: 42.5 ms
+[2025-12-21 14:00:03] Memory used: 1.1 MB
+[2025-12-21 13:15:03] === Budget Update Cron Job Started ===
+[2025-12-21 13:15:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 13:15:03] All required files verified successfully
+[2025-12-21 14:15:03] Loaded: config.php
+[2025-12-21 14:15:03] Loaded: database.php (Database class included)
+[2025-12-21 14:15:03] Loaded: Budget.php
+[2025-12-21 14:15:03] Initializing Budget class...
+[2025-12-21 14:15:03] Budget class initialized successfully
+[2025-12-21 14:15:03] Database connection verified
+[2025-12-21 14:15:03] Current MySQL date: 2025-12-21 2025-12-21 14:15:03
+[2025-12-21 14:15:03] Checking for budgets to expire...
+[2025-12-21 14:15:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 14:15:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 14:15:03] Checking for budgets to activate...
+[2025-12-21 14:15:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 14:15:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 14:15:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 14:15:03] Summary: Expired=0, Activated=0
+[2025-12-21 14:15:03] Execution time: 702.7 ms
+[2025-12-21 14:15:03] Memory used: 1.1 MB
+[2025-12-21 13:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 13:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 13:30:03] All required files verified successfully
+[2025-12-21 14:30:03] Loaded: config.php
+[2025-12-21 14:30:03] Loaded: database.php (Database class included)
+[2025-12-21 14:30:03] Loaded: Budget.php
+[2025-12-21 14:30:03] Initializing Budget class...
+[2025-12-21 14:30:03] Budget class initialized successfully
+[2025-12-21 14:30:03] Database connection verified
+[2025-12-21 14:30:03] Current MySQL date: 2025-12-21 2025-12-21 14:30:03
+[2025-12-21 14:30:03] Checking for budgets to expire...
+[2025-12-21 14:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 14:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 14:30:03] Checking for budgets to activate...
+[2025-12-21 14:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 14:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 14:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 14:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 14:30:03] Execution time: 18.85 ms
+[2025-12-21 14:30:03] Memory used: 1.1 MB
+[2025-12-21 13:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 13:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 13:45:02] All required files verified successfully
+[2025-12-21 14:45:02] Loaded: config.php
+[2025-12-21 14:45:02] Loaded: database.php (Database class included)
+[2025-12-21 14:45:02] Loaded: Budget.php
+[2025-12-21 14:45:02] Initializing Budget class...
+[2025-12-21 14:45:02] Budget class initialized successfully
+[2025-12-21 14:45:02] Database connection verified
+[2025-12-21 14:45:02] Current MySQL date: 2025-12-21 2025-12-21 14:45:02
+[2025-12-21 14:45:02] Checking for budgets to expire...
+[2025-12-21 14:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 14:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 14:45:02] Checking for budgets to activate...
+[2025-12-21 14:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 14:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 14:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 14:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 14:45:02] Execution time: 220.83 ms
+[2025-12-21 14:45:02] Memory used: 1.1 MB
+[2025-12-21 14:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 14:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 14:00:02] All required files verified successfully
+[2025-12-21 15:00:02] Loaded: config.php
+[2025-12-21 15:00:02] Loaded: database.php (Database class included)
+[2025-12-21 15:00:02] Loaded: Budget.php
+[2025-12-21 15:00:02] Initializing Budget class...
+[2025-12-21 15:00:02] Budget class initialized successfully
+[2025-12-21 15:00:02] Database connection verified
+[2025-12-21 15:00:02] Current MySQL date: 2025-12-21 2025-12-21 15:00:02
+[2025-12-21 15:00:02] Checking for budgets to expire...
+[2025-12-21 15:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 15:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 15:00:02] Checking for budgets to activate...
+[2025-12-21 15:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 15:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 15:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 15:00:02] Summary: Expired=0, Activated=0
+[2025-12-21 15:00:02] Execution time: 13.68 ms
+[2025-12-21 15:00:02] Memory used: 1.1 MB
+[2025-12-21 14:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 14:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 14:15:06] All required files verified successfully
+[2025-12-21 15:15:06] Loaded: config.php
+[2025-12-21 15:15:06] Loaded: database.php (Database class included)
+[2025-12-21 15:15:06] Loaded: Budget.php
+[2025-12-21 15:15:06] Initializing Budget class...
+[2025-12-21 15:15:06] Budget class initialized successfully
+[2025-12-21 15:15:06] Database connection verified
+[2025-12-21 15:15:06] Current MySQL date: 2025-12-21 2025-12-21 15:15:06
+[2025-12-21 15:15:06] Checking for budgets to expire...
+[2025-12-21 15:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 15:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-21 15:15:06] Checking for budgets to activate...
+[2025-12-21 15:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 15:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 15:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 15:15:06] Summary: Expired=0, Activated=0
+[2025-12-21 15:15:06] Execution time: 4197.31 ms
+[2025-12-21 15:15:06] Memory used: 1.1 MB
+[2025-12-21 14:30:02] === Budget Update Cron Job Started ===
+[2025-12-21 14:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 14:30:02] All required files verified successfully
+[2025-12-21 15:30:02] Loaded: config.php
+[2025-12-21 15:30:02] Loaded: database.php (Database class included)
+[2025-12-21 15:30:02] Loaded: Budget.php
+[2025-12-21 15:30:02] Initializing Budget class...
+[2025-12-21 15:30:02] Budget class initialized successfully
+[2025-12-21 15:30:02] Database connection verified
+[2025-12-21 15:30:02] Current MySQL date: 2025-12-21 2025-12-21 15:30:02
+[2025-12-21 15:30:02] Checking for budgets to expire...
+[2025-12-21 15:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 15:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 15:30:02] Checking for budgets to activate...
+[2025-12-21 15:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 15:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 15:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 15:30:02] Summary: Expired=0, Activated=0
+[2025-12-21 15:30:02] Execution time: 18.29 ms
+[2025-12-21 15:30:02] Memory used: 1.1 MB
+[2025-12-21 14:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 14:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 14:45:02] All required files verified successfully
+[2025-12-21 15:45:02] Loaded: config.php
+[2025-12-21 15:45:02] Loaded: database.php (Database class included)
+[2025-12-21 15:45:02] Loaded: Budget.php
+[2025-12-21 15:45:02] Initializing Budget class...
+[2025-12-21 15:45:02] Budget class initialized successfully
+[2025-12-21 15:45:02] Database connection verified
+[2025-12-21 15:45:02] Current MySQL date: 2025-12-21 2025-12-21 15:45:02
+[2025-12-21 15:45:02] Checking for budgets to expire...
+[2025-12-21 15:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 15:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 15:45:02] Checking for budgets to activate...
+[2025-12-21 15:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 15:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 15:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 15:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 15:45:02] Execution time: 12.68 ms
+[2025-12-21 15:45:02] Memory used: 1.1 MB
+[2025-12-21 15:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 15:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 15:00:02] All required files verified successfully
+[2025-12-21 16:00:02] Loaded: config.php
+[2025-12-21 16:00:02] Loaded: database.php (Database class included)
+[2025-12-21 16:00:02] Loaded: Budget.php
+[2025-12-21 16:00:02] Initializing Budget class...
+[2025-12-21 16:00:02] Budget class initialized successfully
+[2025-12-21 16:00:02] Database connection verified
+[2025-12-21 16:00:02] Current MySQL date: 2025-12-21 2025-12-21 16:00:02
+[2025-12-21 16:00:02] Checking for budgets to expire...
+[2025-12-21 16:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 16:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 16:00:02] Checking for budgets to activate...
+[2025-12-21 16:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 16:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 16:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 16:00:02] Summary: Expired=0, Activated=0
+[2025-12-21 16:00:02] Execution time: 14.65 ms
+[2025-12-21 16:00:02] Memory used: 1.1 MB
+[2025-12-21 15:15:05] === Budget Update Cron Job Started ===
+[2025-12-21 15:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 15:15:05] All required files verified successfully
+[2025-12-21 16:15:05] Loaded: config.php
+[2025-12-21 16:15:05] Loaded: database.php (Database class included)
+[2025-12-21 16:15:05] Loaded: Budget.php
+[2025-12-21 16:15:05] Initializing Budget class...
+[2025-12-21 16:15:05] Budget class initialized successfully
+[2025-12-21 16:15:05] Database connection verified
+[2025-12-21 16:15:05] Current MySQL date: 2025-12-21 2025-12-21 16:15:05
+[2025-12-21 16:15:05] Checking for budgets to expire...
+[2025-12-21 16:15:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 16:15:05] No budgets expired (all active budgets are still valid)
+[2025-12-21 16:15:05] Checking for budgets to activate...
+[2025-12-21 16:15:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 16:15:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 16:15:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 16:15:05] Summary: Expired=0, Activated=0
+[2025-12-21 16:15:05] Execution time: 1022.58 ms
+[2025-12-21 16:15:05] Memory used: 1.1 MB
+[2025-12-21 15:30:02] === Budget Update Cron Job Started ===
+[2025-12-21 15:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 15:30:02] All required files verified successfully
+[2025-12-21 16:30:02] Loaded: config.php
+[2025-12-21 16:30:02] Loaded: database.php (Database class included)
+[2025-12-21 16:30:02] Loaded: Budget.php
+[2025-12-21 16:30:02] Initializing Budget class...
+[2025-12-21 16:30:02] Budget class initialized successfully
+[2025-12-21 16:30:02] Database connection verified
+[2025-12-21 16:30:02] Current MySQL date: 2025-12-21 2025-12-21 16:30:02
+[2025-12-21 16:30:02] Checking for budgets to expire...
+[2025-12-21 16:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 16:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 16:30:02] Checking for budgets to activate...
+[2025-12-21 16:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 16:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 16:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 16:30:02] Summary: Expired=0, Activated=0
+[2025-12-21 16:30:02] Execution time: 18.54 ms
+[2025-12-21 16:30:02] Memory used: 1.1 MB
+[2025-12-21 15:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 15:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 15:45:02] All required files verified successfully
+[2025-12-21 16:45:02] Loaded: config.php
+[2025-12-21 16:45:02] Loaded: database.php (Database class included)
+[2025-12-21 16:45:02] Loaded: Budget.php
+[2025-12-21 16:45:02] Initializing Budget class...
+[2025-12-21 16:45:02] Budget class initialized successfully
+[2025-12-21 16:45:02] Database connection verified
+[2025-12-21 16:45:02] Current MySQL date: 2025-12-21 2025-12-21 16:45:02
+[2025-12-21 16:45:02] Checking for budgets to expire...
+[2025-12-21 16:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 16:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 16:45:02] Checking for budgets to activate...
+[2025-12-21 16:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 16:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 16:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 16:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 16:45:02] Execution time: 15.25 ms
+[2025-12-21 16:45:02] Memory used: 1.1 MB
+[2025-12-21 16:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 16:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 16:00:02] All required files verified successfully
+[2025-12-21 17:00:02] Loaded: config.php
+[2025-12-21 17:00:02] Loaded: database.php (Database class included)
+[2025-12-21 17:00:02] Loaded: Budget.php
+[2025-12-21 17:00:02] Initializing Budget class...
+[2025-12-21 17:00:02] Budget class initialized successfully
+[2025-12-21 17:00:02] Database connection verified
+[2025-12-21 17:00:02] Current MySQL date: 2025-12-21 2025-12-21 17:00:02
+[2025-12-21 17:00:02] Checking for budgets to expire...
+[2025-12-21 17:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 17:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 17:00:02] Checking for budgets to activate...
+[2025-12-21 17:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 17:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 17:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 17:00:02] Summary: Expired=0, Activated=0
+[2025-12-21 17:00:02] Execution time: 15.14 ms
+[2025-12-21 17:00:02] Memory used: 1.1 MB
+[2025-12-21 16:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 16:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 16:15:02] All required files verified successfully
+[2025-12-21 17:15:02] Loaded: config.php
+[2025-12-21 17:15:02] Loaded: database.php (Database class included)
+[2025-12-21 17:15:02] Loaded: Budget.php
+[2025-12-21 17:15:02] Initializing Budget class...
+[2025-12-21 17:15:02] Budget class initialized successfully
+[2025-12-21 17:15:02] Database connection verified
+[2025-12-21 17:15:02] Current MySQL date: 2025-12-21 2025-12-21 17:15:02
+[2025-12-21 17:15:02] Checking for budgets to expire...
+[2025-12-21 17:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 17:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 17:15:02] Checking for budgets to activate...
+[2025-12-21 17:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 17:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 17:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 17:15:02] Summary: Expired=0, Activated=0
+[2025-12-21 17:15:02] Execution time: 17.29 ms
+[2025-12-21 17:15:02] Memory used: 1.1 MB
+[2025-12-21 16:30:02] === Budget Update Cron Job Started ===
+[2025-12-21 16:30:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 16:30:02] All required files verified successfully
+[2025-12-21 17:30:02] Loaded: config.php
+[2025-12-21 17:30:02] Loaded: database.php (Database class included)
+[2025-12-21 17:30:02] Loaded: Budget.php
+[2025-12-21 17:30:02] Initializing Budget class...
+[2025-12-21 17:30:02] Budget class initialized successfully
+[2025-12-21 17:30:02] Database connection verified
+[2025-12-21 17:30:02] Current MySQL date: 2025-12-21 2025-12-21 17:30:02
+[2025-12-21 17:30:02] Checking for budgets to expire...
+[2025-12-21 17:30:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 17:30:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 17:30:02] Checking for budgets to activate...
+[2025-12-21 17:30:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 17:30:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 17:30:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 17:30:02] Summary: Expired=0, Activated=0
+[2025-12-21 17:30:02] Execution time: 15.8 ms
+[2025-12-21 17:30:02] Memory used: 1.1 MB
+[2025-12-21 16:45:03] === Budget Update Cron Job Started ===
+[2025-12-21 16:45:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 16:45:03] All required files verified successfully
+[2025-12-21 17:45:03] Loaded: config.php
+[2025-12-21 17:45:03] Loaded: database.php (Database class included)
+[2025-12-21 17:45:03] Loaded: Budget.php
+[2025-12-21 17:45:03] Initializing Budget class...
+[2025-12-21 17:45:03] Budget class initialized successfully
+[2025-12-21 17:45:03] Database connection verified
+[2025-12-21 17:45:03] Current MySQL date: 2025-12-21 2025-12-21 17:45:03
+[2025-12-21 17:45:03] Checking for budgets to expire...
+[2025-12-21 17:45:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 17:45:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 17:45:03] Checking for budgets to activate...
+[2025-12-21 17:45:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 17:45:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 17:45:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 17:45:03] Summary: Expired=0, Activated=0
+[2025-12-21 17:45:03] Execution time: 13.97 ms
+[2025-12-21 17:45:03] Memory used: 1.1 MB
+[2025-12-21 17:00:02] === Budget Update Cron Job Started ===
+[2025-12-21 17:00:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 17:00:02] All required files verified successfully
+[2025-12-21 18:00:02] Loaded: config.php
+[2025-12-21 18:00:02] Loaded: database.php (Database class included)
+[2025-12-21 18:00:02] Loaded: Budget.php
+[2025-12-21 18:00:02] Initializing Budget class...
+[2025-12-21 18:00:02] Budget class initialized successfully
+[2025-12-21 18:00:02] Database connection verified
+[2025-12-21 18:00:02] Current MySQL date: 2025-12-21 2025-12-21 18:00:02
+[2025-12-21 18:00:02] Checking for budgets to expire...
+[2025-12-21 18:00:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 18:00:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 18:00:02] Checking for budgets to activate...
+[2025-12-21 18:00:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 18:00:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 18:00:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 18:00:02] Summary: Expired=0, Activated=0
+[2025-12-21 18:00:02] Execution time: 21.81 ms
+[2025-12-21 18:00:02] Memory used: 1.1 MB
+[2025-12-21 17:15:07] === Budget Update Cron Job Started ===
+[2025-12-21 17:15:07] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 17:15:07] All required files verified successfully
+[2025-12-21 18:15:07] Loaded: config.php
+[2025-12-21 18:15:07] Loaded: database.php (Database class included)
+[2025-12-21 18:15:07] Loaded: Budget.php
+[2025-12-21 18:15:07] Initializing Budget class...
+[2025-12-21 18:15:07] Budget class initialized successfully
+[2025-12-21 18:15:07] Database connection verified
+[2025-12-21 18:15:07] Current MySQL date: 2025-12-21 2025-12-21 18:15:07
+[2025-12-21 18:15:07] Checking for budgets to expire...
+[2025-12-21 18:15:07] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 18:15:07] No budgets expired (all active budgets are still valid)
+[2025-12-21 18:15:07] Checking for budgets to activate...
+[2025-12-21 18:15:07] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 18:15:07] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 18:15:07] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 18:15:07] Summary: Expired=0, Activated=0
+[2025-12-21 18:15:07] Execution time: 606.58 ms
+[2025-12-21 18:15:07] Memory used: 1.1 MB
+[2025-12-21 17:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 17:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 17:30:03] All required files verified successfully
+[2025-12-21 18:30:03] Loaded: config.php
+[2025-12-21 18:30:03] Loaded: database.php (Database class included)
+[2025-12-21 18:30:03] Loaded: Budget.php
+[2025-12-21 18:30:03] Initializing Budget class...
+[2025-12-21 18:30:03] Budget class initialized successfully
+[2025-12-21 18:30:03] Database connection verified
+[2025-12-21 18:30:03] Current MySQL date: 2025-12-21 2025-12-21 18:30:03
+[2025-12-21 18:30:03] Checking for budgets to expire...
+[2025-12-21 18:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 18:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 18:30:03] Checking for budgets to activate...
+[2025-12-21 18:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 18:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 18:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 18:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 18:30:03] Execution time: 186.91 ms
+[2025-12-21 18:30:03] Memory used: 1.1 MB
+[2025-12-21 17:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 17:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 17:45:02] All required files verified successfully
+[2025-12-21 18:45:02] Loaded: config.php
+[2025-12-21 18:45:02] Loaded: database.php (Database class included)
+[2025-12-21 18:45:02] Loaded: Budget.php
+[2025-12-21 18:45:02] Initializing Budget class...
+[2025-12-21 18:45:02] Budget class initialized successfully
+[2025-12-21 18:45:02] Database connection verified
+[2025-12-21 18:45:02] Current MySQL date: 2025-12-21 2025-12-21 18:45:02
+[2025-12-21 18:45:02] Checking for budgets to expire...
+[2025-12-21 18:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 18:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 18:45:02] Checking for budgets to activate...
+[2025-12-21 18:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 18:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 18:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 18:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 18:45:02] Execution time: 15.24 ms
+[2025-12-21 18:45:02] Memory used: 1.1 MB
+[2025-12-21 18:00:04] === Budget Update Cron Job Started ===
+[2025-12-21 18:00:04] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 18:00:04] All required files verified successfully
+[2025-12-21 19:00:04] Loaded: config.php
+[2025-12-21 19:00:04] Loaded: database.php (Database class included)
+[2025-12-21 19:00:04] Loaded: Budget.php
+[2025-12-21 19:00:04] Initializing Budget class...
+[2025-12-21 19:00:04] Budget class initialized successfully
+[2025-12-21 19:00:04] Database connection verified
+[2025-12-21 19:00:04] Current MySQL date: 2025-12-21 2025-12-21 19:00:04
+[2025-12-21 19:00:04] Checking for budgets to expire...
+[2025-12-21 19:00:04] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 19:00:04] No budgets expired (all active budgets are still valid)
+[2025-12-21 19:00:04] Checking for budgets to activate...
+[2025-12-21 19:00:04] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 19:00:04] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 19:00:04] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 19:00:04] Summary: Expired=0, Activated=0
+[2025-12-21 19:00:04] Execution time: 1566.55 ms
+[2025-12-21 19:00:04] Memory used: 1.1 MB
+[2025-12-21 18:15:05] === Budget Update Cron Job Started ===
+[2025-12-21 18:15:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 18:15:05] All required files verified successfully
+[2025-12-21 19:15:06] Loaded: config.php
+[2025-12-21 19:15:06] Loaded: database.php (Database class included)
+[2025-12-21 19:15:06] Loaded: Budget.php
+[2025-12-21 19:15:06] Initializing Budget class...
+[2025-12-21 19:15:06] Budget class initialized successfully
+[2025-12-21 19:15:06] Database connection verified
+[2025-12-21 19:15:06] Current MySQL date: 2025-12-21 2025-12-21 19:15:06
+[2025-12-21 19:15:06] Checking for budgets to expire...
+[2025-12-21 19:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 19:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-21 19:15:06] Checking for budgets to activate...
+[2025-12-21 19:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 19:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 19:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 19:15:06] Summary: Expired=0, Activated=0
+[2025-12-21 19:15:06] Execution time: 3411.89 ms
+[2025-12-21 19:15:06] Memory used: 1.1 MB
+[2025-12-21 18:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 18:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 18:30:03] All required files verified successfully
+[2025-12-21 19:30:03] Loaded: config.php
+[2025-12-21 19:30:03] Loaded: database.php (Database class included)
+[2025-12-21 19:30:03] Loaded: Budget.php
+[2025-12-21 19:30:03] Initializing Budget class...
+[2025-12-21 19:30:03] Budget class initialized successfully
+[2025-12-21 19:30:03] Database connection verified
+[2025-12-21 19:30:03] Current MySQL date: 2025-12-21 2025-12-21 19:30:03
+[2025-12-21 19:30:03] Checking for budgets to expire...
+[2025-12-21 19:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 19:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 19:30:03] Checking for budgets to activate...
+[2025-12-21 19:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 19:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 19:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 19:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 19:30:03] Execution time: 16.46 ms
+[2025-12-21 19:30:03] Memory used: 1.1 MB
+[2025-12-21 18:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 18:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 18:45:02] All required files verified successfully
+[2025-12-21 19:45:02] Loaded: config.php
+[2025-12-21 19:45:02] Loaded: database.php (Database class included)
+[2025-12-21 19:45:02] Loaded: Budget.php
+[2025-12-21 19:45:02] Initializing Budget class...
+[2025-12-21 19:45:02] Budget class initialized successfully
+[2025-12-21 19:45:02] Database connection verified
+[2025-12-21 19:45:02] Current MySQL date: 2025-12-21 2025-12-21 19:45:02
+[2025-12-21 19:45:02] Checking for budgets to expire...
+[2025-12-21 19:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 19:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 19:45:02] Checking for budgets to activate...
+[2025-12-21 19:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 19:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 19:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 19:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 19:45:02] Execution time: 14.49 ms
+[2025-12-21 19:45:02] Memory used: 1.1 MB
+[2025-12-21 19:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 19:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 19:00:03] All required files verified successfully
+[2025-12-21 20:00:03] Loaded: config.php
+[2025-12-21 20:00:03] Loaded: database.php (Database class included)
+[2025-12-21 20:00:03] Loaded: Budget.php
+[2025-12-21 20:00:03] Initializing Budget class...
+[2025-12-21 20:00:03] Budget class initialized successfully
+[2025-12-21 20:00:03] Database connection verified
+[2025-12-21 20:00:03] Current MySQL date: 2025-12-21 2025-12-21 20:00:03
+[2025-12-21 20:00:03] Checking for budgets to expire...
+[2025-12-21 20:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 20:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 20:00:03] Checking for budgets to activate...
+[2025-12-21 20:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 20:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 20:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 20:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 20:00:03] Execution time: 15.15 ms
+[2025-12-21 20:00:03] Memory used: 1.1 MB
+[2025-12-21 19:15:02] === Budget Update Cron Job Started ===
+[2025-12-21 19:15:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 19:15:02] All required files verified successfully
+[2025-12-21 20:15:02] Loaded: config.php
+[2025-12-21 20:15:02] Loaded: database.php (Database class included)
+[2025-12-21 20:15:02] Loaded: Budget.php
+[2025-12-21 20:15:02] Initializing Budget class...
+[2025-12-21 20:15:02] Budget class initialized successfully
+[2025-12-21 20:15:02] Database connection verified
+[2025-12-21 20:15:02] Current MySQL date: 2025-12-21 2025-12-21 20:15:02
+[2025-12-21 20:15:02] Checking for budgets to expire...
+[2025-12-21 20:15:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 20:15:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 20:15:02] Checking for budgets to activate...
+[2025-12-21 20:15:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 20:15:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 20:15:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 20:15:02] Summary: Expired=0, Activated=0
+[2025-12-21 20:15:02] Execution time: 21.69 ms
+[2025-12-21 20:15:02] Memory used: 1.1 MB
+[2025-12-21 19:30:03] === Budget Update Cron Job Started ===
+[2025-12-21 19:30:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 19:30:03] All required files verified successfully
+[2025-12-21 20:30:03] Loaded: config.php
+[2025-12-21 20:30:03] Loaded: database.php (Database class included)
+[2025-12-21 20:30:03] Loaded: Budget.php
+[2025-12-21 20:30:03] Initializing Budget class...
+[2025-12-21 20:30:03] Budget class initialized successfully
+[2025-12-21 20:30:03] Database connection verified
+[2025-12-21 20:30:03] Current MySQL date: 2025-12-21 2025-12-21 20:30:03
+[2025-12-21 20:30:03] Checking for budgets to expire...
+[2025-12-21 20:30:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 20:30:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 20:30:03] Checking for budgets to activate...
+[2025-12-21 20:30:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 20:30:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 20:30:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 20:30:03] Summary: Expired=0, Activated=0
+[2025-12-21 20:30:03] Execution time: 16.34 ms
+[2025-12-21 20:30:03] Memory used: 1.1 MB
+[2025-12-21 19:45:05] === Budget Update Cron Job Started ===
+[2025-12-21 19:45:05] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 19:45:05] All required files verified successfully
+[2025-12-21 20:45:05] Loaded: config.php
+[2025-12-21 20:45:05] Loaded: database.php (Database class included)
+[2025-12-21 20:45:05] Loaded: Budget.php
+[2025-12-21 20:45:05] Initializing Budget class...
+[2025-12-21 20:45:05] Budget class initialized successfully
+[2025-12-21 20:45:05] Database connection verified
+[2025-12-21 20:45:05] Current MySQL date: 2025-12-21 2025-12-21 20:45:05
+[2025-12-21 20:45:05] Checking for budgets to expire...
+[2025-12-21 20:45:05] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 20:45:05] No budgets expired (all active budgets are still valid)
+[2025-12-21 20:45:05] Checking for budgets to activate...
+[2025-12-21 20:45:05] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 20:45:05] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 20:45:05] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 20:45:05] Summary: Expired=0, Activated=0
+[2025-12-21 20:45:05] Execution time: 221.61 ms
+[2025-12-21 20:45:05] Memory used: 1.1 MB
+[2025-12-21 20:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 20:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 20:00:03] All required files verified successfully
+[2025-12-21 21:00:03] Loaded: config.php
+[2025-12-21 21:00:03] Loaded: database.php (Database class included)
+[2025-12-21 21:00:03] Loaded: Budget.php
+[2025-12-21 21:00:03] Initializing Budget class...
+[2025-12-21 21:00:03] Budget class initialized successfully
+[2025-12-21 21:00:03] Database connection verified
+[2025-12-21 21:00:03] Current MySQL date: 2025-12-21 2025-12-21 21:00:03
+[2025-12-21 21:00:03] Checking for budgets to expire...
+[2025-12-21 21:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 21:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 21:00:03] Checking for budgets to activate...
+[2025-12-21 21:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 21:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 21:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 21:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 21:00:03] Execution time: 16.14 ms
+[2025-12-21 21:00:03] Memory used: 1.1 MB
+[2025-12-21 20:15:03] === Budget Update Cron Job Started ===
+[2025-12-21 20:15:06] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 20:15:06] All required files verified successfully
+[2025-12-21 21:15:06] Loaded: config.php
+[2025-12-21 21:15:06] Loaded: database.php (Database class included)
+[2025-12-21 21:15:06] Loaded: Budget.php
+[2025-12-21 21:15:06] Initializing Budget class...
+[2025-12-21 21:15:06] Budget class initialized successfully
+[2025-12-21 21:15:06] Database connection verified
+[2025-12-21 21:15:06] Current MySQL date: 2025-12-21 2025-12-21 21:15:06
+[2025-12-21 21:15:06] Checking for budgets to expire...
+[2025-12-21 21:15:06] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 21:15:06] No budgets expired (all active budgets are still valid)
+[2025-12-21 21:15:06] Checking for budgets to activate...
+[2025-12-21 21:15:06] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 21:15:06] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 21:15:06] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 21:15:06] Summary: Expired=0, Activated=0
+[2025-12-21 21:15:06] Execution time: 3209.79 ms
+[2025-12-21 21:15:06] Memory used: 1.1 MB
+[2025-12-21 20:30:04] === Budget Update Cron Job Started ===
+[2025-12-21 20:30:04] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 20:30:04] All required files verified successfully
+[2025-12-21 21:30:04] Loaded: config.php
+[2025-12-21 21:30:04] Loaded: database.php (Database class included)
+[2025-12-21 21:30:04] Loaded: Budget.php
+[2025-12-21 21:30:04] Initializing Budget class...
+[2025-12-21 21:30:04] Budget class initialized successfully
+[2025-12-21 21:30:04] Database connection verified
+[2025-12-21 21:30:04] Current MySQL date: 2025-12-21 2025-12-21 21:30:04
+[2025-12-21 21:30:04] Checking for budgets to expire...
+[2025-12-21 21:30:04] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 21:30:04] No budgets expired (all active budgets are still valid)
+[2025-12-21 21:30:04] Checking for budgets to activate...
+[2025-12-21 21:30:04] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 21:30:04] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 21:30:04] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 21:30:04] Summary: Expired=0, Activated=0
+[2025-12-21 21:30:04] Execution time: 41.77 ms
+[2025-12-21 21:30:04] Memory used: 1.1 MB
+[2025-12-21 20:45:02] === Budget Update Cron Job Started ===
+[2025-12-21 20:45:02] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 20:45:02] All required files verified successfully
+[2025-12-21 21:45:02] Loaded: config.php
+[2025-12-21 21:45:02] Loaded: database.php (Database class included)
+[2025-12-21 21:45:02] Loaded: Budget.php
+[2025-12-21 21:45:02] Initializing Budget class...
+[2025-12-21 21:45:02] Budget class initialized successfully
+[2025-12-21 21:45:02] Database connection verified
+[2025-12-21 21:45:02] Current MySQL date: 2025-12-21 2025-12-21 21:45:02
+[2025-12-21 21:45:02] Checking for budgets to expire...
+[2025-12-21 21:45:02] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 21:45:02] No budgets expired (all active budgets are still valid)
+[2025-12-21 21:45:02] Checking for budgets to activate...
+[2025-12-21 21:45:02] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 21:45:02] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 21:45:02] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 21:45:02] Summary: Expired=0, Activated=0
+[2025-12-21 21:45:02] Execution time: 11.63 ms
+[2025-12-21 21:45:02] Memory used: 1.1 MB
+[2025-12-21 21:00:03] === Budget Update Cron Job Started ===
+[2025-12-21 21:00:03] Root directory: /home2/gateweyc/public_html/request.gatewey.com.ng
+[2025-12-21 21:00:03] All required files verified successfully
+[2025-12-21 22:00:03] Loaded: config.php
+[2025-12-21 22:00:03] Loaded: database.php (Database class included)
+[2025-12-21 22:00:03] Loaded: Budget.php
+[2025-12-21 22:00:03] Initializing Budget class...
+[2025-12-21 22:00:03] Budget class initialized successfully
+[2025-12-21 22:00:03] Database connection verified
+[2025-12-21 22:00:03] Current MySQL date: 2025-12-21 2025-12-21 22:00:03
+[2025-12-21 22:00:03] Checking for budgets to expire...
+[2025-12-21 22:00:03] Query: Budgets with status='active' AND end_date < CURDATE()
+[2025-12-21 22:00:03] No budgets expired (all active budgets are still valid)
+[2025-12-21 22:00:03] Checking for budgets to activate...
+[2025-12-21 22:00:03] Query: Budgets with status='upcoming' AND start_date <= CURDATE() AND end_date >= CURDATE()
+[2025-12-21 22:00:03] No budgets activated (no upcoming budgets ready to start)
+[2025-12-21 22:00:03] === Budget Update Cron Job Completed Successfully ===
+[2025-12-21 22:00:03] Summary: Expired=0, Activated=0
+[2025-12-21 22:00:03] Execution time: 40.48 ms
+[2025-12-21 22:00:03] Memory used: 1.1 MB
