@@ -60,10 +60,10 @@ class Requisition
 
 // Insert requisition
 $sql = "INSERT INTO requisitions (
-            requisition_number, user_id, department_id, purpose, description,
+            requisition_number, user_id, department_id, purpose, description, additional_info,
             category_id, total_amount, status, current_approver_id, selected_approver_id, is_draft,
             created_at, submitted_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 
 $params = [
     $requisitionNumber,
@@ -71,6 +71,7 @@ $params = [
     Session::getUserDepartmentId(),
     $data['purpose'],
     $data['description'] ?? null,
+    $data['additional_info'] ?? null,
     $data['category_id'] ?? null,
     $data['total_amount'],
     $status,
@@ -161,6 +162,7 @@ $params = [
 $sql = "UPDATE requisitions
         SET purpose = ?,
             description = ?,
+            additional_info = ?,
             category_id = ?,
             total_amount = ?,
             status = ?,
@@ -177,6 +179,7 @@ $sql = "UPDATE requisitions
 $params = [
     $data['purpose'],
     $data['description'] ?? null,
+    $data['additional_info'] ?? null,
     $data['category_id'] ?? null,
     $data['total_amount'],
     $newStatus,

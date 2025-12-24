@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 24, 2025 at 10:59 AM
+-- Generation Time: Dec 24, 2025 at 11:17 AM
 -- Server version: 8.0.43-cll-lve
 -- PHP Version: 8.4.16
 
@@ -208,7 +208,11 @@ INSERT INTO `audit_log` (`id`, `requisition_id`, `user_id`, `action`, `descripti
 (161, NULL, 4, 'user_login', 'User logged in successfully', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 09:07:31'),
 (162, NULL, 4, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 09:56:11'),
 (163, 14, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 09:57:45'),
-(164, 14, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=14, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 09:57:45');
+(164, 14, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=14, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 09:57:45'),
+(165, 15, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:04:41'),
+(166, 15, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=15, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 10:04:41'),
+(167, 16, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:09:24'),
+(168, 16, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=16, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 10:09:24');
 
 -- --------------------------------------------------------
 
@@ -331,114 +335,118 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `requisition_id`, `notification_type`, `title`, `message`, `is_read`, `is_email_sent`, `email_sent_at`, `email_error`, `created_at`, `read_at`) VALUES
-(0, 5, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:45:29', NULL),
-(0, 13, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:45:29', NULL),
-(0, 5, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:46:56', NULL),
-(0, 13, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:46:56', NULL),
-(0, 5, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:47:48', NULL),
-(0, 13, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:47:48', NULL),
-(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:48:52', NULL),
-(0, 2, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:48:52', NULL),
-(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:48:58', NULL),
-(0, 2, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:48:58', NULL),
-(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:49:06', NULL),
-(0, 2, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:49:06', NULL),
-(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:50:01', NULL),
-(0, 3, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:50:01', NULL),
-(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:50:08', NULL),
-(0, 3, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:50:08', NULL),
-(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:50:16', NULL),
-(0, 3, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:50:16', NULL),
-(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:01', NULL),
-(0, 4, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:01', NULL),
-(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:07', NULL),
-(0, 4, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:07', NULL),
-(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:13', NULL),
-(0, 4, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:13', NULL),
-(0, 13, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:54', NULL),
-(0, 3, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:54', NULL),
-(0, 17, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:54', NULL),
-(0, 16, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:51:54', NULL),
-(0, 13, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:09', NULL),
-(0, 3, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:09', NULL),
-(0, 17, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:09', NULL),
-(0, 16, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:09', NULL),
-(0, 13, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:21', NULL),
-(0, 3, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:21', NULL),
-(0, 17, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:21', NULL),
-(0, 16, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 14:52:21', NULL),
-(0, 11, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:48:22', NULL),
-(0, 10, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:48:23', NULL),
-(0, 11, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:49:01', NULL),
-(0, 10, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:49:01', NULL),
-(0, 11, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:49:45', NULL),
-(0, 10, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:49:45', NULL),
-(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:16', NULL),
-(0, 2, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:16', NULL),
-(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:22', NULL),
-(0, 2, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:22', NULL),
-(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:27', NULL),
-(0, 2, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:27', NULL),
-(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:50', NULL),
-(0, 3, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:50', NULL),
-(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:55', NULL),
-(0, 3, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:50:55', NULL),
-(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:00', NULL),
-(0, 3, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:00', NULL),
-(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:37', NULL),
-(0, 4, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:37', NULL),
-(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:45', NULL),
-(0, 4, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:45', NULL),
-(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:51', NULL),
-(0, 4, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:51:51', NULL),
-(0, 10, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:09', NULL),
-(0, 3, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:09', NULL),
-(0, 17, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:09', NULL),
-(0, 16, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:09', NULL),
-(0, 10, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:23', NULL),
-(0, 3, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:23', NULL),
-(0, 17, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:24', NULL),
-(0, 16, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:24', NULL),
-(0, 10, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:36', NULL),
-(0, 3, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:36', NULL),
-(0, 17, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:36', NULL),
-(0, 16, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-19 15:52:36', NULL),
-(0, 5, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-21 22:19:53', NULL),
-(0, 13, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-21 22:19:53', NULL),
-(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-21 22:29:22', NULL),
-(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-21 22:29:22', NULL),
-(0, 5, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-21 22:34:05', NULL),
-(0, 13, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-21 22:34:05', NULL),
-(0, 5, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-22 10:11:14', NULL),
-(0, 13, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-22 10:11:14', NULL),
-(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-22 10:46:13', NULL),
-(0, 2, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-22 10:46:13', NULL),
-(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:29:10', NULL),
-(0, 3, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:29:10', NULL),
-(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:30:38', NULL),
-(0, 4, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:30:38', NULL),
-(0, 13, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:32:57', NULL),
-(0, 2, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:32:57', NULL),
-(0, 5, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:41:03', NULL),
-(0, 13, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:41:03', NULL),
-(0, 13, 8, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00008 has been rejected. Please review and take action.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 09:57:10', NULL),
-(0, 13, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 10:26:27', NULL),
-(0, 3, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 10:26:27', NULL),
-(0, 17, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 10:26:27', NULL),
-(0, 16, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 10:26:27', NULL),
-(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 11:11:19', NULL),
-(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 11:11:19', NULL),
-(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 21:26:39', NULL),
-(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 21:26:39', NULL),
-(0, 13, 12, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00012 has been rejected. Please review and take action.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 21:29:11', NULL),
-(0, 2, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 21:33:32', NULL),
-(0, 3, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-23 21:33:32', NULL),
-(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-24 08:57:25', NULL),
-(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-24 08:57:25', NULL),
-(0, 13, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-24 09:06:03', NULL),
-(0, 4, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-24 09:06:03', NULL),
-(0, 2, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-24 09:57:45', NULL),
-(0, 13, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 09:57:45', NULL, '2025-12-24 09:57:45', NULL);
+(0, 5, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:45:29', NULL),
+(0, 13, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:45:29', NULL),
+(0, 5, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:46:56', NULL),
+(0, 13, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:46:56', NULL),
+(0, 5, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:47:48', NULL),
+(0, 13, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:47:48', NULL),
+(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:52', NULL),
+(0, 2, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:52', NULL),
+(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:58', NULL),
+(0, 2, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:58', NULL),
+(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:49:06', NULL),
+(0, 2, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:49:06', NULL),
+(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:01', NULL),
+(0, 3, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:01', NULL),
+(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:08', NULL),
+(0, 3, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:08', NULL),
+(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:16', NULL),
+(0, 3, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:16', NULL),
+(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:01', NULL),
+(0, 4, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:01', NULL),
+(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:07', NULL),
+(0, 4, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:07', NULL),
+(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:13', NULL),
+(0, 4, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:13', NULL),
+(0, 13, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
+(0, 3, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
+(0, 17, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
+(0, 16, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
+(0, 13, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
+(0, 3, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
+(0, 17, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
+(0, 16, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
+(0, 13, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
+(0, 3, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
+(0, 17, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
+(0, 16, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
+(0, 11, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:48:22', NULL),
+(0, 10, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:48:23', NULL),
+(0, 11, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:01', NULL),
+(0, 10, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:01', NULL),
+(0, 11, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:45', NULL),
+(0, 10, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:45', NULL),
+(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:16', NULL),
+(0, 2, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:16', NULL),
+(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:22', NULL),
+(0, 2, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:22', NULL),
+(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:27', NULL),
+(0, 2, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:27', NULL),
+(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:50', NULL),
+(0, 3, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:50', NULL),
+(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:55', NULL),
+(0, 3, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:55', NULL),
+(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:00', NULL),
+(0, 3, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:00', NULL),
+(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:37', NULL),
+(0, 4, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:37', NULL),
+(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:45', NULL),
+(0, 4, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:45', NULL),
+(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:51', NULL),
+(0, 4, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:51', NULL),
+(0, 10, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
+(0, 3, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
+(0, 17, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
+(0, 16, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
+(0, 10, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:23', NULL),
+(0, 3, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:23', NULL),
+(0, 17, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:24', NULL),
+(0, 16, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:24', NULL),
+(0, 10, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
+(0, 3, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
+(0, 17, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
+(0, 16, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
+(0, 5, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:19:53', NULL),
+(0, 13, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:19:53', NULL),
+(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:29:22', NULL),
+(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:29:22', NULL),
+(0, 5, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:34:05', NULL),
+(0, 13, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:34:05', NULL),
+(0, 5, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:11:14', NULL),
+(0, 13, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:11:14', NULL),
+(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:46:13', NULL),
+(0, 2, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:46:13', NULL),
+(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:29:10', NULL),
+(0, 3, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:29:10', NULL),
+(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:30:38', NULL),
+(0, 4, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:30:38', NULL),
+(0, 13, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:32:57', NULL),
+(0, 2, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:32:57', NULL),
+(0, 5, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:41:03', NULL),
+(0, 13, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:41:03', NULL),
+(0, 13, 8, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00008 has been rejected. Please review and take action.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:57:10', NULL),
+(0, 13, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
+(0, 3, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
+(0, 17, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
+(0, 16, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
+(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 11:11:19', NULL),
+(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 11:11:19', NULL),
+(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:26:39', NULL),
+(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:26:39', NULL),
+(0, 13, 12, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00012 has been rejected. Please review and take action.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:29:11', NULL),
+(0, 2, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:33:32', NULL),
+(0, 3, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:33:32', NULL),
+(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 08:57:25', NULL),
+(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 08:57:25', NULL),
+(0, 13, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:06:03', NULL),
+(0, 4, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:06:03', NULL),
+(0, 2, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:57:45', NULL),
+(0, 13, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:57:45', NULL),
+(0, 2, 15, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00015 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:04:41', NULL),
+(0, 13, 15, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00015 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:04:41', NULL),
+(0, 2, 16, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00016 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:09:24', NULL),
+(0, 13, 16, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00016 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:09:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -478,6 +486,7 @@ CREATE TABLE `requisitions` (
   `department_id` int NOT NULL,
   `purpose` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci COMMENT 'Additional information or notes about the requisition',
+  `additional_info` text COLLATE utf8mb4_unicode_ci COMMENT 'JSON data for account details (account_type, account_name, bank_name, account_number)',
   `total_amount` decimal(15,2) NOT NULL,
   `category_id` int DEFAULT NULL,
   `status` enum('draft','pending_line_manager','pending_md','pending_finance_manager','approved_for_payment','paid','completed','rejected','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'draft',
@@ -510,21 +519,23 @@ CREATE TABLE `requisitions` (
 -- Dumping data for table `requisitions`
 --
 
-INSERT INTO `requisitions` (`id`, `requisition_number`, `user_id`, `department_id`, `purpose`, `description`, `total_amount`, `category_id`, `status`, `current_approver_id`, `selected_approver_id`, `assigned_finance_member_id`, `assigned_by_id`, `assigned_at`, `assignment_notes`, `rejection_reason`, `rejected_by_id`, `rejected_at`, `payment_date`, `payment_method`, `payment_reference`, `payment_notes`, `receipt_uploaded`, `receipt_uploaded_at`, `is_draft`, `created_at`, `updated_at`, `submitted_at`, `paid_by`, `receipt_file_path`, `receipt_file_name`, `receipt_notes`) VALUES
-(1, 'REQ00001', 13, 1, 'Overtime', NULL, 10000.00, 13, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 14:52:21', 'Bank Transfer', 'torkkss234ksiifks1243', '', 0, '2025-12-19 14:54:11', 0, '2025-12-19 14:45:29', '2025-12-19 19:52:49', '2025-12-19 14:45:29', 12, NULL, NULL, ''),
-(2, 'REQ00002', 13, 1, 'Drinking Water', 'for the office', 20000.00, 17, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 14:52:09', 'Bank Transfer', 'torkkss234ksiifks1243', '', 0, '2025-12-19 14:54:30', 0, '2025-12-19 14:46:56', '2025-12-19 14:54:30', '2025-12-19 14:46:56', 12, NULL, NULL, ''),
-(3, 'REQ00003', 13, 1, 'Overtime', '', 7000.00, 13, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 14:51:54', 'Bank Transfer', 'torkks234ksiifks1243', '', 0, '2025-12-19 14:54:48', 0, '2025-12-19 14:47:48', '2025-12-19 14:54:48', '2025-12-19 14:47:48', 12, NULL, NULL, ''),
-(4, 'REQ00004', 10, 9, 'Cleaning', '', 4000.00, 18, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 15:52:36', 'Check', 'torkks234ksiifks', '', 0, '2025-12-19 15:53:20', 0, '2025-12-19 15:48:22', '2025-12-19 15:53:20', '2025-12-19 15:48:22', 12, NULL, NULL, ''),
-(5, 'REQ00005', 10, 9, 'Staff Uniform', '', 2300.00, 9, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 15:52:23', 'Bank Transfer', 'torkks234ksiifks11', '', 0, '2025-12-19 15:53:53', 0, '2025-12-19 15:49:01', '2025-12-19 15:53:53', '2025-12-19 15:49:01', 12, NULL, NULL, ''),
-(6, 'REQ00006', 10, 9, 'Staff Uniform', '', 2000.00, 9, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 15:52:09', 'Credit Card', 'torkks234ksiifks', '', 0, '2025-12-19 15:53:36', 0, '2025-12-19 15:49:45', '2025-12-19 15:53:36', '2025-12-19 15:49:45', 12, NULL, NULL, ''),
-(7, 'REQ00007', 13, 1, 'Electricity', '', 1000.00, 20, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:19:53', '2025-12-21 22:19:53', '2025-12-21 22:19:53', NULL, NULL, NULL, NULL),
-(8, 'REQ00008', 13, 1, 'Salaries and Wages', 'this is for wages and what not', 13000.00, 2, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:29:19', '2025-12-23 11:11:19', '2025-12-23 11:11:19', NULL, NULL, NULL, NULL),
-(9, 'REQ00009', 13, 1, 'Leave Bonus', '', 2000.00, 3, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:34:05', '2025-12-21 22:34:05', '2025-12-21 22:34:05', NULL, NULL, NULL, NULL),
-(10, 'REQ00010', 13, 1, 'Drinking Water', '24 Cway for the month', 28800.00, 17, 'paid', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-23 10:26:27', 'Bank Transfer', 'erteresddfsd', '', 0, NULL, 0, '2025-12-22 10:11:14', '2025-12-23 10:26:27', '2025-12-22 10:11:14', 12, NULL, NULL, NULL),
-(11, 'REQ00011', 13, 1, 'Drinking Water', '', 13500.00, 17, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 09:41:03', '2025-12-23 09:41:03', '2025-12-23 09:41:03', NULL, NULL, NULL, NULL),
-(12, 'REQ00012', 13, 1, 'Rent Expense', '', 2000.00, 15, 'approved_for_payment', 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 21:26:39', '2025-12-24 09:06:03', '2025-12-24 08:57:25', NULL, NULL, NULL, NULL),
-(13, 'REQ00013', 3, 3, 'Employee Benefit Pension', '', 2000.00, 8, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 21:33:32', '2025-12-23 21:33:32', '2025-12-23 21:33:32', NULL, NULL, NULL, NULL),
-(14, 'REQ00014', 13, 1, 'Employee Benefit Pension', '', 2000.00, 8, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 09:57:45', '2025-12-24 09:57:45', '2025-12-24 09:57:45', NULL, NULL, NULL, NULL);
+INSERT INTO `requisitions` (`id`, `requisition_number`, `user_id`, `department_id`, `purpose`, `description`, `additional_info`, `total_amount`, `category_id`, `status`, `current_approver_id`, `selected_approver_id`, `assigned_finance_member_id`, `assigned_by_id`, `assigned_at`, `assignment_notes`, `rejection_reason`, `rejected_by_id`, `rejected_at`, `payment_date`, `payment_method`, `payment_reference`, `payment_notes`, `receipt_uploaded`, `receipt_uploaded_at`, `is_draft`, `created_at`, `updated_at`, `submitted_at`, `paid_by`, `receipt_file_path`, `receipt_file_name`, `receipt_notes`) VALUES
+(1, 'REQ00001', 13, 1, 'Overtime', NULL, NULL, 10000.00, 13, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 14:52:21', 'Bank Transfer', 'torkkss234ksiifks1243', '', 0, '2025-12-19 14:54:11', 0, '2025-12-19 14:45:29', '2025-12-19 19:52:49', '2025-12-19 14:45:29', 12, NULL, NULL, ''),
+(2, 'REQ00002', 13, 1, 'Drinking Water', 'for the office', NULL, 20000.00, 17, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 14:52:09', 'Bank Transfer', 'torkkss234ksiifks1243', '', 0, '2025-12-19 14:54:30', 0, '2025-12-19 14:46:56', '2025-12-19 14:54:30', '2025-12-19 14:46:56', 12, NULL, NULL, ''),
+(3, 'REQ00003', 13, 1, 'Overtime', '', NULL, 7000.00, 13, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 14:51:54', 'Bank Transfer', 'torkks234ksiifks1243', '', 0, '2025-12-19 14:54:48', 0, '2025-12-19 14:47:48', '2025-12-19 14:54:48', '2025-12-19 14:47:48', 12, NULL, NULL, ''),
+(4, 'REQ00004', 10, 9, 'Cleaning', '', NULL, 4000.00, 18, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 15:52:36', 'Check', 'torkks234ksiifks', '', 0, '2025-12-19 15:53:20', 0, '2025-12-19 15:48:22', '2025-12-19 15:53:20', '2025-12-19 15:48:22', 12, NULL, NULL, ''),
+(5, 'REQ00005', 10, 9, 'Staff Uniform', '', NULL, 2300.00, 9, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 15:52:23', 'Bank Transfer', 'torkks234ksiifks11', '', 0, '2025-12-19 15:53:53', 0, '2025-12-19 15:49:01', '2025-12-19 15:53:53', '2025-12-19 15:49:01', 12, NULL, NULL, ''),
+(6, 'REQ00006', 10, 9, 'Staff Uniform', '', NULL, 2000.00, 9, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-19 15:52:09', 'Credit Card', 'torkks234ksiifks', '', 0, '2025-12-19 15:53:36', 0, '2025-12-19 15:49:45', '2025-12-19 15:53:36', '2025-12-19 15:49:45', 12, NULL, NULL, ''),
+(7, 'REQ00007', 13, 1, 'Electricity', '', NULL, 1000.00, 20, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:19:53', '2025-12-21 22:19:53', '2025-12-21 22:19:53', NULL, NULL, NULL, NULL),
+(8, 'REQ00008', 13, 1, 'Salaries and Wages', 'this is for wages and what not', NULL, 13000.00, 2, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:29:19', '2025-12-23 11:11:19', '2025-12-23 11:11:19', NULL, NULL, NULL, NULL),
+(9, 'REQ00009', 13, 1, 'Leave Bonus', '', NULL, 2000.00, 3, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:34:05', '2025-12-21 22:34:05', '2025-12-21 22:34:05', NULL, NULL, NULL, NULL),
+(10, 'REQ00010', 13, 1, 'Drinking Water', '24 Cway for the month', NULL, 28800.00, 17, 'paid', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-23 10:26:27', 'Bank Transfer', 'erteresddfsd', '', 0, NULL, 0, '2025-12-22 10:11:14', '2025-12-23 10:26:27', '2025-12-22 10:11:14', 12, NULL, NULL, NULL),
+(11, 'REQ00011', 13, 1, 'Drinking Water', '', NULL, 13500.00, 17, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 09:41:03', '2025-12-23 09:41:03', '2025-12-23 09:41:03', NULL, NULL, NULL, NULL),
+(12, 'REQ00012', 13, 1, 'Rent Expense', '', NULL, 2000.00, 15, 'approved_for_payment', 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 21:26:39', '2025-12-24 09:06:03', '2025-12-24 08:57:25', NULL, NULL, NULL, NULL),
+(13, 'REQ00013', 3, 3, 'Employee Benefit Pension', '', NULL, 2000.00, 8, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 21:33:32', '2025-12-23 21:33:32', '2025-12-23 21:33:32', NULL, NULL, NULL, NULL),
+(14, 'REQ00014', 13, 1, 'Employee Benefit Pension', '', NULL, 2000.00, 8, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 09:57:45', '2025-12-24 09:57:45', '2025-12-24 09:57:45', NULL, NULL, NULL, NULL),
+(15, 'REQ00015', 13, 1, 'Security Costs', 'this is to pay the security guard', NULL, 10000.00, 19, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 10:04:41', '2025-12-24 10:04:41', '2025-12-24 10:04:41', NULL, NULL, NULL, NULL),
+(16, 'REQ00016', 13, 1, 'Rates', 'this is just hourly rates', '{\"account_type\":\"vendor\",\"account_name\":\"Paul\",\"bank_name\":\"Fidelity\",\"account_number\":\"1234567890\"}', 2000.00, 16, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 10:09:24', '2025-12-24 10:09:24', '2025-12-24 10:09:24', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -697,7 +708,9 @@ INSERT INTO `requisition_items` (`id`, `requisition_id`, `item_description`, `qu
 (18, 8, 'not what', 12, 1000.00, 12000.00, '2025-12-23 11:11:19', '2025-12-23 11:11:19'),
 (20, 13, 'Finance Flow', 1, 2000.00, 2000.00, '2025-12-23 21:33:32', '2025-12-23 21:33:32'),
 (21, 12, 'testing flow', 1, 2000.00, 2000.00, '2025-12-24 08:57:25', '2025-12-24 08:57:25'),
-(22, 14, 'testing', 1, 2000.00, 2000.00, '2025-12-24 09:57:45', '2025-12-24 09:57:45');
+(22, 14, 'testing', 1, 2000.00, 2000.00, '2025-12-24 09:57:45', '2025-12-24 09:57:45'),
+(23, 15, 'alex', 1, 10000.00, 10000.00, '2025-12-24 10:04:41', '2025-12-24 10:04:41'),
+(24, 16, 'Keyboard', 1, 2000.00, 2000.00, '2025-12-24 10:09:24', '2025-12-24 10:09:24');
 
 -- --------------------------------------------------------
 
@@ -976,7 +989,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `budget_allocations`
@@ -1006,7 +1019,7 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `requisition_approvals`
@@ -1030,7 +1043,7 @@ ALTER TABLE `requisition_documents`
 -- AUTO_INCREMENT for table `requisition_items`
 --
 ALTER TABLE `requisition_items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `roles`
