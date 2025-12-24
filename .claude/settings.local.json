@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mysql:*)"
+      "Bash(mysql:*)",
+      "Bash(php -l:*)",
+      "Bash(xargs:*)",
+      "Bash(grep:*)",
+      "Bash(php -r:*)",
+      "Bash(find:*)"
     ]
   }
 }

@@ -384,25 +384,63 @@ class Department {
     }
     
     /**
+     * Get Executive department ID
+     *
+     * @return int|false Executive department ID or false if not found
+     */
+    public function getExecutiveDepartmentId() {
+        $sql = "SELECT id FROM departments
+                WHERE UPPER(department_name) LIKE '%EXECUTIVE%'
+                   OR UPPER(department_code) = 'EXEC'
+                   OR UPPER(department_code) = 'EXECUTIVE'
+                LIMIT 1";
+
+        $result = $this->db->fetchOne($sql);
+        return $result ? (int)$result['id'] : false;
+    }
+
+    /**
+     * Get users in Executive department for approver dropdown
+     *
+     * @return array Array of users in Executive department
+     */
+    public function getExecutiveDepartmentUsers() {
+        $executiveDeptId = $this->getExecutiveDepartmentId();
+
+        if (!$executiveDeptId) {
+            return [];
+        }
+
+        $sql = "SELECT u.id, u.first_name, u.last_name, u.email, r.role_name
+                FROM users u
+                JOIN roles r ON u.role_id = r.id
+                WHERE u.department_id = ?
+                  AND u.is_active = 1
+                ORDER BY u.first_name, u.last_name";
+
+        return $this->db->fetchAll($sql, [$executiveDeptId]);
+    }
+
+    /**
      * Log action to audit log
-     * 
+     *
      * @param int $departmentId Department ID
      * @param string $action Action performed
      * @param string $details Action details
      */
     private function logAction($departmentId, $action, $details) {
         try {
-            $sql = "INSERT INTO audit_log (user_id, action_type, table_name, record_id, details, ip_address)
-                    VALUES (?, ?, 'departments', ?, ?, ?)";
-            
+            // Fixed: Use correct column names (action, description) instead of (action_type, table_name, record_id, details)
+            $sql = "INSERT INTO audit_log (user_id, action, description, ip_address, created_at)
+                    VALUES (?, ?, ?, ?, NOW())";
+
             $params = [
                 $_SESSION['user_id'] ?? null,
                 $action,
-                $departmentId,
-                $details,
+                "Department #{$departmentId}: {$details}",
                 $_SERVER['REMOTE_ADDR'] ?? null
             ];
-            
+
             $this->db->execute($sql, $params);
         } catch (Exception $e) {
             error_log("Audit log error: " . $e->getMessage());

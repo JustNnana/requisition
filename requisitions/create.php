@@ -53,9 +53,14 @@ $bypassBudget = in_array($userRoleId, [ROLE_FINANCE_MANAGER, ROLE_FINANCE_MEMBER
 // Initialize objects
 $requisition = new Requisition();
 $categoryModel = new RequisitionCategory();
+$userModel = new User();
 
 // Load active categories from database
 $parentCategories = $categoryModel->getParentCategories(true);
+
+// Load available approvers for dropdown
+$userId = Session::getUserId();
+$availableApprovers = $userModel->getAvailableApprovers($userId, $userDepartmentId);
 
 // Initialize variables
 $errors = [];
@@ -1124,18 +1129,68 @@ document.addEventListener('DOMContentLoaded', function() {
             <!-- Additional Description (Optional) -->
             <div class="form-group">
                 <label for="description" class="form-label">Additional Details (Optional)</label>
-                <textarea 
-                    id="description" 
-                    name="description" 
-                    class="form-control" 
+                <textarea
+                    id="description"
+                    name="description"
+                    class="form-control"
                     rows="3"
                     placeholder="Add any additional details or notes about this requisition..."
                 ><?php echo htmlspecialchars($formData['description']); ?></textarea>
                 <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
             </div>
+
+            <!-- Select Approver Dropdown -->
+            <div class="form-group">
+                <label for="selected_approver" class="form-label required">Select Approver</label>
+                <select
+                    id="selected_approver"
+                    name="selected_approver_id"
+                    class="form-control"
+                    required
+                >
+                    <option value="">-- Select who should approve this request --</option>
+
+                    <?php if (!empty($availableApprovers['line_managers'])): ?>
+                        <optgroup label="Line Managers (Your Department)">
+                            <?php foreach ($availableApprovers['line_managers'] as $approver): ?>
+                                <option value="<?php echo $approver['id']; ?>">
+                                    <?php echo htmlspecialchars($approver['first_name'] . ' ' . $approver['last_name']); ?>
+                                    (<?php echo htmlspecialchars($approver['role_name']); ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endif; ?>
+
+                    <?php if (!empty($availableApprovers['executive'])): ?>
+                        <optgroup label="Executive Department">
+                            <?php foreach ($availableApprovers['executive'] as $approver): ?>
+                                <option value="<?php echo $approver['id']; ?>">
+                                    <?php echo htmlspecialchars($approver['first_name'] . ' ' . $approver['last_name']); ?>
+                                    (<?php echo htmlspecialchars($approver['role_name']); ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endif; ?>
+
+                    <?php if (!empty($availableApprovers['finance_managers'])): ?>
+                        <optgroup label="Finance Managers">
+                            <?php foreach ($availableApprovers['finance_managers'] as $approver): ?>
+                                <option value="<?php echo $approver['id']; ?>">
+                                    <?php echo htmlspecialchars($approver['first_name'] . ' ' . $approver['last_name']); ?>
+                                    (<?php echo htmlspecialchars($approver['role_name']); ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endif; ?>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choose who will review and approve this requisition first. After their approval, it will proceed to Finance Manager, then Finance Team for payment.
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <!-- Items Section -->
     <div class="form-section-card">
         <div class="form-section-header">

@@ -311,8 +311,8 @@ if ($shouldCheckBudget) {
             
             // Determine next status
             $currentStatus = $requisition['status'];
-            $nextStatus = $this->workflow->getNextStatus($currentStatus);
-            
+            $nextStatus = $this->workflow->getNextStatus($currentStatus, $requisitionId);
+
             // Get next approver
             $nextApprover = $this->workflow->getNextApprover($requisitionId, $nextStatus);
             $nextApproverId = $nextApprover ? $nextApprover['id'] : null;
@@ -821,6 +821,104 @@ if ($shouldCheckBudget) {
             return [
                 'success' => false,
                 'message' => 'An error occurred while adding the comment.'
+            ];
+        }
+    }
+
+    /**
+     * Assign Finance Member to a requisition (Finance Manager only)
+     * NEW WORKFLOW: Optional assignment of specific Finance Member
+     *
+     * @param int $requisitionId Requisition ID
+     * @param int $financeManagerId Finance Manager assigning
+     * @param int $financeMemberId Finance Member being assigned
+     * @param string|null $notes Optional assignment notes
+     * @return array Result with success status
+     */
+    public function assignFinanceMember($requisitionId, $financeManagerId, $financeMemberId, $notes = null) {
+        try {
+            // Verify Finance Manager role
+            $sql = "SELECT role_id, first_name, last_name FROM users WHERE id = ?";
+            $manager = $this->db->fetchOne($sql, [$financeManagerId]);
+
+            if (!$manager || $manager['role_id'] != ROLE_FINANCE_MANAGER) {
+                return [
+                    'success' => false,
+                    'message' => 'Only Finance Managers can assign Finance Members.'
+                ];
+            }
+
+            // Verify Finance Member role
+            $sql = "SELECT role_id, first_name, last_name FROM users WHERE id = ?";
+            $member = $this->db->fetchOne($sql, [$financeMemberId]);
+
+            if (!$member || $member['role_id'] != ROLE_FINANCE_MEMBER) {
+                return [
+                    'success' => false,
+                    'message' => 'Invalid Finance Member selected.'
+                ];
+            }
+
+            // Verify requisition exists and is at appropriate status
+            $sql = "SELECT * FROM requisitions WHERE id = ?";
+            $requisition = $this->db->fetchOne($sql, [$requisitionId]);
+
+            if (!$requisition) {
+                return [
+                    'success' => false,
+                    'message' => 'Requisition not found.'
+                ];
+            }
+
+            if ($requisition['status'] != STATUS_APPROVED_FOR_PAYMENT) {
+                return [
+                    'success' => false,
+                    'message' => 'Requisition must be approved for payment before assigning Finance Member.'
+                ];
+            }
+
+            // Update requisition with assignment
+            $sql = "UPDATE requisitions
+                    SET assigned_finance_member_id = ?,
+                        assigned_by_id = ?,
+                        assigned_at = NOW(),
+                        assignment_notes = ?,
+                        current_approver_id = ?,
+                        updated_at = NOW()
+                    WHERE id = ?";
+
+            $this->db->execute($sql, [
+                $financeMemberId,
+                $financeManagerId,
+                $notes,
+                $financeMemberId, // Set as current approver
+                $requisitionId
+            ]);
+
+            // Log in audit trail
+            $description = "Finance Member assigned: {$member['first_name']} {$member['last_name']} by {$manager['first_name']} {$manager['last_name']}";
+            $this->auditLog->logRequisitionAction(
+                $financeManagerId,
+                $requisitionId,
+                'finance_member_assigned',
+                $description,
+                [
+                    'finance_member_id' => $financeMemberId,
+                    'finance_member_name' => $member['first_name'] . ' ' . $member['last_name'],
+                    'notes' => $notes
+                ]
+            );
+
+            return [
+                'success' => true,
+                'message' => "Finance Member {$member['first_name']} {$member['last_name']} assigned successfully."
+            ];
+
+        } catch (Exception $e) {
+            error_log("Error assigning Finance Member: " . $e->getMessage());
+            return [
+                'success' => false,
+                'message' => 'An error occurred while assigning Finance Member.'
             ];
         }
     }

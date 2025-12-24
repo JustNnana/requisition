@@ -113,9 +113,13 @@ $sql = "SELECT r.*, u.first_name, u.last_name, u.email
 $pendingApprovals = $db->fetchAll($sql, [$departmentId, STATUS_PENDING_LINE_MANAGER]);
 
 // Get recent department activity
-$sql = "SELECT r.*, u.first_name, u.last_name
+$sql = "SELECT r.*, u.first_name, u.last_name,
+               ca.first_name as current_approver_first_name, ca.last_name as current_approver_last_name,
+               sa.first_name as selected_approver_first_name, sa.last_name as selected_approver_last_name
         FROM requisitions r
         JOIN users u ON r.user_id = u.id
+        LEFT JOIN users ca ON r.current_approver_id = ca.id
+        LEFT JOIN users sa ON r.selected_approver_id = sa.id
         WHERE r.department_id = ?
         ORDER BY r.updated_at DESC
         LIMIT 5";
@@ -1123,7 +1127,7 @@ if ($budgetDiff != 0):
                                     <span class="status-text">Required Reciept</span>
                                     </span>';
                                 } else {
-                                    echo get_status_indicator($req['status']);
+                                    echo get_status_indicator($req['status'], $req);
                                 }
                                 ?>
                             </td>

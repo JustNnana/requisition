@@ -190,18 +190,39 @@ public function getNextApprover($requisitionId, $forStatus = null) {
     
     /**
      * Get next status after approval
-     * 
+     * NEW WORKFLOW: Selected Approver → Finance Manager → Finance Member
+     *
      * @param string $currentStatus Current status
+     * @param int|null $requisitionId Requisition ID (to check if using new workflow)
      * @return string Next status constant
      */
-    public function getNextStatus($currentStatus) {
+    public function getNextStatus($currentStatus, $requisitionId = null) {
+        // NEW WORKFLOW: Check if requisition has a selected approver
+        if ($requisitionId) {
+            $sql = "SELECT selected_approver_id FROM requisitions WHERE id = ?";
+            $req = $this->db->fetchOne($sql, [$requisitionId]);
+
+            // If using new workflow (has selected approver), simplified progression
+            if ($req && $req['selected_approver_id']) {
+                $newWorkflowProgression = [
+                    STATUS_PENDING_LINE_MANAGER => STATUS_PENDING_FINANCE_MANAGER,
+                    STATUS_PENDING_MD => STATUS_PENDING_FINANCE_MANAGER,
+                    STATUS_PENDING_FINANCE_MANAGER => STATUS_APPROVED_FOR_PAYMENT,
+                    STATUS_APPROVED_FOR_PAYMENT => STATUS_PAID,
+                ];
+
+                return $newWorkflowProgression[$currentStatus] ?? STATUS_COMPLETED;
+            }
+        }
+
+        // OLD WORKFLOW: Traditional progression for backwards compatibility
         $statusProgression = [
             STATUS_PENDING_LINE_MANAGER => STATUS_PENDING_MD,
             STATUS_PENDING_MD => STATUS_PENDING_FINANCE_MANAGER,
             STATUS_PENDING_FINANCE_MANAGER => STATUS_APPROVED_FOR_PAYMENT,
             STATUS_APPROVED_FOR_PAYMENT => STATUS_PAID, // After Finance Member approves
         ];
-        
+
         return $statusProgression[$currentStatus] ?? STATUS_COMPLETED;
     }
     
@@ -328,46 +349,62 @@ public function getNextApprover($requisitionId, $forStatus = null) {
             $user['role_id'] = (int)$user['role_id'];
             $user['department_id'] = $user['department_id'] ? (int)$user['department_id'] : null;
             
-            // Build query based on role
-            $sql = "SELECT r.*, 
+            // Build query based on role - NOW WITH SELECTED APPROVER INFO
+            $sql = "SELECT r.*,
                            u.first_name as requester_first_name,
                            u.last_name as requester_last_name,
                            u.email as requester_email,
                            d.department_name,
-                           d.department_code
+                           d.department_code,
+                           sa.first_name as selected_approver_first_name,
+                           sa.last_name as selected_approver_last_name,
+                           sar.role_name as selected_approver_role,
+                           fm.first_name as assigned_finance_member_first_name,
+                           fm.last_name as assigned_finance_member_last_name,
+                           ab.first_name as assigned_by_first_name,
+                           ab.last_name as assigned_by_last_name
                     FROM requisitions r
                     JOIN users u ON r.user_id = u.id
                     LEFT JOIN departments d ON r.department_id = d.id
+                    LEFT JOIN users sa ON r.selected_approver_id = sa.id
+                    LEFT JOIN roles sar ON sa.role_id = sar.id
+                    LEFT JOIN users fm ON r.assigned_finance_member_id = fm.id
+                    LEFT JOIN users ab ON r.assigned_by_id = ab.id
                     WHERE r.status = ?";
-            
+
             $params = [];
-            
+
             // Determine which status to look for based on user role
             switch ($user['role_id']) {
                 case ROLE_LINE_MANAGER:
-                    $sql .= " AND r.department_id = ?";
-                    $params = [STATUS_PENDING_LINE_MANAGER, $user['department_id']];
+                    // NEW WORKFLOW: Show if current_approver_id is this user OR if in their department (backwards compatibility)
+                    $sql .= " AND (r.current_approver_id = ? OR (r.department_id = ? AND r.current_approver_id IS NULL))";
+                    $params = [STATUS_PENDING_LINE_MANAGER, $userId, $user['department_id']];
                     break;
-                    
+
                 case ROLE_MANAGING_DIRECTOR:
-                    $params = [STATUS_PENDING_MD];
+                    // NEW WORKFLOW: Show if current_approver_id is this user OR all pending MD (backwards compatibility)
+                    $sql .= " AND (r.current_approver_id = ? OR r.current_approver_id IS NULL)";
+                    $params = [STATUS_PENDING_MD, $userId];
                     break;
-                    
+
                 case ROLE_FINANCE_MANAGER:
                     $params = [STATUS_PENDING_FINANCE_MANAGER];
                     break;
-                    
+
                 case ROLE_FINANCE_MEMBER:
-                    $params = [STATUS_APPROVED_FOR_PAYMENT];
+                    // NEW WORKFLOW: Show if assigned to this user OR if not assigned to anyone
+                    $sql .= " AND (r.assigned_finance_member_id = ? OR r.assigned_finance_member_id IS NULL)";
+                    $params = [STATUS_APPROVED_FOR_PAYMENT, $userId];
                     break;
-                    
+
                 default:
                     // User role cannot approve
                     return [];
             }
-            
+
             $sql .= " ORDER BY r.submitted_at ASC, r.created_at ASC";
-            
+
             return $this->db->fetchAll($sql, $params);
             
         } catch (Exception $e) {

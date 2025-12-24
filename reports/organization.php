@@ -914,7 +914,7 @@ $pageTitle = 'Organization Reports';
                                     <span style="font-weight: var(--font-weight-semibold);">₦<?php echo number_format((float)$req['total_amount'], 2); ?>
                                     </span>
                                 </td>
-                                <td><?php echo get_status_indicator($req['status']); ?></td>
+                                <td><?php echo get_status_indicator($req['status'], $req); ?></td>
                                 <td class="text-end">
                                     <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $req['id']); ?>"
                                        class="btn btn-sm btn-ghost"

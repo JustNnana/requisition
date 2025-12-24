@@ -112,9 +112,13 @@ $result = $db->fetchOne($sql, [$userId, STATUS_DRAFT]);
 $stats['this_month'] = $result['count'];
 
 // Get recent requisitions (last 5)
-$sql = "SELECT r.*, d.department_name, d.department_code
+$sql = "SELECT r.*, d.department_name, d.department_code,
+               ca.first_name as current_approver_first_name, ca.last_name as current_approver_last_name,
+               sa.first_name as selected_approver_first_name, sa.last_name as selected_approver_last_name
         FROM requisitions r
         LEFT JOIN departments d ON r.department_id = d.id
+        LEFT JOIN users ca ON r.current_approver_id = ca.id
+        LEFT JOIN users sa ON r.selected_approver_id = sa.id
         WHERE r.user_id = ?
         ORDER BY r.created_at DESC
         LIMIT 5";
@@ -1051,7 +1055,7 @@ if ($budgetDiff != 0):
                                     <span class="status-text">Required Reciept</span>
                                     </span>';
                                 } else {
-                                    echo get_status_indicator($req['status']);
+                                    echo get_status_indicator($req['status'], $req);
                                 }
                                 ?>
                             </td>

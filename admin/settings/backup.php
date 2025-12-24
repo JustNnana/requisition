@@ -52,20 +52,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $timestamp = date('Y-m-d_H-i-s');
                 $filename = 'backup_' . DB_NAME . '_' . $timestamp . '.sql';
                 $filepath = $backupDir . '/' . $filename;
-                
-                // Get all tables
-                $tables = [];
-                $result = $db->fetchAll("SHOW TABLES");
-                foreach ($result as $row) {
-                    $tables[] = array_values($row)[0];
-                }
+
+                // Temporarily enable emulated prepares to avoid "prepared statement needs to be re-prepared" errors
+                // This is especially important on production servers with table_definition_cache issues
+                $pdo = $db->getConnection();
+                $originalEmulateMode = $pdo->getAttribute(PDO::ATTR_EMULATE_PREPARES);
+                $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+
+                try {
+                    // Get all tables
+                    $tables = [];
+                    $stmt = $pdo->query("SHOW TABLES");
+                    $result = $stmt->fetchAll(PDO::FETCH_NUM);
+                    $stmt->closeCursor();
+                    foreach ($result as $row) {
+                        $tables[] = $row[0];
+                    }
                 
                 // Start building SQL dump
                 $sqlDump = "-- GateWey Requisition Management System\n";
                 $sqlDump .= "-- Database Backup\n";
                 $sqlDump .= "-- Generated: " . date(DATETIME_FORMAT) . "\n";
                 $sqlDump .= "-- Database: " . DB_NAME . "\n";
-                $sqlDump .= "-- MySQL Server Version: " . $db->getConnection()->getAttribute(PDO::ATTR_SERVER_VERSION) . "\n\n";
+                $sqlDump .= "-- MySQL Server Version: " . $pdo->getAttribute(PDO::ATTR_SERVER_VERSION) . "\n\n";
                 $sqlDump .= "SET SQL_MODE = \"NO_AUTO_VALUE_ON_ZERO\";\n";
                 $sqlDump .= "SET AUTOCOMMIT = 0;\n";
                 $sqlDump .= "START TRANSACTION;\n";
@@ -78,10 +87,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $sqlDump .= "-- Table structure for table `{$table}`\n";
                     $sqlDump .= "-- --------------------------------------------------------\n\n";
                     $sqlDump .= "DROP TABLE IF EXISTS `{$table}`;\n";
-                    
-                    // Get CREATE TABLE statement
-                    $createTableResult = $db->fetchOne("SHOW CREATE TABLE `{$table}`");
-                    
+
+                    // Get CREATE TABLE statement with emulated prepares enabled
+                    $stmt = $pdo->query("SHOW CREATE TABLE `{$table}`");
+                    $createTableResult = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $stmt->closeCursor();
+
                     // Handle different possible key names (case-sensitive)
                     $createStatement = null;
                     if (isset($createTableResult['Create Table'])) {
@@ -95,15 +106,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $values = array_values($createTableResult);
                         $createStatement = $values[1] ?? '';
                     }
-                    
+
                     if ($createStatement) {
                         $sqlDump .= $createStatement . ";\n";
                     } else {
                         throw new Exception("Could not retrieve CREATE TABLE statement for table: {$table}");
                     }
-                    
-                    // Get table data
-                    $rows = $db->fetchAll("SELECT * FROM `{$table}`");
+
+                    // Get table data with emulated prepares enabled
+                    $stmt = $pdo->query("SELECT * FROM `{$table}`");
+                    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt->closeCursor();
                     
                     if (!empty($rows)) {
                         $sqlDump .= "\n-- Dumping data for table `{$table}`\n\n";
@@ -144,8 +157,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $errors[] = 'Failed to write backup file. Please check directory permissions.';
                 }
-                
+
+                } finally {
+                    // Restore original emulate prepares setting
+                    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, $originalEmulateMode);
+                }
+
+            } catch (PDOException $e) {
+                // Log PDO-specific errors
+                error_log("Backup PDO Error: " . $e->getMessage() . " | Code: " . $e->getCode());
+                $errors[] = 'Database backup failed: ' . $e->getMessage();
             } catch (Exception $e) {
+                // Log general errors
+                error_log("Backup Error: " . $e->getMessage());
                 $errors[] = 'Backup failed: ' . $e->getMessage();
             }
         } elseif ($action === 'download_backup') {

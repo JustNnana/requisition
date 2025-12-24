@@ -49,7 +49,8 @@ define('ROLE_CODES', [
 define('CAN_RAISE_REQUISITION', [
     ROLE_TEAM_MEMBER,
     ROLE_LINE_MANAGER,
-    ROLE_MANAGING_DIRECTOR
+    ROLE_MANAGING_DIRECTOR,
+    ROLE_FINANCE_MANAGER  // Finance Managers can raise requisitions (routed to Executive dept)
 ]);
 
 // Roles that can approve requisitions
@@ -557,11 +558,29 @@ function sanitize_filename($filename) {
  * @param string $status Status code
  * @return string Badge HTML
  */
-function get_status_badge($status) {
+function get_status_badge($status, $reqData = null) {
     $name = get_status_name($status);
     $color = get_status_color($status);
-    
-    return '<span class="badge badge-' . $color . '">' . htmlspecialchars($name) . '</span>';
+
+    // Personalize status name with approver name if available
+    if ($reqData) {
+        // Check if we have current approver name
+        if (isset($reqData['current_approver_first_name']) && !empty($reqData['current_approver_first_name'])) {
+            $approverName = trim($reqData['current_approver_first_name'] . ' ' . $reqData['current_approver_last_name']);
+            if (in_array($status, [STATUS_PENDING_LINE_MANAGER, STATUS_PENDING_MD, STATUS_PENDING_FINANCE_MANAGER])) {
+                $name = 'Pending ' . htmlspecialchars($approverName);
+            }
+        }
+        // Fallback to selected approver if current approver not set
+        elseif (isset($reqData['selected_approver_first_name']) && !empty($reqData['selected_approver_first_name'])) {
+            $approverName = trim($reqData['selected_approver_first_name'] . ' ' . $reqData['selected_approver_last_name']);
+            if (in_array($status, [STATUS_PENDING_LINE_MANAGER, STATUS_PENDING_MD, STATUS_PENDING_FINANCE_MANAGER])) {
+                $name = 'Pending ' . htmlspecialchars($approverName);
+            }
+        }
+    }
+
+    return '<span class="badge badge-' . $color . '">' . $name . '</span>';
 }
 
 /**

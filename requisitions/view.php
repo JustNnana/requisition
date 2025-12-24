@@ -1192,7 +1192,7 @@ function getPreviewType($filename)
     <div class="status-banner-header">
         <div class="status-info">
             <h5>
-                <?php echo get_status_badge($reqData['status']); ?>
+                <?php echo get_status_badge($reqData['status'], $reqData); ?>
             </h5>
 
             <?php if ($reqData['rejection_reason']): ?>
@@ -1461,7 +1461,7 @@ if (!empty($reqData['category_id'])) {
                     <span class="summary-label">
                         <i class="fas fa-info-circle"></i>Status
                     </span>
-                    <span class="summary-value"><?php echo get_status_badge($reqData['status']); ?></span>
+                    <span class="summary-value"><?php echo get_status_badge($reqData['status'], $reqData); ?></span>
                 </div>
             </div>
         </div>
@@ -1523,10 +1523,6 @@ if (!empty($reqData['category_id'])) {
                                         <span class="badge badge-<?php echo $approval['action'] == 'approved' ? 'success' : 'danger'; ?>">
                                             <?php echo ucfirst($approval['action']); ?>
                                         </span>
-                                    </div>
-                                    <div class="timeline-role">
-                                        <i class="fas fa-user-tag"></i>
-                                        <?php echo htmlspecialchars($approval['role_name']); ?>
                                     </div>
                                     <?php if ($approval['comments']): ?>
                                         <div class="timeline-comment">

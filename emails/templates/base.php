@@ -74,10 +74,22 @@ $content = $content ?? '<p>No content provided.</p>';
             margin-bottom: 10px;
             display: block;
         }
+
+        .login-logo {
+            width: 90px;
+            height: 90px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            padding: 15px;
+        }
+
         .logo-img {
-            height: 40px;
+            height: 50px;
             width: auto;
-            transition: var(--transition-normal);
         }
         
         /* Content */
@@ -287,10 +299,15 @@ $content = $content ?? '<p>No content provided.</p>';
                 padding-top: 0 !important;
                 padding-bottom: 12px !important;
             }
+
             .login-logo {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
+                width: 70px !important;
+                height: 70px !important;
+                padding: 10px !important;
+            }
+
+            .logo-img {
+                height: 40px !important;
             }
         }
         

@@ -56,7 +56,7 @@ $errors = [];
 
 // Sanitize and validate input
 $action = Sanitizer::string($_POST['action'] ?? 'create');
-$requisitionId = isset($_POST['requisition_id']) ? get_encrypted_id('requisition_id', 'POST') : null;
+$requisitionId = isset($_POST['requisition_id']) ? Sanitizer::int($_POST['requisition_id']) : null;
 $isDraft = isset($_POST['is_draft']) && $_POST['is_draft'] == '1';
 
 // Capture form data with category_id
@@ -65,6 +65,7 @@ $formData = [
     'description' => Sanitizer::string($_POST['description'] ?? ''),
     'category_id' => !empty($_POST['category_id']) ? Sanitizer::int($_POST['category_id']) : null,
     'total_amount' => Sanitizer::float($_POST['total_amount'] ?? '0'),
+    'selected_approver_id' => !empty($_POST['selected_approver_id']) ? Sanitizer::int($_POST['selected_approver_id']) : null,
     'is_draft' => $isDraft,
     'items' => []
 ];

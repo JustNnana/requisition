@@ -90,8 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (ENABLE_AUDIT_LOG) {
                         $oldDeptName = $userData['department_name'] ?? 'None';
                         $newDeptName = $newDepartmentId ? ($departmentData['department_name'] ?? 'Unknown') : 'None';
-                        
-                        $logSql = "INSERT INTO audit_log (user_id, action_type, action_description, ip_address, created_at)
+
+                        $logSql = "INSERT INTO audit_log (user_id, action, description, ip_address, created_at)
                                    VALUES (?, ?, ?, ?, NOW())";
                         $logParams = [
                             Session::getUserId(),

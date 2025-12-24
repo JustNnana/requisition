@@ -12,7 +12,7 @@ defined('APP_ACCESS') or die('Direct access not permitted');
 
 // Environment Configuration
 define('APP_ENV', 'development'); // development | production
-define('APP_DEBUG', true); // Set to false in production
+define('APP_DEBUG', false); // Set to false in production
 
 // Application Details
 define('APP_NAME', 'Kadick Finance');
@@ -48,7 +48,7 @@ define('SESSION_NAME', 'kadick_finance');
 define('SESSION_LIFETIME', 7200); // 2 hours in seconds
 define('SESSION_PATH', '/');
 define('SESSION_DOMAIN', ''); // Set domain for production
-define('SESSION_SECURE', false); // Set to true with HTTPS
+define('SESSION_SECURE', true); // Set to true with HTTPS
 define('SESSION_HTTPONLY', true);
 define('SESSION_SAMESITE', 'Strict'); // Strict | Lax | None
 
@@ -64,7 +64,7 @@ define('LOGIN_LOCKOUT_TIME', 900); // 15 minutes
 
 // URL Encryption Key (Generate a new random key for production!)
 // To generate a new key: openssl rand -base64 32
-define('ENCRYPTION_KEY', 'your-secret-encryption-key-change-this-in-production-2024');
+define('ENCRYPTION_KEY', '5d62a62a92302f02e46eefd19460489056a8486bced876b4b7d0af68aeedddcd');
 
 // Pagination Settings
 define('RECORDS_PER_PAGE', 20);

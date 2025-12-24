@@ -45,7 +45,7 @@ if (!Session::validateCsrfToken($_POST['csrf_token'] ?? '')) {
 }
 
 // Get and sanitize input
-$requisitionId = get_encrypted_id('requisition_id', 'POST');
+$requisitionId = Sanitizer::int($_POST['requisition_id'] ?? 0);
 $reason = Sanitizer::string($_POST['reason'] ?? '');
 
 // Validate requisition ID

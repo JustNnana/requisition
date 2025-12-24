@@ -42,18 +42,28 @@ class Requisition
             $requesterRoleId = Session::getUserRoleId();
             $status = $data['is_draft'] ? STATUS_DRAFT : get_initial_requisition_status($requesterRoleId);
 
-            // Determine current approver
+            // NEW WORKFLOW: Use selected approver or determine based on role
+            $selectedApproverId = $data['selected_approver_id'] ?? null;
             $currentApproverId = null;
+
             if (!$data['is_draft']) {
-                $currentApproverId = $this->determineNextApprover($requesterRoleId, Session::getUserDepartmentId());
+                // If user selected an approver, use that; otherwise fall back to old logic
+                if ($selectedApproverId) {
+                    $currentApproverId = $selectedApproverId;
+                    // Set status based on selected approver's role
+                    $status = $this->determineStatusByApprover($selectedApproverId);
+                } else {
+                    // Fallback to old automatic workflow
+                    $currentApproverId = $this->determineNextApprover($requesterRoleId, Session::getUserDepartmentId());
+                }
             }
 
 // Insert requisition
 $sql = "INSERT INTO requisitions (
             requisition_number, user_id, department_id, purpose, description,
-            category_id, total_amount, status, current_approver_id, is_draft,
+            category_id, total_amount, status, current_approver_id, selected_approver_id, is_draft,
             created_at, submitted_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 
 $params = [
     $requisitionNumber,
@@ -65,6 +75,7 @@ $params = [
     $data['total_amount'],
     $status,
     $currentApproverId,
+    $selectedApproverId,
     $data['is_draft'] ? 1 : 0,
     $data['is_draft'] ? null : date('Y-m-d H:i:s')
 ];
@@ -129,23 +140,32 @@ $params = [
 
             // Determine new status if submitting (not saving as draft)
             $newStatus = $data['is_draft'] ? STATUS_DRAFT : get_initial_requisition_status(Session::getUserRoleId());
+            $selectedApproverId = $data['selected_approver_id'] ?? null;
             $currentApproverId = null;
 
             if (!$data['is_draft']) {
-                $currentApproverId = $this->determineNextApprover(
-                    Session::getUserRoleId(),
-                    Session::getUserDepartmentId()
-                );
+                // NEW WORKFLOW: Use selected approver if provided
+                if ($selectedApproverId) {
+                    $currentApproverId = $selectedApproverId;
+                    $newStatus = $this->determineStatusByApprover($selectedApproverId);
+                } else {
+                    // Fallback to old automatic workflow
+                    $currentApproverId = $this->determineNextApprover(
+                        Session::getUserRoleId(),
+                        Session::getUserDepartmentId()
+                    );
+                }
             }
 
 // Update requisition
-$sql = "UPDATE requisitions 
-        SET purpose = ?, 
+$sql = "UPDATE requisitions
+        SET purpose = ?,
             description = ?,
             category_id = ?,
-            total_amount = ?, 
+            total_amount = ?,
             status = ?,
             current_approver_id = ?,
+            selected_approver_id = ?,
             is_draft = ?,
             rejection_reason = NULL,
             rejected_by_id = NULL,
@@ -161,6 +181,7 @@ $params = [
     $data['total_amount'],
     $newStatus,
     $currentApproverId,
+    $selectedApproverId,
     $data['is_draft'] ? 1 : 0,
     $data['is_draft'] ? null : date('Y-m-d H:i:s'),
     $requisitionId
@@ -219,11 +240,15 @@ $params = [
     public function getById($requisitionId)
     {
         try {
-            $sql = "SELECT r.*, 
+            $sql = "SELECT r.*,
                            u.first_name, u.last_name, u.email as requester_email,
                            d.department_name, d.department_code,
                            approver.first_name as approver_first_name,
                            approver.last_name as approver_last_name,
+                           approver.first_name as current_approver_first_name,
+                           approver.last_name as current_approver_last_name,
+                           selected_approver.first_name as selected_approver_first_name,
+                           selected_approver.last_name as selected_approver_last_name,
                            rejected_by.first_name as rejected_by_first_name,
                            rejected_by.last_name as rejected_by_last_name,
                            payer.first_name as paid_by_first_name,
@@ -232,6 +257,7 @@ $params = [
                     INNER JOIN users u ON r.user_id = u.id
                     INNER JOIN departments d ON r.department_id = d.id
                     LEFT JOIN users approver ON r.current_approver_id = approver.id
+                    LEFT JOIN users selected_approver ON r.selected_approver_id = selected_approver.id
                     LEFT JOIN users rejected_by ON r.rejected_by_id = rejected_by.id
                     LEFT JOIN users payer ON r.paid_by = payer.id
                     WHERE r.id = ?";
@@ -330,13 +356,19 @@ $params = [
 
             // Get requisitions
             $offset = ($page - 1) * $perPage;
-            $sql = "SELECT r.id, r.requisition_number, r.purpose, r.total_amount, 
+            $sql = "SELECT r.id, r.requisition_number, r.purpose, r.total_amount,
                            r.status, r.is_draft, r.created_at, r.submitted_at,
                            CONCAT(u.first_name, ' ', u.last_name) as requester_name,
-                           d.department_name
+                           d.department_name,
+                           ca.first_name as current_approver_first_name,
+                           ca.last_name as current_approver_last_name,
+                           sa.first_name as selected_approver_first_name,
+                           sa.last_name as selected_approver_last_name
                     FROM requisitions r
                     INNER JOIN users u ON r.user_id = u.id
                     INNER JOIN departments d ON r.department_id = d.id
+                    LEFT JOIN users ca ON r.current_approver_id = ca.id
+                    LEFT JOIN users sa ON r.selected_approver_id = sa.id
                     $whereSQL
                     ORDER BY r.created_at DESC
                     LIMIT ? OFFSET ?";
@@ -600,8 +632,49 @@ public function getPendingForApprover($userId)
     }
 
     /**
+     * Determine requisition status based on selected approver's role
+     * NEW WORKFLOW: Status is determined by who the user selected as approver
+     *
+     * @param int $approverId Selected approver user ID
+     * @return string Status constant
+     */
+    private function determineStatusByApprover($approverId)
+    {
+        try {
+            // Get the selected approver's role
+            $sql = "SELECT role_id FROM users WHERE id = ?";
+            $approver = $this->db->fetchOne($sql, [$approverId]);
+
+            if (!$approver) {
+                return STATUS_PENDING_LINE_MANAGER; // Default fallback
+            }
+
+            $roleId = $approver['role_id'];
+
+            // Map approver role to appropriate status
+            switch ($roleId) {
+                case ROLE_LINE_MANAGER:
+                    return STATUS_PENDING_LINE_MANAGER;
+
+                case ROLE_MANAGING_DIRECTOR:
+                    return STATUS_PENDING_MD;
+
+                case ROLE_FINANCE_MANAGER:
+                    return STATUS_PENDING_FINANCE_MANAGER;
+
+                default:
+                    // For Executive dept users or others, route to MD status
+                    return STATUS_PENDING_MD;
+            }
+        } catch (Exception $e) {
+            error_log("Determine status by approver error: " . $e->getMessage());
+            return STATUS_PENDING_LINE_MANAGER; // Default fallback
+        }
+    }
+
+    /**
      * Determine next approver based on requester role and department
-     * 
+     *
      * @param int $requesterRoleId Requester's role ID
      * @param int $departmentId Department ID
      * @return int|null Next approver user ID
@@ -617,8 +690,8 @@ public function getPendingForApprover($userId)
 
             // For Line Manager approval, find the line manager of the department
             if ($nextApproverRoleId == ROLE_LINE_MANAGER) {
-                $sql = "SELECT id FROM users 
-                        WHERE role_id = ? AND department_id = ? AND is_active = 1 
+                $sql = "SELECT id FROM users
+                        WHERE role_id = ? AND department_id = ? AND is_active = 1
                         LIMIT 1";
 
                 $approver = $this->db->fetchOne($sql, [$nextApproverRoleId, $departmentId]);
@@ -627,8 +700,8 @@ public function getPendingForApprover($userId)
             }
 
             // For MD, Finance Manager, Finance Member - find any active user with that role
-            $sql = "SELECT id FROM users 
-                    WHERE role_id = ? AND is_active = 1 
+            $sql = "SELECT id FROM users
+                    WHERE role_id = ? AND is_active = 1
                     LIMIT 1";
 
             $approver = $this->db->fetchOne($sql, [$nextApproverRoleId]);

@@ -147,12 +147,13 @@ class Notification {
     
     /**
      * Get requisition details with related data
-     * 
+     * NEW: Includes selected_approver and assigned_finance_member details
+     *
      * @param int $requisitionId Requisition ID
      * @return array|null Requisition data
      */
     private function getRequisitionDetails($requisitionId) {
-        $sql = "SELECT 
+        $sql = "SELECT
                     r.*,
                     u.first_name as requester_first_name,
                     u.last_name as requester_last_name,
@@ -160,13 +161,25 @@ class Notification {
                     u.role_id as requester_role_id,
                     d.department_name,
                     d.department_code,
+                    sa.first_name as selected_approver_first_name,
+                    sa.last_name as selected_approver_last_name,
+                    sa.email as selected_approver_email,
+                    fm.first_name as assigned_finance_member_first_name,
+                    fm.last_name as assigned_finance_member_last_name,
+                    fm.email as assigned_finance_member_email,
+                    ca.first_name as current_approver_first_name,
+                    ca.last_name as current_approver_last_name,
+                    ca.email as current_approver_email,
                     (SELECT COUNT(*) FROM requisition_items WHERE requisition_id = r.id) as items_count,
                     (SELECT SUM(subtotal) FROM requisition_items WHERE requisition_id = r.id) as calculated_total
                 FROM requisitions r
                 INNER JOIN users u ON r.user_id = u.id
                 LEFT JOIN departments d ON r.department_id = d.id
+                LEFT JOIN users sa ON r.selected_approver_id = sa.id
+                LEFT JOIN users fm ON r.assigned_finance_member_id = fm.id
+                LEFT JOIN users ca ON r.current_approver_id = ca.id
                 WHERE r.id = ?";
-        
+
         return $this->db->fetchOne($sql, [$requisitionId]);
     }
     
@@ -252,15 +265,26 @@ class Notification {
     
     /**
      * Get next approver based on requisition status
-     * 
+     * NEW WORKFLOW: Uses current_approver_id and assigned_finance_member_id
+     *
      * @param array $requisition Requisition data
      * @return array|null Next approver user data
      */
     private function getNextApprover($requisition) {
         $status = $requisition['status'];
-        $requesterRoleId = $requisition['requester_role_id'];
-        
-        // Determine next approver based on status
+
+        // NEW WORKFLOW: If current_approver_id is set, use it directly
+        if (!empty($requisition['current_approver_id'])) {
+            // For Finance Members with specific assignment
+            if ($status == STATUS_APPROVED_FOR_PAYMENT && !empty($requisition['assigned_finance_member_id'])) {
+                return $this->getUserById($requisition['assigned_finance_member_id']);
+            }
+
+            // For all other statuses, use current_approver_id
+            return $this->getUserById($requisition['current_approver_id']);
+        }
+
+        // FALLBACK: Old automatic workflow logic (backwards compatibility)
         switch ($status) {
             case STATUS_PENDING_LINE_MANAGER:
                 // Need line manager approval
@@ -268,23 +292,23 @@ class Notification {
                     return $this->getLineManager($requisition['department_id']);
                 }
                 break;
-                
+
             case STATUS_PENDING_MD:
                 // Need MD approval
                 $mds = $this->getUsersByRole(ROLE_MANAGING_DIRECTOR);
                 return !empty($mds) ? $mds[0] : null;
-                
+
             case STATUS_PENDING_FINANCE_MANAGER:
                 // Need Finance Manager approval
                 $fms = $this->getUsersByRole(ROLE_FINANCE_MANAGER);
                 return !empty($fms) ? $fms[0] : null;
                 
             case STATUS_APPROVED_FOR_PAYMENT:
-                // Need Finance Member to process
+                // Need Finance Member to process (unassigned - any Finance Member)
                 $fmembers = $this->getUsersByRole(ROLE_FINANCE_MEMBER);
                 return !empty($fmembers) ? $fmembers[0] : null;
         }
-        
+
         return null;
     }
     
@@ -462,11 +486,11 @@ class Notification {
      */
     private function logAudit($notificationType, $requisitionId, $sent, $failed) {
         $description = "Email notification sent: Type={$notificationType}, Requisition={$requisitionId}, Sent={$sent}, Failed={$failed}";
-        
-        $sql = "INSERT INTO audit_log 
-                (user_id, action_type, action_description, requisition_id, ip_address, created_at)
+
+        $sql = "INSERT INTO audit_log
+                (user_id, action, description, requisition_id, ip_address, created_at)
                 VALUES (?, ?, ?, ?, ?, NOW())";
-        
+
         $this->db->execute($sql, [
             Session::getUserId() ?? 0,
             AUDIT_EMAIL_SENT,

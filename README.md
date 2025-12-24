@@ -506,4 +506,4 @@ Developed by GateWey Solutions
 
 ---
 
-**Generated with Claude Code**
+

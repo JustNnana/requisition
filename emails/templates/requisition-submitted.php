@@ -61,6 +61,12 @@ ob_start();
             <span class="info-label">Purpose:</span>
             <span class="info-value"><?php echo nl2br(htmlspecialchars($requisition['purpose'])); ?></span>
         </div>
+        <?php if (!empty($requisition['selected_approver_first_name'])): ?>
+        <div class="info-row">
+            <span class="info-label">Selected Approver:</span>
+            <span class="info-value"><?php echo htmlspecialchars($requisition['selected_approver_first_name'] . ' ' . $requisition['selected_approver_last_name']); ?></span>
+        </div>
+        <?php endif; ?>
         <div class="info-row">
             <span class="info-label">Status:</span>
             <span class="info-value"><span class="status-badge status-pending">Pending Your Approval</span></span>
@@ -111,15 +117,21 @@ ob_start();
             <span class="info-label">Purpose:</span>
             <span class="info-value"><?php echo nl2br(htmlspecialchars($requisition['purpose'])); ?></span>
         </div>
+        <?php if (!empty($requisition['selected_approver_first_name'])): ?>
+        <div class="info-row">
+            <span class="info-label">Submitted to:</span>
+            <span class="info-value"><strong><?php echo htmlspecialchars($requisition['selected_approver_first_name'] . ' ' . $requisition['selected_approver_last_name']); ?></strong></span>
+        </div>
+        <?php endif; ?>
         <div class="info-row">
             <span class="info-label">Status:</span>
             <span class="info-value"><span class="status-badge status-pending">Awaiting Approval</span></span>
         </div>
     </div>
-    
+
     <div class="alert alert-success">
         <strong>✓ Submission Confirmed</strong><br>
-        Your requisition has been forwarded to the appropriate approver. You will receive a notification once it has been reviewed.
+        Your requisition has been forwarded to <?php echo !empty($requisition['selected_approver_first_name']) ? htmlspecialchars($requisition['selected_approver_first_name'] . ' ' . $requisition['selected_approver_last_name']) : 'the appropriate approver'; ?>. You will receive a notification once it has been reviewed.
     </div>
     
     <div class="button-container">

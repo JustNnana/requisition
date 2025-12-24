@@ -822,9 +822,9 @@ $pageTitle = 'Admin Dashboard';
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <span class="badge badge-info"><?php echo htmlspecialchars($activity['action_type'] ?? 'N/A'); ?></span>
+                                        <span class="badge badge-info"><?php echo htmlspecialchars($activity['action'] ?? 'N/A'); ?></span>
                                         <div style="font-size: var(--font-size-xs); color: var(--text-secondary); margin-top: var(--spacing-1);">
-                                            <?php echo htmlspecialchars($activity['details'] ?? $activity['description'] ?? 'N/A'); ?>
+                                            <?php echo htmlspecialchars($activity['description'] ?? 'N/A'); ?>
                                         </div>
                                     </td>
                                     <td style="color: var(--text-muted); font-size: var(--font-size-sm);">

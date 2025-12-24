@@ -500,6 +500,34 @@ $pendingReceiptsCount = 0;
         <?php elseif ($userRoleId == ROLE_FINANCE_MANAGER): ?>
             <!-- Finance Manager Menu -->
             <div class="sidebar-category">
+                <span class="sidebar-category-text">REQUISITIONS</span>
+            </div>
+
+            <a href="<?php echo BASE_URL; ?>/requisitions/create" class="sidebar-link <?php echo isActive('create.php', 'requisitions'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <span class="sidebar-text">Create Requisition</span>
+            </a>
+
+            <a href="<?php echo BASE_URL; ?>/requisitions/list" class="sidebar-link <?php echo isActive('list.php', 'requisitions'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <span class="sidebar-text">My Requisitions</span>
+            </a>
+
+            <a href="<?php echo BASE_URL; ?>/requisitions/pending" class="sidebar-link <?php echo isActive('pending.php', 'requisitions'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <span class="sidebar-text">Pending Approvals</span>
+                <?php if ($pendingApprovalsCount > 0): ?>
+                    <div class="sidebar-badge sidebar-badge-warning"><?php echo $pendingApprovalsCount; ?></div>
+                <?php endif; ?>
+            </a>
+
+            <div class="sidebar-category">
                 <span class="sidebar-category-text">FINANCE</span>
             </div>
 
@@ -508,9 +536,6 @@ $pendingReceiptsCount = 0;
                     <i class="fas fa-search-dollar"></i>
                 </div>
                 <span class="sidebar-text">Review Queue</span>
-                <?php if ($pendingApprovalsCount > 0): ?>
-                    <div class="sidebar-badge sidebar-badge-info"><?php echo $pendingApprovalsCount; ?></div>
-                <?php endif; ?>
             </a>
 
             <a href="<?php echo BASE_URL; ?>/finance/pending-payment" class="sidebar-link <?php echo isActive('pending-payment.php', 'finance'); ?>">

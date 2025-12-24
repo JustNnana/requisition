@@ -102,6 +102,11 @@ $bypassBudget = in_array($userRoleId, [ROLE_FINANCE_MANAGER, ROLE_FINANCE_MEMBER
 // END BUDGET CHECK FUNCTIONALITY
 // ============================================
 
+// Load available approvers for dropdown
+$userModel = new User();
+$userId = Session::getUserId();
+$availableApprovers = $userModel->getAvailableApprovers($userId, $userDepartmentId);
+
 // Page title
 $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
 ?>
@@ -1141,6 +1146,59 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
                     rows="3"
                     placeholder="Add any additional details or notes about this requisition..."><?php echo htmlspecialchars($reqData['description'] ?? ''); ?></textarea>
                 <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
+            </div>
+
+            <!-- Select Approver Dropdown -->
+            <div class="form-group">
+                <label for="selected_approver" class="form-label required">Select Approver</label>
+                <select
+                    id="selected_approver"
+                    name="selected_approver_id"
+                    class="form-control"
+                    required
+                >
+                    <option value="">-- Select who should approve this request --</option>
+
+                    <?php if (!empty($availableApprovers['line_managers'])): ?>
+                        <optgroup label="Line Managers (Your Department)">
+                            <?php foreach ($availableApprovers['line_managers'] as $approver): ?>
+                                <option value="<?php echo $approver['id']; ?>"
+                                    <?php echo ($reqData['selected_approver_id'] == $approver['id']) ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($approver['first_name'] . ' ' . $approver['last_name']); ?>
+                                    (<?php echo htmlspecialchars($approver['role_name']); ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endif; ?>
+
+                    <?php if (!empty($availableApprovers['executive'])): ?>
+                        <optgroup label="Executive Department">
+                            <?php foreach ($availableApprovers['executive'] as $approver): ?>
+                                <option value="<?php echo $approver['id']; ?>"
+                                    <?php echo ($reqData['selected_approver_id'] == $approver['id']) ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($approver['first_name'] . ' ' . $approver['last_name']); ?>
+                                    (<?php echo htmlspecialchars($approver['role_name']); ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endif; ?>
+
+                    <?php if (!empty($availableApprovers['finance_managers'])): ?>
+                        <optgroup label="Finance Managers">
+                            <?php foreach ($availableApprovers['finance_managers'] as $approver): ?>
+                                <option value="<?php echo $approver['id']; ?>"
+                                    <?php echo ($reqData['selected_approver_id'] == $approver['id']) ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($approver['first_name'] . ' ' . $approver['last_name']); ?>
+                                    (<?php echo htmlspecialchars($approver['role_name']); ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endif; ?>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choose who will review and approve this requisition first. After their approval, it will proceed to Finance Manager, then Finance Team for payment.
+                </div>
             </div>
         </div>
     </div>

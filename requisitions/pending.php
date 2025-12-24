@@ -608,6 +608,7 @@ $pageTitle = 'Pending Approvals';
                             <th>Requester</th>
                             <th>Department</th>
                             <th>Amount</th>
+                            <th>Workflow</th>
                             <th>Submitted</th>
                             <th>Purpose</th>
                             <th>Status</th>
@@ -661,6 +662,22 @@ $pageTitle = 'Pending Approvals';
                                     </strong>
                                 </td>
                                 <td>
+                                    <?php if ($req['selected_approver_first_name']): ?>
+                                        <div class="small">
+                                            <i class="fas fa-user-check text-primary"></i>
+                                            <strong>Selected:</strong>
+                                            <?php echo htmlspecialchars($req['selected_approver_first_name'] . ' ' . $req['selected_approver_last_name']); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ($req['assigned_finance_member_first_name']): ?>
+                                        <div class="small text-info mt-1">
+                                            <i class="fas fa-hand-point-right"></i>
+                                            <strong>Assigned to:</strong>
+                                            <?php echo htmlspecialchars($req['assigned_finance_member_first_name'] . ' ' . $req['assigned_finance_member_last_name']); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
                                     <div><?php echo format_date($req['submitted_at']); ?></div>
                                     <div class="text-muted small">
                                         <?php echo get_relative_time($req['submitted_at']); ?>
@@ -672,7 +689,7 @@ $pageTitle = 'Pending Approvals';
                                     </div>
                                 </td>
                                 <td>
-                                    <?php echo get_status_badge($req['status']); ?>
+                                    <?php echo get_status_badge($req['status'], $req); ?>
                                 </td>
                                 <td class="text-center">
                                     <div class="table-actions">

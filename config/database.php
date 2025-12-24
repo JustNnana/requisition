@@ -149,7 +149,37 @@ class Database {
     public function __wakeup() {
         throw new Exception("Cannot unserialize singleton");
     }
-    
+
+    /**
+     * Sanitize table name to prevent SQL injection
+     *
+     * @param string $table Table name
+     * @return string Sanitized table name with backticks
+     * @throws InvalidArgumentException If table name is invalid
+     */
+    private function sanitizeTableName($table) {
+        // Only allow alphanumeric characters and underscores
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', $table)) {
+            throw new InvalidArgumentException("Invalid table name: $table");
+        }
+        return "`$table`";
+    }
+
+    /**
+     * Sanitize column name to prevent SQL injection
+     *
+     * @param string $column Column name
+     * @return string Sanitized column name with backticks
+     * @throws InvalidArgumentException If column name is invalid
+     */
+    private function sanitizeColumnName($column) {
+        // Only allow alphanumeric characters and underscores
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', $column)) {
+            throw new InvalidArgumentException("Invalid column name: $column");
+        }
+        return "`$column`";
+    }
+
     /**
      * Execute a prepared statement with parameters
      * 
@@ -214,14 +244,18 @@ class Database {
     public function insert($table, $data) {
         $columns = array_keys($data);
         $placeholders = array_fill(0, count($columns), '?');
-        
+
+        // Sanitize table and column names
+        $sanitizedTable = $this->sanitizeTableName($table);
+        $sanitizedColumns = array_map([$this, 'sanitizeColumnName'], $columns);
+
         $sql = sprintf(
             "INSERT INTO %s (%s) VALUES (%s)",
-            $table,
-            implode(', ', $columns),
+            $sanitizedTable,
+            implode(', ', $sanitizedColumns),
             implode(', ', $placeholders)
         );
-        
+
         $this->execute($sql, array_values($data));
         return $this->lastInsertId();
     }
@@ -236,21 +270,26 @@ class Database {
      * @return int Number of affected rows
      */
     public function update($table, $data, $where, $whereParams = []) {
+        // Sanitize table name
+        $sanitizedTable = $this->sanitizeTableName($table);
+
+        // Sanitize column names and build SET clause
         $setParts = [];
         foreach (array_keys($data) as $column) {
-            $setParts[] = "$column = ?";
+            $sanitizedColumn = $this->sanitizeColumnName($column);
+            $setParts[] = "$sanitizedColumn = ?";
         }
-        
+
         $sql = sprintf(
             "UPDATE %s SET %s WHERE %s",
-            $table,
+            $sanitizedTable,
             implode(', ', $setParts),
             $where
         );
-        
+
         $params = array_merge(array_values($data), $whereParams);
         $stmt = $this->execute($sql, $params);
-        
+
         return $stmt->rowCount();
     }
     
@@ -263,21 +302,26 @@ class Database {
      * @return int Number of affected rows
      */
     public function delete($table, $where, $params = []) {
-        $sql = sprintf("DELETE FROM %s WHERE %s", $table, $where);
+        // Sanitize table name
+        $sanitizedTable = $this->sanitizeTableName($table);
+        $sql = sprintf("DELETE FROM %s WHERE %s", $sanitizedTable, $where);
         $stmt = $this->execute($sql, $params);
         return $stmt->rowCount();
     }
     
     /**
      * Count rows in a table
-     * 
+     *
      * @param string $table Table name
      * @param string $where WHERE clause (optional)
      * @param array $params Parameters for WHERE clause
      * @return int Row count
      */
     public function count($table, $where = '', $params = []) {
-        $sql = "SELECT COUNT(*) FROM $table";
+        // Sanitize table name to prevent SQL injection
+        $sanitizedTable = $this->sanitizeTableName($table);
+
+        $sql = "SELECT COUNT(*) FROM $sanitizedTable";
         if (!empty($where)) {
             $sql .= " WHERE $where";
         }
@@ -490,17 +534,29 @@ class Database {
             
             $filepath = DB_BACKUP_DIR . '/' . $filename;
             
-            // MySQL dump command
+            // Create temporary MySQL config file to avoid password in process list
+            $tmpConfigFile = tempnam(sys_get_temp_dir(), 'mysql_');
+            $configContent = "[client]\n";
+            $configContent .= "user=" . DB_USER . "\n";
+            $configContent .= "password=" . DB_PASS . "\n";
+            $configContent .= "host=" . DB_HOST . "\n";
+            file_put_contents($tmpConfigFile, $configContent);
+            chmod($tmpConfigFile, 0600); // Secure permissions
+
+            // MySQL dump command using config file (no password in command line)
             $command = sprintf(
-                'mysqldump --user=%s --password=%s --host=%s %s > %s 2>&1',
-                escapeshellarg(DB_USER),
-                escapeshellarg(DB_PASS),
-                escapeshellarg(DB_HOST),
+                'mysqldump --defaults-extra-file=%s %s > %s 2>&1',
+                escapeshellarg($tmpConfigFile),
                 escapeshellarg(DB_NAME),
                 escapeshellarg($filepath)
             );
-            
+
             exec($command, $output, $returnCode);
+
+            // Clean up temporary config file
+            if (file_exists($tmpConfigFile)) {
+                unlink($tmpConfigFile);
+            }
             
             // Check if backup was successful
             if ($returnCode === 0 && file_exists($filepath) && filesize($filepath) > 0) {

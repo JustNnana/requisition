@@ -965,7 +965,7 @@ $includeCharts = true;
                                     <?php echo htmlspecialchars($req['purpose']); ?>
                                 </span>
                             </td>
-                            <td><?php echo get_status_indicator($req['status']); ?></td>
+                            <td><?php echo get_status_indicator($req['status'], $req); ?></td>
                             <td style="color: var(--text-secondary); font-size: var(--font-size-sm);">
                                 <?php echo date('M d, Y g:i A', strtotime($req['created_at'])); ?>
                             </td>

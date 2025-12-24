@@ -189,14 +189,23 @@ public function allocateBudget($budgetId, $requisitionId, $amount, $notes = '') 
         // Get current budget with row lock
         $sql = "SELECT * FROM department_budgets WHERE id = ? FOR UPDATE";
         $budget = $this->db->fetchOne($sql, [$budgetId]);
-        
+
         if (!$budget) {
             if ($startedTransaction) {
                 $this->db->getConnection()->rollBack();
             }
             return ['success' => false, 'message' => 'Budget not found.'];
         }
-        
+
+        // Validate that requisition exists (prevents foreign key constraint violation)
+        $requisitionCheck = $this->db->fetchOne("SELECT id FROM requisitions WHERE id = ?", [$requisitionId]);
+        if (!$requisitionCheck) {
+            if ($startedTransaction) {
+                $this->db->getConnection()->rollBack();
+            }
+            return ['success' => false, 'message' => 'Requisition not found. Cannot allocate budget.'];
+        }
+
         // Check if enough budget is available
         if ((float)$budget['available_amount'] < (float)$amount) {
             if ($startedTransaction) {

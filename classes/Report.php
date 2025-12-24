@@ -42,11 +42,17 @@ class Report {
                d.department_name,
                d.department_code,
                rc.category_name,
-               parent.category_name as parent_category_name
+               parent.category_name as parent_category_name,
+               ca.first_name as current_approver_first_name,
+               ca.last_name as current_approver_last_name,
+               sa.first_name as selected_approver_first_name,
+               sa.last_name as selected_approver_last_name
         FROM requisitions r
         LEFT JOIN departments d ON r.department_id = d.id
         LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
         LEFT JOIN requisition_categories parent ON rc.parent_id = parent.id
+        LEFT JOIN users ca ON r.current_approver_id = ca.id
+        LEFT JOIN users sa ON r.selected_approver_id = sa.id
         WHERE r.user_id = ?";
             
             $params = [$userId];
@@ -894,18 +900,24 @@ class Report {
             }
             
             // Build base query
-$sql = "SELECT r.*, 
-               u.first_name as requester_first_name, 
+$sql = "SELECT r.*,
+               u.first_name as requester_first_name,
                u.last_name as requester_last_name,
                u.email as requester_email,
                d.department_name,
                rc.category_name,
-               parent.category_name as parent_category_name
+               parent.category_name as parent_category_name,
+               ca.first_name as current_approver_first_name,
+               ca.last_name as current_approver_last_name,
+               sa.first_name as selected_approver_first_name,
+               sa.last_name as selected_approver_last_name
         FROM requisitions r
         INNER JOIN users u ON r.user_id = u.id
         LEFT JOIN departments d ON r.department_id = d.id
         LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
         LEFT JOIN requisition_categories parent ON rc.parent_id = parent.id
+        LEFT JOIN users ca ON r.current_approver_id = ca.id
+        LEFT JOIN users sa ON r.selected_approver_id = sa.id
         WHERE u.department_id = ?";
             
             $params = [$departmentId];
@@ -1725,12 +1737,18 @@ $sql = "SELECT r.*,
                d.department_name,
                d.department_code,
                rc.category_name,
-               parent.category_name as parent_category_name
+               parent.category_name as parent_category_name,
+               ca.first_name as current_approver_first_name,
+               ca.last_name as current_approver_last_name,
+               sa.first_name as selected_approver_first_name,
+               sa.last_name as selected_approver_last_name
         FROM requisitions r
         JOIN users u ON r.user_id = u.id
         LEFT JOIN departments d ON r.department_id = d.id
         LEFT JOIN requisition_categories rc ON r.purpose = rc.category_name
         LEFT JOIN requisition_categories parent ON rc.parent_id = parent.id
+        LEFT JOIN users ca ON r.current_approver_id = ca.id
+        LEFT JOIN users sa ON r.selected_approver_id = sa.id
         WHERE 1=1";
             
             $params = [];

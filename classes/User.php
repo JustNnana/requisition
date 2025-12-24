@@ -580,8 +580,98 @@ class User {
     }
     
     /**
+     * Get available approvers for requisition submission dropdown
+     * Returns:
+     * - Regular users: Line Managers from user's department + Executive department users + All Finance Managers
+     * - Finance Managers: ONLY Executive department users (cannot approve their own requests)
+     *
+     * @param int $userId Current user ID
+     * @param int $departmentId User's department ID
+     * @return array Grouped array of available approvers
+     */
+    public function getAvailableApprovers($userId, $departmentId) {
+        $approvers = [
+            'line_managers' => [],
+            'executive' => [],
+            'finance_managers' => []
+        ];
+
+        try {
+            // Check if current user is a Finance Manager
+            $sql = "SELECT role_id FROM users WHERE id = ?";
+            $currentUser = $this->db->fetchOne($sql, [$userId]);
+            $isFinanceManager = ($currentUser && $currentUser['role_id'] == ROLE_FINANCE_MANAGER);
+
+            // SPECIAL CASE: Finance Managers can ONLY select Executive department users
+            if ($isFinanceManager) {
+                $deptModel = new Department();
+                $approvers['executive'] = $deptModel->getExecutiveDepartmentUsers();
+                // Leave line_managers and finance_managers empty
+                return $approvers;
+            }
+
+            // REGULAR USERS: Get all three categories
+            // 1. Get Line Managers from user's department (exclude current user)
+            $sql = "SELECT u.id, u.first_name, u.last_name, u.email, r.role_name, d.department_name
+                    FROM users u
+                    JOIN roles r ON u.role_id = r.id
+                    JOIN departments d ON u.department_id = d.id
+                    WHERE u.role_id = ?
+                      AND u.department_id = ?
+                      AND u.id != ?
+                      AND u.is_active = 1
+                    ORDER BY u.first_name, u.last_name";
+
+            $approvers['line_managers'] = $this->db->fetchAll($sql, [ROLE_LINE_MANAGER, $departmentId, $userId]);
+
+            // 2. Get Executive department users
+            $deptModel = new Department();
+            $approvers['executive'] = $deptModel->getExecutiveDepartmentUsers();
+
+            // 3. Get all Finance Managers
+            $sql = "SELECT u.id, u.first_name, u.last_name, u.email, r.role_name, d.department_name
+                    FROM users u
+                    JOIN roles r ON u.role_id = r.id
+                    LEFT JOIN departments d ON u.department_id = d.id
+                    WHERE u.role_id = ?
+                      AND u.is_active = 1
+                    ORDER BY u.first_name, u.last_name";
+
+            $approvers['finance_managers'] = $this->db->fetchAll($sql, [ROLE_FINANCE_MANAGER]);
+
+            return $approvers;
+
+        } catch (Exception $e) {
+            error_log("Get available approvers error: " . $e->getMessage());
+            return $approvers;
+        }
+    }
+
+    /**
+     * Get available Finance Members for assignment dropdown (Finance Manager use)
+     *
+     * @return array Array of active Finance Members
+     */
+    public function getFinanceMembers() {
+        try {
+            $sql = "SELECT u.id, u.first_name, u.last_name, u.email, r.role_name
+                    FROM users u
+                    JOIN roles r ON u.role_id = r.id
+                    WHERE u.role_id = ?
+                      AND u.is_active = 1
+                    ORDER BY u.first_name, u.last_name";
+
+            return $this->db->fetchAll($sql, [ROLE_FINANCE_MEMBER]);
+
+        } catch (Exception $e) {
+            error_log("Get finance members error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
      * Log user action to audit trail
-     * 
+     *
      * @param int $userId User ID
      * @param string $action Action constant
      * @param string $description Action description
@@ -590,7 +680,7 @@ class User {
         try {
             $sql = "INSERT INTO audit_log (user_id, action, description, ip_address, user_agent)
                     VALUES (?, ?, ?, ?, ?)";
-            
+
             $params = [
                 $userId,
                 $action,
@@ -598,9 +688,9 @@ class User {
                 $_SERVER['REMOTE_ADDR'] ?? null,
                 $_SERVER['HTTP_USER_AGENT'] ?? null
             ];
-            
+
             $this->db->execute($sql, $params);
-            
+
         } catch (Exception $e) {
             error_log("Audit log error: " . $e->getMessage());
         }

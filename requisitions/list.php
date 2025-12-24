@@ -790,7 +790,7 @@ $pageTitle = 'My Requisitions';
                                     <strong>₦<?php echo number_format((float)$req['total_amount'], 2); ?></strong>
                                 </td>
                                 <td>
-                                    <?php echo get_status_badge($req['status']); ?>
+                                    <?php echo get_status_badge($req['status'], $req); ?>
                                 </td>
                                 <td>
                                     <?php
