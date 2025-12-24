@@ -37,24 +37,34 @@ class TwoFactorAuth
     }
 
     /**
-     * Generate QR Code URL for authenticator apps
+     * Generate QR Code data URI for authenticator apps
      *
      * @param string $secret The secret key
      * @param string $email User's email
      * @param string $issuer Application name
-     * @return string QR code URL
+     * @return string QR code data URI or otpauth URL as fallback
      */
     public function getQRCodeUrl($secret, $email, $issuer = 'GateWey Requisition')
     {
-        $issuer = urlencode($issuer);
-        $email = urlencode($email);
-        $secret = urlencode($secret);
-
         // otpauth URL format for TOTP
         $otpauthUrl = "otpauth://totp/{$issuer}:{$email}?secret={$secret}&issuer={$issuer}";
 
-        // Use Google Chart API to generate QR code
-        return "https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=" . urlencode($otpauthUrl);
+        try {
+            // Check if QR code library is available
+            if (class_exists('Endroid\QrCode\QrCode')) {
+                $qrCode = new \Endroid\QrCode\QrCode($otpauthUrl);
+                $writer = new \Endroid\QrCode\Writer\PngWriter();
+                $result = $writer->write($qrCode);
+
+                // Return as data URI
+                return $result->getDataUri();
+            }
+        } catch (Exception $e) {
+            error_log("QR Code generation error: " . $e->getMessage());
+        }
+
+        // Fallback: return otpauth URL (will fail to load as image, triggering error handler)
+        return $otpauthUrl;
     }
 
     /**
@@ -134,7 +144,13 @@ class TwoFactorAuth
                         twofa_verified_at = NOW()
                     WHERE id = ?";
 
-            $this->db->execute($sql, [$secret, $userId]);
+            $stmt = $this->db->execute($sql, [$secret, $userId]);
+
+            // Check if update actually affected any rows
+            if ($stmt->rowCount() === 0) {
+                error_log("2FA Enable Error: No rows affected for user ID: " . $userId);
+                return false;
+            }
 
             // Log action
             if (ENABLE_AUDIT_LOG) {
@@ -147,8 +163,42 @@ class TwoFactorAuth
             }
 
             return true;
+        } catch (PDOException $e) {
+            // Handle "Prepared statement needs to be re-prepared" error (MySQL 1615)
+            if ($e->getCode() == 'HY000' && strpos($e->getMessage(), '1615') !== false) {
+                error_log("2FA Enable: Retrying due to prepared statement cache issue");
+                try {
+                    // Retry once - this forces a fresh prepare
+                    $stmt = $this->db->execute($sql, [$secret, $userId]);
+
+                    if ($stmt->rowCount() === 0) {
+                        error_log("2FA Enable Error: No rows affected for user ID: " . $userId);
+                        return false;
+                    }
+
+                    // Log action
+                    if (ENABLE_AUDIT_LOG) {
+                        $auditLog = new AuditLog();
+                        $auditLog->log(
+                            $userId,
+                            'twofa_enabled',
+                            'Two-factor authentication enabled'
+                        );
+                    }
+
+                    return true;
+                } catch (Exception $retryEx) {
+                    error_log("2FA Enable Retry Error: " . $retryEx->getMessage() . " | User ID: " . $userId);
+                    return false;
+                }
+            }
+
+            error_log("2FA Enable Error: " . $e->getMessage() . " | User ID: " . $userId);
+            error_log("2FA Enable Error Stack: " . $e->getTraceAsString());
+            return false;
         } catch (Exception $e) {
-            error_log("2FA Enable Error: " . $e->getMessage());
+            error_log("2FA Enable Error: " . $e->getMessage() . " | User ID: " . $userId);
+            error_log("2FA Enable Error Stack: " . $e->getTraceAsString());
             return false;
         }
     }

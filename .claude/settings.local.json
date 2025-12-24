@@ -6,7 +6,8 @@
       "Bash(xargs:*)",
       "Bash(grep:*)",
       "Bash(php -r:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(composer require:*)"
     ]
   }
 }
