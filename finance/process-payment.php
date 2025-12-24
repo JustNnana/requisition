@@ -639,7 +639,7 @@ $pageTitle = 'Process Payment - ' . $req['requisition_number'];
                 
                 <div class="info-group">
                     <label>Status</label>
-                    <p><?php echo get_status_badge($req['status']); ?></p>
+                    <p><?php echo get_status_badge($req['status'], $req); ?></p>
                 </div>
                 
                 <div class="info-group">

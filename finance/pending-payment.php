@@ -731,7 +731,7 @@ $pageTitle = 'Pending Payments';
                                     </div>
                                 </td>
                                 <td>
-                                    <?php echo get_status_badge($req['status']); ?>
+                                    <?php echo get_status_badge($req['status'], $req); ?>
                                 </td>
                                 <td class="text-center">
                                     <div class="table-actions">

@@ -854,7 +854,7 @@ $pageTitle = 'Payment History';
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <?php echo get_status_badge($record['status']); ?>
+                                    <?php echo get_status_badge($record['status'], $record); ?>
                                 </td>
                                 <td class="text-center">
                                     <div class="table-actions">

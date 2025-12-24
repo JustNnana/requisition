@@ -29,15 +29,21 @@ class Payment {
      */
     public function getPendingPayments() {
         try {
-            $sql = "SELECT r.*, 
+            $sql = "SELECT r.*,
                            u.first_name as requester_first_name,
                            u.last_name as requester_last_name,
                            u.email as requester_email,
                            d.department_name,
-                           d.department_code
+                           d.department_code,
+                           ca.first_name as current_approver_first_name,
+                           ca.last_name as current_approver_last_name,
+                           sa.first_name as selected_approver_first_name,
+                           sa.last_name as selected_approver_last_name
                     FROM requisitions r
                     JOIN users u ON r.user_id = u.id
                     LEFT JOIN departments d ON r.department_id = d.id
+                    LEFT JOIN users ca ON r.current_approver_id = ca.id
+                    LEFT JOIN users sa ON r.selected_approver_id = sa.id
                     WHERE r.status = ?
                     ORDER BY r.updated_at ASC";
             
@@ -430,18 +436,24 @@ class Payment {
             $totalRecords = $totalResult['total'];
             
             // Get paginated results
-            $sql = "SELECT r.*, 
+            $sql = "SELECT r.*,
                            u.first_name as requester_first_name,
                            u.last_name as requester_last_name,
                            u.email as requester_email,
                            d.department_name,
                            d.department_code,
                            payer.first_name as paid_by_first_name,
-                           payer.last_name as paid_by_last_name
+                           payer.last_name as paid_by_last_name,
+                           ca.first_name as current_approver_first_name,
+                           ca.last_name as current_approver_last_name,
+                           sa.first_name as selected_approver_first_name,
+                           sa.last_name as selected_approver_last_name
                     FROM requisitions r
                     JOIN users u ON r.user_id = u.id
                     LEFT JOIN departments d ON r.department_id = d.id
                     LEFT JOIN users payer ON r.paid_by = payer.id
+                    LEFT JOIN users ca ON r.current_approver_id = ca.id
+                    LEFT JOIN users sa ON r.selected_approver_id = sa.id
                     WHERE " . implode(' AND ', $where) . "
                     ORDER BY r.payment_date DESC
                     LIMIT ? OFFSET ?";
