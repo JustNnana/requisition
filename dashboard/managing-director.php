@@ -905,7 +905,7 @@ if ($budgetDiff != 0):
             </div>
             <div class="revenue-card-content">
                 <h3 class="revenue-card-title">Total Spending</h3>
-                <p class="revenue-card-value">₦<?php echo number_format((float)$stats['organization_amount'], 2); ?></p>
+                <p class="revenue-card-value"><?php echo format_large_currency((float)$stats['organization_amount']); ?></p>
             </div>
         </div>
     </div>

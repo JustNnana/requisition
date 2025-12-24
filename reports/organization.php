@@ -381,7 +381,7 @@ $pageTitle = 'Organization Reports';
         </div>
         <div class="stat-content">
             <p class="stat-label">Total Amount</p>
-            <p class="stat-value">₦<?php echo number_format((float)$statistics['total_amount'], 2); ?></p>
+            <p class="stat-value"><?php echo format_large_currency((float)$statistics['total_amount']); ?></p>
         </div>
     </div>
     

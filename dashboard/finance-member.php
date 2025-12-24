@@ -654,7 +654,7 @@ $pageTitle = 'Finance Member Dashboard';
             </div>
             <div class="revenue-card-content">
                 <h3 class="revenue-card-title">Total Processed</h3>
-                <p class="revenue-card-value">₦<?php echo number_format((float)$stats['total_processed_amount'], 2); ?></p>
+                <p class="revenue-card-value"><?php echo format_large_currency((float)$stats['total_processed_amount']); ?></p>
             </div>
         </div>
     </div>

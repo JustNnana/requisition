@@ -818,7 +818,7 @@ $expiredBudgets = $db->fetchAll($sql);
             </div>
             <div class="revenue-card-content">
                 <h3 class="revenue-card-title">Total Paid</h3>
-                <p class="revenue-card-value">₦<?php echo number_format((float)$stats['total_paid_amount'], 2); ?></p>
+                <p class="revenue-card-value"><?php echo format_large_currency((float)$stats['total_paid_amount']); ?></p>
 
             </div>
         </div>

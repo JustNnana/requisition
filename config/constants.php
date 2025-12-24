@@ -411,8 +411,38 @@ function format_currency($amount, $includeSymbol = true) {
 }
 
 /**
+ * Format large currency amounts with billions abbreviation
+ * ONLY abbreviates amounts >= 1 billion. All other amounts show full numbers.
+ * Example: 1,508,030,000 displays as ₦1.51B+
+ *
+ * @param float $amount Amount to format
+ * @param bool $includeSymbol Include currency symbol (default: true)
+ * @param int $precision Decimal places for abbreviated amounts (default: 2)
+ * @return string Formatted currency with "B+" abbreviation if amount >= 1 billion
+ */
+function format_large_currency($amount, $includeSymbol = true, $precision = 2) {
+    $absAmount = abs($amount);
+
+    // ONLY abbreviate amounts >= 1 billion with B+ suffix
+    if ($absAmount >= 1000000000) {
+        $value = $amount / 1000000000;
+        $formatted = number_format($value, $precision) . 'B+';
+    }
+    // For all other amounts, show full number with 2 decimal places
+    else {
+        $formatted = number_format($amount, 2);
+    }
+
+    if ($includeSymbol) {
+        return '₦' . $formatted;
+    }
+
+    return $formatted;
+}
+
+/**
  * Format date for display
- * 
+ *
  * @param string $date Date string
  * @param string $format Format string (default: DISPLAY_DATE_FORMAT)
  * @return string Formatted date

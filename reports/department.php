@@ -538,7 +538,7 @@ $includeCharts = true;
             </div>
             <div class="improved-stats-content">
                 <h3 class="improved-stats-title">Total Amount</h3>
-                <p class="improved-stats-value">₦<?php echo number_format((float)$statistics['total_amount'], 2); ?></p>
+                <p class="improved-stats-value"><?php echo format_large_currency((float)$statistics['total_amount']); ?></p>
             </div>
         </div>
         <div class="improved-stats-change">
