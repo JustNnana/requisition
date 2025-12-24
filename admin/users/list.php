@@ -530,6 +530,11 @@ $pageTitle = 'User Management';
                                         $currentUser = Session::get('user');
                                         if ($userData['id'] != ($currentUser['id'] ?? 0)):
                                         ?>
+                                            <a href="<?php echo build_encrypted_url('reset-2fa.php', $userData['id']); ?>"
+                                                class="btn btn-sm btn-ghost"
+                                                title="Reset Two-Factor Authentication">
+                                                <i class="fas fa-shield-alt"></i>
+                                            </a>
                                             <a href="<?php echo build_encrypted_url('delete.php', $userData['id']); ?>"
                                                 class="btn btn-sm btn-ghost text-danger"
                                                 title="Delete User"

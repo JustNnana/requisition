@@ -61,9 +61,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Attempt login
             $result = $auth->login($email, $password, $rememberMe);
-            
+
             if ($result['success']) {
-                // Redirect to intended URL (Auth class handles this)
+                // Check if 2FA is required
+                if (isset($result['requires_2fa']) || isset($result['requires_2fa_setup'])) {
+                    // Redirect to 2FA page
+                    header('Location: ' . $result['redirect']);
+                    exit;
+                }
+
+                // Normal login - redirect to intended URL
                 header('Location: ' . $auth->getIntendedUrl());
                 exit;
             } else {

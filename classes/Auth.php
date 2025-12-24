@@ -82,26 +82,52 @@ class Auth {
                     'message' => 'Your account has been deactivated. Please contact the administrator.'
                 ];
             }
-            
+
             // Clear failed login attempts
             Session::clearLoginAttempts($email);
-            
-            // Create session
+
+            // Check 2FA status
+            $twofa = new TwoFactorAuth();
+            $twofaStatus = $twofa->get2FAStatus($user['id']);
+
+            if ($twofaStatus['enabled'] && $twofaStatus['has_secret']) {
+                // User has 2FA enabled - redirect to verification
+                $_SESSION['temp_user_id'] = $user['id'];
+
+                return [
+                    'success' => true,
+                    'requires_2fa' => true,
+                    'message' => 'Please verify your identity.',
+                    'redirect' => BASE_URL . '/auth/verify-2fa.php'
+                ];
+            } elseif (!$twofaStatus['enabled']) {
+                // First-time login or 2FA reset - redirect to setup
+                $_SESSION['temp_user_id'] = $user['id'];
+
+                return [
+                    'success' => true,
+                    'requires_2fa_setup' => true,
+                    'message' => 'Please setup two-factor authentication.',
+                    'redirect' => BASE_URL . '/auth/setup-2fa.php'
+                ];
+            }
+
+            // No 2FA required - complete login
             Session::login($user);
-            
+
             // Update last login timestamp
             $this->user->updateLastLogin($user['id']);
-            
+
             // Handle remember me
             if ($rememberMe) {
                 $this->setRememberMeCookie($user['id']);
             }
-            
+
             // Log successful login
             if (ENABLE_AUDIT_LOG) {
                 $this->logAction($user['id'], AUDIT_USER_LOGIN, "User logged in successfully");
             }
-            
+
             return [
                 'success' => true,
                 'message' => 'Login successful.',
