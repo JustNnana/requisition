@@ -45,6 +45,21 @@ if (!$reqData) {
     exit;
 }
 
+// Parse additional_info JSON
+$accountDetails = [
+    'account_type' => '',
+    'account_name' => '',
+    'bank_name' => '',
+    'account_number' => ''
+];
+
+if (!empty($reqData['additional_info'])) {
+    $decoded = json_decode($reqData['additional_info'], true);
+    if (is_array($decoded)) {
+        $accountDetails = array_merge($accountDetails, $decoded);
+    }
+}
+
 // Check if user can edit
 if (!can_user_edit_requisition($reqData)) {
     Session::setFlash('error', 'You cannot edit this requisition.');
@@ -1146,6 +1161,62 @@ $pageTitle = 'Edit Requisition ' . $reqData['requisition_number'];
                     rows="3"
                     placeholder="Add any additional details or notes about this requisition..."><?php echo htmlspecialchars($reqData['description'] ?? ''); ?></textarea>
                 <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
+            </div>
+
+            <!-- Account Details Section -->
+            <div class="form-group">
+                <label class="form-label required">Account Details</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4); margin-bottom: var(--spacing-3);">
+                    <div>
+                        <label for="account_type" class="form-label required">Account Type</label>
+                        <select id="account_type" name="account_type" class="form-control" required>
+                            <option value="">-- Select Account Type --</option>
+                            <option value="staff" <?php echo ($accountDetails['account_type'] === 'staff') ? 'selected' : ''; ?>>Staff</option>
+                            <option value="vendor" <?php echo ($accountDetails['account_type'] === 'vendor') ? 'selected' : ''; ?>>Vendor</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="account_name" class="form-label required">Account Name</label>
+                        <input
+                            type="text"
+                            id="account_name"
+                            name="account_name"
+                            class="form-control"
+                            placeholder="Enter account holder name"
+                            value="<?php echo htmlspecialchars($accountDetails['account_name']); ?>"
+                            required
+                        >
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4);">
+                    <div>
+                        <label for="bank_name" class="form-label required">Bank Name</label>
+                        <input
+                            type="text"
+                            id="bank_name"
+                            name="bank_name"
+                            class="form-control"
+                            placeholder="Enter bank name"
+                            value="<?php echo htmlspecialchars($accountDetails['bank_name']); ?>"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <label for="account_number" class="form-label required">Account Number</label>
+                        <input
+                            type="text"
+                            id="account_number"
+                            name="account_number"
+                            class="form-control"
+                            placeholder="Enter account number"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            value="<?php echo htmlspecialchars($accountDetails['account_number']); ?>"
+                            required
+                        >
+                        <div class="form-text">Enter 10-digit account number</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Select Approver Dropdown -->

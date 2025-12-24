@@ -1139,6 +1139,59 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="form-text">Provide any extra information that might be helpful for approvers.</div>
             </div>
 
+            <!-- Account Details Section -->
+            <div class="form-group">
+                <label class="form-label required">Account Details</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4); margin-bottom: var(--spacing-3);">
+                    <div>
+                        <label for="account_type" class="form-label required">Account Type</label>
+                        <select id="account_type" name="account_type" class="form-control" required>
+                            <option value="">-- Select Account Type --</option>
+                            <option value="staff">Staff</option>
+                            <option value="vendor">Vendor</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="account_name" class="form-label required">Account Name</label>
+                        <input
+                            type="text"
+                            id="account_name"
+                            name="account_name"
+                            class="form-control"
+                            placeholder="Enter account holder name"
+                            required
+                        >
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4);">
+                    <div>
+                        <label for="bank_name" class="form-label required">Bank Name</label>
+                        <input
+                            type="text"
+                            id="bank_name"
+                            name="bank_name"
+                            class="form-control"
+                            placeholder="Enter bank name"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <label for="account_number" class="form-label required">Account Number</label>
+                        <input
+                            type="text"
+                            id="account_number"
+                            name="account_number"
+                            class="form-control"
+                            placeholder="Enter account number"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            required
+                        >
+                        <div class="form-text">Enter 10-digit account number</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Select Approver Dropdown -->
             <div class="form-group">
                 <label for="selected_approver" class="form-label required">Select Approver</label>

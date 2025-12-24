@@ -45,6 +45,21 @@ if (!$reqData) {
     exit;
 }
 
+// Parse additional_info JSON for account details
+$accountDetails = [
+    'account_type' => '',
+    'account_name' => '',
+    'bank_name' => '',
+    'account_number' => ''
+];
+
+if (!empty($reqData['additional_info'])) {
+    $decoded = json_decode($reqData['additional_info'], true);
+    if (is_array($decoded)) {
+        $accountDetails = array_merge($accountDetails, $decoded);
+    }
+}
+
 // Check permission to view
 if (!can_user_view_requisition($reqData)) {
     Session::setFlash('error', 'You do not have permission to view this requisition.');
@@ -1323,6 +1338,66 @@ if (!empty($reqData['category_id'])) {
                 <?php endif; ?>
             </div>
         </div>
+
+        <!-- Account Details Card -->
+        <?php if (!empty($accountDetails['account_type']) || !empty($accountDetails['account_name'])): ?>
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div class="section-icon info">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="section-title">
+                        <h5>Account Details</h5>
+                        <p>Payment account information</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="detail-grid">
+                    <?php if (!empty($accountDetails['account_type'])): ?>
+                    <div class="detail-item">
+                        <label class="detail-label">Account Type</label>
+                        <div class="detail-value">
+                            <span class="badge badge-<?php echo $accountDetails['account_type'] === 'staff' ? 'primary' : 'info'; ?>">
+                                <?php echo ucfirst(htmlspecialchars($accountDetails['account_type'])); ?>
+                            </span>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($accountDetails['account_name'])): ?>
+                    <div class="detail-item">
+                        <label class="detail-label">Account Name</label>
+                        <div class="detail-value">
+                            <?php echo htmlspecialchars($accountDetails['account_name']); ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($accountDetails['bank_name'])): ?>
+                    <div class="detail-item">
+                        <label class="detail-label">Bank Name</label>
+                        <div class="detail-value">
+                            <?php echo htmlspecialchars($accountDetails['bank_name']); ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($accountDetails['account_number'])): ?>
+                    <div class="detail-item">
+                        <label class="detail-label">Account Number</label>
+                        <div class="detail-value">
+                            <code style="background: var(--bg-subtle); padding: var(--spacing-2) var(--spacing-3); border-radius: var(--border-radius); font-family: monospace;">
+                                <?php echo htmlspecialchars($accountDetails['account_number']); ?>
+                            </code>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
 
         <!-- Items Card -->
         <div class="section-card">

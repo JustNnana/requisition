@@ -59,6 +59,14 @@ $action = Sanitizer::string($_POST['action'] ?? 'create');
 $requisitionId = isset($_POST['requisition_id']) ? Sanitizer::int($_POST['requisition_id']) : null;
 $isDraft = isset($_POST['is_draft']) && $_POST['is_draft'] == '1';
 
+// Capture account details and create additional_info JSON
+$additionalInfo = [
+    'account_type' => Sanitizer::string($_POST['account_type'] ?? ''),
+    'account_name' => Sanitizer::string($_POST['account_name'] ?? ''),
+    'bank_name' => Sanitizer::string($_POST['bank_name'] ?? ''),
+    'account_number' => Sanitizer::string($_POST['account_number'] ?? '')
+];
+
 // Capture form data with category_id
 $formData = [
     'purpose' => Sanitizer::string($_POST['purpose'] ?? ''),
@@ -67,12 +75,31 @@ $formData = [
     'total_amount' => Sanitizer::float($_POST['total_amount'] ?? '0'),
     'selected_approver_id' => !empty($_POST['selected_approver_id']) ? Sanitizer::int($_POST['selected_approver_id']) : null,
     'is_draft' => $isDraft,
+    'additional_info' => json_encode($additionalInfo),
     'items' => []
 ];
 
 // Validate purpose
 if (empty($formData['purpose'])) {
     $errors[] = 'Purpose/Description is required.';
+}
+
+// Validate account details (required for non-draft submissions)
+if (!$isDraft) {
+    if (empty($additionalInfo['account_type'])) {
+        $errors[] = 'Account type is required.';
+    }
+    if (empty($additionalInfo['account_name'])) {
+        $errors[] = 'Account name is required.';
+    }
+    if (empty($additionalInfo['bank_name'])) {
+        $errors[] = 'Bank name is required.';
+    }
+    if (empty($additionalInfo['account_number'])) {
+        $errors[] = 'Account number is required.';
+    } elseif (!preg_match('/^[0-9]{10}$/', $additionalInfo['account_number'])) {
+        $errors[] = 'Account number must be exactly 10 digits.';
+    }
 }
 
 // Validate category_id (optional but log if present)
