@@ -45,7 +45,12 @@ $stats = [
     'total_paid' => 0,
     'pending_receipts' => 0,
     'total_paid_amount' => 0,
-    'this_month_paid' => 0
+    'this_month_paid' => 0,
+    // Personal requisition stats (since Finance Manager can also create requisitions)
+    'my_total' => 0,
+    'my_pending' => 0,
+    'my_rejected' => 0,
+    'my_total_amount' => 0
 ];
 
 // Pending my review
@@ -78,13 +83,50 @@ $result = $db->fetchOne($sql, [STATUS_PAID]);
 $stats['pending_receipts'] = $result['count'];
 
 // This month paid
-$sql = "SELECT COUNT(*) as count 
-        FROM requisitions 
+$sql = "SELECT COUNT(*) as count
+        FROM requisitions
         WHERE MONTH(payment_date) = MONTH(CURRENT_DATE())
         AND YEAR(payment_date) = YEAR(CURRENT_DATE())
         AND status IN (?, ?)";
 $result = $db->fetchOne($sql, [STATUS_PAID, STATUS_COMPLETED]);
 $stats['this_month_paid'] = $result['count'];
+
+// Personal requisition statistics
+// My total requisitions (count all non-draft requisitions)
+$sql = "SELECT COUNT(*) as count
+        FROM requisitions
+        WHERE user_id = ? AND status != ?";
+$result = $db->fetchOne($sql, [$userId, STATUS_DRAFT]);
+$stats['my_total'] = $result['count'];
+
+// My total amount (ONLY paid or completed requisitions)
+$sql = "SELECT COALESCE(SUM(total_amount), 0) as total
+        FROM requisitions
+        WHERE user_id = ?
+        AND status IN (?, ?)";
+$result = $db->fetchOne($sql, [$userId, STATUS_PAID, STATUS_COMPLETED]);
+$stats['my_total_amount'] = $result['total'];
+
+// My pending requisitions
+$sql = "SELECT COUNT(*) as count
+        FROM requisitions
+        WHERE user_id = ?
+        AND status IN (?, ?, ?)";
+$result = $db->fetchOne($sql, [
+    $userId,
+    STATUS_PENDING_LINE_MANAGER,
+    STATUS_PENDING_MD,
+    STATUS_PENDING_FINANCE_MANAGER
+]);
+$stats['my_pending'] = $result['count'];
+
+// My rejected requisitions
+$sql = "SELECT COUNT(*) as count
+        FROM requisitions
+        WHERE user_id = ?
+        AND status = ?";
+$result = $db->fetchOne($sql, [$userId, STATUS_REJECTED]);
+$stats['my_rejected'] = $result['count'];
 
 // Get pending review requisitions
 $sql = "SELECT r.*, u.first_name, u.last_name, d.department_name, d.department_code
@@ -653,6 +695,195 @@ $pageTitle = 'Finance Manager Dashboard';
         
     </div>
 <?php endif; ?>
+
+<!-- Personal Rejected Requisitions Alert -->
+<?php
+// Get personal rejected requisitions that need editing
+$sql = "SELECT r.*, d.department_name
+        FROM requisitions r
+        LEFT JOIN departments d ON r.department_id = d.id
+        WHERE r.user_id = ? AND r.status = ?
+        ORDER BY r.updated_at DESC
+        LIMIT 3";
+$myRejectedReqs = $db->fetchAll($sql, [$userId, STATUS_REJECTED]);
+?>
+
+<?php if (!empty($myRejectedReqs)): ?>
+    <div style="border: solid 1px var(--danger); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6); color: white;">
+        <div class="d-flex align-items-start gap-3">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-top: 0.25rem; margin-right: 0.55rem;"></i>
+            <div style="flex: 1;">
+                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold);">Action Required - Your Requisitions</h5>
+                <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9;">You have <?php echo count($myRejectedReqs); ?> rejected requisition(s) that need your attention:</p>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-2); color:var(--text-primary);">
+                    <?php foreach ($myRejectedReqs as $action): ?>
+                        <div style="display: flex; align-items: center; justify-content: space-between; border:1px solid var(--border-color); padding: var(--spacing-3); border-radius: var(--border-radius);">
+                            <div>
+                                <strong><?php echo htmlspecialchars($action['requisition_number']); ?></strong> -
+                                <?php echo htmlspecialchars(substr($action['purpose'], 0, 50)) . (strlen($action['purpose']) > 50 ? '...' : ''); ?>
+                            </div>
+                            <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $action['id']); ?>" class="btn btn-danger">
+                                <i class="fas fa-eye me-2"></i>View & Edit
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- Personal Receipt Upload Alert -->
+<?php
+// Get personal paid requisitions needing receipt upload
+$sql = "SELECT r.*, d.department_name
+        FROM requisitions r
+        LEFT JOIN departments d ON r.department_id = d.id
+        WHERE r.user_id = ?
+        AND r.status = ?
+        AND (r.receipt_uploaded IS NULL OR r.receipt_uploaded = '' OR r.receipt_uploaded = 0)
+        ORDER BY r.payment_date DESC
+        LIMIT 5";
+$myNeedsReceipt = $db->fetchAll($sql, [$userId, STATUS_PAID]);
+?>
+
+<?php if (!empty($myNeedsReceipt)): ?>
+    <div style="border: solid 1px var(--info); border-radius: var(--border-radius); padding: var(--spacing-5); margin-bottom: var(--spacing-6);">
+        <div class="d-flex align-items-start gap-3">
+            <i class="fas fa-receipt" style="font-size: 2rem; color: var(--info); margin-top: 0.25rem; margin-right: 0.55rem;"></i>
+            <div style="flex: 1;">
+                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: white;">Receipt Upload Required - Your Requisitions</h5>
+                <p style="margin: 0 0 var(--spacing-3) 0; opacity: 0.9; color: white;">You have <?php echo count($myNeedsReceipt); ?> paid requisition(s) that require receipt upload:</p>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
+                    <?php foreach ($myNeedsReceipt as $req): ?>
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.1); padding: var(--spacing-3); border-radius: var(--border-radius);">
+                            <div style="flex: 1; min-width: 0;">
+                                <strong><?php echo htmlspecialchars($req['requisition_number']); ?></strong>
+                                <span style="margin: 0 var(--spacing-2);">•</span>
+                                <span style="opacity: 0.9;">
+                                    ₦<?php echo number_format((float)$req['total_amount'], 2); ?>
+                                </span>
+                                <span style="margin: 0 var(--spacing-2);">•</span>
+                                <span style="opacity: 0.8; font-size: var(--font-size-sm);">
+                                    Paid: <?php echo format_date($req['payment_date']); ?>
+                                </span>
+                            </div>
+                            <a href="<?php echo build_encrypted_url(BASE_URL . '/requisitions/view.php', $req['id']); ?>" class="btn btn-info" style="white-space: nowrap; margin-left: var(--spacing-3);">
+                                <i class="fas fa-upload me-2"></i>Upload Receipt
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- Department Budget Status Card (Finance Manager's Department) -->
+<?php
+// Get Finance Manager's department budget information
+$budgetModel = new Budget();
+$departmentId = Session::getUserDepartmentId();
+$budgetInfo = null;
+
+if ($departmentId) {
+    $budgetInfo = $budgetModel->getBudgetStats($departmentId);
+}
+?>
+
+<?php if ($budgetInfo): ?>
+    <?php
+    $utilizationPercentage = ($budgetInfo['budget_amount'] > 0)
+        ? ($budgetInfo['allocated_amount'] / $budgetInfo['budget_amount']) * 100
+        : 0;
+    $isLowBudget = $utilizationPercentage > 75;
+    $isCritical = $utilizationPercentage > 90;
+    ?>
+
+    <div style="border: 1px solid <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--info)'); ?>;
+                border-radius: var(--border-radius);
+                padding: var(--spacing-5);
+                margin-bottom: var(--spacing-6);
+                background: rgba(<?php echo $isCritical ? 'var(--danger-rgb)' : ($isLowBudget ? 'var(--warning-rgb)' : 'var(--info-rgb)'); ?>, 0.05);">
+        <div class="d-flex align-items-start gap-3">
+            <i class="fas fa-wallet" style="font-size: 2rem; color: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--info)'); ?>; flex-shrink: 0; margin-top: 0.25rem; margin-right: 0.75rem;"></i>
+
+            <div style="flex: 1;">
+                <h5 style="margin: 0 0 var(--spacing-2) 0; font-weight: var(--font-weight-semibold); color: var(--text-primary);">
+                    <?php echo $isCritical ? '⚠️ Critical: ' : ($isLowBudget ? '⚠️ Low Budget: ' : ''); ?>Your Department Budget Status
+                </h5>
+                <p style="margin: 0 0 var(--spacing-3) 0; color: var(--text-secondary); font-size: var(--font-size-sm);">
+                    Your department has used <strong>₦<?php echo number_format($budgetInfo['allocated_amount'], 2); ?></strong>
+                    of <strong>₦<?php echo number_format($budgetInfo['budget_amount'], 2); ?></strong>
+                    (<?php echo number_format($utilizationPercentage, 1); ?>% utilized)
+                </p>
+
+<!-- Progress Bar -->
+<div style="background: var(--bg-subtle); border-radius: var(--border-radius-full); height: 24px; margin-bottom: var(--spacing-3); border: 1px solid var(--border-color); position: relative; overflow: hidden;">
+    <div style="background: <?php echo $isCritical ? 'var(--danger)' : ($isLowBudget ? 'var(--warning)' : 'var(--success)'); ?>;
+                height: 100%;
+                width: <?php echo min($utilizationPercentage, 100); ?>%;
+                transition: width 0.3s ease;">
+    </div>
+    <div style="position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: <?php echo $utilizationPercentage > 50 ? 'white' : 'var(--text-primary)'; ?>;
+                font-weight: var(--font-weight-semibold);
+                font-size: var(--font-size-xs);
+                pointer-events: none;">
+        <?php echo number_format($utilizationPercentage, 1); ?>%
+    </div>
+</div>
+
+                <div style="display: flex; justify-content: space-between; font-size: var(--font-size-sm);">
+                    <span style="color: var(--text-secondary);">
+                        <i class="fa-solid fa-users"></i> Original Budget: ₦ <strong><?php echo number_format($budgetInfo['original_budget'], 2); ?></strong>
+                    </span>
+
+<?php
+$budgetDiff = $budgetInfo['budget_amount'] - $budgetInfo['original_budget'];
+if ($budgetDiff != 0):
+    $absDiff = abs($budgetDiff);
+    if ($budgetDiff > 0):
+?>
+        <span style="color: var(--success);">
+            <i class="fa-solid fa-circle-plus"></i> Added Supplements: +₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php else: ?>
+        <span style="color: var(--warning);">
+            <i class="fa-solid fa-circle-minus"></i> Budget Reduction: -₦<strong><?php echo number_format($absDiff, 2); ?></strong>
+        </span>
+    <?php endif; ?>
+<?php endif; ?>
+                    <span style="color: var(--text-secondary);">
+                        <i class="fas fa-check-circle"></i> Remaining: <strong style="color: var(--success);">₦<?php echo number_format($budgetInfo['available_amount'], 2); ?></strong>
+                    </span>
+                    <span style="color: var(--text-secondary);">
+                        <i class="fas fa-calendar"></i> Period ends: <strong><?php echo date('M d, Y', strtotime($budgetInfo['end_date'])); ?></strong>
+                    </span>
+                </div>
+
+                <?php if ($isCritical || $isLowBudget): ?>
+                <p style="margin: var(--spacing-3) 0 0 0; color: <?php echo $isCritical ? 'var(--danger)' : 'var(--warning)'; ?>; font-size: var(--font-size-xs);">
+                    <i class="fas fa-info-circle"></i>
+                    <?php if ($isCritical): ?>
+                        <strong>Critical:</strong> Department budget is nearly exhausted. New requisitions may be delayed.
+                    <?php else: ?>
+                        <strong>Notice:</strong> Department budget is running low. Plan accordingly for upcoming requests.
+                    <?php endif; ?>
+                </p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <!-- Budget Expiry Alerts -->
 <?php
 // Get budgets expiring soon (within 7 days) and expired budgets

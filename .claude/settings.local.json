@@ -7,7 +7,8 @@
       "Bash(grep:*)",
       "Bash(php -r:*)",
       "Bash(find:*)",
-      "Bash(composer require:*)"
+      "Bash(composer require:*)",
+      "Bash(ls:*)"
     ]
   }
 }
