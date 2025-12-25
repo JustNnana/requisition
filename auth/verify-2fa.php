@@ -356,7 +356,7 @@ $pageTitle = 'Verify Two-Factor Authentication';
         <div class="login-card">
             <div class="login-header">
                 <div class="login-logo">
-                    <img src="<?php echo BASE_URL; ?>/assets/images/logo.png" alt="Logo" class="logo-img">
+                    <img src="<?php echo BASE_URL; ?>/assets/images/icons/kadick-logo.png" alt="Kadick Logo" class="logo-img logo-light">
                 </div>
                 <h1><i class="fas fa-shield-alt"></i> Verify Identity</h1>
                 <p>Enter the code from your authenticator app</p>

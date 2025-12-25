@@ -131,13 +131,33 @@ class Database {
     
     /**
      * Get PDO connection
-     * 
+     *
      * @return PDO
      */
     public function getConnection() {
         return $this->connection;
     }
-    
+
+    /**
+     * Reconnect to database (useful for clearing prepared statement cache)
+     *
+     * @return void
+     */
+    public function reconnect() {
+        $this->connection = null;
+
+        $dsn = DB_DSN;
+        $options = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+            PDO::ATTR_PERSISTENT         => DB_PERSISTENT,
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . DB_CHARSET
+        ];
+
+        $this->connection = new PDO($dsn, DB_USER, DB_PASS, $options);
+    }
+
     /**
      * Prevent cloning of instance
      */

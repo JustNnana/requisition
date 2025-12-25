@@ -138,16 +138,25 @@ class TwoFactorAuth
     public function enable2FA($userId, $secret)
     {
         try {
+            // Use direct PDO connection to bypass prepared statement cache issues
+            $conn = $this->db->getConnection();
+
+            // Manually escape values for security
+            $escapedSecret = $conn->quote($secret);
+            $escapedUserId = (int)$userId; // Cast to int for safety
+
+            // Build direct SQL query
             $sql = "UPDATE users
-                    SET twofa_secret = ?,
+                    SET twofa_secret = {$escapedSecret},
                         twofa_enabled = 1,
                         twofa_verified_at = NOW()
-                    WHERE id = ?";
+                    WHERE id = {$escapedUserId}";
 
-            $stmt = $this->db->execute($sql, [$secret, $userId]);
+            // Execute directly without prepared statement
+            $affectedRows = $conn->exec($sql);
 
             // Check if update actually affected any rows
-            if ($stmt->rowCount() === 0) {
+            if ($affectedRows === 0) {
                 error_log("2FA Enable Error: No rows affected for user ID: " . $userId);
                 return false;
             }
@@ -163,42 +172,8 @@ class TwoFactorAuth
             }
 
             return true;
-        } catch (PDOException $e) {
-            // Handle "Prepared statement needs to be re-prepared" error (MySQL 1615)
-            if ($e->getCode() == 'HY000' && strpos($e->getMessage(), '1615') !== false) {
-                error_log("2FA Enable: Retrying due to prepared statement cache issue");
-                try {
-                    // Retry once - this forces a fresh prepare
-                    $stmt = $this->db->execute($sql, [$secret, $userId]);
-
-                    if ($stmt->rowCount() === 0) {
-                        error_log("2FA Enable Error: No rows affected for user ID: " . $userId);
-                        return false;
-                    }
-
-                    // Log action
-                    if (ENABLE_AUDIT_LOG) {
-                        $auditLog = new AuditLog();
-                        $auditLog->log(
-                            $userId,
-                            'twofa_enabled',
-                            'Two-factor authentication enabled'
-                        );
-                    }
-
-                    return true;
-                } catch (Exception $retryEx) {
-                    error_log("2FA Enable Retry Error: " . $retryEx->getMessage() . " | User ID: " . $userId);
-                    return false;
-                }
-            }
-
-            error_log("2FA Enable Error: " . $e->getMessage() . " | User ID: " . $userId);
-            error_log("2FA Enable Error Stack: " . $e->getTraceAsString());
-            return false;
         } catch (Exception $e) {
             error_log("2FA Enable Error: " . $e->getMessage() . " | User ID: " . $userId);
-            error_log("2FA Enable Error Stack: " . $e->getTraceAsString());
             return false;
         }
     }
@@ -213,13 +188,21 @@ class TwoFactorAuth
     public function disable2FA($userId, $adminId = null)
     {
         try {
+            // Use direct PDO connection to bypass prepared statement cache issues
+            $conn = $this->db->getConnection();
+
+            // Cast to int for safety
+            $escapedUserId = (int)$userId;
+
+            // Build direct SQL query
             $sql = "UPDATE users
                     SET twofa_secret = NULL,
                         twofa_enabled = 0,
                         twofa_verified_at = NULL
-                    WHERE id = ?";
+                    WHERE id = {$escapedUserId}";
 
-            $this->db->execute($sql, [$userId]);
+            // Execute directly without prepared statement
+            $conn->exec($sql);
 
             // Log action
             if (ENABLE_AUDIT_LOG) {
@@ -237,7 +220,7 @@ class TwoFactorAuth
 
             return true;
         } catch (Exception $e) {
-            error_log("2FA Disable Error: " . $e->getMessage());
+            error_log("2FA Disable Error: " . $e->getMessage() . " | User ID: " . $userId);
             return false;
         }
     }
