@@ -22,14 +22,22 @@ require_once __DIR__ . '/../middleware/auth-check.php';
 // Initialize model
 $helpModel = new HelpSupport();
 
-// Get help item ID
+// Get help item ID (decrypt from URL)
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     Session::setFlash('error', 'Invalid help item.');
     header('Location: index.php');
     exit;
 }
 
-$id = (int)$_GET['id'];
+$id = UrlEncryption::decryptId($_GET['id']);
+
+// Check if decryption was successful
+if ($id === false) {
+    Session::setFlash('error', 'Invalid help item ID.');
+    header('Location: index.php');
+    exit;
+}
+
 $item = $helpModel->getById($id);
 
 // Check if item exists and is active

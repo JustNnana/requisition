@@ -34,9 +34,16 @@ if (APP_DEBUG) {
 }
 
 // Helper function to check if current page is active
-function isActive($page, $dir = null)
+function isActive($page, $dir = null, $parentDir = null)
 {
     global $currentPage, $currentDir;
+
+    // If parent directory is specified (for admin/help vs help)
+    if ($parentDir && $dir) {
+        $currentPath = dirname($_SERVER['PHP_SELF']);
+        $expectedPath = '/' . $parentDir . '/' . $dir;
+        return (strpos($currentPath, $expectedPath) !== false) ? 'active' : '';
+    }
 
     // If both page and directory are specified, check both
     if ($page && $dir) {
@@ -437,7 +444,7 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-text">Audit Log</span>
             </a>
 
-            <a href="<?php echo BASE_URL; ?>/admin/help/" class="sidebar-link <?php echo isActive('', 'help'); ?>">
+            <a href="<?php echo BASE_URL; ?>/admin/help/" class="sidebar-link <?php echo isActive('', 'help', 'admin'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-life-ring"></i>
                 </div>
@@ -762,7 +769,12 @@ $pendingReceiptsCount = 0;
             <span class="sidebar-category-text">SUPPORT</span>
         </div>
 
-        <a href="<?php echo BASE_URL; ?>/help/" class="sidebar-link <?php echo isActive('', 'help'); ?>">
+        <?php
+        // Check if we're in help directory but NOT in admin/help
+        $currentPath = dirname($_SERVER['PHP_SELF']);
+        $isHelpActive = ($currentDir === 'help' && strpos($currentPath, '/admin/help') === false) ? 'active' : '';
+        ?>
+        <a href="<?php echo BASE_URL; ?>/help/" class="sidebar-link <?php echo $isHelpActive; ?>">
             <div class="sidebar-icon">
                 <i class="fas fa-question-circle"></i>
             </div>

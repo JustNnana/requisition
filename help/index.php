@@ -214,7 +214,7 @@ $pageTitle = 'Help & Support';
                         </div>
                         <?php if (strlen($item['description']) > $maxLength): ?>
                             <div class="help-item-footer-right">
-                                <a href="view.php?id=<?php echo $item['id']; ?>" class="btn btn-sm btn-primary">
+                                <a href="view.php?id=<?php echo UrlEncryption::encryptId($item['id']); ?>" class="btn btn-sm btn-primary">
                                     <i class="fas fa-book-open"></i>
                                     Read More
                                 </a>
@@ -248,9 +248,8 @@ $pageTitle = 'Help & Support';
     }
 
     .help-items-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-        gap: var(--spacing-5);
+        column-count: 3;
+        column-gap: var(--spacing-4);
     }
 
     .help-item-card {
@@ -261,6 +260,8 @@ $pageTitle = 'Help & Support';
         transition: var(--transition-normal);
         display: flex;
         flex-direction: column;
+        break-inside: avoid;
+        margin-bottom: var(--spacing-4);
     }
 
     .help-item-card:hover {
@@ -383,13 +384,19 @@ $pageTitle = 'Help & Support';
         margin-bottom: var(--spacing-4);
     }
 
+    @media (max-width: 1200px) {
+        .help-items-grid {
+            column-count: 2;
+        }
+    }
+
     @media (max-width: 768px) {
         .filter-grid {
             grid-template-columns: 1fr;
         }
 
         .help-items-grid {
-            grid-template-columns: 1fr;
+            column-count: 1;
         }
     }
 </style>
