@@ -664,7 +664,41 @@ $pageTitle = 'Upload Receipt - ' . $req['requisition_number'];
                 <?php endif; ?>
             </div>
         </div>
-        
+
+        <!-- Account Details Card -->
+        <?php if ($req['account_name'] || $req['account_number'] || $req['bank_name']): ?>
+        <div class="card">
+            <div class="card-header" style="background: linear-gradient(135deg, var(--warning), #f59e0b); border-bottom-color: transparent;">
+                <h5 class="card-title" style="color: white;">
+                    <i class="fas fa-university"></i>
+                    <span>Payment Received To</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <?php if ($req['account_name']): ?>
+                    <div class="info-group">
+                        <label>Account Name</label>
+                        <p><strong><?php echo htmlspecialchars($req['account_name']); ?></strong></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($req['account_number']): ?>
+                    <div class="info-group">
+                        <label>Account Number</label>
+                        <p><strong><?php echo htmlspecialchars($req['account_number']); ?></strong></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($req['bank_name']): ?>
+                    <div class="info-group">
+                        <label>Bank Name</label>
+                        <p><?php echo htmlspecialchars($req['bank_name']); ?></p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
         <!-- Items Card -->
         <div class="card">
             <div class="card-header">
