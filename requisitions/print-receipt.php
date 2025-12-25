@@ -346,6 +346,14 @@ $pageTitle = 'Receipt - ' . $req['requisition_number'];
         justify-content: center;
     }
 
+    /* Table wrapper for horizontal scroll on mobile */
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: var(--spacing-6);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
         .receipt-info,
@@ -356,6 +364,89 @@ $pageTitle = 'Receipt - ' . $req['requisition_number'];
 
         .receipt-container {
             padding: var(--spacing-5);
+        }
+
+        /* Make table scrollable horizontally on mobile */
+        .items-table {
+            min-width: 600px;
+            margin-bottom: 0;
+        }
+
+        .items-table th,
+        .items-table td {
+            padding: var(--spacing-2);
+            font-size: var(--font-size-xs);
+        }
+
+        .items-table th {
+            white-space: nowrap;
+        }
+
+        /* Adjust info sections for better mobile display */
+        .info-section {
+            padding: var(--spacing-3);
+        }
+
+        .info-label {
+            font-size: 10px;
+        }
+
+        .info-value {
+            font-size: var(--font-size-xs);
+        }
+
+        .info-value.large {
+            font-size: var(--font-size-base);
+        }
+
+        /* Adjust account details grid */
+        .account-details {
+            padding: var(--spacing-4);
+        }
+
+        .account-details h3 {
+            font-size: var(--font-size-base);
+        }
+
+        /* Adjust signatures for mobile */
+        .signature-name {
+            font-size: var(--font-size-sm);
+        }
+
+        .signature-title {
+            font-size: var(--font-size-xs);
+        }
+
+        /* Adjust header for mobile */
+        .company-logo {
+            max-width: 120px;
+        }
+
+        .receipt-title {
+            font-size: var(--font-size-lg);
+        }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 480px) {
+        .receipt-container {
+            padding: var(--spacing-3);
+        }
+
+        .company-logo {
+            max-width: 100px;
+        }
+
+        .receipt-title {
+            font-size: var(--font-size-base);
+        }
+
+        .print-actions {
+            flex-direction: column;
+        }
+
+        .print-actions .btn {
+            width: 100%;
         }
     }
 </style>
@@ -483,36 +574,38 @@ $pageTitle = 'Receipt - ' . $req['requisition_number'];
     <?php endif; ?>
 
     <!-- Items Table -->
-    <table class="items-table">
-        <thead>
-            <tr>
-                <th style="width: 10%;">#</th>
-                <th style="width: 45%;">Description</th>
-                <th class="text-center" style="width: 15%;">Quantity</th>
-                <th class="text-right" style="width: 15%;">Unit Price</th>
-                <th class="text-right" style="width: 15%;">Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($items as $index => $item): ?>
-            <tr>
-                <td><?php echo $index + 1; ?></td>
-                <td><?php echo htmlspecialchars($item['item_description']); ?></td>
-                <td class="text-center"><?php echo $item['quantity']; ?></td>
-                <td class="text-right">₦<?php echo number_format((float)$item['unit_price'], 2); ?></td>
-                <td class="text-right">₦<?php echo number_format((float)$item['subtotal'], 2); ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4" class="text-right">TOTAL AMOUNT PAID:</td>
-                <td class="text-right">
-                    <span class="total-amount">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="table-wrapper">
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">#</th>
+                    <th style="width: 45%;">Description</th>
+                    <th class="text-center" style="width: 15%;">Quantity</th>
+                    <th class="text-right" style="width: 15%;">Unit Price</th>
+                    <th class="text-right" style="width: 15%;">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($items as $index => $item): ?>
+                <tr>
+                    <td><?php echo $index + 1; ?></td>
+                    <td><?php echo htmlspecialchars($item['item_description']); ?></td>
+                    <td class="text-center"><?php echo $item['quantity']; ?></td>
+                    <td class="text-right">₦<?php echo number_format((float)$item['unit_price'], 2); ?></td>
+                    <td class="text-right">₦<?php echo number_format((float)$item['subtotal'], 2); ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-right">TOTAL AMOUNT PAID:</td>
+                    <td class="text-right">
+                        <span class="total-amount">₦<?php echo number_format((float)$req['total_amount'], 2); ?></span>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 
     <!-- Signatures -->
     <div class="signatures">
