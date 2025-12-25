@@ -437,6 +437,13 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-text">Audit Log</span>
             </a>
 
+            <a href="<?php echo BASE_URL; ?>/admin/help/" class="sidebar-link <?php echo isActive('', 'help'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-life-ring"></i>
+                </div>
+                <span class="sidebar-text">Manage Help Content</span>
+            </a>
+
         <?php elseif ($userRoleId == ROLE_MANAGING_DIRECTOR): ?>
             <!-- Managing Director Menu -->
             <div class="sidebar-category">
@@ -750,12 +757,17 @@ $pendingReceiptsCount = 0;
             </a>
         <?php endif; ?>
 
-        <!--<a href="<?php echo BASE_URL; ?>#" class="sidebar-link <?php echo isActive('index.php', 'help'); ?>">-->
-        <!--    <div class="sidebar-icon">-->
-        <!--        <i class="fas fa-question-circle"></i>-->
-        <!--    </div>-->
-        <!--    <span class="sidebar-text">Help & Support</span>-->
-        <!--</a>-->
+        <!-- Help & Support (available to all users) -->
+        <div class="sidebar-category">
+            <span class="sidebar-category-text">SUPPORT</span>
+        </div>
+
+        <a href="<?php echo BASE_URL; ?>/help/" class="sidebar-link <?php echo isActive('', 'help'); ?>">
+            <div class="sidebar-icon">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <span class="sidebar-text">Help & Support</span>
+        </a>
     </div>
 
     <!-- Sidebar Footer -->

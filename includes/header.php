@@ -623,6 +623,11 @@ if ($hour < 12) {
                 </button>
             </div>
 
+            <!-- Help & Support -->
+            <a href="<?php echo BASE_URL; ?>/help/index.php" class="nav-btn" title="Help & Support">
+                <i class="fas fa-question-circle"></i>
+            </a>
+
             <!-- Theme toggle -->
             <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">
                 <i class="fas fa-moon"></i>
@@ -649,6 +654,11 @@ if ($hour < 12) {
         <div style="display: flex; align-items: center;">
             <!-- Mobile action buttons -->
             <div class="d-lg-none" style="display: flex; align-items: center;">
+                <!-- Help & Support (mobile) -->
+                <a href="<?php echo BASE_URL; ?>/help/index.php" class="nav-btn me-2" title="Help & Support">
+                    <i class="fas fa-question-circle"></i>
+                </a>
+
                 <!-- Theme toggle (mobile) -->
                 <button class="theme-toggle me-2" type="button" data-theme-toggle aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
