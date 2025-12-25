@@ -44,7 +44,7 @@ class TwoFactorAuth
      * @param string $issuer Application name
      * @return string QR code data URI or otpauth URL as fallback
      */
-    public function getQRCodeUrl($secret, $email, $issuer = 'GateWey Requisition')
+    public function getQRCodeUrl($secret, $email, $issuer = 'Kadick Finance')
     {
         // otpauth URL format for TOTP
         $otpauthUrl = "otpauth://totp/{$issuer}:{$email}?secret={$secret}&issuer={$issuer}";

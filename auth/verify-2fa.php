@@ -68,8 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Clear temp session
             unset($_SESSION['temp_user_id']);
 
-            // Update last login
-            $db->execute("UPDATE users SET last_login = NOW() WHERE id = ?", [$user['id']]);
+            // Update last login (using direct execution to avoid prepared statement cache issues)
+            $conn = $db->getConnection();
+            $escapedUserId = (int)$user['id'];
+            $conn->exec("UPDATE users SET last_login = NOW() WHERE id = {$escapedUserId}");
 
             // Log login
             if (ENABLE_AUDIT_LOG) {

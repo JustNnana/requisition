@@ -434,12 +434,14 @@ class User {
     
     /**
      * Update user's last login timestamp
-     * 
+     *
      * @param int $userId User ID
      */
     public function updateLastLogin($userId) {
-        $sql = "UPDATE users SET last_login = NOW() WHERE id = ?";
-        $this->db->execute($sql, [$userId]);
+        // Use direct execution to avoid prepared statement cache issues
+        $conn = $this->db->getConnection();
+        $escapedUserId = (int)$userId;
+        $conn->exec("UPDATE users SET last_login = NOW() WHERE id = {$escapedUserId}");
     }
     
     /**
