@@ -1559,6 +1559,12 @@ if (!empty($reqData['category_id'])) {
                             <span>Edit Requisition</span>
                         </a>
                     <?php endif; ?>
+                    <?php if ($reqData['status'] === STATUS_COMPLETED): ?>
+                        <a href="<?php echo build_encrypted_url('print-receipt.php', $reqData['id']); ?>" class="quick-action-btn" target="_blank">
+                            <i class="fas fa-print"></i>
+                            <span>Print Receipt</span>
+                        </a>
+                    <?php endif; ?>
                     <a href="create.php" class="quick-action-btn">
                         <i class="fas fa-plus"></i>
                         <span>Create New</span>
