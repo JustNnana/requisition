@@ -48,9 +48,12 @@ if (!$user) {
     exit;
 }
 
-// Prevent resetting own 2FA
-if ($userId == Session::getUserId()) {
-    Session::setFlash('error', 'You cannot reset your own 2FA. Please use account settings.');
+// Check if user is trying to reset their own 2FA
+$isSelfReset = ($userId == Session::getUserId());
+
+// Only super admin (role_id = 1) can reset their own 2FA
+if ($isSelfReset && Session::getUserRoleId() != 1) {
+    Session::setFlash('error', 'You cannot reset your own 2FA. Please contact a super administrator.');
     header('Location: list.php');
     exit;
 }
@@ -65,9 +68,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Reset 2FA
         if ($twofa->disable2FA($userId, Session::getUserId())) {
-            Session::setFlash('success', "Two-factor authentication has been reset for {$user['first_name']} {$user['last_name']}. They will be required to set it up again on next login.");
-            header('Location: list.php');
-            exit;
+            if ($isSelfReset) {
+                // Super admin is resetting their own 2FA - log them out for security
+                Session::setFlash('success', 'Your 2FA has been reset. Please log in again and set up 2FA.');
+                Session::destroy();
+                header('Location: ' . BASE_URL . '/auth/login.php');
+                exit;
+            } else {
+                // Admin is resetting another user's 2FA
+                Session::setFlash('success', "Two-factor authentication has been reset for {$user['first_name']} {$user['last_name']}. They will be required to set it up again on next login.");
+                header('Location: list.php');
+                exit;
+            }
         } else {
             $error = 'Failed to reset two-factor authentication. Please try again.';
         }
@@ -355,6 +367,23 @@ $pageTitle = 'Reset Two-Factor Authentication';
         </div>
 
         <?php if ($twofaStatus['enabled']): ?>
+            <?php if ($isSelfReset): ?>
+                <!-- Self-Reset Warning (Super Admin Only) -->
+                <div class="warning-box" style="background: var(--bg-danger); border-left-color: var(--danger);">
+                    <h4 style="color: var(--danger);">
+                        <i class="fas fa-exclamation-circle"></i>
+                        ⚠️ Emergency Self-Reset Warning
+                    </h4>
+                    <ul>
+                        <li><strong>You are about to reset YOUR OWN 2FA!</strong></li>
+                        <li>You will be logged out immediately after reset</li>
+                        <li>You must set up 2FA again before you can access the system</li>
+                        <li>Only use this if you have lost access to your authenticator app</li>
+                        <li>Consider using the SQL emergency reset method if you're not currently logged in</li>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <!-- Warning Box -->
             <div class="warning-box">
                 <h4>
@@ -362,9 +391,9 @@ $pageTitle = 'Reset Two-Factor Authentication';
                     Important Information
                 </h4>
                 <ul>
-                    <li>This action will immediately disable two-factor authentication for this user</li>
-                    <li>The user will be required to set up 2FA again on their next login</li>
-                    <li>Their existing authenticator app configuration will no longer work</li>
+                    <li>This action will immediately disable two-factor authentication for this <?php echo $isSelfReset ? 'account' : 'user'; ?></li>
+                    <li><?php echo $isSelfReset ? 'You' : 'The user'; ?> will be required to set up 2FA again on <?php echo $isSelfReset ? 'your' : 'their'; ?> next login</li>
+                    <li><?php echo $isSelfReset ? 'Your' : 'Their'; ?> existing authenticator app configuration will no longer work</li>
                     <li>This action will be logged in the audit trail</li>
                 </ul>
             </div>
