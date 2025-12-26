@@ -659,14 +659,8 @@ $pageTitle = 'My Requisitions';
                     <option value="<?php echo STATUS_DRAFT; ?>" <?php echo $filters['status'] == STATUS_DRAFT ? 'selected' : ''; ?>>
                         Draft
                     </option>
-                    <option value="<?php echo STATUS_PENDING_LINE_MANAGER; ?>" <?php echo $filters['status'] == STATUS_PENDING_LINE_MANAGER ? 'selected' : ''; ?>>
-                        Pending Line Manager
-                    </option>
-                    <option value="<?php echo STATUS_PENDING_MD; ?>" <?php echo $filters['status'] == STATUS_PENDING_MD ? 'selected' : ''; ?>>
-                        Pending MD
-                    </option>
-                    <option value="<?php echo STATUS_PENDING_FINANCE_MANAGER; ?>" <?php echo $filters['status'] == STATUS_PENDING_FINANCE_MANAGER ? 'selected' : ''; ?>>
-                        Pending Finance Manager
+                    <option value="pending" <?php echo $filters['status'] == 'pending' ? 'selected' : ''; ?>>
+                        Pending
                     </option>
                     <option value="<?php echo STATUS_APPROVED_FOR_PAYMENT; ?>" <?php echo $filters['status'] == STATUS_APPROVED_FOR_PAYMENT ? 'selected' : ''; ?>>
                         Approved for Payment

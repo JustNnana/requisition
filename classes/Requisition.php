@@ -320,8 +320,16 @@ $params = [
 
             // Status filter
             if (!empty($filters['status'])) {
-                $whereClauses[] = "r.status = ?";
-                $params[] = $filters['status'];
+                // Handle "pending" as a group of all pending statuses
+                if ($filters['status'] === 'pending') {
+                    $whereClauses[] = "r.status IN (?, ?, ?)";
+                    $params[] = STATUS_PENDING_LINE_MANAGER;
+                    $params[] = STATUS_PENDING_MD;
+                    $params[] = STATUS_PENDING_FINANCE_MANAGER;
+                } else {
+                    $whereClauses[] = "r.status = ?";
+                    $params[] = $filters['status'];
+                }
             }
 
             // Date filter
