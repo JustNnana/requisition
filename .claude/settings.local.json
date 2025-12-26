@@ -9,7 +9,8 @@
       "Bash(find:*)",
       "Bash(composer require:*)",
       "Bash(ls:*)",
-      "Bash(php:*)"
+      "Bash(php:*)",
+      "Bash(git restore:*)"
     ]
   }
 }

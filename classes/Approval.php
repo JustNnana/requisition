@@ -97,40 +97,26 @@ class Approval {
 $shouldCheckBudget = false;
 $budgetAllocationReason = '';
 
+// ============================================
+// FLEXIBLE BUDGET ALLOCATION LOGIC
+// Uses can_approve permission instead of hardcoded role IDs
+// Budget is allocated when ANY role with can_approve=1 approves a requisition
+// ============================================
+
+// Get approver's role permissions
+$approverRole = $this->db->fetchOne(
+    "SELECT role_name, can_approve FROM roles WHERE id = ?",
+    [$approver['role_id']]
+);
+
 // Check if this approval should trigger budget allocation
-if ((int)$approver['role_id'] === ROLE_LINE_MANAGER && !empty($requisition['category_id'])) {
-    // Line Manager approving (Team Member's requisition)
+// Budget is allocated if:
+// 1. Approver has approval permission (can_approve = 1)
+// 2. Requisition has a category (budget tracking)
+if (!empty($requisition['category_id']) && $approverRole && $approverRole['can_approve']) {
     $shouldCheckBudget = true;
-    $budgetAllocationReason = 'Allocated by Line Manager approval - ' . $approver['first_name'] . ' ' . $approver['last_name'];
-    error_log("=== BUDGET CHECK: Line Manager approving Team Member requisition ===");
-    
-} elseif ((int)$approver['role_id'] === ROLE_MANAGING_DIRECTOR && !empty($requisition['category_id'])) {
-    // MD approving - check if this is a Line Manager's requisition
-    $requester = $this->db->fetchOne(
-        "SELECT role_id FROM users WHERE id = ?",
-        [$requisition['user_id']]
-    );
-    
-    if ($requester && (int)$requester['role_id'] === ROLE_LINE_MANAGER) {
-        // MD is approving a Line Manager's requisition
-        $shouldCheckBudget = true;
-        $budgetAllocationReason = 'Allocated by Managing Director approval - ' . $approver['first_name'] . ' ' . $approver['last_name'];
-        error_log("=== BUDGET CHECK: MD approving Line Manager requisition ===");
-    }
-    
-} elseif ((int)$approver['role_id'] === ROLE_FINANCE_MANAGER && !empty($requisition['category_id'])) {
-    // Finance Manager approving - check if this is an MD's requisition
-    $requester = $this->db->fetchOne(
-        "SELECT role_id FROM users WHERE id = ?",
-        [$requisition['user_id']]
-    );
-    
-    if ($requester && (int)$requester['role_id'] === ROLE_MANAGING_DIRECTOR) {
-        // Finance Manager is approving an MD's requisition
-        $shouldCheckBudget = true;
-        $budgetAllocationReason = 'Allocated by Finance Manager approval - ' . $approver['first_name'] . ' ' . $approver['last_name'];
-        error_log("=== BUDGET CHECK: Finance Manager approving MD requisition ===");
-    }
+    $budgetAllocationReason = 'Allocated by ' . $approverRole['role_name'] . ' approval - ' . $approver['first_name'] . ' ' . $approver['last_name'];
+    error_log("=== BUDGET CHECK: " . $approverRole['role_name'] . " approving requisition ===");
 }
 
 if ($shouldCheckBudget) {
