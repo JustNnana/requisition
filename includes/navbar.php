@@ -400,6 +400,13 @@ $pendingReceiptsCount = 0;
                 <span class="sidebar-text">User Management</span>
             </a>
 
+            <a href="<?php echo BASE_URL; ?>/admin/roles/list" class="sidebar-link <?php echo isActive('', 'roles'); ?>">
+                <div class="sidebar-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <span class="sidebar-text">Role Management</span>
+            </a>
+
             <a href="<?php echo BASE_URL; ?>/admin/departments/list" class="sidebar-link <?php echo isActive('', 'departments'); ?>">
                 <div class="sidebar-icon">
                     <i class="fas fa-building"></i>

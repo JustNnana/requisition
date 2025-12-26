@@ -8,7 +8,8 @@
       "Bash(php -r:*)",
       "Bash(find:*)",
       "Bash(composer require:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(php:*)"
     ]
   }
 }

@@ -48,8 +48,8 @@ if (!$userData) {
     exit;
 }
 
-// Get all roles and departments for dropdowns
-$roles = $db->fetchAll("SELECT * FROM roles ORDER BY id");
+// Get all active roles and departments for dropdowns
+$roles = $db->fetchAll("SELECT * FROM roles WHERE is_active = 1 ORDER BY id");
 $departments = $department->getAll(true);
 
 // Initialize variables

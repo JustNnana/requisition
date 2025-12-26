@@ -88,8 +88,8 @@ $params[] = $offset;
 
 $users = $db->fetchAll($sql, $params);
 
-// Get all roles for filter dropdown
-$roles = $db->fetchAll("SELECT * FROM roles ORDER BY id");
+// Get all roles (including inactive) for filter dropdown
+$roles = $db->fetchAll("SELECT * FROM roles ORDER BY is_active DESC, id");
 
 // Get all departments for filter dropdown
 $departments = $department->getAll(true);
