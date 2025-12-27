@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 24, 2025 at 11:17 AM
+-- Generation Time: Dec 27, 2025 at 09:11 AM
 -- Server version: 8.0.43-cll-lve
 -- PHP Version: 8.4.16
 
@@ -212,7 +212,86 @@ INSERT INTO `audit_log` (`id`, `requisition_id`, `user_id`, `action`, `descripti
 (165, 15, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:04:41'),
 (166, 15, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=15, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 10:04:41'),
 (167, 16, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:09:24'),
-(168, 16, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=16, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 10:09:24');
+(168, 16, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=16, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 10:09:24'),
+(169, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:29:00'),
+(170, 16, 2, 'requisition_approved', 'Requisition approved by John Okonkwo', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:30:20'),
+(171, 16, 2, 'email_sent', 'Email notification sent: Type=requisition_approved, Requisition=16, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 10:30:20'),
+(172, NULL, 2, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:30:36'),
+(173, NULL, 3, 'user_login', 'User logged in successfully', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:30:51'),
+(174, 16, 3, 'requisition_approved', 'Requisition approved by Amina Yusuf', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:31:04'),
+(175, 16, 3, 'email_sent', 'Email notification sent: Type=requisition_approved, Requisition=16, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-24 10:31:04'),
+(176, NULL, 3, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 10:32:28'),
+(177, NULL, 13, 'twofa_enabled', 'Two-factor authentication enabled', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:45:51'),
+(178, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:45:51'),
+(179, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:46:18'),
+(180, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:46:41'),
+(181, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:47:02'),
+(182, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:50:28'),
+(183, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:50:46'),
+(184, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:51:26'),
+(185, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:51:45'),
+(186, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:51:55'),
+(187, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:52:15'),
+(188, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:52:33'),
+(189, NULL, 1, 'twofa_enabled', 'Two-factor authentication enabled', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:53:38'),
+(190, NULL, 1, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:53:38'),
+(191, NULL, 13, 'twofa_disabled', 'Two-factor authentication reset by admin (ID: 1)', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:54:23'),
+(192, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:54:39'),
+(193, NULL, 13, 'twofa_enabled', 'Two-factor authentication enabled', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:55:19'),
+(194, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:55:19'),
+(195, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 06:59:01'),
+(196, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:01:37'),
+(197, NULL, 13, 'user_login', 'User logged in successfully', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:01:58'),
+(198, NULL, 13, 'user_login', 'User logged in successfully', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:02:23'),
+(199, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:02:31'),
+(200, NULL, 1, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:02:56'),
+(201, NULL, 13, 'twofa_disabled', 'Two-factor authentication reset by admin (ID: 1)', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:03:15'),
+(202, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:03:20'),
+(203, NULL, 13, 'twofa_enabled', 'Two-factor authentication enabled', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:03:57'),
+(204, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:03:57'),
+(205, 17, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:11:26'),
+(206, 17, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=17, Sent=0, Failed=2', NULL, NULL, '102.209.31.145', NULL, '2025-12-25 07:11:28'),
+(207, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:19:26'),
+(208, NULL, 1, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:20:10'),
+(209, NULL, 1, 'twofa_disabled', 'Two-factor authentication reset by admin (ID: 1)', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:26:42'),
+(210, NULL, 1, 'twofa_enabled', 'Two-factor authentication enabled', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:27:20'),
+(211, NULL, 1, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:27:20'),
+(212, NULL, 1, 'email_test', 'Email configuration test sent to madumerepeter.u@gmail.com', NULL, NULL, '102.209.31.145', NULL, '2025-12-25 07:29:50'),
+(213, NULL, 1, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:31:18'),
+(214, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:31:50'),
+(215, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:32:07'),
+(216, 18, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:32:48'),
+(217, 18, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=18, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-25 07:32:49'),
+(218, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 07:33:55'),
+(219, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2025-12-25 12:36:20');
+INSERT INTO `audit_log` (`id`, `requisition_id`, `user_id`, `action`, `description`, `old_value`, `new_value`, `ip_address`, `user_agent`, `created_at`) VALUES
+(220, NULL, 1, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 12:54:05'),
+(221, NULL, 1, 'help_updated', 'Updated help item ID: 1', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 12:55:27'),
+(222, NULL, 1, 'help_created', 'Created help item: this is a test', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 12:58:52'),
+(223, NULL, 1, 'help_deleted', 'Deleted help item: this is a test', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 12:59:23'),
+(224, NULL, 1, 'help_updated', 'Updated help item ID: 1', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 13:03:21'),
+(225, NULL, 1, 'help_updated', 'Updated help item ID: 1', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 13:04:53'),
+(226, NULL, 1, 'help_updated', 'Updated help item ID: 1', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 13:35:59'),
+(227, NULL, 1, 'help_created', 'Created help item: this is a test', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 13:39:03'),
+(228, NULL, 1, 'help_created', 'Created help item: testing too again', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 13:39:48'),
+(229, NULL, 1, 'help_created', 'Created help item: ssfgss', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 13:40:15'),
+(230, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 17:48:42'),
+(231, 19, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 18:04:26'),
+(232, 19, 13, 'attachment_uploaded', 'File uploaded: Screenshot 2025-10-13 154255.png', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 18:04:29'),
+(233, 19, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=19, Sent=2, Failed=0', NULL, NULL, '102.209.31.145', NULL, '2025-12-25 18:04:30'),
+(234, 19, 13, 'document_viewed', 'Document viewed: Screenshot 2025-10-13 154255.png', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 18:04:52'),
+(235, 10, 13, 'document_viewed', 'Document viewed: Annotation 2025-04-17 114648.png', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 18:09:38'),
+(236, 10, 13, 'receipt_uploaded', 'File uploaded: Screenshot 2025-10-13 142230.png', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 18:10:17'),
+(237, 10, 13, 'receipt_uploaded', 'Receipt uploaded by requester', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 18:10:17'),
+(238, NULL, 13, 'user_logout', 'User logged out', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 18:57:07'),
+(239, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 19:14:21'),
+(240, 20, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-25 19:15:04'),
+(241, 20, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=20, Sent=0, Failed=2', NULL, NULL, '102.209.31.145', NULL, '2025-12-25 19:15:06'),
+(242, NULL, 1, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-26 13:57:34'),
+(243, NULL, 18, 'user_created', 'User account created: anthony@gmail.com', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-26 14:24:31'),
+(244, NULL, 13, 'user_login', 'User logged in successfully with 2FA', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-26 17:23:42'),
+(245, 21, 13, 'requisition_submitted', 'Requisition submitted for approval', NULL, NULL, '102.209.31.145', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-26 17:24:20'),
+(246, 21, 13, 'email_sent', 'Email notification sent: Type=requisition_submitted, Requisition=21, Sent=0, Failed=2', NULL, NULL, '102.209.31.145', NULL, '2025-12-26 17:24:23');
 
 -- --------------------------------------------------------
 
@@ -312,6 +391,39 @@ INSERT INTO `department_budgets` (`id`, `department_id`, `budget_amount`, `origi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `help_support`
+--
+
+CREATE TABLE `help_support` (
+  `id` int UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Title of the help article/tip',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Detailed description or writeup',
+  `type` enum('tip','video','article') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'tip' COMMENT 'Type of help content',
+  `video_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'YouTube or video URL (for iframe embed)',
+  `category` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Category for filtering (e.g., Requisitions, Approvals, Payments)',
+  `icon` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT 'fa-info-circle' COMMENT 'FontAwesome icon class',
+  `display_order` int NOT NULL DEFAULT '0' COMMENT 'Order for displaying items',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Whether this help item is active',
+  `created_by` int UNSIGNED NOT NULL COMMENT 'User ID who created this (usually super admin)',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Help and support articles, tips, and video tutorials';
+
+--
+-- Dumping data for table `help_support`
+--
+
+INSERT INTO `help_support` (`id`, `title`, `description`, `type`, `video_url`, `category`, `icon`, `display_order`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'How to Create a Requisition', 'Learn how to create a new requisition in the system. Fill in all required fields including purpose, description, category, and line items. Make sure to attach any supporting documents before submitting.', 'video', 'https://www.youtube.com/watch?v=-lp2Kt6RJkQ', 'Requisitions', 'fa-file-alt', 1, 1, 1, '2025-12-25 12:43:02', '2025-12-25 13:35:59'),
+(2, 'Understanding Approval Workflow', 'Requisitions go through multiple approval levels based on the amount and department. Track your requisition status in real-time and receive notifications when action is required.', 'tip', NULL, 'Approvals', 'fa-check-circle', 2, 1, 1, '2025-12-25 12:43:02', '2025-12-25 12:43:02'),
+(3, 'How to Track Your Requisition', 'View all your requisitions in the dashboard. Use filters to find specific requisitions by status, date range, or category. Click on any requisition to see detailed information and approval history.', 'article', NULL, 'Requisitions', 'fa-search', 3, 1, 1, '2025-12-25 12:43:02', '2025-12-25 12:43:02'),
+(5, 'this is a test', '3dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', 'tip', '', 'Payments', 'fa-info-circle', 0, 1, 1, '2025-12-25 13:39:03', '2025-12-25 13:39:03'),
+(6, 'testing too again', 'sfffffffsssssssssssss', 'video', 'https://www.youtube.com/watch?v=-lp2Kt6RJkQ', 'Settings', 'fa-info-circle', 0, 1, 1, '2025-12-25 13:39:48', '2025-12-25 13:39:48'),
+(7, 'ssfgss', 'sdsdsdsd', 'tip', '', 'Reports', 'fa-info-circle', 0, 1, 1, '2025-12-25 13:40:15', '2025-12-25 13:40:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notifications`
 --
 
@@ -335,118 +447,133 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `requisition_id`, `notification_type`, `title`, `message`, `is_read`, `is_email_sent`, `email_sent_at`, `email_error`, `created_at`, `read_at`) VALUES
-(0, 5, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:45:29', NULL),
-(0, 13, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:45:29', NULL),
-(0, 5, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:46:56', NULL),
-(0, 13, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:46:56', NULL),
-(0, 5, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:47:48', NULL),
-(0, 13, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:47:48', NULL),
-(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:52', NULL),
-(0, 2, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:52', NULL),
-(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:58', NULL),
-(0, 2, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:48:58', NULL),
-(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:49:06', NULL),
-(0, 2, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:49:06', NULL),
-(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:01', NULL),
-(0, 3, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:01', NULL),
-(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:08', NULL),
-(0, 3, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:08', NULL),
-(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:16', NULL),
-(0, 3, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:50:16', NULL),
-(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:01', NULL),
-(0, 4, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:01', NULL),
-(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:07', NULL),
-(0, 4, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:07', NULL),
-(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:13', NULL),
-(0, 4, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:13', NULL),
-(0, 13, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
-(0, 3, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
-(0, 17, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
-(0, 16, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:51:54', NULL),
-(0, 13, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
-(0, 3, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
-(0, 17, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
-(0, 16, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:09', NULL),
-(0, 13, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
-(0, 3, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
-(0, 17, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
-(0, 16, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 14:52:21', NULL),
-(0, 11, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:48:22', NULL),
-(0, 10, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:48:23', NULL),
-(0, 11, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:01', NULL),
-(0, 10, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:01', NULL),
-(0, 11, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:45', NULL),
-(0, 10, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:49:45', NULL),
-(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:16', NULL),
-(0, 2, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:16', NULL),
-(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:22', NULL),
-(0, 2, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:22', NULL),
-(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:27', NULL),
-(0, 2, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:27', NULL),
-(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:50', NULL),
-(0, 3, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:50', NULL),
-(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:55', NULL),
-(0, 3, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:50:55', NULL),
-(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:00', NULL),
-(0, 3, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:00', NULL),
-(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:37', NULL),
-(0, 4, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:37', NULL),
-(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:45', NULL),
-(0, 4, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:45', NULL),
-(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:51', NULL),
-(0, 4, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:51:51', NULL),
-(0, 10, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
-(0, 3, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
-(0, 17, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
-(0, 16, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:09', NULL),
-(0, 10, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:23', NULL),
-(0, 3, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:23', NULL),
-(0, 17, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:24', NULL),
-(0, 16, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:24', NULL),
-(0, 10, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
-(0, 3, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
-(0, 17, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
-(0, 16, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-19 15:52:36', NULL),
-(0, 5, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:19:53', NULL),
-(0, 13, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:19:53', NULL),
-(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:29:22', NULL),
-(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:29:22', NULL),
-(0, 5, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:34:05', NULL),
-(0, 13, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-21 22:34:05', NULL),
-(0, 5, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:11:14', NULL),
-(0, 13, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:11:14', NULL),
-(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:46:13', NULL),
-(0, 2, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-22 10:46:13', NULL),
-(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:29:10', NULL),
-(0, 3, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:29:10', NULL),
-(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:30:38', NULL),
-(0, 4, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:30:38', NULL),
-(0, 13, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:32:57', NULL),
-(0, 2, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:32:57', NULL),
-(0, 5, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:41:03', NULL),
-(0, 13, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:41:03', NULL),
-(0, 13, 8, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00008 has been rejected. Please review and take action.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 09:57:10', NULL),
-(0, 13, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
-(0, 3, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
-(0, 17, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
-(0, 16, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 10:26:27', NULL),
-(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 11:11:19', NULL),
-(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 11:11:19', NULL),
-(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:26:39', NULL),
-(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:26:39', NULL),
-(0, 13, 12, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00012 has been rejected. Please review and take action.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:29:11', NULL),
-(0, 2, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:33:32', NULL),
-(0, 3, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-23 21:33:32', NULL),
-(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 08:57:25', NULL),
-(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 08:57:25', NULL),
-(0, 13, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:06:03', NULL),
-(0, 4, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:06:03', NULL),
-(0, 2, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:57:45', NULL),
-(0, 13, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 09:57:45', NULL),
-(0, 2, 15, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00015 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:04:41', NULL),
-(0, 13, 15, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00015 has been submitted for approval. Amount: ₦10,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:04:41', NULL),
-(0, 2, 16, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00016 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:09:24', NULL),
-(0, 13, 16, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00016 has been submitted for approval. Amount: ₦2,000.00', 0, 1, '2025-12-24 10:09:24', NULL, '2025-12-24 10:09:24', NULL);
+(0, 5, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:45:29', NULL),
+(0, 13, 1, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00001 has been submitted for approval. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:45:29', NULL),
+(0, 5, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:46:56', NULL),
+(0, 13, 2, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00002 has been submitted for approval. Amount: ₦20,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:46:56', NULL),
+(0, 5, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:47:48', NULL),
+(0, 13, 3, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00003 has been submitted for approval. Amount: ₦7,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:47:48', NULL),
+(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:48:52', NULL),
+(0, 2, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:48:52', NULL),
+(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:48:58', NULL),
+(0, 2, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:48:58', NULL),
+(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:49:06', NULL),
+(0, 2, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:49:06', NULL),
+(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:50:01', NULL),
+(0, 3, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:50:01', NULL),
+(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:50:08', NULL),
+(0, 3, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:50:08', NULL),
+(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:50:16', NULL),
+(0, 3, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:50:16', NULL),
+(0, 13, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:01', NULL),
+(0, 4, 3, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00003 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:01', NULL),
+(0, 13, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:07', NULL),
+(0, 4, 2, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00002 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:07', NULL),
+(0, 13, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:13', NULL),
+(0, 4, 1, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00001 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:13', NULL),
+(0, 13, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:54', NULL),
+(0, 3, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:54', NULL),
+(0, 17, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:54', NULL),
+(0, 16, 3, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00003. Amount: ₦7,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:51:54', NULL),
+(0, 13, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:09', NULL),
+(0, 3, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:09', NULL),
+(0, 17, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:09', NULL),
+(0, 16, 2, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00002. Amount: ₦20,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:09', NULL),
+(0, 13, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:21', NULL),
+(0, 3, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:21', NULL),
+(0, 17, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:21', NULL),
+(0, 16, 1, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00001. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 14:52:21', NULL),
+(0, 11, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:48:22', NULL),
+(0, 10, 4, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00004 has been submitted for approval. Amount: ₦4,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:48:23', NULL),
+(0, 11, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:49:01', NULL),
+(0, 10, 5, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00005 has been submitted for approval. Amount: ₦2,300.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:49:01', NULL),
+(0, 11, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:49:45', NULL),
+(0, 10, 6, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00006 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:49:45', NULL),
+(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:16', NULL),
+(0, 2, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:16', NULL),
+(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:22', NULL),
+(0, 2, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:22', NULL),
+(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:27', NULL),
+(0, 2, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:27', NULL),
+(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:50', NULL),
+(0, 3, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:50', NULL),
+(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:55', NULL),
+(0, 3, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:50:55', NULL),
+(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:00', NULL),
+(0, 3, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:00', NULL),
+(0, 10, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:37', NULL),
+(0, 4, 6, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00006 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:37', NULL),
+(0, 10, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:45', NULL),
+(0, 4, 5, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00005 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:45', NULL),
+(0, 10, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:51', NULL),
+(0, 4, 4, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00004 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:51:51', NULL),
+(0, 10, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:09', NULL),
+(0, 3, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:09', NULL),
+(0, 17, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:09', NULL),
+(0, 16, 6, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00006. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:09', NULL),
+(0, 10, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:23', NULL),
+(0, 3, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:23', NULL),
+(0, 17, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:24', NULL),
+(0, 16, 5, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00005. Amount: ₦2,300.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:24', NULL),
+(0, 10, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:36', NULL),
+(0, 3, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:36', NULL),
+(0, 17, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:36', NULL),
+(0, 16, 4, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00004. Amount: ₦4,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-19 15:52:36', NULL),
+(0, 5, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-21 22:19:53', NULL),
+(0, 13, 7, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00007 has been submitted for approval. Amount: ₦1,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-21 22:19:53', NULL),
+(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-21 22:29:22', NULL),
+(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-21 22:29:22', NULL),
+(0, 5, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-21 22:34:05', NULL),
+(0, 13, 9, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00009 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-21 22:34:05', NULL),
+(0, 5, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-22 10:11:14', NULL),
+(0, 13, 10, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00010 has been submitted for approval. Amount: ₦28,800.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-22 10:11:14', NULL),
+(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-22 10:46:13', NULL),
+(0, 2, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-22 10:46:13', NULL),
+(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:29:10', NULL),
+(0, 3, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:29:10', NULL),
+(0, 13, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:30:38', NULL),
+(0, 4, 10, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00010 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:30:38', NULL),
+(0, 13, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:32:57', NULL),
+(0, 2, 8, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00008 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:32:57', NULL),
+(0, 5, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:41:03', NULL),
+(0, 13, 11, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00011 has been submitted for approval. Amount: ₦13,500.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:41:03', NULL),
+(0, 13, 8, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00008 has been rejected. Please review and take action.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 09:57:10', NULL),
+(0, 13, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 10:26:27', NULL),
+(0, 3, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 10:26:27', NULL),
+(0, 17, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 10:26:27', NULL),
+(0, 16, 10, 'requisition_paid', '[GateWey Requisitions] Requisition Payment Processed', 'Payment has been processed for requisition REQ00010. Amount: ₦28,800.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 10:26:27', NULL),
+(0, 5, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 11:11:19', NULL),
+(0, 13, 8, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00008 has been submitted for approval. Amount: ₦13,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 11:11:19', NULL),
+(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 21:26:39', NULL),
+(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 21:26:39', NULL),
+(0, 13, 12, 'requisition_rejected', '[GateWey Requisitions] Requisition Rejected', 'Requisition REQ00012 has been rejected. Please review and take action.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 21:29:11', NULL),
+(0, 2, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 21:33:32', NULL),
+(0, 3, 13, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00013 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-23 21:33:32', NULL),
+(0, 3, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 08:57:25', NULL),
+(0, 13, 12, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00012 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 08:57:25', NULL),
+(0, 13, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 09:06:03', NULL),
+(0, 4, 12, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00012 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 09:06:03', NULL),
+(0, 2, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 09:57:45', NULL),
+(0, 13, 14, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00014 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 09:57:45', NULL),
+(0, 2, 15, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00015 has been submitted for approval. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:04:41', NULL),
+(0, 13, 15, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00015 has been submitted for approval. Amount: ₦10,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:04:41', NULL),
+(0, 2, 16, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00016 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:09:24', NULL),
+(0, 13, 16, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00016 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:09:24', NULL),
+(0, 13, 16, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00016 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:30:20', NULL),
+(0, 3, 16, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00016 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:30:20', NULL),
+(0, 13, 16, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00016 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:31:04', NULL),
+(0, 4, 16, 'requisition_approved', '[GateWey Requisitions] Requisition Approved', 'Requisition REQ00016 has been approved and moved to the next stage.', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-24 10:31:04', NULL),
+(0, 5, 17, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00017 has been submitted for approval. Amount: ₦1,999.01', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 07:11:26', NULL),
+(0, 13, 17, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00017 has been submitted for approval. Amount: ₦1,999.01', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 07:11:27', NULL),
+(0, 5, 18, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00018 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 07:32:48', NULL),
+(0, 13, 18, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00018 has been submitted for approval. Amount: ₦2,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 07:32:49', NULL),
+(0, 3, 19, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00019 has been submitted for approval. Amount: ₦172,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 18:04:29', NULL),
+(0, 13, 19, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00019 has been submitted for approval. Amount: ₦172,000.00', 0, 0, '2025-12-25 18:04:30', 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 18:04:29', NULL);
+INSERT INTO `notifications` (`id`, `user_id`, `requisition_id`, `notification_type`, `title`, `message`, `is_read`, `is_email_sent`, `email_sent_at`, `email_error`, `created_at`, `read_at`) VALUES
+(0, 17, 20, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00020 has been submitted for approval. Amount: ₦2,000.00', 0, 0, NULL, 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 19:15:04', NULL),
+(0, 13, 20, 'requisition_submitted', '[GateWey Requisitions] New Requisition Submitted', 'Requisition REQ00020 has been submitted for approval. Amount: ₦2,000.00', 0, 0, NULL, 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-25 19:15:05', NULL),
+(0, 18, 21, 'requisition_submitted', '[Kadick Finance] New Requisition Submitted', 'Requisition REQ00021 has been submitted for approval. Amount: ₦2,000.00', 0, 0, NULL, 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-26 17:24:20', NULL),
+(0, 13, 21, 'requisition_submitted', '[Kadick Finance] New Requisition Submitted', 'Requisition REQ00021 has been submitted for approval. Amount: ₦2,000.00', 0, 0, NULL, 'Email Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 111 Additional SMTP info: Connection refused', '2025-12-26 17:24:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -529,13 +656,18 @@ INSERT INTO `requisitions` (`id`, `requisition_number`, `user_id`, `department_i
 (7, 'REQ00007', 13, 1, 'Electricity', '', NULL, 1000.00, 20, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:19:53', '2025-12-21 22:19:53', '2025-12-21 22:19:53', NULL, NULL, NULL, NULL),
 (8, 'REQ00008', 13, 1, 'Salaries and Wages', 'this is for wages and what not', NULL, 13000.00, 2, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:29:19', '2025-12-23 11:11:19', '2025-12-23 11:11:19', NULL, NULL, NULL, NULL),
 (9, 'REQ00009', 13, 1, 'Leave Bonus', '', NULL, 2000.00, 3, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-21 22:34:05', '2025-12-21 22:34:05', '2025-12-21 22:34:05', NULL, NULL, NULL, NULL),
-(10, 'REQ00010', 13, 1, 'Drinking Water', '24 Cway for the month', NULL, 28800.00, 17, 'paid', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-23 10:26:27', 'Bank Transfer', 'erteresddfsd', '', 0, NULL, 0, '2025-12-22 10:11:14', '2025-12-23 10:26:27', '2025-12-22 10:11:14', 12, NULL, NULL, NULL),
+(10, 'REQ00010', 13, 1, 'Drinking Water', '24 Cway for the month', NULL, 28800.00, 17, 'completed', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-23 10:26:27', 'Bank Transfer', 'erteresddfsd', '', 0, '2025-12-25 18:10:17', 0, '2025-12-22 10:11:14', '2025-12-25 18:10:17', '2025-12-22 10:11:14', 12, NULL, NULL, ''),
 (11, 'REQ00011', 13, 1, 'Drinking Water', '', NULL, 13500.00, 17, 'pending_line_manager', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 09:41:03', '2025-12-23 09:41:03', '2025-12-23 09:41:03', NULL, NULL, NULL, NULL),
 (12, 'REQ00012', 13, 1, 'Rent Expense', '', NULL, 2000.00, 15, 'approved_for_payment', 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 21:26:39', '2025-12-24 09:06:03', '2025-12-24 08:57:25', NULL, NULL, NULL, NULL),
 (13, 'REQ00013', 3, 3, 'Employee Benefit Pension', '', NULL, 2000.00, 8, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-23 21:33:32', '2025-12-23 21:33:32', '2025-12-23 21:33:32', NULL, NULL, NULL, NULL),
 (14, 'REQ00014', 13, 1, 'Employee Benefit Pension', '', NULL, 2000.00, 8, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 09:57:45', '2025-12-24 09:57:45', '2025-12-24 09:57:45', NULL, NULL, NULL, NULL),
 (15, 'REQ00015', 13, 1, 'Security Costs', 'this is to pay the security guard', NULL, 10000.00, 19, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 10:04:41', '2025-12-24 10:04:41', '2025-12-24 10:04:41', NULL, NULL, NULL, NULL),
-(16, 'REQ00016', 13, 1, 'Rates', 'this is just hourly rates', '{\"account_type\":\"vendor\",\"account_name\":\"Paul\",\"bank_name\":\"Fidelity\",\"account_number\":\"1234567890\"}', 2000.00, 16, 'pending_md', 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 10:09:24', '2025-12-24 10:09:24', '2025-12-24 10:09:24', NULL, NULL, NULL, NULL);
+(16, 'REQ00016', 13, 1, 'Rates', 'this is just hourly rates', '{\"account_type\":\"vendor\",\"account_name\":\"Paul\",\"bank_name\":\"Fidelity\",\"account_number\":\"1234567890\"}', 2000.00, 16, 'approved_for_payment', 4, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-24 10:09:24', '2025-12-24 10:31:04', '2025-12-24 10:09:24', NULL, NULL, NULL, NULL),
+(17, 'REQ00017', 13, 1, 'Electricity', '', '{\"account_type\":\"staff\",\"account_name\":\"Paul\",\"bank_name\":\"Fidelity\",\"account_number\":\"1234567890\"}', 1999.01, 20, 'pending_line_manager', 5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-25 07:11:26', '2025-12-25 07:11:26', '2025-12-25 07:11:26', NULL, NULL, NULL, NULL),
+(18, 'REQ00018', 13, 1, 'Drinking Water', '', '{\"account_type\":\"staff\",\"account_name\":\"Paul\",\"bank_name\":\"Fidelity\",\"account_number\":\"1234567890\"}', 2000.00, 17, 'pending_line_manager', 5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-25 07:32:48', '2025-12-25 07:32:48', '2025-12-25 07:32:48', NULL, NULL, NULL, NULL),
+(19, 'REQ00019', 13, 1, 'Rent Expense', 'Optional', '{\"account_type\":\"staff\",\"account_name\":\"Peter Madumere\",\"bank_name\":\"First Bank\",\"account_number\":\"1234567890\"}', 172000.00, 15, 'pending_finance_manager', 3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-25 18:04:26', '2025-12-25 18:04:26', '2025-12-25 18:04:26', NULL, NULL, NULL, NULL),
+(20, 'REQ00020', 13, 1, 'Employee Benefit Pension', '', '{\"account_type\":\"vendor\",\"account_name\":\"Paul\",\"bank_name\":\"First Bank\",\"account_number\":\"1234567890\"}', 2000.00, 8, 'pending_finance_manager', 17, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-25 19:15:04', '2025-12-25 19:15:04', '2025-12-25 19:15:04', NULL, NULL, NULL, NULL),
+(21, 'REQ00021', 13, 1, 'FACILITIES COSTS', '', '{\"account_type\":\"staff\",\"account_name\":\"Peter Madumere\",\"bank_name\":\"First Bank\",\"account_number\":\"1234567890\"}', 2000.00, NULL, 'pending_md', 18, 18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '2025-12-26 17:24:20', '2025-12-26 17:24:20', '2025-12-26 17:24:20', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -583,7 +715,9 @@ INSERT INTO `requisition_approvals` (`id`, `requisition_id`, `user_id`, `role_at
 (22, 8, 5, 'Line Manager', 'approved', '', NULL, '2025-12-23 09:32:57'),
 (23, 8, 2, 'Managing Director', 'rejected', 'this needs more information', NULL, '2025-12-23 09:57:10'),
 (24, 12, 3, 'Finance Manager', 'rejected', 'this is the new flow rejection', NULL, '2025-12-23 21:29:11'),
-(25, 12, 3, 'Finance Manager', 'approved', '', NULL, '2025-12-24 09:06:03');
+(25, 12, 3, 'Finance Manager', 'approved', '', NULL, '2025-12-24 09:06:03'),
+(26, 16, 2, 'Managing Director', 'approved', '', NULL, '2025-12-24 10:30:20'),
+(27, 16, 3, 'Finance Manager', 'approved', '', NULL, '2025-12-24 10:31:04');
 
 -- --------------------------------------------------------
 
@@ -666,7 +800,9 @@ INSERT INTO `requisition_documents` (`id`, `requisition_id`, `document_type`, `f
 (12, 6, 'receipt', 'Screenshot 2025-10-13 154255.png', '/home2/gateweyc/public_html/request.gatewey.com.ng/uploads/receipts/6945750088cfa_1766159616.png', 7853, 'image/png', 10, '2025-12-19 15:53:36'),
 (13, 5, 'receipt', 'Screenshot 2025-10-13 154255.png', '/home2/gateweyc/public_html/request.gatewey.com.ng/uploads/receipts/69457511d5369_1766159633.png', 7853, 'image/png', 10, '2025-12-19 15:53:53'),
 (14, 8, 'attachment', 'Screenshot 2025-10-13 142230.png', '/home2/gateweyc/public_html/request.gatewey.com.ng/uploads/attachments/694874c24ebfc_1766356162.png', 29842, 'image/png', 13, '2025-12-21 22:29:22'),
-(15, 10, 'invoice', 'Annotation 2025-04-17 114648.png', '/home2/gateweyc/public_html/request.gatewey.com.ng/uploads/invoices/694a6e53ce6b3_1766485587.png', 38917, 'image/png', 12, '2025-12-23 10:26:27');
+(15, 10, 'invoice', 'Annotation 2025-04-17 114648.png', '/home2/gateweyc/public_html/request.gatewey.com.ng/uploads/invoices/694a6e53ce6b3_1766485587.png', 38917, 'image/png', 12, '2025-12-23 10:26:27'),
+(16, 19, 'attachment', 'Screenshot 2025-10-13 154255.png', '/home2/gateweyc/public_html/request.gatewey.com.ng/uploads/attachments/694d7cad5968c_1766685869.png', 7853, 'image/png', 13, '2025-12-25 18:04:29'),
+(17, 10, 'receipt', 'Screenshot 2025-10-13 142230.png', '/home2/gateweyc/public_html/request.gatewey.com.ng/uploads/receipts/694d7e09befa7_1766686217.png', 29842, 'image/png', 13, '2025-12-25 18:10:17');
 
 -- --------------------------------------------------------
 
@@ -710,7 +846,13 @@ INSERT INTO `requisition_items` (`id`, `requisition_id`, `item_description`, `qu
 (21, 12, 'testing flow', 1, 2000.00, 2000.00, '2025-12-24 08:57:25', '2025-12-24 08:57:25'),
 (22, 14, 'testing', 1, 2000.00, 2000.00, '2025-12-24 09:57:45', '2025-12-24 09:57:45'),
 (23, 15, 'alex', 1, 10000.00, 10000.00, '2025-12-24 10:04:41', '2025-12-24 10:04:41'),
-(24, 16, 'Keyboard', 1, 2000.00, 2000.00, '2025-12-24 10:09:24', '2025-12-24 10:09:24');
+(24, 16, 'Keyboard', 1, 2000.00, 2000.00, '2025-12-24 10:09:24', '2025-12-24 10:09:24'),
+(25, 17, 'Keyboard', 1, 1999.01, 1999.01, '2025-12-25 07:11:26', '2025-12-25 07:11:26'),
+(26, 18, 'Keyboard', 1, 2000.00, 2000.00, '2025-12-25 07:32:48', '2025-12-25 07:32:48'),
+(27, 19, 'Expenses for the office', 11, 2000.00, 22000.00, '2025-12-25 18:04:26', '2025-12-25 18:04:26'),
+(28, 19, 'Expenses for the office again', 5, 30000.00, 150000.00, '2025-12-25 18:04:26', '2025-12-25 18:04:26'),
+(29, 20, 'Keyboard', 1, 2000.00, 2000.00, '2025-12-25 19:15:04', '2025-12-25 19:15:04'),
+(30, 21, 'testing 2', 1, 2000.00, 2000.00, '2025-12-26 17:24:20', '2025-12-26 17:24:20');
 
 -- --------------------------------------------------------
 
@@ -726,6 +868,7 @@ CREATE TABLE `roles` (
   `can_raise_requisition` tinyint(1) DEFAULT '1',
   `can_approve` tinyint(1) DEFAULT '0',
   `can_view_all` tinyint(1) DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -734,13 +877,14 @@ CREATE TABLE `roles` (
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `role_name`, `role_code`, `description`, `can_raise_requisition`, `can_approve`, `can_view_all`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'SUPER_ADMIN', 'System administrator with full access to all features. Can manage users, departments, and system settings. Cannot raise requisitions.', 0, 0, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(2, 'Managing Director', 'MD', 'Organization-wide oversight and approval authority. Can approve requisitions from Line Managers and Team Members. Can raise requisitions that go directly to Finance Manager. Can generate organization-wide reports.', 1, 1, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(3, 'Finance Manager', 'FINANCE_MGR', 'Reviews all approved requisitions before payment processing. Can reject requisitions back to previous approvers. Oversees payment processing. Can generate organization-wide reports.', 0, 1, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(4, 'Finance Member', 'FINANCE_MEM', 'Processes requisitions approved by Finance Manager. Uploads invoices and proof of payment. Marks requisitions as paid. Views receipts after payment.', 0, 0, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(5, 'Line Manager', 'LINE_MGR', 'Department manager with approval authority. Approves requisitions from team members. Can raise requisitions that require MD approval. Can generate department reports.', 1, 1, 0, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
-(6, 'Team Member', 'TEAM_MEM', 'Raises requisitions for department needs. Requisitions require Line Manager and MD approval. Can generate personal reports.', 1, 0, 0, '2025-11-24 13:55:52', '2025-11-24 13:55:52');
+INSERT INTO `roles` (`id`, `role_name`, `role_code`, `description`, `can_raise_requisition`, `can_approve`, `can_view_all`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Super Admin', 'SUPER_ADMIN', 'System administrator with full access to all features. Can manage users, departments, and system settings. Cannot raise requisitions.', 0, 0, 1, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
+(2, 'Managing Director', 'MD', 'Organization-wide oversight and approval authority. Can approve requisitions from Line Managers and Team Members. Can raise requisitions that go directly to Finance Manager. Can generate organization-wide reports.', 1, 1, 1, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
+(3, 'Finance Manager', 'FINANCE_MGR', 'Reviews all approved requisitions before payment processing. Can reject requisitions back to previous approvers. Oversees payment processing. Can generate organization-wide reports.', 1, 1, 1, 1, '2025-11-24 13:55:52', '2025-12-26 13:58:57'),
+(4, 'Finance Member', 'FINANCE_MEM', 'Processes requisitions approved by Finance Manager. Uploads invoices and proof of payment. Marks requisitions as paid. Views receipts after payment.', 0, 0, 1, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
+(5, 'Line Manager', 'LINE_MGR', 'Department manager with approval authority. Approves requisitions from team members. Can raise requisitions that require MD approval. Can generate department reports.', 1, 1, 0, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
+(6, 'Team Member', 'TEAM_MEM', 'Raises requisitions for department needs. Requisitions require Line Manager and MD approval. Can generate personal reports.', 1, 0, 0, 1, '2025-11-24 13:55:52', '2025-11-24 13:55:52'),
+(7, 'Project Manager', 'PG', '', 1, 1, 1, 1, '2025-12-26 13:58:37', '2025-12-26 13:58:37');
 
 -- --------------------------------------------------------
 
@@ -760,30 +904,34 @@ CREATE TABLE `users` (
   `is_active` tinyint(1) DEFAULT '1',
   `last_login` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `twofa_secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Secret key for TOTP 2FA',
+  `twofa_enabled` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Whether 2FA is enabled for this user',
+  `twofa_verified_at` timestamp NULL DEFAULT NULL COMMENT 'Timestamp when 2FA was last verified/setup'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `department_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone`, `is_active`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 'System', 'Administrator', 'admin@gatewey.com', '$2y$10$a7G1KN6cEH9ycp5T/lcFGOUbNuA/CIbObIt.bvfMlPylHsAcj73mO', '+234 800 000 0000', 1, '2025-12-21 21:49:55', '2025-11-24 13:55:52', '2025-12-21 21:49:55'),
-(2, 2, 10, 'John', 'Okonkwo', 'md@gatewey.com', '$2y$10$0K90qD7ST5fvx/i/CPVwpu4vLAa5Uh55wwrA5KGJheqB.rF38yFT.', '+234 801 234 5678', 1, '2025-12-23 09:28:50', '2025-11-24 13:55:52', '2025-12-23 09:28:50'),
-(3, 3, 3, 'Amina', 'Yusuf', 'finance.manager@gatewey.com', '$2y$10$5.0MP/wSe1ifUTKnN.FMI.yHftQDlPl6isCdPb28CEuiWyt0eKoaK', '+234 802 345 6789', 1, '2025-12-24 09:05:46', '2025-11-24 13:55:52', '2025-12-24 09:05:46'),
-(4, 4, 3, 'Chidinma', 'Okafor', 'finance.member@gatewey.com', '$2y$10$Pgk6rsEvor7A.cwT5YRw0e/S0.nJSPX8yPS/46SZXrnuOOcl0Sb.u', '+234 803 456 7890', 1, '2025-12-24 09:07:31', '2025-11-24 13:55:52', '2025-12-24 09:07:31'),
-(5, 5, 1, 'Emekaa', 'Nwankwo', 'nnanamadumere@gmail.com', '$2y$10$aSMiTWqUPZ/TVAfUUHQl..lUjofotRg.nmgZzFOze4NHwdq5U0CGa', '+234 804 567 8901', 1, '2025-12-23 21:27:06', '2025-11-24 13:55:52', '2025-12-23 21:27:06'),
-(6, 5, 4, 'Fatimaa', 'Abubakar', 'marketing.manager@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 805 678 9012', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 21:09:01'),
-(7, 6, 1, 'Oluwaseun', 'Adebayo', 'oluwaseun.adebayo@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 806 789 0123', 0, NULL, '2025-11-24 13:55:52', '2025-11-25 13:11:50'),
-(8, 6, 4, 'Blessing2', 'Eze', 'blessing.eze@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 807 890 1234', 0, NULL, '2025-11-24 13:55:53', '2025-11-25 13:05:33'),
-(9, 6, 2, 'Ibrahim', 'Mohammed', 'ibrahim.mohammed@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 808 901 2345', 1, NULL, '2025-11-24 13:55:53', '2025-11-24 13:55:53'),
-(10, 6, 9, 'Peter', 'Madumere', 'nnana@gmail.com', '$2y$10$o2OEslS8q4Wa/xeMKThnjuOVy1oIAfuI/FofROzQOvD5xJEXBFqte', '09069225818', 1, '2025-12-21 22:08:03', '2025-11-25 13:20:44', '2025-12-21 22:08:03'),
-(11, 5, 9, 'Peter', 'Madumere', 'peter@gamil.com', '$2y$10$pqzePl73WbifAxJo0SZLNOPZdJ/HxHuM3p6Tp/HVUQgq7df6Hp8bK', '+2349069225818', 1, '2025-12-19 15:50:04', '2025-12-07 15:38:12', '2025-12-19 15:50:04'),
-(12, 4, 3, 'Mary', 'Madumere', 'mary@gmail.com', '$2y$10$JSpuQ9QMRtTD8sVFX1Jr0OJOYm7fQCgob2JDe0XxIhnsrB2se0NEi', '+234 816 035 3627', 1, '2025-12-23 10:24:19', '2025-12-07 17:01:13', '2025-12-23 10:24:19'),
-(13, 6, 1, 'Paul', 'Madumere', 'madumerepeter.u@gmail.com', '$2y$10$iF3jld.DEdHrNg4Ulz/AwuxgeHkDHVQU/V3PS96tpea6Tpgyzm4pO', '+2349069225818', 1, '2025-12-21 22:02:37', '2025-12-10 13:00:11', '2025-12-21 22:02:37'),
-(15, 5, 1, 'Peter', 'Madumere', 'petermadumere7485@gmail.com', '$2y$10$7W2lj1TzHx9z0JJORZhK6.TCLnMCVe8wWOYelbBg4cuimePKRw88u', '+2349069225818', 1, '2025-12-11 19:54:16', '2025-12-11 19:54:00', '2025-12-11 19:54:16'),
-(16, 3, 3, 'JOSHUA', 'UWAKWE', 'joshua.u@kadickintegrated.com', '$2y$10$O5vwac1a.LBo.GCYFQkwquoUQoHFkAd1v5wxw4Q4mvAW4OJuWOBcm', '08032034293', 1, NULL, '2025-12-12 08:51:34', '2025-12-12 08:51:34'),
-(17, 3, 3, 'EMEKA', 'EMEKA', 'emeka.n@kadickintegrated.com', '$2y$10$4/2s0gabIVFuIMp.qzF3gO8X43zVdUjDm1oGjDwTPzRQvzIieK/Qm', '08032034284', 1, '2025-12-19 11:59:11', '2025-12-12 10:39:16', '2025-12-19 11:59:11');
+INSERT INTO `users` (`id`, `role_id`, `department_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone`, `is_active`, `last_login`, `created_at`, `updated_at`, `twofa_secret`, `twofa_enabled`, `twofa_verified_at`) VALUES
+(1, 1, NULL, 'System', 'Administrator', 'admin@gatewey.com', '$2y$10$a7G1KN6cEH9ycp5T/lcFGOUbNuA/CIbObIt.bvfMlPylHsAcj73mO', '+234 800 000 0000', 1, '2025-12-26 13:57:34', '2025-11-24 13:55:52', '2025-12-26 13:57:34', 'BBYIP7D2WWPUSSQI', 1, '2025-12-25 07:27:20'),
+(2, 2, 10, 'John', 'Okonkwo', 'md@gatewey.com', '$2y$10$0K90qD7ST5fvx/i/CPVwpu4vLAa5Uh55wwrA5KGJheqB.rF38yFT.', '+234 801 234 5678', 1, '2025-12-23 09:28:50', '2025-11-24 13:55:52', '2025-12-23 09:28:50', NULL, 0, NULL),
+(3, 3, 3, 'Amina', 'Yusuf', 'finance.manager@gatewey.com', '$2y$10$5.0MP/wSe1ifUTKnN.FMI.yHftQDlPl6isCdPb28CEuiWyt0eKoaK', '+234 802 345 6789', 1, '2025-12-24 10:30:51', '2025-11-24 13:55:52', '2025-12-24 10:30:51', NULL, 0, NULL),
+(4, 4, 3, 'Chidinma', 'Okafor', 'finance.member@gatewey.com', '$2y$10$Pgk6rsEvor7A.cwT5YRw0e/S0.nJSPX8yPS/46SZXrnuOOcl0Sb.u', '+234 803 456 7890', 1, '2025-12-24 09:07:31', '2025-11-24 13:55:52', '2025-12-24 09:07:31', NULL, 0, NULL),
+(5, 5, 1, 'Emekaa', 'Nwankwo', 'nnanamadumere@gmail.com', '$2y$10$aSMiTWqUPZ/TVAfUUHQl..lUjofotRg.nmgZzFOze4NHwdq5U0CGa', '+234 804 567 8901', 1, '2025-12-23 21:27:06', '2025-11-24 13:55:52', '2025-12-23 21:27:06', NULL, 0, NULL),
+(6, 5, 4, 'Fatimaa', 'Abubakar', 'marketing.manager@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 805 678 9012', 1, NULL, '2025-11-24 13:55:52', '2025-11-24 21:09:01', NULL, 0, NULL),
+(7, 6, 1, 'Oluwaseun', 'Adebayo', 'oluwaseun.adebayo@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 806 789 0123', 0, NULL, '2025-11-24 13:55:52', '2025-11-25 13:11:50', NULL, 0, NULL),
+(8, 6, 4, 'Blessing2', 'Eze', 'blessing.eze@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 807 890 1234', 0, NULL, '2025-11-24 13:55:53', '2025-11-25 13:05:33', NULL, 0, NULL),
+(9, 6, 2, 'Ibrahim', 'Mohammed', 'ibrahim.mohammed@gatewey.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+234 808 901 2345', 1, NULL, '2025-11-24 13:55:53', '2025-11-24 13:55:53', NULL, 0, NULL),
+(10, 6, 9, 'Peter', 'Madumere', 'nnana@gmail.com', '$2y$10$o2OEslS8q4Wa/xeMKThnjuOVy1oIAfuI/FofROzQOvD5xJEXBFqte', '09069225818', 1, '2025-12-21 22:08:03', '2025-11-25 13:20:44', '2025-12-21 22:08:03', NULL, 0, NULL),
+(11, 5, 9, 'Peter', 'Madumere', 'peter@gamil.com', '$2y$10$pqzePl73WbifAxJo0SZLNOPZdJ/HxHuM3p6Tp/HVUQgq7df6Hp8bK', '+2349069225818', 1, '2025-12-19 15:50:04', '2025-12-07 15:38:12', '2025-12-19 15:50:04', NULL, 0, NULL),
+(12, 4, 3, 'Mary', 'Madumere', 'mary@gmail.com', '$2y$10$JSpuQ9QMRtTD8sVFX1Jr0OJOYm7fQCgob2JDe0XxIhnsrB2se0NEi', '+234 816 035 3627', 1, '2025-12-23 10:24:19', '2025-12-07 17:01:13', '2025-12-23 10:24:19', NULL, 0, NULL),
+(13, 6, 1, 'Paul', 'Madumere', 'madumerepeter.u@gmail.com', '$2y$10$iF3jld.DEdHrNg4Ulz/AwuxgeHkDHVQU/V3PS96tpea6Tpgyzm4pO', '+2349069225818', 1, '2025-12-26 17:23:41', '2025-12-10 13:00:11', '2025-12-26 17:23:41', 'YE4UVLDOYUK7HC5X', 1, '2025-12-25 07:03:57'),
+(15, 5, 1, 'Peter', 'Madumere', 'petermadumere7485@gmail.com', '$2y$10$7W2lj1TzHx9z0JJORZhK6.TCLnMCVe8wWOYelbBg4cuimePKRw88u', '+2349069225818', 1, '2025-12-11 19:54:16', '2025-12-11 19:54:00', '2025-12-11 19:54:16', NULL, 0, NULL),
+(16, 3, 3, 'JOSHUA', 'UWAKWE', 'joshua.u@kadickintegrated.com', '$2y$10$O5vwac1a.LBo.GCYFQkwquoUQoHFkAd1v5wxw4Q4mvAW4OJuWOBcm', '08032034293', 1, NULL, '2025-12-12 08:51:34', '2025-12-12 08:51:34', NULL, 0, NULL),
+(17, 3, 3, 'EMEKA', 'EMEKA', 'emeka.n@kadickintegrated.com', '$2y$10$4/2s0gabIVFuIMp.qzF3gO8X43zVdUjDm1oGjDwTPzRQvzIieK/Qm', '08032034284', 1, '2025-12-19 11:59:11', '2025-12-12 10:39:16', '2025-12-19 11:59:11', NULL, 0, NULL),
+(18, 7, 10, 'Anthony', 'Paul', 'anthony@gmail.com', '$2y$10$VtmRWEn8OmfFhakyoBsBIuXxfEwtChl3eLc8d.8vjYwBovqraaJYC', '123456782321', 1, NULL, '2025-12-26 14:24:31', '2025-12-26 14:24:31', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -792,18 +940,18 @@ INSERT INTO `users` (`id`, `role_id`, `department_id`, `first_name`, `last_name`
 -- (See below for the actual view)
 --
 CREATE TABLE `v_active_users` (
-`id` int
-,`first_name` varchar(50)
-,`last_name` varchar(50)
-,`full_name` varchar(101)
-,`email` varchar(100)
-,`phone` varchar(20)
-,`role_name` varchar(50)
-,`role_code` varchar(20)
-,`department_name` varchar(100)
+`created_at` timestamp
 ,`department_code` varchar(20)
+,`department_name` varchar(100)
+,`email` varchar(100)
+,`first_name` varchar(50)
+,`full_name` varchar(101)
+,`id` int
 ,`last_login` timestamp
-,`created_at` timestamp
+,`last_name` varchar(50)
+,`phone` varchar(20)
+,`role_code` varchar(20)
+,`role_name` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -897,6 +1045,17 @@ ALTER TABLE `department_budgets`
   ADD KEY `idx_budget_status` (`status`,`end_date`);
 
 --
+-- Indexes for table `help_support`
+--
+ALTER TABLE `help_support`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_type` (`type`),
+  ADD KEY `idx_category` (`category`),
+  ADD KEY `idx_is_active` (`is_active`),
+  ADD KEY `idx_display_order` (`display_order`),
+  ADD KEY `idx_created_by` (`created_by`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -968,7 +1127,8 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `role_name` (`role_name`),
   ADD UNIQUE KEY `role_code` (`role_code`),
-  ADD KEY `idx_role_code` (`role_code`);
+  ADD KEY `idx_role_code` (`role_code`),
+  ADD KEY `idx_active` (`is_active`);
 
 --
 -- Indexes for table `users`
@@ -989,7 +1149,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
 -- AUTO_INCREMENT for table `budget_allocations`
@@ -1010,6 +1170,12 @@ ALTER TABLE `department_budgets`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `help_support`
+--
+ALTER TABLE `help_support`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -1019,13 +1185,13 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `requisition_approvals`
 --
 ALTER TABLE `requisition_approvals`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `requisition_categories`
@@ -1037,25 +1203,25 @@ ALTER TABLE `requisition_categories`
 -- AUTO_INCREMENT for table `requisition_documents`
 --
 ALTER TABLE `requisition_documents`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `requisition_items`
 --
 ALTER TABLE `requisition_items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 -- --------------------------------------------------------
 
