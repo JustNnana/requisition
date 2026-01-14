@@ -16,7 +16,7 @@ define('APP_DEBUG', false); // Set to false in production
 
 // Application Details
 define('APP_NAME', 'Kadick Finance');
-define('APP_VERSION', '3.0.0');
+define('APP_VERSION', '1.0.0');
 define('APP_URL', 'https://request.gatewey.com.ng');
 define('BASE_URL', 'https://request.gatewey.com.ng');
 
