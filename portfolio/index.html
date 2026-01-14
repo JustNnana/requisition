@@ -575,26 +575,11 @@
             overflow: hidden;
         }
 
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-        .about-image i {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            color: var(--color-white);
-            opacity: 0.9;
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
         }
 
         .about-pattern {
@@ -1152,6 +1137,11 @@
             align-items: center;
             gap: var(--spacing-sm);
             color: rgba(255, 255, 255, 0.7);
+            transition: all var(--transition-fast);
+        }
+
+        a.footer-contact-item:hover {
+            color: var(--color-accent);
         }
 
         .footer-contact-item i {
@@ -1407,7 +1397,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container navbar-container">
-            <a href="#" class="navbar-logo">Dev<span>Studio</span></a>
+            <a href="#" class="navbar-logo">Peter <span>Madumere</span></a>
 
             <div class="navbar-menu">
                 <a href="#home" class="navbar-link active">Home</a>
@@ -1535,10 +1525,11 @@
             <div class="about-visual">
                 <div class="about-pattern"></div>
                 <div class="about-image">
-                    <i class="fas fa-user"></i>
+                    <!-- Replace 'your-photo.jpg' with your actual image path -->
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQFcUm28sxMpBQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719020300746?e=1770249600&v=beta&t=rhWMG2dW05_Idygcwshmv8TbddILhiWh0rU-BExLfiQ" alt="Profile Photo">
                 </div>
                 <div class="about-experience">
-                    <div class="about-experience-number">8+</div>
+                    <div class="about-experience-number">4+</div>
                     <div class="about-experience-text">Years of<br>Experience</div>
                 </div>
             </div>
@@ -1644,6 +1635,36 @@
                     <h3 class="service-title">Maintenance & Support</h3>
                     <p class="service-description">
                         Keep your website secure, updated, and performing optimally with ongoing maintenance and priority support.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3 class="service-title">HTML5, CSS3 & JavaScript</h3>
+                    <p class="service-description">
+                        Modern front-end development using the latest web standards for clean, semantic markup and interactive user experiences.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Responsive Design</h3>
+                    <p class="service-description">
+                        Mobile-first websites that look and function beautifully across all devices, from smartphones to desktops.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-php"></i>
+                    </div>
+                    <h3 class="service-title">Backend Development</h3>
+                    <p class="service-description">
+                        Robust server-side solutions with PHP and MySQL for dynamic websites, custom functionality, and database management.
                     </p>
                 </div>
             </div>
@@ -1901,15 +1922,12 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-brand">
-                    <div class="footer-logo">Dev<span>Studio</span></div>
+                    <div class="footer-logo">Peter <span>Madumere</span></div>
                     <p class="footer-description">
                         WordPress web designer crafting fast, modern, and conversion-focused websites for businesses ready to grow online.
                     </p>
                     <div class="footer-social">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/peter-madumere-80ab011a2/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
@@ -1938,14 +1956,14 @@
                 <div class="footer-column">
                     <h4>Contact</h4>
                     <div class="footer-contact">
-                        <div class="footer-contact-item">
+                        <a href="mailto:nnanamadumere@gmail.com" class="footer-contact-item">
                             <i class="fas fa-envelope"></i>
-                            hello@devstudio.com
-                        </div>
-                        <div class="footer-contact-item">
+                            nnanamadumere@gmail.com
+                        </a>
+                        <a href="tel:+2349069225818" class="footer-contact-item">
                             <i class="fas fa-phone"></i>
-                            +1 (555) 123-4567
-                        </div>
+                            +2349069225818
+                        </a>
                         <div class="footer-contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             Remote Worldwide
