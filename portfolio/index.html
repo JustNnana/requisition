@@ -812,16 +812,38 @@
         }
 
         .device-screen {
-            background: var(--color-white);
+            background: linear-gradient(135deg, var(--color-background-alt) 0%, #e2e8f0 100%);
             border-radius: 4px 4px 0 0;
             aspect-ratio: 16/10;
             overflow: hidden;
+            position: relative;
         }
 
         .device-screen img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
+            transition: opacity 0.3s ease;
+            background: linear-gradient(
+                90deg,
+                var(--color-background-alt) 25%,
+                #e2e8f0 50%,
+                var(--color-background-alt) 75%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        .device-screen img.loaded {
+            animation: none;
+            background: none;
+        }
+
+        /* Loading skeleton animation */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         .device-base {
@@ -1440,7 +1462,7 @@
                 </div>
                 <div class="hero-stats">
                     <div class="hero-stat">
-                        <div class="hero-stat-number">150+</div>
+                        <div class="hero-stat-number">5+</div>
                         <div class="hero-stat-label">Projects Completed</div>
                     </div>
                     <div class="hero-stat">
@@ -1448,7 +1470,7 @@
                         <div class="hero-stat-label">Client Satisfaction</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-number">8+</div>
+                        <div class="hero-stat-number">4+</div>
                         <div class="hero-stat-label">Years Experience</div>
                     </div>
                 </div>
@@ -1643,17 +1665,18 @@
                 <div class="portfolio-item">
                     <div class="portfolio-mockup">
                         <div class="device-laptop">
-                            <div class="device-screen" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="device-screen">
+                                <img src="https://api.microlink.io/?url=https://ziirewoods.com/&screenshot=true&meta=false&embed=screenshot.url" alt="Ziirewoods Website Preview" loading="lazy">
                             </div>
                             <div class="device-base"></div>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4 class="portfolio-title">TechStart SaaS Platform</h4>
-                        <p class="portfolio-category">SaaS / Technology</p>
+                        <h4 class="portfolio-title">Ziirewoods</h4>
+                        <p class="portfolio-category">Fashion</p>
                     </div>
                     <div class="portfolio-overlay">
-                        <a href="#" class="portfolio-link">
+                        <a href="https://ziirewoods.com/" class="portfolio-link" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1662,17 +1685,18 @@
                 <div class="portfolio-item">
                     <div class="portfolio-mockup">
                         <div class="device-laptop">
-                            <div class="device-screen" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <div class="device-screen">
+                                <img src="https://api.microlink.io/?url=https://najcom.com/&screenshot=true&meta=false&embed=screenshot.url" alt="Najcom Website Preview" loading="lazy">
                             </div>
                             <div class="device-base"></div>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4 class="portfolio-title">Bloom Beauty Boutique</h4>
-                        <p class="portfolio-category">E-commerce / Beauty</p>
+                        <h4 class="portfolio-title">Najcom</h4>
+                        <p class="portfolio-category">Telecommunication</p>
                     </div>
                     <div class="portfolio-overlay">
-                        <a href="#" class="portfolio-link">
+                        <a href="https://najcom.com/" class="portfolio-link" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1681,17 +1705,18 @@
                 <div class="portfolio-item">
                     <div class="portfolio-mockup">
                         <div class="device-laptop">
-                            <div class="device-screen" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <div class="device-screen">
+                                <img src="https://api.microlink.io/?url=https://www.johnbullamayaevbo.com/&screenshot=true&meta=false&embed=screenshot.url" alt="Johnbullamayaevbo Website Preview" loading="lazy">
                             </div>
                             <div class="device-base"></div>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4 class="portfolio-title">Coastal Law Partners</h4>
-                        <p class="portfolio-category">Legal / Professional</p>
+                        <h4 class="portfolio-title">Johnbullamayaevbo</h4>
+                        <p class="portfolio-category">Real Estate</p>
                     </div>
                     <div class="portfolio-overlay">
-                        <a href="#" class="portfolio-link">
+                        <a href="https://www.johnbullamayaevbo.com/" class="portfolio-link" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1700,17 +1725,18 @@
                 <div class="portfolio-item">
                     <div class="portfolio-mockup">
                         <div class="device-laptop">
-                            <div class="device-screen" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <div class="device-screen">
+                                <img src="https://api.microlink.io/?url=https://www.maxfront.com/&screenshot=true&meta=false&embed=screenshot.url" alt="Maxfront Website Preview" loading="lazy">
                             </div>
                             <div class="device-base"></div>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4 class="portfolio-title">GreenLeaf Wellness</h4>
-                        <p class="portfolio-category">Health / Wellness</p>
+                        <h4 class="portfolio-title">Maxfront</h4>
+                        <p class="portfolio-category">Digital Tech</p>
                     </div>
                     <div class="portfolio-overlay">
-                        <a href="#" class="portfolio-link">
+                        <a href="https://www.maxfront.com/" class="portfolio-link" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1719,36 +1745,37 @@
                 <div class="portfolio-item">
                     <div class="portfolio-mockup">
                         <div class="device-laptop">
-                            <div class="device-screen" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <div class="device-screen">
+                                <img src="https://api.microlink.io/?url=https://avatrustconsult.com/registration/&screenshot=true&meta=false&embed=screenshot.url" alt="Avatrustconsult Website Preview" loading="lazy">
                             </div>
                             <div class="device-base"></div>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4 class="portfolio-title">Artisan Bakery Co.</h4>
-                        <p class="portfolio-category">Food & Beverage</p>
+                        <h4 class="portfolio-title">Avatrustconsult</h4>
+                        <p class="portfolio-category">Consulting Firm</p>
                     </div>
                     <div class="portfolio-overlay">
-                        <a href="#" class="portfolio-link">
+                        <a href="https://avatrustconsult.com/registration/" class="portfolio-link" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
-
                 <div class="portfolio-item">
                     <div class="portfolio-mockup">
                         <div class="device-laptop">
-                            <div class="device-screen" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
+                            <div class="device-screen">
+                                <img src="https://api.microlink.io/?url=https://gatewey.com.ng/welcome/&screenshot=true&meta=false&embed=screenshot.url" alt="Avatrustconsult Website Preview" loading="lazy">
                             </div>
                             <div class="device-base"></div>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4 class="portfolio-title">Innovate Agency</h4>
-                        <p class="portfolio-category">Creative Agency</p>
+                        <h4 class="portfolio-title">Gatewey Systems Limited</h4>
+                        <p class="portfolio-category">Tech</p>
                     </div>
                     <div class="portfolio-overlay">
-                        <a href="#" class="portfolio-link">
+                        <a href="https://gatewey.com.ng/welcome/" class="portfolio-link" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1758,7 +1785,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <!-- <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="testimonials-header">
                 <span class="section-subtitle">Client Feedback</span>
@@ -1833,7 +1860,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- CTA Section -->
     <section class="cta" id="cta">
@@ -1843,7 +1870,7 @@
                 Ready to take your online presence to the next level? Let's discuss how I can help you achieve your goals with a custom WordPress solution.
             </p>
             <div class="cta-buttons">
-                <a href="mailto:hello@devstudio.com" class="btn btn-primary" style="background: var(--color-white); color: var(--color-primary);">
+                <a href="mailto:nnanamadumere@gmail.com" class="btn btn-primary" style="background: var(--color-white); color: var(--color-primary);">
                     <i class="fas fa-paper-plane"></i>
                     Start a Project
                 </a>
@@ -2030,6 +2057,24 @@
         document.querySelectorAll('.service-card, .portfolio-item, .testimonial-card').forEach(el => {
             el.style.opacity = '0';
             observer.observe(el);
+        });
+
+        // Handle portfolio image loading
+        document.querySelectorAll('.device-screen img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+
+            // Handle image load errors - show fallback gradient
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                this.parentElement.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            });
+
+            // Check if already loaded (cached)
+            if (img.complete && img.naturalHeight !== 0) {
+                img.classList.add('loaded');
+            }
         });
     </script>
 </body>
